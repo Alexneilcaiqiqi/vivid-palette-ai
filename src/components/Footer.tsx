@@ -1,47 +1,63 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Github, 
-  Twitter, 
-  Linkedin,
-  Heart
-} from "lucide-react";
-
+import { Mail, Phone, MapPin, Github, Twitter, Linkedin, Heart } from "lucide-react";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
   const links = {
-    product: [
-      { name: "功能特性", href: "#features" },
-      { name: "价格方案", href: "#pricing" },
-      { name: "API文档", href: "#" },
-      { name: "更新日志", href: "#" }
-    ],
-    company: [
-      { name: "关于我们", href: "#" },
-      { name: "加入我们", href: "#" },
-      { name: "新闻资讯", href: "#" },
-      { name: "合作伙伴", href: "#" }
-    ],
-    support: [
-      { name: "帮助中心", href: "#" },
-      { name: "联系客服", href: "#" },
-      { name: "社区论坛", href: "#" },
-      { name: "状态页面", href: "#" }
-    ],
-    legal: [
-      { name: "服务条款", href: "#" },
-      { name: "隐私政策", href: "#" },
-      { name: "Cookie政策", href: "#" },
-      { name: "免责声明", href: "#" }
-    ]
+    product: [{
+      name: "功能特性",
+      href: "#features"
+    }, {
+      name: "价格方案",
+      href: "#pricing"
+    }, {
+      name: "API文档",
+      href: "#"
+    }, {
+      name: "更新日志",
+      href: "#"
+    }],
+    company: [{
+      name: "关于我们",
+      href: "#"
+    }, {
+      name: "加入我们",
+      href: "#"
+    }, {
+      name: "新闻资讯",
+      href: "#"
+    }, {
+      name: "合作伙伴",
+      href: "#"
+    }],
+    support: [{
+      name: "帮助中心",
+      href: "#"
+    }, {
+      name: "联系客服",
+      href: "#"
+    }, {
+      name: "社区论坛",
+      href: "#"
+    }, {
+      name: "状态页面",
+      href: "#"
+    }],
+    legal: [{
+      name: "服务条款",
+      href: "#"
+    }, {
+      name: "隐私政策",
+      href: "#"
+    }, {
+      name: "Cookie政策",
+      href: "#"
+    }, {
+      name: "免责声明",
+      href: "#"
+    }]
   };
-
-  return (
-    <footer className="border-t border-border/50 bg-card/50">
+  return <footer className="border-t border-border/50 bg-card/50">
       <div className="container mx-auto max-w-7xl px-4">
         {/* 主要内容区域 */}
         <div className="py-16 grid lg:grid-cols-5 gap-8">
@@ -51,7 +67,7 @@ const Footer = () => {
               <div className="w-8 h-8 bg-gradient-neon rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">H</span>
               </div>
-              <span className="text-xl font-bold text-gradient">慧潮.org</span>
+              <span className="text-xl font-bold text-gradient">慧潮</span>
             </div>
             
             <p className="text-muted-foreground max-w-md">
@@ -93,64 +109,44 @@ const Footer = () => {
             <div className="space-y-4">
               <h3 className="font-semibold text-foreground">产品</h3>
               <ul className="space-y-2">
-                {links.product.map((link, index) => (
-                  <li key={index}>
-                    <a 
-                      href={link.href} 
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
+                {links.product.map((link, index) => <li key={index}>
+                    <a href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
                       {link.name}
                     </a>
-                  </li>
-                ))}
+                  </li>)}
               </ul>
             </div>
 
             <div className="space-y-4">
               <h3 className="font-semibold text-foreground">公司</h3>
               <ul className="space-y-2">
-                {links.company.map((link, index) => (
-                  <li key={index}>
-                    <a 
-                      href={link.href} 
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
+                {links.company.map((link, index) => <li key={index}>
+                    <a href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
                       {link.name}
                     </a>
-                  </li>
-                ))}
+                  </li>)}
               </ul>
             </div>
 
             <div className="space-y-4">
               <h3 className="font-semibold text-foreground">支持</h3>
               <ul className="space-y-2">
-                {links.support.map((link, index) => (
-                  <li key={index}>
-                    <a 
-                      href={link.href} 
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
+                {links.support.map((link, index) => <li key={index}>
+                    <a href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
                       {link.name}
                     </a>
-                  </li>
-                ))}
+                  </li>)}
               </ul>
             </div>
 
             <div className="space-y-4">
               <h3 className="font-semibold text-foreground">法律</h3>
               <ul className="space-y-2">
-                {links.legal.map((link, index) => (
-                  <li key={index}>
-                    <a 
-                      href={link.href} 
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
+                {links.legal.map((link, index) => <li key={index}>
+                    <a href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
                       {link.name}
                     </a>
-                  </li>
-                ))}
+                  </li>)}
               </ul>
             </div>
           </div>
@@ -167,10 +163,7 @@ const Footer = () => {
             </div>
             
             <div className="flex space-x-2">
-              <Input 
-                placeholder="输入您的邮箱地址" 
-                className="flex-1"
-              />
+              <Input placeholder="输入您的邮箱地址" className="flex-1" />
               <Button variant="gradient">
                 订阅
               </Button>
@@ -193,8 +186,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;

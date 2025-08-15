@@ -2,41 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* AI图像处理网站设计系统 - 夸张明亮活力色彩 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* 深色宇宙背景 */
+    --background: 240 10% 8%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* 卡片和弹窗 */
+    --card: 240 15% 12%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 240 15% 12%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* 主色调 - 霓虹青色 */
+    --primary: 189 90% 60%;
+    --primary-foreground: 240 10% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* 次要色调 - 霓虹紫色 */
+    --secondary: 270 85% 70%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* 柔和色调 */
+    --muted: 240 15% 18%;
+    --muted-foreground: 215 25% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* 强调色 - 霓虹粉色 */
+    --accent: 320 85% 70%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* 危险色 */
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* 边框和输入框 */
+    --border: 240 20% 25%;
+    --input: 240 20% 20%;
+    --ring: 189 90% 60%;
 
-    --radius: 0.5rem;
+    /* 圆角 */
+    --radius: 0.75rem;
+
+    /* 渐变色彩 */
+    --gradient-cosmic: linear-gradient(135deg, hsl(240 85% 20%), hsl(270 85% 25%), hsl(189 85% 30%));
+    --gradient-neon: linear-gradient(135deg, hsl(189 90% 60%), hsl(270 85% 70%), hsl(320 85% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(189 90% 60%) 0%, hsl(270 85% 70%) 50%, hsl(320 85% 70%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(240 20% 15%) 0%, hsl(270 30% 18%) 100%);
+
+    /* 阴影效果 */
+    --shadow-neon: 0 0 20px hsl(189 90% 60% / 0.5);
+    --shadow-neon-strong: 0 0 40px hsl(189 90% 60% / 0.8);
+    --shadow-purple: 0 0 20px hsl(270 85% 70% / 0.4);
+    --shadow-pink: 0 0 20px hsl(320 85% 70% / 0.4);
+
+    /* 动画变量 */
+    --animation-float: float 6s ease-in-out infinite;
+    --animation-glow: glow 2s ease-in-out infinite alternate;
+    --animation-flow: flow 8s linear infinite;
 
     --sidebar-background: 0 0% 98%;
 
@@ -55,42 +79,16 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  /* 未来科技感 */
+  .future-tech {
+    /* 更强烈的霓虹效果 */
+    --primary: 189 95% 65%;
+    --secondary: 270 90% 75%;
+    --accent: 320 90% 75%;
+    
+    /* 增强的渐变 */
+    --gradient-hero: linear-gradient(135deg, hsl(189 95% 65%) 0%, hsl(270 90% 75%) 30%, hsl(320 90% 75%) 70%, hsl(60 90% 70%) 100%);
+    --gradient-cosmic: linear-gradient(135deg, hsl(240 90% 15%), hsl(270 90% 20%), hsl(189 90% 25%));
   }
 }
 
@@ -101,5 +99,73 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-cosmic);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  /* 宇宙粒子背景 */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 20%, hsl(189 90% 60% / 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, hsl(270 85% 70% / 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 40% 70%, hsl(320 85% 70% / 0.2) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+    animation: var(--animation-float);
+  }
+}
+
+/* 动画关键帧 */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-20px) rotate(120deg); }
+  66% { transform: translateY(-10px) rotate(240deg); }
+}
+
+@keyframes glow {
+  from { box-shadow: var(--shadow-neon); }
+  to { box-shadow: var(--shadow-neon-strong); }
+}
+
+@keyframes flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 实用类 */
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-neon);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: var(--animation-flow);
+  }
+
+  .glass-effect {
+    background: hsl(240 15% 12% / 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(240 20% 25% / 0.5);
+  }
+
+  .neon-glow {
+    box-shadow: var(--shadow-neon);
+    animation: var(--animation-glow);
+  }
+
+  .neon-border {
+    border: 1px solid hsl(189 90% 60%);
+    box-shadow: 
+      0 0 5px hsl(189 90% 60% / 0.5),
+      inset 0 0 5px hsl(189 90% 60% / 0.2);
   }
 }

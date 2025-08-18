@@ -1,44 +1,101 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-border/50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-neon rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">H</span>
+        <div className="flex items-center space-x-3">
+          <div className="relative">
+            <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center relative overflow-hidden">
+              <span className="text-white font-bold text-xl relative z-10">归</span>
+              <div className="absolute inset-0 bg-gradient-primary opacity-50 animate-pulse"></div>
+            </div>
           </div>
-          <span className="text-xl font-bold text-gradient">慧潮</span>
+          <div className="flex flex-col">
+            <span className="text-xl font-bold text-gradient">归巢</span>
+            <span className="text-xs text-muted-foreground -mt-1">GuiChao</span>
+          </div>
         </div>
 
-        {/* Navigation */}
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#home" className="text-foreground hover:text-primary transition-colors">
+          <a href="#home" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
             首页
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#features" className="text-foreground hover:text-primary transition-colors">
-            功能
+          <a href="#features" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
+            产品特色
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#pricing" className="text-foreground hover:text-primary transition-colors">
-            价格
+          <a href="#pricing" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
+            套餐价格
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#contact" className="text-foreground hover:text-primary transition-colors">
-            联系
+          <a href="/download" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
+            下载客户端
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <a href="#contact" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
+            联系我们
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
         </nav>
 
         {/* CTA Buttons */}
-        <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="sm">
-            登录
+        <div className="hidden md:flex items-center space-x-4">
+          <Button variant="ghost" size="sm" className="hover-float">
+            <a href="/auth">登录</a>
           </Button>
-          <Button variant="hero" size="sm" className="hidden sm:inline-flex">
-            开始使用
+          <Button variant="default" size="sm" className="bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300">
+            <a href="/auth">免费试用</a>
           </Button>
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 hover:bg-accent/10 rounded-lg transition-colors"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden glass-effect border-t border-border/50">
+          <nav className="container mx-auto px-4 py-4 space-y-4">
+            <a href="#home" className="block py-2 text-foreground hover:text-primary transition-colors">
+              首页
+            </a>
+            <a href="#features" className="block py-2 text-foreground hover:text-primary transition-colors">
+              产品特色
+            </a>
+            <a href="#pricing" className="block py-2 text-foreground hover:text-primary transition-colors">
+              套餐价格
+            </a>
+            <a href="/download" className="block py-2 text-foreground hover:text-primary transition-colors">
+              下载客户端
+            </a>
+            <a href="#contact" className="block py-2 text-foreground hover:text-primary transition-colors">
+              联系我们
+            </a>
+            <div className="flex flex-col space-y-2 pt-4 border-t border-border/50">
+              <Button variant="ghost" size="sm">
+                <a href="/auth">登录</a>
+              </Button>
+              <Button variant="default" size="sm" className="bg-gradient-primary">
+                <a href="/auth">免费试用</a>
+              </Button>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };

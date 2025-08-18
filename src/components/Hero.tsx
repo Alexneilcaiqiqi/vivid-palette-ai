@@ -1,95 +1,99 @@
 import { Button } from "@/components/ui/button";
-import { Upload, Sparkles, Zap, Star } from "lucide-react";
-import heroImage from "@/assets/hero-ai-brain.jpg";
+import { ArrowRight, Globe, Shield, Zap } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center pt-16 px-4">
-      <div className="container mx-auto max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* 左侧内容 */}
-          <div className="space-y-8 animate-fade-in">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2 mb-4">
-                <Star className="w-5 h-5 text-primary animate-pulse" />
-                <span className="text-sm text-muted-foreground">AI图像处理革命</span>
-              </div>
-              
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                让<span className="text-gradient">创意</span>
-                <br />
-                照进现实
-              </h1>
-              
-              <p className="text-xl text-muted-foreground max-w-lg">
-                快速将您的草图转化为逼真的图像或高质量的视频，
-                释放无限创意可能
-              </p>
-            </div>
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-16 floating-particles">
+      <div className="container mx-auto px-4 text-center relative z-10">
+        {/* 主标题区 */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className="inline-flex items-center px-4 py-2 bg-card/50 rounded-full border border-primary/20 mb-6 glass-effect">
+            <span className="text-sm text-primary font-medium">🎯 专为海外华人设计</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <span className="text-gradient">倦鸟归巢</span>
+            <br />
+            <span className="text-foreground">一键回国</span>
+          </h1>
+          
+          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+            专业的回国网络加速服务，让海外华人轻松访问国内所有网络服务。
+            <br className="hidden md:block" />
+            <span className="text-primary font-semibold">高速稳定 • 安全可靠 • 一键连接</span>
+          </p>
 
-            {/* 特色亮点 */}
-            <div className="flex flex-wrap gap-4 text-sm">
-              <div className="flex items-center space-x-2 glass-effect px-3 py-2 rounded-full border border-primary/20">
-                <Sparkles className="w-4 h-4 text-primary" />
-                <span>AI智能增强</span>
-              </div>
-              <div className="flex items-center space-x-2 glass-effect px-3 py-2 rounded-full border border-secondary/20">
-                <Zap className="w-4 h-4 text-secondary" />
-                <span>秒级处理</span>
-              </div>
-              <div className="flex items-center space-x-2 glass-effect px-3 py-2 rounded-full border border-accent/20">
-                <Upload className="w-4 h-4 text-accent" />
-                <span>批量处理</span>
-              </div>
-            </div>
+          {/* CTA按钮 */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Button 
+              size="xl" 
+              className="bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300 cyber-glow"
+            >
+              <a href="/auth">立即免费试用</a>
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            <Button 
+              variant="outline" 
+              size="xl" 
+              className="border-primary/30 hover:bg-primary/10 hover-float"
+            >
+              <a href="/download">下载客户端</a>
+            </Button>
+          </div>
 
-            {/* CTA按钮 */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="xl" className="group">
-                <Upload className="w-5 h-5 mr-2 group-hover:animate-bounce" />
-                免费试用
-              </Button>
-              <Button variant="neon" size="xl">
-                观看演示
-              </Button>
+          {/* 信任指标 */}
+          <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <Shield className="w-4 h-4 text-primary" />
+              <span>企业级安全</span>
             </div>
+            <div className="flex items-center gap-2">
+              <Zap className="w-4 h-4 text-primary" />
+              <span>毫秒级延迟</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Globe className="w-4 h-4 text-primary" />
+              <span>全球节点</span>
+            </div>
+          </div>
+        </div>
 
-            {/* 信任指标 */}
-            <div className="pt-8 space-y-2">
-              <p className="text-sm text-muted-foreground">已有超过 100,000+ 用户选择我们</p>
-              <div className="flex items-center space-x-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-                ))}
-                <span className="text-sm text-muted-foreground ml-2">4.9/5 用户评分</span>
-              </div>
+        {/* 设备展示 */}
+        <div className="relative max-w-5xl mx-auto">
+          <div className="relative tech-grid rounded-2xl p-8 glass-effect border border-primary/20">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+              {/* 支持的平台 */}
+              {[
+                { name: "Windows", icon: "🖥️", desc: "PC客户端" },
+                { name: "macOS", icon: "💻", desc: "Mac客户端" },
+                { name: "iOS", icon: "📱", desc: "iPhone/iPad" },
+                { name: "Android", icon: "📲", desc: "安卓手机" },
+                { name: "路由器", icon: "📡", desc: "全家共享" },
+                { name: "浏览器", icon: "🌐", desc: "免装插件" }
+              ].map((platform, index) => (
+                <div 
+                  key={platform.name}
+                  className="p-4 bg-card/30 rounded-xl border border-border/50 hover-float hover:border-primary/50 transition-all duration-300"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="text-3xl mb-2">{platform.icon}</div>
+                  <h3 className="font-semibold text-foreground mb-1">{platform.name}</h3>
+                  <p className="text-xs text-muted-foreground">{platform.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* 右侧图片 */}
-          <div className="relative animate-scale-in">
-            <div className="relative">
-              <img 
-                src={heroImage} 
-                alt="AI图像处理" 
-                className="w-full h-auto rounded-2xl shadow-neon-strong border border-primary/20"
-              />
-              
-              {/* 浮动装饰元素 */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-neon rounded-full opacity-20 animate-float"></div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-card rounded-full opacity-30 animate-float" style={{animationDelay: '2s'}}></div>
-              
-              {/* 处理状态模拟 */}
-              <div className="absolute bottom-4 left-4 right-4 glass-effect rounded-lg p-4 border border-border/50">
-                <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-                  <span className="text-sm">AI正在处理您的图像...</span>
-                </div>
-                <div className="mt-2 w-full bg-muted rounded-full h-2">
-                  <div className="bg-gradient-neon h-2 rounded-full animate-pulse" style={{width: '75%'}}></div>
-                </div>
-              </div>
-            </div>
+          {/* 悬浮特效元素 */}
+          <div className="absolute -top-6 -left-6 w-12 h-12 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute -bottom-6 -right-6 w-12 h-12 bg-accent/20 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute top-1/2 -right-8 w-8 h-8 bg-secondary/20 rounded-full blur-lg animate-pulse"></div>
+        </div>
+
+        {/* 滚动提示 */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </div>

@@ -1,134 +1,125 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Sparkles, 
-  Zap, 
-  Palette, 
-  Upload, 
-  Download, 
-  Shield, 
-  Clock, 
-  Users,
-  Brush,
-  Image,
-  Video,
-  Layers
-} from "lucide-react";
+import { Shield, Zap, Globe, Users, Clock, HeadphonesIcon } from "lucide-react";
 
 const Features = () => {
   const features = [
     {
-      icon: Sparkles,
-      title: "AI智能增强",
-      description: "使用最先进的AI算法，自动优化图像细节和质量",
-      color: "text-primary",
-      bgColor: "bg-primary/10"
+      icon: <Zap className="w-8 h-8" />,
+      title: "极速连接",
+      description: "采用最新加速技术，连接速度提升300%，观看4K视频无缓冲",
+      highlight: "毫秒级延迟",
+      color: "from-cyan-500 to-blue-500"
     },
     {
-      icon: Zap,
-      title: "极速处理",
-      description: "云端GPU加速，秒级完成图像处理任务",
-      color: "text-secondary",
-      bgColor: "bg-secondary/10"
+      icon: <Shield className="w-8 h-8" />,
+      title: "军用级加密",
+      description: "AES-256位加密技术，保护您的网络安全和隐私数据",
+      highlight: "银行级安全",
+      color: "from-purple-500 to-indigo-500"
     },
     {
-      icon: Palette,
-      title: "风格转换",
-      description: "一键将照片转换为油画、水彩、卡通等多种艺术风格",
-      color: "text-accent",
-      bgColor: "bg-accent/10"
+      icon: <Globe className="w-8 h-8" />,
+      title: "全球节点",
+      description: "覆盖全球50+城市，智能选择最优线路，确保连接稳定",
+      highlight: "50+节点",
+      color: "from-pink-500 to-rose-500"
     },
     {
-      icon: Brush,
-      title: "智能修复",
-      description: "自动去除瑕疵、修复老照片、增强细节",
-      color: "text-neon-yellow",
-      bgColor: "bg-yellow-500/10"
+      icon: <Users className="w-8 h-8" />,
+      title: "多设备支持",
+      description: "一个账户支持10台设备同时使用，全家共享无忧",
+      highlight: "10台设备",
+      color: "from-emerald-500 to-teal-500"
     },
     {
-      icon: Image,
-      title: "超分辨率",
-      description: "AI放大技术，将小图无损放大至4K分辨率",
-      color: "text-primary",
-      bgColor: "bg-primary/10"
+      icon: <Clock className="w-8 h-8" />,
+      title: "7x24在线",
+      description: "99.9%服务可用性，全年无休为您提供稳定的网络服务",
+      highlight: "99.9%稳定",
+      color: "from-orange-500 to-amber-500"
     },
     {
-      icon: Video,
-      title: "视频处理",
-      description: "支持视频风格化、稳定、去噪等高级功能",
-      color: "text-secondary",
-      bgColor: "bg-secondary/10"
+      icon: <HeadphonesIcon className="w-8 h-8" />,
+      title: "专业客服",
+      description: "中文技术支持团队，微信群实时答疑，问题快速解决",
+      highlight: "中文支持",
+      color: "from-violet-500 to-purple-500"
     }
   ];
 
-  const stats = [
-    { icon: Users, value: "100K+", label: "活跃用户" },
-    { icon: Clock, value: "99.9%", label: "服务可用性" },
-    { icon: Upload, value: "50M+", label: "处理图片" },
-    { icon: Shield, value: "企业级", label: "数据安全" }
-  ];
-
   return (
-    <section id="features" className="py-20 px-4">
-      <div className="container mx-auto max-w-7xl">
+    <section id="features" className="py-20 relative">
+      <div className="container mx-auto px-4">
         {/* 标题部分 */}
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold">
-            强大的<span className="text-gradient">AI功能</span>
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center px-4 py-2 bg-card/50 rounded-full border border-primary/20 mb-6 glass-effect">
+            <span className="text-sm text-primary font-medium">⚡ 产品特色</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="text-foreground">为什么选择</span>
+            <span className="text-gradient ml-3">归巢</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            集成多种前沿AI技术，为您提供专业级的图像处理体验
+          
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            专为海外华人打造的回国网络解决方案，让您在海外也能无缝享受国内的网络服务
           </p>
         </div>
 
-        {/* 功能网格 */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        {/* 特色功能网格 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <Card 
-              key={index} 
-              className="glass-effect border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-neon group animate-fade-in"
-              style={{animationDelay: `${index * 0.1}s`}}
+            <div
+              key={feature.title}
+              className="group relative p-6 bg-card/30 rounded-2xl border border-border/50 hover-float hover:border-primary/50 transition-all duration-500"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <CardHeader>
-                <div className={`w-12 h-12 rounded-lg ${feature.bgColor} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <feature.icon className={`w-6 h-6 ${feature.color}`} />
-                </div>
-                <CardTitle className="text-xl">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-muted-foreground">
-                  {feature.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+              {/* 背景渐变效果 */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
+              
+              {/* 图标 */}
+              <div className={`inline-flex p-3 bg-gradient-to-br ${feature.color} rounded-xl text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                {feature.icon}
+              </div>
+
+              {/* 标题和描述 */}
+              <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                {feature.title}
+              </h3>
+              
+              <p className="text-muted-foreground mb-4 leading-relaxed">
+                {feature.description}
+              </p>
+
+              {/* 亮点标签 */}
+              <div className="inline-flex items-center px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full border border-primary/20">
+                {feature.highlight}
+              </div>
+
+              {/* 悬浮光效 */}
+              <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl opacity-0 group-hover:opacity-100 -z-10 blur transition-opacity duration-500"></div>
+            </div>
           ))}
         </div>
 
-        {/* 统计数据 */}
-        <div className="glass-effect rounded-2xl p-8 border border-border/50">
+        {/* 底部统计数据 */}
+        <div className="mt-20 text-center">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center space-y-2">
-                <div className="flex justify-center">
-                  <stat.icon className="w-8 h-8 text-primary" />
+            {[
+              { number: "100万+", label: "用户信赖" },
+              { number: "50+", label: "全球节点" },
+              { number: "99.9%", label: "稳定运行" },
+              { number: "24/7", label: "技术支持" }
+            ].map((stat, index) => (
+              <div key={stat.label} className="group">
+                <div className="text-3xl md:text-4xl font-bold text-gradient mb-2 group-hover:scale-110 transition-transform duration-300">
+                  {stat.number}
                 </div>
-                <div className="text-2xl md:text-3xl font-bold text-gradient">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-muted-foreground text-sm md:text-base">
                   {stat.label}
                 </div>
               </div>
             ))}
           </div>
-        </div>
-
-        {/* CTA部分 */}
-        <div className="text-center mt-16">
-          <Button variant="hero" size="xl" className="group">
-            <Layers className="w-5 h-5 mr-2 group-hover:animate-spin" />
-            立即体验所有功能
-          </Button>
         </div>
       </div>
     </section>

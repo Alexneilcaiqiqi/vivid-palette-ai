@@ -11,6 +11,8 @@ const Pricing = () => {
   } | null>(null);
 
   const handlePlanSelect = (plan: { name: string; price: string; period: string }) => {
+    // 最简单的测试 - 改变页面标题
+    document.title = `已选择: ${plan.name}`;
     setSelectedPlan(plan);
     setIsPaymentDialogOpen(true);
   };

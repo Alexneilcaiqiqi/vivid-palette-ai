@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Check, Star, Crown, Zap } from "lucide-react";
+import { Check, Star, Crown, Zap, CreditCard, Smartphone, DollarSign, Apple, Chrome, X } from "lucide-react";
 import { useState } from "react";
-import PaymentMethodDialog from "./PaymentMethodDialog";
 
 const Pricing = () => {
   const [isPaymentDialogOpen, setIsPaymentDialogOpen] = useState(false);
@@ -12,12 +11,54 @@ const Pricing = () => {
   } | null>(null);
 
   const handlePlanSelect = (plan: { name: string; price: string; period: string }) => {
-    console.log("套餐选择被点击:", plan);
-    alert(`您选择了 ${plan.name} 套餐！`);
     setSelectedPlan(plan);
     setIsPaymentDialogOpen(true);
-    console.log("弹窗状态设置为:", true);
   };
+
+  const paymentMethods = [
+    {
+      id: "wechat",
+      name: "微信支付",
+      icon: <Smartphone className="w-6 h-6" />,
+      description: "使用微信快速支付",
+      color: "from-green-500 to-emerald-500"
+    },
+    {
+      id: "alipay_hk",
+      name: "香港支付宝",
+      icon: <DollarSign className="w-6 h-6" />,
+      description: "支付宝(香港)便捷支付",
+      color: "from-blue-500 to-cyan-500"
+    },
+    {
+      id: "paypal",
+      name: "PayPal",
+      icon: <CreditCard className="w-6 h-6" />,
+      description: "全球通用在线支付",
+      color: "from-blue-600 to-indigo-600"
+    },
+    {
+      id: "google_pay",
+      name: "Google Pay",
+      icon: <Chrome className="w-6 h-6" />,
+      description: "Google 快速支付",
+      color: "from-red-500 to-orange-500"
+    },
+    {
+      id: "apple_pay",
+      name: "Apple Pay",
+      icon: <Apple className="w-6 h-6" />,
+      description: "Apple 设备专用支付",
+      color: "from-gray-600 to-gray-800"
+    },
+    {
+      id: "stripe",
+      name: "Stripe",
+      icon: <CreditCard className="w-6 h-6" />,
+      description: "信用卡/借记卡支付",
+      color: "from-purple-500 to-violet-500"
+    }
+  ];
   const plans = [
     {
       name: "体验版",
@@ -217,12 +258,71 @@ const Pricing = () => {
         </div>
       </div>
 
-      {/* 支付方式选择弹窗 */}
-      <PaymentMethodDialog
-        open={isPaymentDialogOpen}
-        onOpenChange={setIsPaymentDialogOpen}
-        selectedPlan={selectedPlan}
-      />
+      {/* 支付方式选择弹窗 - 使用原生HTML dialog */}
+      {isPaymentDialogOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-card rounded-2xl border border-primary/20 max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              {/* 头部 */}
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-foreground">选择支付方式</h2>
+                <button
+                  onClick={() => setIsPaymentDialogOpen(false)}
+                  className="p-2 hover:bg-muted rounded-full transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* 套餐信息 */}
+              {selectedPlan && (
+                <div className="text-center mb-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
+                  <p className="text-lg font-semibold text-foreground">{selectedPlan.name}</p>
+                  <p className="text-2xl font-bold text-gradient">
+                    {selectedPlan.price}{selectedPlan.period}
+                  </p>
+                </div>
+              )}
+
+              {/* 支付方式列表 */}
+              <div className="space-y-3 mb-6">
+                {paymentMethods.map((method) => (
+                  <button
+                    key={method.id}
+                    onClick={() => {
+                      window.location.href = `/payment?plan=${selectedPlan?.name}&method=${method.id}`;
+                    }}
+                    className="w-full p-4 rounded-lg border border-border hover:border-primary/50 bg-card/50 hover:bg-primary/5 transition-all duration-300 text-left"
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className={`p-2 rounded-lg bg-gradient-to-br ${method.color} text-white`}>
+                        {method.icon}
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-foreground">{method.name}</h3>
+                        <p className="text-sm text-muted-foreground">{method.description}</p>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {/* 底部按钮 */}
+              <button
+                onClick={() => setIsPaymentDialogOpen(false)}
+                className="w-full p-3 border border-primary/30 rounded-lg text-foreground hover:bg-primary/10 transition-colors"
+              >
+                取消
+              </button>
+
+              {/* 安全提示 */}
+              <p className="text-xs text-muted-foreground text-center mt-4">
+                支付过程安全加密，支持7天无忧退款
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

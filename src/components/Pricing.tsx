@@ -204,24 +204,22 @@ const Pricing = () => {
                 </div>
 
                 {/* 按钮 */}
-                <Button 
+                <div 
                   onClick={() => handlePlanSelect({
                     name: plan.name,
                     price: plan.price,
                     period: plan.period
                   })}
-                  className={`w-full ${
+                  className={`w-full p-4 rounded-lg cursor-pointer text-center font-semibold transition-all duration-300 ${
                     plan.popular 
-                      ? 'bg-gradient-primary hover:shadow-strong' 
+                      ? 'bg-gradient-primary text-white hover:shadow-strong' 
                       : plan.buttonVariant === 'outline' 
-                        ? 'border-primary/30 hover:bg-primary/10' 
-                        : 'bg-gradient-to-br ' + plan.gradient + ' hover:shadow-strong'
-                  } hover:scale-105 transition-all duration-300`}
-                  variant={plan.popular ? "default" : plan.buttonVariant}
-                  size="lg"
+                        ? 'border border-primary/30 text-primary hover:bg-primary/10' 
+                        : 'bg-gradient-to-br text-white ' + plan.gradient + ' hover:shadow-strong'
+                  } hover:scale-105`}
                 >
                   {plan.buttonText}
-                </Button>
+                </div>
 
                 {/* 悬浮光效 */}
                 {plan.popular && (

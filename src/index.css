@@ -16,20 +16,20 @@
     --popover: 220 20% 10%;
     --popover-foreground: 0 0% 98%;
 
-    /* 归巢主色调 - 青蓝科技色 */
-    --primary: 200 100% 60%;
-    --primary-foreground: 220 25% 8%;
+    /* 主色调 - 深海蓝 */
+    --primary: 220 85% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    /* 次要色调 - 科技紫 */
-    --secondary: 280 60% 65%;
-    --secondary-foreground: 0 0% 98%;
+    /* 次要色调 - 皇家金 */
+    --secondary: 45 90% 55%;
+    --secondary-foreground: 0 0% 10%;
 
     /* 柔和色调 */
     --muted: 220 15% 15%;
     --muted-foreground: 220 10% 70%;
 
-    /* 强调色 - 活力粉 */
-    --accent: 320 90% 70%;
+    /* 强调色 - 蓝金渐变 */
+    --accent: 200 75% 60%;
     --accent-foreground: 0 0% 98%;
 
     /* 危险色 */
@@ -42,19 +42,19 @@
     --ring: 200 100% 60%;
     --radius: 0.75rem;
 
-    /* 归巢品牌渐变 */
-    --gradient-primary: linear-gradient(135deg, hsl(200 100% 60%), hsl(280 60% 65%));
-    --gradient-hero: linear-gradient(135deg, hsl(200 100% 60%) 0%, hsl(280 60% 65%) 50%, hsl(320 90% 70%) 100%);
+    /* 归巢品牌渐变 - 蓝金主题 */
+    --gradient-primary: linear-gradient(135deg, hsl(220 85% 50%), hsl(45 90% 55%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 85% 50%) 0%, hsl(200 75% 60%) 50%, hsl(45 90% 55%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(220 25% 12%) 100%);
-    --gradient-brand: linear-gradient(90deg, #00d4ff, #a855f7, #ec4899);
+    --gradient-brand: linear-gradient(90deg, hsl(220 85% 50%), hsl(200 75% 60%), hsl(45 90% 55%));
     --gradient-background: radial-gradient(ellipse at top, hsl(220 25% 12%) 0%, hsl(220 25% 8%) 100%);
     
-    /* 科技感阴影 */
-    --shadow-cyan: 0 0 30px hsl(200 100% 60% / 0.3);
-    --shadow-purple: 0 0 30px hsl(280 60% 65% / 0.3);
-    --shadow-pink: 0 0 30px hsl(320 90% 70% / 0.3);
-    --shadow-glow: 0 0 40px hsl(200 100% 60% / 0.2);
-    --shadow-strong: 0 0 60px hsl(200 100% 60% / 0.4);
+    /* 蓝金阴影效果 */
+    --shadow-blue: 0 0 30px hsl(220 85% 50% / 0.3);
+    --shadow-gold: 0 0 30px hsl(45 90% 55% / 0.3);
+    --shadow-accent: 0 0 30px hsl(200 75% 60% / 0.3);
+    --shadow-glow: 0 0 40px hsl(220 85% 50% / 0.2);
+    --shadow-strong: 0 0 60px hsl(220 85% 50% / 0.4);
 
     /* 动画效果 */
     --animation-float: float 8s ease-in-out infinite;
@@ -72,14 +72,14 @@
     --sidebar-ring: 217.2 10.6% 64.9%;
   }
 
-  /* 归巢科技主题增强 */
+  /* 归巢蓝金主题增强 */
   .theme-guichao {
-    --primary: 200 100% 55%;
-    --secondary: 280 70% 60%;
-    --accent: 320 90% 65%;
+    --primary: 220 85% 50%;
+    --secondary: 45 90% 55%;
+    --accent: 200 75% 60%;
     
-    --gradient-primary: linear-gradient(135deg, hsl(200 100% 55%), hsl(280 70% 60%));
-    --gradient-hero: linear-gradient(135deg, hsl(200 100% 55%) 0%, hsl(280 70% 60%) 50%, hsl(320 90% 65%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(220 85% 50%), hsl(45 90% 55%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 85% 50%) 0%, hsl(200 75% 60%) 50%, hsl(45 90% 55%) 100%);
   }
 }
 
@@ -96,7 +96,7 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 
-  /* 科技粒子背景 */
+  /* 蓝金粒子背景 */
   body::before {
     content: '';
     position: fixed;
@@ -105,9 +105,9 @@
     width: 100%;
     height: 100%;
     background: 
-      radial-gradient(circle at 25% 25%, hsl(200 100% 60% / 0.1) 1px, transparent 1px),
-      radial-gradient(circle at 75% 75%, hsl(280 60% 65% / 0.1) 1px, transparent 1px),
-      radial-gradient(circle at 50% 50%, hsl(320 90% 70% / 0.1) 1px, transparent 1px);
+      radial-gradient(circle at 25% 25%, hsl(220 85% 50% / 0.1) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, hsl(45 90% 55% / 0.1) 1px, transparent 1px),
+      radial-gradient(circle at 50% 50%, hsl(200 75% 60% / 0.1) 1px, transparent 1px);
     background-size: 100px 100px, 80px 80px, 120px 120px;
     pointer-events: none;
     z-index: -1;

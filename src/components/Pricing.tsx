@@ -206,11 +206,22 @@ const Pricing = () => {
 
                 {/* 按钮 */}
                 <div 
-                  onClick={() => handlePlanSelect({
-                    name: plan.name,
-                    price: plan.price,
-                    period: plan.period
-                  })}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    alert(`点击了 ${plan.name} 套餐！`);
+                    document.title = `已选择: ${plan.name}`;
+                    handlePlanSelect({
+                      name: plan.name,
+                      price: plan.price,
+                      period: plan.period
+                    });
+                  }}
+                  style={{ 
+                    pointerEvents: 'auto',
+                    zIndex: 10,
+                    position: 'relative'
+                  }}
                   className={`w-full p-4 rounded-lg cursor-pointer text-center font-semibold transition-all duration-300 ${
                     plan.popular 
                       ? 'bg-gradient-primary text-white hover:shadow-strong' 
@@ -219,7 +230,7 @@ const Pricing = () => {
                         : 'bg-gradient-to-br text-white ' + plan.gradient + ' hover:shadow-strong'
                   } hover:scale-105`}
                 >
-                  {plan.buttonText}
+                  点击我选择 {plan.buttonText}
                 </div>
 
                 {/* 悬浮光效 */}

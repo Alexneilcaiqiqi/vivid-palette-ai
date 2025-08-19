@@ -13,6 +13,7 @@ const Pricing = () => {
 
   const handlePlanSelect = (plan: { name: string; price: string; period: string }) => {
     console.log("套餐选择被点击:", plan);
+    alert(`您选择了 ${plan.name} 套餐！`);
     setSelectedPlan(plan);
     setIsPaymentDialogOpen(true);
     console.log("弹窗状态设置为:", true);

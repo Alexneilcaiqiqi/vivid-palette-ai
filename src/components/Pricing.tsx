@@ -209,7 +209,6 @@ const Pricing = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    alert(`点击了 ${plan.name} 套餐！`);
                     document.title = `已选择: ${plan.name}`;
                     handlePlanSelect({
                       name: plan.name,
@@ -230,7 +229,7 @@ const Pricing = () => {
                         : 'bg-gradient-to-br text-white ' + plan.gradient + ' hover:shadow-strong'
                   } hover:scale-105`}
                 >
-                  点击我选择 {plan.buttonText}
+                  点击选择 {plan.buttonText}
                 </div>
 
                 {/* 悬浮光效 */}

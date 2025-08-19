@@ -134,6 +134,7 @@ const Pricing = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="text-foreground">选择适合您的</span>
             <span className="text-gradient ml-3">套餐</span>
+            <span className="text-red-500 font-bold ml-3">[测试更新成功]</span>
           </h2>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">

@@ -21,6 +21,8 @@ interface PaymentMethodDialogProps {
 
 const PaymentMethodDialog = ({ open, onOpenChange, selectedPlan }: PaymentMethodDialogProps) => {
   const [selectedMethod, setSelectedMethod] = useState<string>("");
+  
+  console.log("PaymentMethodDialog 渲染状态:", { open, selectedPlan });
 
   const paymentMethods = [
     {

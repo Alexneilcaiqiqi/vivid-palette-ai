@@ -1,7 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { Check, Star, Crown, Zap } from "lucide-react";
+import { useState } from "react";
+import PaymentMethodDialog from "./PaymentMethodDialog";
 
 const Pricing = () => {
+  const [isPaymentDialogOpen, setIsPaymentDialogOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<{
+    name: string;
+    price: string;
+    period: string;
+  } | null>(null);
+
+  const handlePlanSelect = (plan: { name: string; price: string; period: string }) => {
+    setSelectedPlan(plan);
+    setIsPaymentDialogOpen(true);
+  };
   const plans = [
     {
       name: "体验版",
@@ -146,6 +159,11 @@ const Pricing = () => {
 
                 {/* 按钮 */}
                 <Button 
+                  onClick={() => handlePlanSelect({
+                    name: plan.name,
+                    price: plan.price,
+                    period: plan.period
+                  })}
                   className={`w-full ${
                     plan.popular 
                       ? 'bg-gradient-primary hover:shadow-strong' 
@@ -156,7 +174,7 @@ const Pricing = () => {
                   variant={plan.popular ? "default" : plan.buttonVariant}
                   size="lg"
                 >
-                  <a href="/auth">{plan.buttonText}</a>
+                  {plan.buttonText}
                 </Button>
 
                 {/* 悬浮光效 */}
@@ -195,6 +213,13 @@ const Pricing = () => {
           </div>
         </div>
       </div>
+
+      {/* 支付方式选择弹窗 */}
+      <PaymentMethodDialog
+        open={isPaymentDialogOpen}
+        onOpenChange={setIsPaymentDialogOpen}
+        selectedPlan={selectedPlan}
+      />
     </section>
   );
 };

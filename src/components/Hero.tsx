@@ -15,7 +15,7 @@ const Hero = () => {
             倦鸟归巢 一键回国
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-[2.5]">
+          <p className="text-base md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-[2.5]">
             专业的回国网络加速服务，让海外华人轻松访问国内所有网络服务
             <br className="hidden md:block mb-6" />
             <span className="text-primary font-semibold inline-block px-4 py-2 border border-primary/30 rounded-full bg-primary/10 mt-4">高速稳定 • 安全可靠 • 一键连接</span>

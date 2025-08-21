@@ -6,9 +6,9 @@
 
 @layer base {
   :root {
-    /* 天蓝色背景 */
-    --background: 200 100% 85%;
-    --foreground: 220 25% 15%;
+    /* 深蓝色背景 */
+    --background: 220 90% 15%;
+    --foreground: 0 0% 95%;
 
     /* 卡片和弹窗 */
     --card: 200 50% 90%;
@@ -47,7 +47,7 @@
     --gradient-hero: linear-gradient(135deg, hsl(220 85% 50%) 0%, hsl(200 75% 60%) 50%, hsl(45 90% 55%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(220 25% 12%) 100%);
     --gradient-brand: linear-gradient(90deg, hsl(220 85% 50%), hsl(200 75% 60%), hsl(45 90% 55%));
-    --gradient-background: radial-gradient(ellipse at top, hsl(200 80% 88%) 0%, hsl(200 100% 85%) 100%);
+    --gradient-background: radial-gradient(ellipse at top, hsl(220 90% 20%) 0%, hsl(220 90% 15%) 100%);
     
     /* 蓝金阴影效果 */
     --shadow-blue: 0 0 30px hsl(220 85% 50% / 0.3);

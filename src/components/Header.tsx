@@ -5,7 +5,7 @@ import { useState } from "react";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return <header className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-border/50">
-      <div className="container h-20 flex items-center justify-between bg-black px-0 mx-0 py-0 my-[28px]">
+      <div className="container h-20 flex items-center justify-between px-0 mx-0 py-0 my-[28px]">
         {/* Logo */}
         <div className="flex items-center">
           <div className="relative">

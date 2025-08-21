@@ -24,23 +24,23 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8 tracking-wide ml-auto mr-8">
-          <a href="#home" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
+          <a href="#home" className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group font-light">
             首页
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#features" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
+          <a href="#features" className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group font-light">
             产品特色
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#pricing" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
+          <a href="#pricing" className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group font-light">
             套餐价格
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="/download" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
+          <a href="/download" className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group font-light">
             下载客户端
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#contact" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
+          <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group font-light">
             联系我们
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>

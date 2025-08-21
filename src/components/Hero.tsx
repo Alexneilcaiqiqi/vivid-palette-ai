@@ -23,15 +23,15 @@ const Hero = () => {
 
           {/* 信任指标 */}
           <div className="flex flex-wrap justify-center items-center gap-16 text-sm text-muted-foreground mb-20 mt-12">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
               <Shield className="w-4 h-4 text-muted-foreground scale-[2]" strokeWidth={1} />
               <span>企业级安全</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
               <Zap className="w-4 h-4 text-muted-foreground scale-[2]" strokeWidth={1} />
               <span>毫秒级延迟</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
               <Globe className="w-4 h-4 text-muted-foreground scale-[2]" strokeWidth={1} />
               <span>全球节点</span>
             </div>

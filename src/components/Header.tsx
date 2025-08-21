@@ -25,7 +25,7 @@ const Header = () => {
           {/* Tagline */}
           <div className="flex flex-col">
             <span className="text-sm text-white font-light tracking-[0.2em]">专为海外华人设计</span>
-            <span className="text-xs text-white/70 font-light tracking-[0.1em]">Built for Chinese Abroad</span>
+            <span className="text-[10px] text-white/70 font-light tracking-[0.1em]">Built for Chinese Abroad</span>
           </div>
         </div>
 

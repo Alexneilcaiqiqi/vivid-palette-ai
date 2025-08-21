@@ -9,7 +9,7 @@ export const buttonVariants = cva(
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        ghost: "bg-black border border-gray-600 text-foreground hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         // AI网站专用变体
         hero: "bg-gradient-hero text-white hover:shadow-neon-strong hover:scale-105 transform transition-all duration-300 border border-primary/20",

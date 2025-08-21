@@ -47,7 +47,7 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-20 relative">
+    <section id="features" className="py-20 relative bg-black">
       <div className="container mx-auto px-4">
         {/* 标题部分 */}
         <div className="text-center mb-16">

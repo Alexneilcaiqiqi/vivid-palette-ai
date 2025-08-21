@@ -25,7 +25,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20 mt-12">
             <Button 
               size="xl" 
-              className="bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300 cyber-glow"
+              className="bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300 cyber-glow w-48"
             >
               <a href="/auth">立即免费试用</a>
               <ArrowRight className="ml-2 w-5 h-5" />
@@ -33,7 +33,7 @@ const Hero = () => {
             <Button 
               variant="outline" 
               size="xl" 
-              className="border-primary/30 hover:bg-primary/10 hover-float"
+              className="border-primary/30 hover:bg-primary/10 hover-float w-48"
             >
               <a href="/download">下载客户端</a>
             </Button>

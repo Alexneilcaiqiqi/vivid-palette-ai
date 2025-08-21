@@ -23,42 +23,42 @@ const Pricing = () => {
       name: "微信支付",
       icon: <Smartphone className="w-6 h-6" />,
       description: "使用微信快速支付",
-      color: "from-green-500 to-emerald-500"
+      gradient: "bg-gradient-feature-4"
     },
     {
       id: "alipay_hk",
       name: "香港支付宝",
       icon: <DollarSign className="w-6 h-6" />,
       description: "支付宝(香港)便捷支付",
-      color: "from-blue-500 to-cyan-500"
+      gradient: "bg-gradient-feature-1"
     },
     {
       id: "paypal",
       name: "PayPal",
       icon: <CreditCard className="w-6 h-6" />,
       description: "全球通用在线支付",
-      color: "from-blue-600 to-indigo-600"
+      gradient: "bg-gradient-feature-2"
     },
     {
       id: "google_pay",
       name: "Google Pay",
       icon: <Chrome className="w-6 h-6" />,
       description: "Google 快速支付",
-      color: "from-red-500 to-orange-500"
+      gradient: "bg-gradient-feature-5"
     },
     {
       id: "apple_pay",
       name: "Apple Pay",
       icon: <Apple className="w-6 h-6" />,
       description: "Apple 设备专用支付",
-      color: "from-gray-600 to-gray-800"
+      gradient: "bg-gradient-feature-6"
     },
     {
       id: "stripe",
       name: "Stripe",
       icon: <CreditCard className="w-6 h-6" />,
       description: "信用卡/借记卡支付",
-      color: "from-purple-500 to-violet-500"
+      gradient: "bg-gradient-feature-3"
     }
   ];
   const plans = [
@@ -78,7 +78,7 @@ const Pricing = () => {
       buttonText: "立即试用",
       buttonVariant: "outline" as const,
       popular: false,
-      gradient: "from-slate-500 to-gray-500"
+      gradient: "bg-gradient-feature-2"
     },
     {
       name: "标准版",
@@ -97,7 +97,7 @@ const Pricing = () => {
       buttonText: "选择标准版",
       buttonVariant: "default" as const,
       popular: true,
-      gradient: "from-cyan-500 to-blue-500"
+      gradient: "bg-gradient-feature-1"
     },
     {
       name: "旗舰版", 
@@ -118,7 +118,7 @@ const Pricing = () => {
       buttonText: "选择旗舰版",
       buttonVariant: "default" as const,
       popular: false,
-      gradient: "from-purple-500 to-pink-500"
+      gradient: "bg-gradient-feature-3"
     }
   ];
 
@@ -134,7 +134,6 @@ const Pricing = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="text-foreground">选择适合您的</span>
             <span className="text-gradient ml-3">套餐</span>
-            <span className="text-red-500 font-bold ml-3">[测试更新成功]</span>
           </h2>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
@@ -223,10 +222,10 @@ const Pricing = () => {
                   }}
                   className={`w-full p-4 rounded-lg cursor-pointer text-center font-semibold transition-all duration-300 ${
                     plan.popular 
-                      ? 'bg-gradient-primary text-white hover:shadow-strong' 
+                      ? 'bg-gradient-primary text-white hover:shadow-neon-strong' 
                       : plan.buttonVariant === 'outline' 
                         ? 'border border-primary/30 text-primary hover:bg-primary/10' 
-                        : 'bg-gradient-to-br text-white ' + plan.gradient + ' hover:shadow-strong'
+                        : plan.gradient + ' text-white hover:shadow-neon-strong'
                   } hover:scale-105`}
                 >
                   点击选择 {plan.buttonText}
@@ -306,7 +305,7 @@ const Pricing = () => {
                     className="w-full p-4 rounded-lg border border-border hover:border-primary/50 bg-card/50 hover:bg-primary/5 transition-all duration-300 text-left"
                   >
                     <div className="flex items-center space-x-4">
-                      <div className={`p-2 rounded-lg bg-gradient-to-br ${method.color} text-white`}>
+                      <div className={`p-2 rounded-lg ${method.gradient} text-white`}>
                         {method.icon}
                       </div>
                       <div className="flex-1">

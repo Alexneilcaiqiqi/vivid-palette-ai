@@ -75,14 +75,25 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			backgroundImage: {
-				'gradient-cosmic': 'var(--gradient-cosmic)',
-				'gradient-neon': 'var(--gradient-neon)',
+				'gradient-primary': 'var(--gradient-primary)',
 				'gradient-hero': 'var(--gradient-hero)',
-				'gradient-card': 'var(--gradient-card)'
+				'gradient-card': 'var(--gradient-card)',
+				'gradient-brand': 'var(--gradient-brand)',
+				'gradient-feature-1': 'var(--gradient-feature-1)',
+				'gradient-feature-2': 'var(--gradient-feature-2)',
+				'gradient-feature-3': 'var(--gradient-feature-3)',
+				'gradient-feature-4': 'var(--gradient-feature-4)',
+				'gradient-feature-5': 'var(--gradient-feature-5)',
+				'gradient-feature-6': 'var(--gradient-feature-6)',
+				'gradient-stat-1': 'var(--gradient-stat-1)',
+				'gradient-stat-2': 'var(--gradient-stat-2)',
+				'gradient-stat-3': 'var(--gradient-stat-3)',
+				'gradient-stat-4': 'var(--gradient-stat-4)'
 			},
 			boxShadow: {
 				'neon': 'var(--shadow-neon)',
 				'neon-strong': 'var(--shadow-neon-strong)',
+				'cyan': 'var(--shadow-cyan)',
 				'purple': 'var(--shadow-purple)',
 				'pink': 'var(--shadow-pink)'
 			},

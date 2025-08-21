@@ -7,42 +7,42 @@ const Features = () => {
       title: "极速连接",
       description: "采用最新加速技术，连接速度提升300%，观看4K视频无缓冲",
       highlight: "毫秒级延迟",
-      color: "from-cyan-500 to-blue-500"
+      gradient: "bg-gradient-feature-1"
     },
     {
       icon: <Shield className="w-8 h-8" />,
       title: "军用级加密",
       description: "AES-256位加密技术，保护您的网络安全和隐私数据",
       highlight: "银行级安全",
-      color: "from-purple-500 to-indigo-500"
+      gradient: "bg-gradient-feature-2"
     },
     {
       icon: <Globe className="w-8 h-8" />,
       title: "全球节点",
       description: "覆盖全球50+城市，智能选择最优线路，确保连接稳定",
       highlight: "50+节点",
-      color: "from-pink-500 to-rose-500"
+      gradient: "bg-gradient-feature-3"
     },
     {
       icon: <Users className="w-8 h-8" />,
       title: "多设备支持",
       description: "一个账户支持10台设备同时使用，全家共享无忧",
       highlight: "10台设备",
-      color: "from-emerald-500 to-teal-500"
+      gradient: "bg-gradient-feature-4"
     },
     {
       icon: <Clock className="w-8 h-8" />,
       title: "7x24在线",
       description: "99.9%服务可用性，全年无休为您提供稳定的网络服务",
       highlight: "99.9%稳定",
-      color: "from-orange-500 to-amber-500"
+      gradient: "bg-gradient-feature-5"
     },
     {
       icon: <HeadphonesIcon className="w-8 h-8" />,
       title: "专业客服",
       description: "中文技术支持团队，微信群实时答疑，问题快速解决",
       highlight: "中文支持",
-      color: "from-violet-500 to-purple-500"
+      gradient: "bg-gradient-feature-6"
     }
   ];
 
@@ -74,10 +74,10 @@ const Features = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* 背景渐变效果 */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
+              <div className={`absolute inset-0 ${feature.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
               
               {/* 图标 */}
-              <div className={`inline-flex p-3 bg-gradient-to-br ${feature.color} rounded-xl text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`inline-flex p-3 ${feature.gradient} rounded-xl text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
                 {feature.icon}
               </div>
 
@@ -109,16 +109,16 @@ const Features = () => {
             
             <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                { number: "100万+", label: "用户信赖", icon: "👥", color: "from-blue-500 to-cyan-500" },
-                { number: "50+", label: "全球节点", icon: "🌍", color: "from-emerald-500 to-teal-500" },
-                { number: "99.9%", label: "稳定运行", icon: "⚡", color: "from-purple-500 to-pink-500" },
-                { number: "24/7", label: "技术支持", icon: "🛡️", color: "from-orange-500 to-red-500" }
+                { number: "100万+", label: "用户信赖", icon: "👥", gradient: "bg-gradient-stat-1" },
+                { number: "50+", label: "全球节点", icon: "🌍", gradient: "bg-gradient-stat-2" },
+                { number: "99.9%", label: "稳定运行", icon: "⚡", gradient: "bg-gradient-stat-3" },
+                { number: "24/7", label: "技术支持", icon: "🛡️", gradient: "bg-gradient-stat-4" }
               ].map((stat, index) => (
                 <div key={stat.label} className="group relative">
                   {/* 卡片容器 */}
                   <div className="relative p-8 bg-card/30 backdrop-blur-sm rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
                     {/* 背景渐变光效 */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
+                    <div className={`absolute inset-0 ${stat.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
                     
                     {/* 图标 */}
                     <div className="text-3xl mb-4 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
@@ -127,11 +127,11 @@ const Features = () => {
                     
                     {/* 数字 */}
                     <div className="relative">
-                      <div className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-all duration-300`}>
+                      <div className={`text-4xl md:text-5xl font-bold ${stat.gradient} bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-all duration-300`}>
                         {stat.number}
                       </div>
                       {/* 数字下划线装饰 */}
-                      <div className={`w-12 h-1 bg-gradient-to-r ${stat.color} rounded-full mx-auto mb-4 opacity-60 group-hover:opacity-100 group-hover:w-16 transition-all duration-300`}></div>
+                      <div className={`w-12 h-1 ${stat.gradient} rounded-full mx-auto mb-4 opacity-60 group-hover:opacity-100 group-hover:w-16 transition-all duration-300`}></div>
                     </div>
                     
                     {/* 标签 */}

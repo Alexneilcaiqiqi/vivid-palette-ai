@@ -25,7 +25,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20 mt-12">
             <Button 
               size="xl" 
-              className="bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300 cyber-glow w-48"
+              className="bg-gradient-primary hover:shadow-neon-strong hover:scale-105 transition-all duration-300 cyber-glow w-48"
             >
               <a href="/auth">立即免费试用</a>
               <ArrowRight className="ml-2 w-5 h-5" />

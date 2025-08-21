@@ -11,7 +11,7 @@ const Hero = () => {
             <span className="text-sm text-primary font-medium">🎯 专为海外华人设计</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white tracking-wider">
+          <h1 className="text-5xl md:text-7xl font-light mb-6 leading-tight text-white tracking-wider">
             倦鸟归巢 一键回国
           </h1>
           

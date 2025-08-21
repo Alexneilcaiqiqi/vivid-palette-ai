@@ -60,7 +60,7 @@ const Hero = () => {
 
         {/* 设备展示 */}
         <div className="relative max-w-5xl mx-auto">
-          <div className="relative tech-grid rounded-2xl p-8 glass-effect border border-primary/20">
+          <div className="relative rounded-2xl p-8 glass-effect border border-primary/20">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               {/* 支持的平台 */}
               {[

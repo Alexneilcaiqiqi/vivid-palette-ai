@@ -40,7 +40,7 @@ const Hero = () => {
           </div>
 
           {/* 信任指标 */}
-          <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-muted-foreground">
+          <div className="flex flex-wrap justify-center items-center gap-16 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Shield className="w-4 h-4 text-primary" />
               <span>企业级安全</span>

@@ -47,10 +47,10 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-20 relative bg-black">
+    <section id="features" className="py-32 relative bg-black border-t border-border/20">
       <div className="container mx-auto px-4">
         {/* 标题部分 */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <div className="inline-flex items-center px-4 py-2 bg-card/50 rounded-full border border-primary/20 mb-6 glass-effect">
             <span className="text-sm text-primary font-medium">⚡ 产品特色</span>
           </div>
@@ -66,7 +66,7 @@ const Features = () => {
         </div>
 
         {/* 特色功能网格 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {features.map((feature, index) => (
             <div
               key={feature.title}
@@ -102,8 +102,8 @@ const Features = () => {
         </div>
 
         {/* 底部统计数据 */}
-        <div className="mt-20 text-center">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="mt-24 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             {[
               { number: "100万+", label: "用户信赖" },
               { number: "50+", label: "全球节点" },

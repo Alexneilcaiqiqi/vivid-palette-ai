@@ -3,10 +3,10 @@ import { ArrowRight, Globe, Shield, Zap, Smartphone, Router, Monitor, Laptop } f
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-16 floating-particles">
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-20 floating-particles">
       <div className="container mx-auto px-4 text-center relative z-10">
         {/* 主标题区 */}
-        <div className="max-w-4xl mx-auto mb-12">
+        <div className="max-w-4xl mx-auto mb-20">
           <div className="inline-flex items-center px-4 py-2 bg-card/50 rounded-full border border-primary/20 mb-6 glass-effect">
             <span className="text-sm text-primary font-medium">🎯 专为海外华人设计</span>
           </div>
@@ -24,7 +24,7 @@ const Hero = () => {
           </p>
 
           {/* CTA按钮 */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
             <Button 
               size="xl" 
               className="bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300 cyber-glow"

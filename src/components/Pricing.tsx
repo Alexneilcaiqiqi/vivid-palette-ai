@@ -123,10 +123,10 @@ const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="py-20 relative">
+    <section id="pricing" className="py-32 relative bg-gradient-to-b from-transparent to-card/10 border-t border-border/20">
       <div className="container mx-auto px-4">
         {/* 标题部分 */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <div className="inline-flex items-center px-4 py-2 bg-card/50 rounded-full border border-primary/20 mb-6 glass-effect">
             <span className="text-sm text-primary font-medium">💰 套餐价格</span>
           </div>
@@ -148,7 +148,7 @@ const Pricing = () => {
         </div>
 
         {/* 价格卡片 */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
           {plans.map((plan, index) => (
             <div
               key={plan.name}
@@ -242,8 +242,8 @@ const Pricing = () => {
         </div>
 
         {/* 底部保障信息 */}
-        <div className="mt-16 text-center">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div className="mt-24 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto">
             <div className="flex flex-col items-center">
               <div className="w-12 h-12 bg-gradient-primary/20 rounded-full flex items-center justify-center mb-3">
                 <span className="text-primary font-bold text-xl">7</span>

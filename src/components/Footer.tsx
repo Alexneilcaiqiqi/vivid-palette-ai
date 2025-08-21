@@ -4,10 +4,10 @@ import { Globe, Mail, MessageCircle, Download } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="relative py-20 border-t border-border/50" id="contact">
+    <footer className="relative py-32 border-t border-border/50 bg-gradient-to-b from-transparent to-card/5" id="contact">
       <div className="container mx-auto px-4">
         {/* 主要内容 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           
           {/* 品牌信息 */}
           <div className="lg:col-span-1">

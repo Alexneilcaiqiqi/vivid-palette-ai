@@ -15,16 +15,16 @@ const Hero = () => {
             倦鸟归巢 一键回国
           </h1>
           
-          <p className="text-base md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-[2.5]">
+          <p className="text-base md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-[2.5]">
             专业的回国网络加速服务，让海外华人轻松访问国内所有网络服务
           </p>
 
-          <div className="mb-8">
+          <div className="mb-4">
             <span className="text-2xl font-semibold inline-block px-4 py-2 border border-primary/30 rounded-full bg-primary/10 text-primary">高速稳定 • 安全可靠 • 一键连接</span>
           </div>
 
           {/* 信任指标 */}
-          <div className="flex flex-wrap justify-center items-center gap-16 text-sm text-muted-foreground mb-20 mt-12">
+          <div className="flex flex-wrap justify-center items-center gap-16 text-sm text-muted-foreground mb-20 mt-4">
             <div className="flex items-center gap-4">
               <Shield className="w-4 h-4 text-muted-foreground scale-[2]" strokeWidth={1} />
               <div className="flex flex-col items-start">

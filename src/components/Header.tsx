@@ -24,23 +24,23 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8 tracking-wide ml-auto mr-8">
-          <a href="#home" className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group font-light">
+          <a href="#home" className="text-muted-foreground hover:text-primary active:text-white active:font-bold active:bg-muted/20 transition-all duration-300 relative group font-light px-3 py-2 rounded-md">
             首页
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#features" className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group font-light">
+          <a href="#features" className="text-muted-foreground hover:text-primary active:text-white active:font-bold active:bg-muted/20 transition-all duration-300 relative group font-light px-3 py-2 rounded-md">
             产品特色
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#pricing" className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group font-light">
+          <a href="#pricing" className="text-muted-foreground hover:text-primary active:text-white active:font-bold active:bg-muted/20 transition-all duration-300 relative group font-light px-3 py-2 rounded-md">
             套餐价格
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="/download" className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group font-light">
+          <a href="/download" className="text-muted-foreground hover:text-primary active:text-white active:font-bold active:bg-muted/20 transition-all duration-300 relative group font-light px-3 py-2 rounded-md">
             下载客户端
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors duration-300 relative group font-light">
+          <a href="#contact" className="text-muted-foreground hover:text-primary active:text-white active:font-bold active:bg-muted/20 transition-all duration-300 relative group font-light px-3 py-2 rounded-md">
             联系我们
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>

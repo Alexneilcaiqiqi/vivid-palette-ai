@@ -25,15 +25,24 @@ const Hero = () => {
           <div className="flex flex-wrap justify-center items-center gap-16 text-sm text-muted-foreground mb-20 mt-12">
             <div className="flex items-center gap-4">
               <Shield className="w-4 h-4 text-muted-foreground scale-[2]" strokeWidth={1} />
-              <span>企业级安全</span>
+              <div className="flex flex-col items-start">
+                <span>企业级安全</span>
+                <span className="text-xs opacity-70">Enterprise Security</span>
+              </div>
             </div>
             <div className="flex items-center gap-4">
               <Zap className="w-4 h-4 text-muted-foreground scale-[2]" strokeWidth={1} />
-              <span>毫秒级延迟</span>
+              <div className="flex flex-col items-start">
+                <span>毫秒级延迟</span>
+                <span className="text-xs opacity-70">Ultra Low Latency</span>
+              </div>
             </div>
             <div className="flex items-center gap-4">
               <Globe className="w-4 h-4 text-muted-foreground scale-[2]" strokeWidth={1} />
-              <span>全球节点</span>
+              <div className="flex flex-col items-start">
+                <span>全球节点</span>
+                <span className="text-xs opacity-70">Global Network</span>
+              </div>
             </div>
           </div>
 

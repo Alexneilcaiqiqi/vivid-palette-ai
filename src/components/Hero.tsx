@@ -140,9 +140,9 @@ const Hero = () => {
         </div>
 
         {/* 设备展示 */}
-        <div className="relative max-w-5xl mx-auto">
-          <div className="relative rounded-2xl p-8 glass-effect border border-primary/20">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        <div className="relative max-w-6xl mx-auto">
+          <div className="relative rounded-2xl p-6 glass-effect border border-primary/20">
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
               {/* 支持的平台 */}
               {[
                 { name: "Windows", icon: <Monitor className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "PC客户端" },

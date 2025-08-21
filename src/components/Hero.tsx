@@ -7,7 +7,7 @@ const Hero = () => {
       <div className="container mx-auto px-4 text-center relative z-10">
         {/* 主标题区 */}
         <div className="max-w-4xl mx-auto mb-20">          
-          <h1 className="text-5xl md:text-7xl font-light mb-6 leading-tight text-white tracking-[0.2em]">
+          <h1 className="text-5xl md:text-7xl font-light mb-6 leading-tight text-white tracking-[0.2em] mt-16">
             倦鸟归巢 一键回国
           </h1>
           

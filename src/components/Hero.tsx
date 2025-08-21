@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Globe, Shield, Zap } from "lucide-react";
+import { ArrowRight, Globe, Shield, Zap, Smartphone } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -66,7 +66,7 @@ const Hero = () => {
               {[
                 { name: "Windows", icon: "🖥️", desc: "PC客户端" },
                 { name: "macOS", icon: "💻", desc: "Mac客户端" },
-                { name: "iOS", icon: "📱", desc: "iPhone/iPad" },
+                { name: "iOS", icon: <Smartphone className="w-8 h-8 text-primary" />, desc: "iPhone/iPad" },
                 { name: "Android", icon: "📲", desc: "安卓手机" },
                 { name: "路由器", icon: "📡", desc: "全家共享" },
                 { name: "浏览器", icon: "🌐", desc: "免装插件" }
@@ -76,7 +76,9 @@ const Hero = () => {
                   className="p-4 bg-card/30 rounded-xl border border-border/50 hover-float hover:border-primary/50 transition-all duration-300"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="text-3xl mb-2">{platform.icon}</div>
+                  <div className="text-3xl mb-2 flex justify-center">
+                    {typeof platform.icon === 'string' ? platform.icon : platform.icon}
+                  </div>
                   <h3 className="font-semibold text-foreground mb-1">{platform.name}</h3>
                   <p className="text-xs text-muted-foreground">{platform.desc}</p>
                 </div>

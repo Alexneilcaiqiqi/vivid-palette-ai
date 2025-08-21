@@ -13,7 +13,7 @@ const Hero = () => {
             </h2>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-light mb-6 leading-tight text-white tracking-[0.2em] mt-[112px]">
+          <h1 className="text-5xl md:text-7xl font-light mb-6 leading-tight text-white tracking-[0.2em] -mt-20">
             倦鸟归巢 一键回国
           </h1>
           

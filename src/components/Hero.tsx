@@ -66,7 +66,7 @@ const Hero = () => {
               {[
                 { name: "Windows", icon: "🖥️", desc: "PC客户端" },
                 { name: "macOS", icon: "💻", desc: "Mac客户端" },
-                { name: "iOS", icon: <img src="/lovable-uploads/245d7d96-4fe5-44ae-8811-373f42859b30.png" alt="iOS" className="w-8 h-8" />, desc: "iPhone/iPad" },
+                { name: "iOS", icon: <img src="/lovable-uploads/245d7d96-4fe5-44ae-8811-373f42859b30.png" alt="iOS" className="w-6 h-6" />, desc: "iPhone/iPad" },
                 { name: "Android", icon: "📲", desc: "安卓手机" },
                 { name: "路由器", icon: "📡", desc: "全家共享" },
                 { name: "浏览器", icon: "🌐", desc: "免装插件" }

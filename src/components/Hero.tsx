@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Globe, Shield, Zap, Smartphone, Router } from "lucide-react";
+import { ArrowRight, Globe, Shield, Zap, Smartphone, Router, Monitor } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -69,7 +69,7 @@ const Hero = () => {
                 { name: "iOS", icon: <img src="/lovable-uploads/245d7d96-4fe5-44ae-8811-373f42859b30.png" alt="iOS" className="w-8 h-8" />, desc: "iPhone/iPad" },
                 { name: "Android", icon: "📲", desc: "安卓手机" },
                 { name: "路由器", icon: <Router className="w-8 h-8 text-foreground" />, desc: "全家共享" },
-                { name: "浏览器", icon: "🌐", desc: "免装插件" }
+                { name: "浏览器", icon: <Monitor className="w-8 h-8 text-foreground" />, desc: "免装插件" }
               ].map((platform, index) => (
                 <div 
                   key={platform.name}

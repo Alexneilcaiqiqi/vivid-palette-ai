@@ -17,9 +17,11 @@ const Hero = () => {
           
           <p className="text-base md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-[2.5]">
             专业的回国网络加速服务，让海外华人轻松访问国内所有网络服务
-            <br className="hidden md:block mb-6" />
-            <span className="text-primary font-semibold inline-block px-4 py-2 border border-primary/30 rounded-full bg-primary/10 mt-4">高速稳定 • 安全可靠 • 一键连接</span>
           </p>
+
+          <div className="mb-8">
+            <span className="text-lg font-semibold inline-block px-4 py-2 border border-primary/30 rounded-full bg-primary/10 text-primary">高速稳定 • 安全可靠 • 一键连接</span>
+          </div>
 
           {/* 信任指标 */}
           <div className="flex flex-wrap justify-center items-center gap-16 text-sm text-muted-foreground mb-20 mt-12">

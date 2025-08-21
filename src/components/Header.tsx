@@ -2,54 +2,40 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+  return <header className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-border/50">
+      <div className="container h-20 flex items-center justify-between bg-black px-0 mx-0 py-0 my-[28px]">
         {/* Logo */}
         <div className="flex items-center">
           <div className="relative">
             <div className="w-[120px] h-[120px] rounded-xl flex items-center justify-center relative overflow-hidden">
-              <img 
-                src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" 
-                alt="Logo" 
-                className="w-full h-full object-contain"
-              />
+              <img src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" alt="Logo" className="w-full h-full object-contain" />
             </div>
-          </div>
-          {/* Vertical separator */}
-          <div className="h-8 w-px bg-muted-foreground/30 mx-4"></div>
-          {/* Tagline */}
-          <div className="flex flex-col">
-            <span className="text-sm text-white font-light tracking-[0.2em]">专为海外华人设计</span>
-            <span className="text-[10px] text-white/70 font-light tracking-[0.1em]">Built for Chinese Abroad</span>
           </div>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6 tracking-wider ml-auto mr-8">
-          <a href="#home" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
-            <span className="text-sm">首页</span>
-            <span className="text-[10px] opacity-70">Home</span>
+        <nav className="hidden md:flex items-center space-x-8 tracking-wide">
+          <a href="#home" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
+            首页
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#features" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
-            <span className="text-sm">产品特色</span>
-            <span className="text-[10px] opacity-70">Features</span>
+          <a href="#features" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
+            产品特色
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#pricing" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
-            <span className="text-sm">套餐价格</span>
-            <span className="text-[10px] opacity-70">Pricing</span>
+          <a href="#pricing" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
+            套餐价格
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="/download" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
-            <span className="text-sm">下载客户端</span>
-            <span className="text-[10px] opacity-70">Download</span>
+          <a href="/download" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
+            下载客户端
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#contact" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
-            <span className="text-sm">联系我们</span>
-            <span className="text-[10px] opacity-70">Contact</span>
+          <a href="#contact" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
+            联系我们
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
         </nav>
 
@@ -64,17 +50,13 @@ const Header = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2 hover:bg-accent/10 rounded-lg transition-colors"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
+        <button className="md:hidden p-2 hover:bg-accent/10 rounded-lg transition-colors" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden glass-effect border-t border-border/50">
+      {isMenuOpen && <div className="md:hidden glass-effect border-t border-border/50">
           <nav className="container mx-auto px-4 py-4 space-y-4">
             <a href="#home" className="block py-2 text-foreground hover:text-primary transition-colors">
               首页
@@ -100,10 +82,7 @@ const Header = () => {
               </Button>
             </div>
           </nav>
-        </div>
-      )}
-    </header>
-  );
+        </div>}
+    </header>;
 };
-
 export default Header;

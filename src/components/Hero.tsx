@@ -45,7 +45,7 @@ const Hero = () => {
           </div>
 
           {/* CTA按钮 */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center scale-[1.3] -mt-12">
             <Button 
               size="xl" 
               className="bg-gradient-primary hover:shadow-neon-strong hover:scale-105 transition-all duration-300 cyber-glow w-48"

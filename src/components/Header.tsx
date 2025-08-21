@@ -23,20 +23,20 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8 tracking-wide ml-auto mr-8">
-          <a href="#home" className="text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light">
+        <nav className="hidden md:flex items-center space-x-4 tracking-wide ml-auto mr-8">
+          <a href="#home" className="px-4 py-2 bg-muted/20 rounded-lg text-muted-foreground hover:text-white hover:font-bold hover:bg-muted/40 transition-all duration-300 relative group font-light">
             首页
           </a>
-          <a href="#features" className="text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light">
+          <a href="#features" className="px-4 py-2 bg-muted/20 rounded-lg text-muted-foreground hover:text-white hover:font-bold hover:bg-muted/40 transition-all duration-300 relative group font-light">
             产品特色
           </a>
-          <a href="#pricing" className="text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light">
+          <a href="#pricing" className="px-4 py-2 bg-muted/20 rounded-lg text-muted-foreground hover:text-white hover:font-bold hover:bg-muted/40 transition-all duration-300 relative group font-light">
             套餐价格
           </a>
-          <a href="/download" className="text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light">
+          <a href="/download" className="px-4 py-2 bg-muted/20 rounded-lg text-muted-foreground hover:text-white hover:font-bold hover:bg-muted/40 transition-all duration-300 relative group font-light">
             下载客户端
           </a>
-          <a href="#contact" className="text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light">
+          <a href="#contact" className="px-4 py-2 bg-muted/20 rounded-lg text-muted-foreground hover:text-white hover:font-bold hover:bg-muted/40 transition-all duration-300 relative group font-light">
             联系我们
           </a>
         </nav>

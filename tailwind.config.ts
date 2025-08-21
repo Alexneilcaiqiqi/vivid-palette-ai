@@ -18,12 +18,6 @@ export default {
 			}
 		},
 		extend: {
-			fontFamily: {
-				'inter': ['Inter', 'system-ui', 'sans-serif'],
-			},
-			letterSpacing: {
-				'wider-xl': '0.15em',
-			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

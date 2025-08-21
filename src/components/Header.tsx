@@ -23,24 +23,24 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8 font-inter font-light">
-          <a href="#home" className="text-foreground hover:text-primary transition-colors duration-300 relative group tracking-wider-xl">
+        <nav className="hidden md:flex items-center space-x-8">
+          <a href="#home" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
             首页
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#features" className="text-foreground hover:text-primary transition-colors duration-300 relative group tracking-wider-xl">
+          <a href="#features" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
             产品特色
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#pricing" className="text-foreground hover:text-primary transition-colors duration-300 relative group tracking-wider-xl">
+          <a href="#pricing" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
             套餐价格
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="/download" className="text-foreground hover:text-primary transition-colors duration-300 relative group tracking-wider-xl">
+          <a href="/download" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
             下载客户端
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>
-          <a href="#contact" className="text-foreground hover:text-primary transition-colors duration-300 relative group tracking-wider-xl">
+          <a href="#contact" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
             联系我们
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>
           </a>

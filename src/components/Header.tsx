@@ -23,7 +23,7 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8 tracking-wide">
+        <nav className="hidden md:flex items-center space-x-8 tracking-wide ml-auto mr-8">
           <a href="#home" className="text-foreground hover:text-primary transition-colors duration-300 relative group">
             首页
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300"></span>

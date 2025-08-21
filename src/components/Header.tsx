@@ -10,19 +10,15 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-border/50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center">
           <div className="relative">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center relative overflow-hidden">
               <img 
                 src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" 
-                alt="归巢 Logo" 
+                alt="Logo" 
                 className="w-full h-full object-contain"
               />
             </div>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-xl font-bold text-gradient">归巢</span>
-            <span className="text-xs text-muted-foreground -mt-1">GuiChao</span>
           </div>
         </div>
 

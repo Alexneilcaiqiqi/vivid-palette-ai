@@ -64,12 +64,12 @@ const Hero = () => {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               {/* 支持的平台 */}
               {[
-                { name: "Windows", icon: <Monitor className="w-8 h-8 text-foreground" />, desc: "PC客户端" },
-                { name: "macOS", icon: <Laptop className="w-8 h-8 text-foreground" />, desc: "Mac客户端" },
+                { name: "Windows", icon: <Monitor className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "PC客户端" },
+                { name: "macOS", icon: <Laptop className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "Mac客户端" },
                 { name: "iOS", icon: <img src="/lovable-uploads/245d7d96-4fe5-44ae-8811-373f42859b30.png" alt="iOS" className="w-8 h-8" />, desc: "iPhone/iPad" },
-                { name: "Android", icon: <Smartphone className="w-8 h-8 text-foreground" />, desc: "安卓手机" },
-                { name: "路由器", icon: <Router className="w-8 h-8 text-foreground" />, desc: "全家共享" },
-                { name: "浏览器", icon: <Globe className="w-8 h-8 text-foreground" />, desc: "免装插件" }
+                { name: "Android", icon: <Smartphone className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "安卓手机" },
+                { name: "路由器", icon: <Router className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "全家共享" },
+                { name: "浏览器", icon: <Globe className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "免装插件" }
               ].map((platform, index) => (
                 <div 
                   key={platform.name}

@@ -102,23 +102,49 @@ const Features = () => {
         </div>
 
         {/* 底部统计数据 */}
-        <div className="mt-24 text-center">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-            {[
-              { number: "100万+", label: "用户信赖" },
-              { number: "50+", label: "全球节点" },
-              { number: "99.9%", label: "稳定运行" },
-              { number: "24/7", label: "技术支持" }
-            ].map((stat, index) => (
-              <div key={stat.label} className="group">
-                <div className="text-3xl md:text-4xl font-bold text-gradient mb-2 group-hover:scale-110 transition-transform duration-300">
-                  {stat.number}
+        <div className="mt-24">
+          <div className="relative">
+            {/* 背景装饰 */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 rounded-3xl blur-3xl"></div>
+            
+            <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8">
+              {[
+                { number: "100万+", label: "用户信赖", icon: "👥", color: "from-blue-500 to-cyan-500" },
+                { number: "50+", label: "全球节点", icon: "🌍", color: "from-emerald-500 to-teal-500" },
+                { number: "99.9%", label: "稳定运行", icon: "⚡", color: "from-purple-500 to-pink-500" },
+                { number: "24/7", label: "技术支持", icon: "🛡️", color: "from-orange-500 to-red-500" }
+              ].map((stat, index) => (
+                <div key={stat.label} className="group relative">
+                  {/* 卡片容器 */}
+                  <div className="relative p-8 bg-card/30 backdrop-blur-sm rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
+                    {/* 背景渐变光效 */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
+                    
+                    {/* 图标 */}
+                    <div className="text-3xl mb-4 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                      {stat.icon}
+                    </div>
+                    
+                    {/* 数字 */}
+                    <div className="relative">
+                      <div className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-all duration-300`}>
+                        {stat.number}
+                      </div>
+                      {/* 数字下划线装饰 */}
+                      <div className={`w-12 h-1 bg-gradient-to-r ${stat.color} rounded-full mx-auto mb-4 opacity-60 group-hover:opacity-100 group-hover:w-16 transition-all duration-300`}></div>
+                    </div>
+                    
+                    {/* 标签 */}
+                    <div className="text-foreground/80 font-medium text-lg group-hover:text-foreground transition-colors duration-300">
+                      {stat.label}
+                    </div>
+                    
+                    {/* 悬浮光效边框 */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl opacity-0 group-hover:opacity-100 -z-10 blur-sm transition-opacity duration-500"></div>
+                  </div>
                 </div>
-                <div className="text-muted-foreground text-sm md:text-base">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

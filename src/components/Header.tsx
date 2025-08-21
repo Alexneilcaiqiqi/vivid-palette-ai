@@ -30,25 +30,25 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-4 tracking-wide ml-auto mr-8">
+        <nav className="hidden md:flex items-center space-x-6 tracking-wider ml-auto mr-8">
           <a href="#home" className="px-4 py-2 bg-muted/40 rounded-xl text-muted-foreground hover:text-white hover:font-bold hover:bg-muted/60 transition-all duration-300 relative group font-light flex flex-col items-center">
-            <span>首页</span>
+            <span className="text-sm">首页</span>
             <span className="text-[10px] opacity-70">Home</span>
           </a>
           <a href="#features" className="px-4 py-2 bg-muted/40 rounded-xl text-muted-foreground hover:text-white hover:font-bold hover:bg-muted/60 transition-all duration-300 relative group font-light flex flex-col items-center">
-            <span>产品特色</span>
+            <span className="text-sm">产品特色</span>
             <span className="text-[10px] opacity-70">Features</span>
           </a>
           <a href="#pricing" className="px-4 py-2 bg-muted/40 rounded-xl text-muted-foreground hover:text-white hover:font-bold hover:bg-muted/60 transition-all duration-300 relative group font-light flex flex-col items-center">
-            <span>套餐价格</span>
+            <span className="text-sm">套餐价格</span>
             <span className="text-[10px] opacity-70">Pricing</span>
           </a>
           <a href="/download" className="px-4 py-2 bg-muted/40 rounded-xl text-muted-foreground hover:text-white hover:font-bold hover:bg-muted/60 transition-all duration-300 relative group font-light flex flex-col items-center">
-            <span>下载客户端</span>
+            <span className="text-sm">下载客户端</span>
             <span className="text-[10px] opacity-70">Download</span>
           </a>
           <a href="#contact" className="px-4 py-2 bg-muted/40 rounded-xl text-muted-foreground hover:text-white hover:font-bold hover:bg-muted/60 transition-all duration-300 relative group font-light flex flex-col items-center">
-            <span>联系我们</span>
+            <span className="text-sm">联系我们</span>
             <span className="text-[10px] opacity-70">Contact</span>
           </a>
         </nav>

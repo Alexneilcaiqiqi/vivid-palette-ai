@@ -6,11 +6,7 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-20 floating-particles bg-gradient-to-b from-black via-black to-slate-900">
       <div className="container mx-auto px-4 text-center relative z-10">
         {/* 主标题区 */}
-        <div className="max-w-4xl mx-auto mb-20">
-          <div className="inline-flex items-center px-4 py-2 bg-card/50 rounded-full border border-primary/20 mb-6 glass-effect">
-            <span className="text-sm text-primary font-medium">🎯 专为海外华人设计</span>
-          </div>
-          
+        <div className="max-w-4xl mx-auto mb-20">          
           <h1 className="text-5xl md:text-7xl font-light mb-6 leading-tight text-white tracking-[0.2em]">
             倦鸟归巢 一键回国
           </h1>

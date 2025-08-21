@@ -15,7 +15,7 @@ const Hero = () => {
             专业的回国网络加速服务，让海外华人轻松访问国内所有网络服务
           </p>
 
-          <div className="mb-8 mt-12">
+          <div className="mb-8 mt-[200px]">
             <span className="text-2xl font-semibold inline-block px-4 py-2 border border-primary/30 rounded-full bg-primary/10 text-primary">高速稳定 • 安全可靠 • 一键连接</span>
           </div>
 

@@ -65,7 +65,7 @@ const Hero = () => {
               {/* 支持的平台 */}
               {[
                 { name: "Windows", icon: "🖥️", desc: "PC客户端" },
-                { name: "macOS", icon: "💻", desc: "Mac客户端" },
+                { name: "macOS", icon: "🍎", desc: "Mac客户端" },
                 { name: "iOS", icon: "📱", desc: "iPhone/iPad" },
                 { name: "Android", icon: "📲", desc: "安卓手机" },
                 { name: "路由器", icon: "📡", desc: "全家共享" },

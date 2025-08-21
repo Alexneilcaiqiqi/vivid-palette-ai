@@ -7,6 +7,12 @@ const Hero = () => {
       <div className="container mx-auto px-4 text-center relative z-10">
         {/* 主标题区 */}
         <div className="max-w-4xl mx-auto mb-20">          
+          <div className="text-center mb-4">
+            <h2 className="text-3xl md:text-5xl font-light text-white tracking-[0.3em] opacity-80" style={{ fontFamily: '063-CAI978, serif' }}>
+              GUICHAO
+            </h2>
+          </div>
+          
           <h1 className="text-5xl md:text-7xl font-light mb-6 leading-tight text-white tracking-[0.2em] mt-[112px]">
             倦鸟归巢 一键回国
           </h1>

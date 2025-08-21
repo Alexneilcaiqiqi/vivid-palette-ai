@@ -21,8 +21,24 @@ const Hero = () => {
             <span className="text-primary font-semibold inline-block px-4 py-2 border border-primary/30 rounded-full bg-primary/10 mt-4">高速稳定 • 安全可靠 • 一键连接</span>
           </p>
 
+          {/* 信任指标 */}
+          <div className="flex flex-wrap justify-center items-center gap-16 text-sm text-muted-foreground mb-20 mt-12">
+            <div className="flex items-center gap-2">
+              <Shield className="w-4 h-4 text-primary" />
+              <span>企业级安全</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Zap className="w-4 h-4 text-primary" />
+              <span>毫秒级延迟</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Globe className="w-4 h-4 text-primary" />
+              <span>全球节点</span>
+            </div>
+          </div>
+
           {/* CTA按钮 */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20 mt-12">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button 
               size="xl" 
               className="bg-gradient-primary hover:shadow-neon-strong hover:scale-105 transition-all duration-300 cyber-glow w-48"
@@ -37,22 +53,6 @@ const Hero = () => {
             >
               <a href="/download">下载客户端</a>
             </Button>
-          </div>
-
-          {/* 信任指标 */}
-          <div className="flex flex-wrap justify-center items-center gap-16 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4 text-primary" />
-              <span>企业级安全</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-primary" />
-              <span>毫秒级延迟</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Globe className="w-4 h-4 text-primary" />
-              <span>全球节点</span>
-            </div>
           </div>
         </div>
 

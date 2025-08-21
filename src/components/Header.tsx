@@ -12,9 +12,12 @@ const Header = () => {
         {/* Logo */}
         <div className="flex items-center space-x-3">
           <div className="relative">
-            <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center relative overflow-hidden">
-              <span className="text-white font-bold text-xl relative z-10">归</span>
-              <div className="absolute inset-0 bg-gradient-primary opacity-50 animate-pulse"></div>
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center relative overflow-hidden">
+              <img 
+                src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" 
+                alt="归巢 Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
           <div className="flex flex-col">

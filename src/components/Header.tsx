@@ -12,7 +12,7 @@ const Header = () => {
         {/* Logo */}
         <div className="flex items-center">
           <div className="relative">
-            <div className="w-16 h-16 rounded-xl flex items-center justify-center relative overflow-hidden">
+            <div className="w-[100px] h-[100px] rounded-xl flex items-center justify-center relative overflow-hidden">
               <img 
                 src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" 
                 alt="Logo" 

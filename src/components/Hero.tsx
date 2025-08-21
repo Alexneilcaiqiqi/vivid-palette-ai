@@ -4,6 +4,55 @@ import { ArrowRight, Globe, Shield, Zap, Smartphone, Router, Monitor, Laptop } f
 const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-20 floating-particles bg-gradient-to-b from-black via-black to-slate-900">
+      {/* 网络互联背景 */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* 网格背景 */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
+        
+        {/* 网络节点 */}
+        <div className="absolute top-20 left-20 w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+        <div className="absolute top-40 right-32 w-2 h-2 bg-blue-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute bottom-32 left-16 w-4 h-4 bg-cyan-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-60 left-1/3 w-2 h-2 bg-primary rounded-full animate-pulse" style={{animationDelay: '1.5s'}}></div>
+        <div className="absolute bottom-40 right-20 w-3 h-3 bg-blue-300 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-cyan-300 rounded-full animate-pulse" style={{animationDelay: '2.5s'}}></div>
+        
+        {/* 连接线 */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{opacity: 0.3}}>
+          <defs>
+            <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.8"/>
+              <stop offset="50%" stopColor="#06b6d4" stopOpacity="0.6"/>
+              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.4"/>
+            </linearGradient>
+          </defs>
+          
+          {/* 动态连接线 */}
+          <path d="M 80 80 Q 300 200 500 160" stroke="url(#connectionGradient)" strokeWidth="1" fill="none" opacity="0.6">
+            <animate attributeName="stroke-dasharray" values="0,100;50,50;100,0;0,100" dur="4s" repeatCount="indefinite"/>
+          </path>
+          <path d="M 200 400 Q 400 300 600 450" stroke="url(#connectionGradient)" strokeWidth="1" fill="none" opacity="0.5">
+            <animate attributeName="stroke-dasharray" values="0,100;50,50;100,0;0,100" dur="6s" repeatCount="indefinite"/>
+          </path>
+          <path d="M 100 600 Q 400 500 700 300" stroke="url(#connectionGradient)" strokeWidth="1" fill="none" opacity="0.4">
+            <animate attributeName="stroke-dasharray" values="0,100;50,50;100,0;0,100" dur="5s" repeatCount="indefinite"/>
+          </path>
+        </svg>
+        
+        {/* 数据流动粒子 */}
+        <div className="absolute top-1/4 left-10 w-1 h-1 bg-primary rounded-full animate-ping"></div>
+        <div className="absolute top-1/2 right-24 w-1 h-1 bg-cyan-400 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-1/3 left-1/3 w-1 h-1 bg-blue-400 rounded-full animate-ping" style={{animationDelay: '2s'}}></div>
+      </div>
+      
       <div className="container mx-auto px-4 text-center relative z-10">
         {/* 主标题区 */}
         <div className="max-w-4xl mx-auto mb-20">

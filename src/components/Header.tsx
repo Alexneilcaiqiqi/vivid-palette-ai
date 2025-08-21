@@ -51,7 +51,7 @@ const Header = () => {
           <Button variant="ghost" size="sm" className="hover-float">
             <a href="/auth">登录</a>
           </Button>
-          <Button variant="default" size="sm" className="bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300">
+          <Button variant="default" size="sm" className="bg-gradient-primary text-white shadow-neon hover:shadow-neon-strong hover:scale-105 transition-all duration-300">
             <a href="/auth">免费试用</a>
           </Button>
         </div>

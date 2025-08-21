@@ -8,11 +8,11 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-border/50">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between bg-black">
+      <div className="container mx-auto px-4 h-20 flex items-center justify-between bg-black">
         {/* Logo */}
         <div className="flex items-center">
           <div className="relative">
-            <div className="w-[100px] h-[100px] rounded-xl flex items-center justify-center relative overflow-hidden">
+            <div className="w-[120px] h-[120px] rounded-xl flex items-center justify-center relative overflow-hidden">
               <img 
                 src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" 
                 alt="Logo" 

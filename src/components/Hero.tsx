@@ -20,7 +20,7 @@ const Hero = () => {
           </p>
 
           <div className="mb-8">
-            <span className="text-lg font-semibold inline-block px-4 py-2 border border-primary/30 rounded-full bg-primary/10 text-primary">高速稳定 • 安全可靠 • 一键连接</span>
+            <span className="text-2xl font-semibold inline-block px-4 py-2 border border-primary/30 rounded-full bg-primary/10 text-primary">高速稳定 • 安全可靠 • 一键连接</span>
           </div>
 
           {/* 信任指标 */}

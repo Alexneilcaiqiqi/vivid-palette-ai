@@ -70,27 +70,23 @@ const Hero = () => {
             <div className="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6">
               {/* 支持的平台 */}
               {[
-                { name: "Windows", icon: <Monitor className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "PC客户端", downloadUrl: null },
-                { name: "macOS", icon: <Laptop className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "Mac客户端", downloadUrl: null },
-                { name: "iOS", icon: <Smartphone className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "iPhone/iPad", downloadUrl: null },
-                { name: "Android", icon: <Smartphone className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "安卓手机", downloadUrl: "/android-app.apk" },
-                { name: "路由器", icon: <Router className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "全家共享", downloadUrl: null },
-                { name: "浏览器", icon: <Globe className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "免装插件", downloadUrl: null }
+                { name: "Windows", icon: <Monitor className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "PC客户端" },
+                { name: "macOS", icon: <Laptop className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "Mac客户端" },
+                { name: "iOS", icon: <Smartphone className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "iPhone/iPad" },
+                { name: "Android", icon: <Smartphone className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "安卓手机" },
+                { name: "路由器", icon: <Router className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "全家共享" },
+                { name: "浏览器", icon: <Globe className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "免装插件" }
               ].map((platform, index) => (
                 <div 
                   key={platform.name}
-                  className={`p-4 bg-card/30 rounded-xl border border-border/50 hover-float hover:border-primary/50 transition-all duration-300 ${platform.downloadUrl ? 'cursor-pointer' : ''}`}
+                  className="p-4 bg-card/30 rounded-xl border border-border/50 hover-float hover:border-primary/50 transition-all duration-300"
                   style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={platform.downloadUrl ? () => window.open(platform.downloadUrl, '_blank') : undefined}
                 >
                   <div className="text-3xl mb-2 flex justify-center">
                     {typeof platform.icon === 'string' ? platform.icon : platform.icon}
                   </div>
                   <h3 className="font-semibold text-foreground mb-1">{platform.name}</h3>
                   <p className="text-xs text-muted-foreground">{platform.desc}</p>
-                  {platform.downloadUrl && (
-                    <p className="text-xs text-primary mt-1">点击下载</p>
-                  )}
                 </div>
               ))}
             </div>

@@ -103,7 +103,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    color: hsl(var(--foreground));
     background: #FF4500 !important;
     background-attachment: fixed;
     overflow-x: hidden;

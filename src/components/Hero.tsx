@@ -3,7 +3,7 @@ import { ArrowRight, Globe, Shield, Zap, Smartphone, Router, Monitor, Laptop } f
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-20 floating-particles bg-gradient-to-t from-black via-black to-slate-900">
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-20 floating-particles" style={{background: 'linear-gradient(to top, #FF4500, #FF6500, #FF8500)'}}>
       <div className="container mx-auto px-4 text-center relative z-10">
         {/* 主标题区 */}
         <div className="max-w-4xl mx-auto mb-20">          

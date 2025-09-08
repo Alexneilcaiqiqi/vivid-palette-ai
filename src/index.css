@@ -6,8 +6,8 @@
 
 @layer base {
   :root {
-    /* 橙色科技背景 */
-    --background: 20 60% 10%;
+    /* 橙色科技背景 - 加强版 */
+    --background: 25 70% 15%;
     --foreground: 210 20% 95%;
 
     /* 卡片和弹窗 - 深黑玻璃质感 */

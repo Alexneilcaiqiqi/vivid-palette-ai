@@ -6,8 +6,8 @@
 
 @layer base {
   :root {
-    /* 橙色科技背景 - 加强版 */
-    --background: 25 70% 15%;
+    /* 纯黑科技背景 */
+    --background: 0 0% 4%;
     --foreground: 210 20% 95%;
 
     /* 卡片和弹窗 - 深黑玻璃质感 */
@@ -47,7 +47,7 @@
     --gradient-hero: linear-gradient(135deg, hsl(0 0% 4%) 0%, hsl(210 100% 60% / 0.3) 50%, hsl(270 85% 70% / 0.2) 100%);
     --gradient-card: linear-gradient(145deg, hsl(0 0% 8%) 0%, hsl(0 0% 6%) 100%);
     --gradient-brand: linear-gradient(90deg, hsl(210 100% 60%), hsl(200 100% 70%), hsl(270 85% 70%));
-    --gradient-background: radial-gradient(ellipse at top, hsl(20 60% 15%) 0%, hsl(20 80% 5%) 100%);
+    --gradient-background: radial-gradient(ellipse at top, hsl(0 0% 8%) 0%, hsl(0 0% 2%) 100%);
     
     /* 功能渐变色系 */
     --gradient-feature-1: linear-gradient(135deg, hsl(200 100% 70%), hsl(210 100% 60%));
@@ -103,15 +103,14 @@
   }
 
   body {
-    color: hsl(var(--foreground));
-    background: #FF4500 !important;
+    @apply bg-background text-foreground;
+    background: var(--gradient-background);
     background-attachment: fixed;
     overflow-x: hidden;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 
-  /* 橙色科技粒子背景 - 暂时禁用 */
-  /*
+  /* 蓝色科技粒子背景 */
   body::before {
     content: '';
     position: fixed;
@@ -120,15 +119,14 @@
     width: 100%;
     height: 100%;
     background: 
-      radial-gradient(circle at 25% 25%, hsl(30 100% 60% / 0.15) 1px, transparent 1px),
-      radial-gradient(circle at 75% 75%, hsl(25 100% 70% / 0.1) 1px, transparent 1px),
-      radial-gradient(circle at 50% 50%, hsl(20 100% 65% / 0.08) 1px, transparent 1px);
+      radial-gradient(circle at 25% 25%, hsl(210 100% 60% / 0.15) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, hsl(200 100% 70% / 0.1) 1px, transparent 1px),
+      radial-gradient(circle at 50% 50%, hsl(190 100% 65% / 0.08) 1px, transparent 1px);
     background-size: 100px 100px, 80px 80px, 120px 120px;
     pointer-events: none;
     z-index: -1;
     animation: var(--animation-drift);
   }
-  */
 }
 
 /* 动画关键帧 */

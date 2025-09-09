@@ -83,7 +83,7 @@ const Pricing = () => {
     {
       name: "标准版",
       icon: <Star className="w-6 h-6" />,
-      price: "HK$29",
+      price: "29",
       period: "/月",
       description: "个人用户推荐，性价比之选",
       features: [
@@ -102,7 +102,7 @@ const Pricing = () => {
     {
       name: "旗舰版", 
       icon: <Crown className="w-6 h-6" />,
-      price: "HK$59",
+      price: "59",
       period: "/月",
       description: "家庭/企业用户首选",
       features: [
@@ -188,7 +188,8 @@ const Pricing = () => {
                 {/* 价格 */}
                 <div className="text-center mb-8">
                   <div className="flex items-end justify-center">
-                    <span className="text-3xl md:text-4xl font-light text-gradient">{plan.price}</span>
+                    <span className="text-sm font-light text-muted-foreground mr-1 mb-2">HK$</span>
+                    <span className="text-4xl md:text-5xl font-bold text-gradient">{plan.price}</span>
                     <span className="text-muted-foreground ml-1 mb-1">{plan.period}</span>
                   </div>
                 </div>

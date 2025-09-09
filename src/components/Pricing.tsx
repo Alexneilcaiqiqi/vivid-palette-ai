@@ -188,7 +188,7 @@ const Pricing = () => {
                 {/* 价格 */}
                 <div className="text-center mb-8">
                   <div className="flex items-end justify-center">
-                    <span className="text-4xl md:text-5xl font-bold text-gradient">{plan.price}</span>
+                    <span className="text-3xl md:text-4xl font-light text-gradient">{plan.price}</span>
                     <span className="text-muted-foreground ml-1 mb-1">{plan.period}</span>
                   </div>
                 </div>

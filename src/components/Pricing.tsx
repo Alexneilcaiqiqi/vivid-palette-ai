@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Check, Star, Crown, Zap, CreditCard, Smartphone, DollarSign, Apple, Chrome, X } from "lucide-react";
+import { Check, Star, Crown, Zap, CreditCard, Smartphone, DollarSign, Apple, Chrome, X, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 
 const Pricing = () => {
@@ -228,6 +228,7 @@ const Pricing = () => {
                         : plan.gradient + ' text-white hover:shadow-neon-strong'
                   } hover:scale-105`}
                 >
+                  <ShoppingCart className="w-4 h-4 mr-2 inline" />
                   点击选择 {plan.buttonText}
                 </div>
 

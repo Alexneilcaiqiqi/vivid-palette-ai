@@ -83,7 +83,7 @@ const Pricing = () => {
     {
       name: "标准版",
       icon: <Star className="w-6 h-6" />,
-      price: "¥29",
+      price: "HK$29",
       period: "/月",
       description: "个人用户推荐，性价比之选",
       features: [
@@ -102,7 +102,7 @@ const Pricing = () => {
     {
       name: "旗舰版", 
       icon: <Crown className="w-6 h-6" />,
-      price: "¥59",
+      price: "HK$59",
       period: "/月",
       description: "家庭/企业用户首选",
       features: [
@@ -142,7 +142,7 @@ const Pricing = () => {
 
           {/* 优惠提示 */}
           <div className="inline-flex items-center px-4 py-2 bg-gradient-primary/10 rounded-full border border-primary/30">
-            <span className="text-primary font-medium">🎉 年付用户享8折优惠，可节省高达¥140</span>
+            <span className="text-primary font-medium">🎉 年付用户享8折优惠，可节省高达HK$140</span>
           </div>
         </div>
 

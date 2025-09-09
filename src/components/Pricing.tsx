@@ -228,8 +228,8 @@ const Pricing = () => {
                         : plan.gradient + ' text-white hover:shadow-neon-strong'
                   } hover:scale-105`}
                 >
-                  <ShoppingCart className="w-4 h-4 mr-2 inline" />
-                  点击选择 {plan.buttonText}
+                  <ShoppingCart className="w-5 h-5 mr-2 inline-block align-middle" />
+                  <span className="align-middle">点击选择 {plan.buttonText}</span>
                 </div>
 
                 {/* 悬浮光效 */}

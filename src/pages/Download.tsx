@@ -13,7 +13,7 @@ const DownloadPage = () => {
       requirements: "Windows 10/11 (64-bit)",
       downloadUrl: "#",
       features: ["一键连接", "智能路由", "开机自启"],
-      gradient: "from-blue-500 to-cyan-500"
+      gradient: "gradient-feature-1"
     },
     {
       name: "macOS",
@@ -23,7 +23,7 @@ const DownloadPage = () => {
       requirements: "macOS 11.0 或更高版本",
       downloadUrl: "#",
       features: ["原生支持", "菜单栏控制", "系统集成"],
-      gradient: "from-gray-500 to-slate-500"
+      gradient: "gradient-feature-2"
     },
     {
       name: "iOS",
@@ -33,7 +33,7 @@ const DownloadPage = () => {
       requirements: "iOS 13.0 或更高版本",
       downloadUrl: "#",
       features: ["App Store 下载", "快捷指令", "Siri 支持"],
-      gradient: "from-purple-500 to-pink-500"
+      gradient: "gradient-feature-3"
     },
     {
       name: "Android",
@@ -43,7 +43,7 @@ const DownloadPage = () => {
       requirements: "Android 7.0 或更高版本",
       downloadUrl: "#",
       features: ["Google Play", "一键分享", "省电模式"],
-      gradient: "from-green-500 to-emerald-500"
+      gradient: "gradient-feature-4"
     },
     {
       name: "路由器固件",
@@ -53,7 +53,7 @@ const DownloadPage = () => {
       requirements: "支持OpenWrt的路由器",
       downloadUrl: "#",
       features: ["全家共享", "设备管控", "定时开关"],
-      gradient: "from-orange-500 to-red-500"
+      gradient: "gradient-feature-5"
     },
     {
       name: "浏览器插件",
@@ -63,7 +63,7 @@ const DownloadPage = () => {
       requirements: "Chrome/Firefox/Safari",
       downloadUrl: "#",
       features: ["免费使用", "网页代理", "智能分流"],
-      gradient: "from-indigo-500 to-purple-500"
+      gradient: "gradient-feature-6"
     }
   ];
 
@@ -137,7 +137,7 @@ const DownloadPage = () => {
                 <CardContent className="p-6">
                   {/* 图标和名称 */}
                   <div className="flex items-center mb-4">
-                    <div className={`p-3 bg-gradient-to-br ${platform.gradient} rounded-xl text-white mr-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`p-3 bg-${platform.gradient} rounded-xl text-white mr-4 group-hover:scale-110 transition-transform duration-300`}>
                       {platform.icon}
                     </div>
                     <div>
@@ -160,7 +160,7 @@ const DownloadPage = () => {
                   </div>
 
                   {/* 下载按钮 */}
-                  <Button className={`w-full bg-gradient-to-br ${platform.gradient} hover:shadow-strong hover:scale-105 transition-all duration-300`}>
+                  <Button className={`w-full bg-${platform.gradient} hover:shadow-neon-strong hover:scale-105 transition-all duration-300`}>
                     <Download className="mr-2 w-4 h-4" />
                     下载 {platform.name}
                   </Button>

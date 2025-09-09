@@ -57,7 +57,7 @@ const AuthPage = () => {
             {/* 特色功能 */}
             <div className="space-y-6">
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-feature-1 rounded-xl flex items-center justify-center">
                   <Zap className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -67,7 +67,7 @@ const AuthPage = () => {
               </div>
               
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-feature-2 rounded-xl flex items-center justify-center">
                   <Shield className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -77,7 +77,7 @@ const AuthPage = () => {
               </div>
               
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-feature-3 rounded-xl flex items-center justify-center">
                   <Globe className="w-6 h-6 text-white" />
                 </div>
                 <div>

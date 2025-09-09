@@ -127,7 +127,7 @@ const Footer = () => {
           {/* 备案信息 */}
           <div className="mt-4 text-center text-xs text-muted-foreground">
             <p>专业的海外华人回国网络服务提供商 | 让距离不再是障碍</p>
-            <p className="mt-2">XYZ 網頁是屬於 ABC 所擁有和全權使用</p>
+            <p className="mt-2">本网页是属于 HK Guichao Technology Co., Limited所拥有和全权使用</p>
           </div>
         </div>
       </div>

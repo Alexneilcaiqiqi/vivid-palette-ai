@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Globe, Shield, Zap, Smartphone, Router, Monitor, Laptop } from "lucide-react";
-
 const Hero = () => {
-  return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-20 floating-particles bg-gradient-to-t from-black via-black to-slate-900">
+  return <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-20 floating-particles bg-gradient-to-t from-black via-black to-slate-900">
       <div className="container mx-auto px-4 text-center relative z-10">
         {/* 主标题区 */}
         <div className="max-w-4xl mx-auto mb-20">          
@@ -47,18 +45,11 @@ const Hero = () => {
 
           {/* CTA按钮 */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center scale-[1.3] -mt-12">
-            <Button 
-              size="xl" 
-              className="bg-gradient-primary hover:shadow-neon-strong hover:scale-105 transition-all duration-300 cyber-glow w-48"
-            >
-              <a href="/auth">立即免费试用</a>
+            <Button size="xl" className="bg-gradient-primary hover:shadow-neon-strong hover:scale-105 transition-all duration-300 cyber-glow w-48">
+              <a href="/auth">即免费试用</a>
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-            <Button 
-              variant="outline" 
-              size="xl" 
-              className="border-primary/30 hover:bg-primary/10 hover-float w-48"
-            >
+            <Button variant="outline" size="xl" className="border-primary/30 hover:bg-primary/10 hover-float w-48">
               <a href="/download">下载客户端</a>
             </Button>
           </div>
@@ -69,30 +60,46 @@ const Hero = () => {
           <div className="relative rounded-2xl p-12 glass-effect border border-primary/20 mt-[100px] scale-110">
             <div className="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6">
               {/* 支持的平台 */}
-              {[
-                { name: "Windows", icon: <Monitor className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "PC客户端", downloadUrl: null },
-                { name: "macOS", icon: <Laptop className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "Mac客户端", downloadUrl: null },
-                { name: "iOS", icon: <Smartphone className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "iPhone/iPad", downloadUrl: null },
-                { name: "Android", icon: <Smartphone className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "安卓手机", downloadUrl: "/android-app.apk" },
-                { name: "路由器", icon: <Router className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "全家共享", downloadUrl: null },
-                { name: "浏览器", icon: <Globe className="w-8 h-8 text-foreground" strokeWidth={1.5} />, desc: "免装插件", downloadUrl: null }
-              ].map((platform, index) => (
-                <div 
-                  key={platform.name}
-                  className={`p-4 bg-card/30 rounded-xl border border-border/50 hover-float hover:border-primary/50 transition-all duration-300 ${platform.downloadUrl ? 'cursor-pointer' : ''}`}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={platform.downloadUrl ? () => window.open(platform.downloadUrl, '_blank') : undefined}
-                >
+              {[{
+              name: "Windows",
+              icon: <Monitor className="w-8 h-8 text-foreground" strokeWidth={1.5} />,
+              desc: "PC客户端",
+              downloadUrl: null
+            }, {
+              name: "macOS",
+              icon: <Laptop className="w-8 h-8 text-foreground" strokeWidth={1.5} />,
+              desc: "Mac客户端",
+              downloadUrl: null
+            }, {
+              name: "iOS",
+              icon: <Smartphone className="w-8 h-8 text-foreground" strokeWidth={1.5} />,
+              desc: "iPhone/iPad",
+              downloadUrl: null
+            }, {
+              name: "Android",
+              icon: <Smartphone className="w-8 h-8 text-foreground" strokeWidth={1.5} />,
+              desc: "安卓手机",
+              downloadUrl: "/android-app.apk"
+            }, {
+              name: "路由器",
+              icon: <Router className="w-8 h-8 text-foreground" strokeWidth={1.5} />,
+              desc: "全家共享",
+              downloadUrl: null
+            }, {
+              name: "浏览器",
+              icon: <Globe className="w-8 h-8 text-foreground" strokeWidth={1.5} />,
+              desc: "免装插件",
+              downloadUrl: null
+            }].map((platform, index) => <div key={platform.name} className={`p-4 bg-card/30 rounded-xl border border-border/50 hover-float hover:border-primary/50 transition-all duration-300 ${platform.downloadUrl ? 'cursor-pointer' : ''}`} style={{
+              animationDelay: `${index * 0.1}s`
+            }} onClick={platform.downloadUrl ? () => window.open(platform.downloadUrl, '_blank') : undefined}>
                   <div className="text-3xl mb-2 flex justify-center">
                     {typeof platform.icon === 'string' ? platform.icon : platform.icon}
                   </div>
                   <h3 className="font-semibold text-foreground mb-1">{platform.name}</h3>
                   <p className="text-xs text-muted-foreground">{platform.desc}</p>
-                  {platform.downloadUrl && (
-                    <p className="text-xs text-primary mt-1">点击下载</p>
-                  )}
-                </div>
-              ))}
+                  {platform.downloadUrl && <p className="text-xs text-primary mt-1">点击下载</p>}
+                </div>)}
             </div>
           </div>
 
@@ -109,8 +116,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;

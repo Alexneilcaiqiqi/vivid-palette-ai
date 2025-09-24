@@ -46,7 +46,7 @@ const Hero = () => {
           {/* CTA按钮 */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center scale-[1.3] -mt-12">
             <Button size="xl" className="bg-gradient-primary hover:shadow-neon-strong hover:scale-105 transition-all duration-300 cyber-glow w-48">
-              <a href="/auth">即免费试用</a>
+              <a href="/auth">立即免费试用</a>
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
             <Button variant="outline" size="xl" className="border-primary/30 hover:bg-primary/10 hover-float w-48">

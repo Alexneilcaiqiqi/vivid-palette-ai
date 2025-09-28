@@ -2,29 +2,22 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50">
+  return <header className="fixed top-0 left-0 right-0 z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
           <div className="relative">
             <div className="w-16 h-16 md:w-[120px] md:h-[120px] rounded-xl flex items-center justify-center relative overflow-hidden">
-              <img 
-                src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" 
-                alt="Logo" 
-                className="w-full h-full object-contain"
-              />
+              <img src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" alt="Logo" className="w-full h-full object-contain" />
             </div>
           </div>
           {/* Vertical separator - hidden on mobile */}
           <div className="hidden md:block h-8 w-px bg-muted-foreground/30 mx-4"></div>
           {/* Tagline - hidden on mobile */}
           <div className="hidden md:flex flex-col">
-            <span className="text-sm text-white font-light tracking-[0.2em]">专为海外华人设计</span>
+            <span className="text-sm text-white font-light tracking-[0.2em]">专为海外的华人设计</span>
             <span className="text-[10px] text-white/70 font-light tracking-[0.1em]">Built for Chinese Abroad</span>
           </div>
         </div>
@@ -64,17 +57,13 @@ const Header = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2 hover:bg-accent/10 rounded-lg transition-colors"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
+        <button className="md:hidden p-2 hover:bg-accent/10 rounded-lg transition-colors" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden glass-effect border-t border-border/50">
+      {isMenuOpen && <div className="md:hidden glass-effect border-t border-border/50">
           <nav className="container mx-auto px-4 py-4 space-y-4">
             <a href="#home" className="block py-2 text-foreground hover:text-primary transition-colors">
               首页
@@ -100,10 +89,7 @@ const Header = () => {
               </Button>
             </div>
           </nav>
-        </div>
-      )}
-    </header>
-  );
+        </div>}
+    </header>;
 };
-
 export default Header;

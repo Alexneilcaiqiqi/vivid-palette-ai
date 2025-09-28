@@ -77,8 +77,10 @@ const Features = () => {
               <div className={`absolute inset-0 ${feature.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
               
               {/* 图标 */}
-              <div className={`inline-flex p-3 ${feature.gradient} rounded-xl text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                {feature.icon}
+              <div className={`flex justify-center sm:justify-start mb-6`}>
+                <div className={`inline-flex p-3 ${feature.gradient} rounded-xl text-white group-hover:scale-110 transition-transform duration-300`}>
+                  {feature.icon}
+                </div>
               </div>
 
               {/* 标题和描述 */}

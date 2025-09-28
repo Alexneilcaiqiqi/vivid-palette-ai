@@ -17,7 +17,7 @@ const Header = () => {
           <div className="hidden md:block h-8 w-px bg-muted-foreground/30 mx-4"></div>
           {/* Tagline - hidden on mobile */}
           <div className="hidden md:flex flex-col">
-            <span className="text-sm text-white font-light tracking-[0.2em]">专为海外的华人设计</span>
+            <span className="text-sm text-white font-light tracking-[0.2em]">专为海外华人设计</span>
             <span className="text-[10px] text-white/70 font-light tracking-[0.1em]">Built for Chinese Abroad</span>
           </div>
         </div>

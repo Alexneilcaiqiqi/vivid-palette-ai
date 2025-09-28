@@ -12,7 +12,7 @@ const Header = () => {
         {/* Logo */}
         <div className="flex items-center">
           <div className="relative">
-            <div className="w-[120px] h-[120px] rounded-xl flex items-center justify-center relative overflow-hidden">
+            <div className="w-16 h-16 md:w-[120px] md:h-[120px] rounded-xl flex items-center justify-center relative overflow-hidden">
               <img 
                 src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" 
                 alt="Logo" 
@@ -20,10 +20,10 @@ const Header = () => {
               />
             </div>
           </div>
-          {/* Vertical separator */}
-          <div className="h-8 w-px bg-muted-foreground/30 mx-4"></div>
-          {/* Tagline */}
-          <div className="flex flex-col">
+          {/* Vertical separator - hidden on mobile */}
+          <div className="hidden md:block h-8 w-px bg-muted-foreground/30 mx-4"></div>
+          {/* Tagline - hidden on mobile */}
+          <div className="hidden md:flex flex-col">
             <span className="text-sm text-white font-light tracking-[0.2em]">专为海外华人设计</span>
             <span className="text-[10px] text-white/70 font-light tracking-[0.1em]">Built for Chinese Abroad</span>
           </div>

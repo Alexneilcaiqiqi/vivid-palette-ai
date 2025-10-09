@@ -6,9 +6,9 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" itemScope itemType="https://schema.org/WebPage">
       <Header />
-      <main className="space-y-16 md:space-y-24 lg:space-y-32">
+      <main className="space-y-16 md:space-y-24 lg:space-y-32" role="main">
         <Hero />
         <Features />
         <Pricing />

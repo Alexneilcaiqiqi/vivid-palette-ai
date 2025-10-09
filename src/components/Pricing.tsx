@@ -123,15 +123,15 @@ const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="py-32 relative bg-gradient-to-b from-transparent to-card/10 border-t border-border/20">
+    <section id="pricing" className="py-32 relative bg-gradient-to-b from-transparent to-card/10 border-t border-border/20" aria-labelledby="pricing-heading">
       <div className="container mx-auto px-4">
         {/* 标题部分 */}
-        <div className="text-center mb-20">
+        <header className="text-center mb-20">
           <div className="inline-flex items-center px-4 py-2 bg-card/50 rounded-full border border-primary/20 mb-6 glass-effect">
             <span className="text-sm text-primary font-medium">💰 套餐价格</span>
           </div>
           
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 px-4">
+          <h2 id="pricing-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 px-4">
             <span className="text-foreground">选择适合您的</span>
             <span className="text-gradient ml-2 md:ml-3">套餐</span>
           </h2>
@@ -144,7 +144,7 @@ const Pricing = () => {
           <div className="inline-flex items-center px-4 py-2 bg-gradient-primary/10 rounded-full border border-primary/30">
             <span className="text-primary font-medium">🎉 年付用户享8折优惠，可节省高达HK$140</span>
           </div>
-        </div>
+        </header>
 
         {/* 价格卡片 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 max-w-6xl mx-auto px-4">

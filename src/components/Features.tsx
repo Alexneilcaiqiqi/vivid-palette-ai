@@ -47,15 +47,15 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-32 relative bg-black border-t border-border/20">
+    <section id="features" className="py-32 relative bg-black border-t border-border/20" aria-labelledby="features-heading">
       <div className="container mx-auto px-4">
         {/* 标题部分 */}
-        <div className="text-center mb-20">
+        <header className="text-center mb-20">
           <div className="inline-flex items-center px-4 py-2 bg-card/50 rounded-full border border-primary/20 mb-6 glass-effect">
             <span className="text-sm text-primary font-medium">⚡ 产品特色</span>
           </div>
           
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 px-4">
+          <h2 id="features-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 px-4">
             <span className="text-foreground">为什么选择</span>
             <span className="text-gradient ml-2 md:ml-3">归巢</span>
           </h2>
@@ -63,7 +63,7 @@ const Features = () => {
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
             专为海外华人打造的回国网络解决方案，让您在海外也能无缝享受国内的网络服务
           </p>
-        </div>
+        </header>
 
         {/* 特色功能网格 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 px-4">

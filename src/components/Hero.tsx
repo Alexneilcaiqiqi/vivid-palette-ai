@@ -1,16 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Globe, Shield, Zap, Smartphone, Router, Monitor, Laptop } from "lucide-react";
 const Hero = () => {
-  return <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-20 floating-particles bg-gradient-to-t from-black via-black to-slate-900">
+  return <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-20 floating-particles bg-gradient-to-t from-black via-black to-slate-900" aria-label="首页英雄区">
       <div className="container mx-auto px-4 text-center relative z-10">
         {/* 主标题区 */}
         <div className="max-w-4xl mx-auto mb-20">          
           
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light mb-6 leading-tight text-white tracking-[0.1em] md:tracking-[0.2em] mt-16 md:mt-[112px]">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light mb-6 leading-tight text-white tracking-[0.1em] md:tracking-[0.2em] mt-16 md:mt-[112px]" itemProp="headline">
             倦鸟归巢 一键回国
           </h1>
           
-          <p className="text-sm sm:text-base md:text-xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed md:leading-[2.5] px-4">专业的回国网络加速服务，让海外华人轻松访问国内所有网络资源</p>
+          <p className="text-sm sm:text-base md:text-xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed md:leading-[2.5] px-4" itemProp="description">专业的回国网络加速服务，让海外华人轻松访问国内所有网络资源，支持爱奇艺、腾讯视频、优酷等主流平台</p>
 
           <div className="mb-6 md:mb-8 mt-12 md:mt-[200px]">
             <span className="text-sm sm:text-lg md:text-2xl font-semibold inline-block px-3 md:px-4 py-2 border border-primary/30 rounded-full bg-primary/10 text-primary">高速稳定 • 安全可靠 • 一键连接</span>
@@ -60,12 +60,12 @@ const Hero = () => {
               {/* 支持的平台 */}
               {[{
               name: "Windows",
-              icon: <Monitor className="w-8 h-8 text-foreground" strokeWidth={1.5} />,
+              icon: <Monitor className="w-8 h-8 text-foreground" strokeWidth={1.5} aria-hidden="true" />,
               desc: "PC客户端",
               downloadUrl: null
             }, {
               name: "macOS",
-              icon: <Laptop className="w-8 h-8 text-foreground" strokeWidth={1.5} />,
+              icon: <Laptop className="w-8 h-8 text-foreground" strokeWidth={1.5} aria-hidden="true" />,
               desc: "Mac客户端",
               downloadUrl: null
             }, {

@@ -106,8 +106,8 @@ const AuthPage = () => {
           <div className="w-full max-w-md mx-auto">
             <Card className="bg-card/30 border-border/50 backdrop-blur-xl">
               <CardHeader className="text-center pb-4">
-                <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white font-bold text-2xl">归</span>
+                <div className="flex items-center justify-center mx-auto mb-4">
+                  <img src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" alt="归巢" className="h-16" />
                 </div>
                 <CardTitle className="text-2xl">欢迎使用归巢</CardTitle>
                 <CardDescription>请登录或注册您的账号</CardDescription>

@@ -100,8 +100,12 @@ const Features = () => {
                 {feature.description}
               </p>
 
-              {/* 亮点标签 */}
-              <div className="inline-flex items-center px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full border border-primary/20">
+              {/* 亮点标签 - 金色强调 */}
+              <div className="inline-flex items-center px-3 py-1 text-sm font-bold rounded-full border-2" style={{
+                background: 'linear-gradient(135deg, hsl(270 95% 65% / 0.15), hsl(45 100% 60% / 0.15))',
+                color: 'hsl(48 100% 70%)',
+                borderColor: 'hsl(45 100% 60% / 0.4)'
+              }}>
                 {feature.highlight}
               </div>
 

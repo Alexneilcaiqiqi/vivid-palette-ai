@@ -13,41 +13,41 @@ const Hero = () => {
           <p className="text-sm sm:text-base md:text-xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed md:leading-[2.5] px-4" itemProp="description">专业的回国网络加速服务，让海外华人轻松访问国内网络资源</p>
 
           <div className="mb-6 md:mb-8 mt-12 md:mt-[200px]">
-            <span className="text-sm sm:text-lg md:text-2xl font-semibold inline-block px-3 md:px-4 py-2 border border-primary/30 rounded-full bg-primary/10 text-primary">高速稳定 • 安全可靠 • 一键连接</span>
+            <span className="text-sm sm:text-lg md:text-2xl font-semibold inline-block px-3 md:px-4 py-2 border-2 border-transparent bg-gradient-primary rounded-full bg-clip-text text-transparent shadow-gold" style={{background: 'linear-gradient(135deg, hsl(270 95% 65%), hsl(45 100% 60%), hsl(48 100% 70%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>高速稳定 • 安全可靠 • 一键连接</span>
           </div>
 
-          {/* 信任指标 */}
+          {/* 信任指标 - 紫金配色 */}
           <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-16 text-sm text-muted-foreground mb-12 md:mb-20 mt-4 px-4">
             <div className="flex items-center gap-3 md:gap-4">
-              <Shield className="w-4 h-4 text-muted-foreground scale-150 md:scale-[2]" strokeWidth={1} />
+              <Shield className="w-4 h-4 scale-150 md:scale-[2]" strokeWidth={1} style={{color: 'hsl(45 100% 60%)'}} />
               <div className="flex flex-col items-start">
-                <span className="text-xs sm:text-sm">企业级安全</span>
+                <span className="text-xs sm:text-sm text-foreground">企业级安全</span>
                 <span className="text-[10px] sm:text-xs opacity-70">Enterprise Security</span>
               </div>
             </div>
             <div className="flex items-center gap-3 md:gap-4">
-              <Zap className="w-4 h-4 text-muted-foreground scale-150 md:scale-[2]" strokeWidth={1} />
+              <Zap className="w-4 h-4 scale-150 md:scale-[2]" strokeWidth={1} style={{color: 'hsl(270 95% 65%)'}} />
               <div className="flex flex-col items-start">
-                <span className="text-xs sm:text-sm">毫秒级延迟</span>
+                <span className="text-xs sm:text-sm text-foreground">毫秒级延迟</span>
                 <span className="text-[10px] sm:text-xs opacity-70">Ultra Low Latency</span>
               </div>
             </div>
             <div className="flex items-center gap-3 md:gap-4">
-              <Globe className="w-4 h-4 text-muted-foreground scale-150 md:scale-[2]" strokeWidth={1} />
+              <Globe className="w-4 h-4 scale-150 md:scale-[2]" strokeWidth={1} style={{color: 'hsl(48 100% 70%)'}} />
               <div className="flex flex-col items-start">
-                <span className="text-xs sm:text-sm">全球节点</span>
+                <span className="text-xs sm:text-sm text-foreground">全球节点</span>
                 <span className="text-[10px] sm:text-xs opacity-70">Global Network</span>
               </div>
             </div>
           </div>
 
-          {/* CTA按钮 */}
+          {/* CTA按钮 - 紫金渐变 */}
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center scale-100 sm:scale-110 md:scale-[1.3] -mt-6 md:-mt-12 px-4">
-            <Button size="lg" className="bg-gradient-primary hover:shadow-neon-strong hover:scale-110 transition-all duration-300 pulse-strong w-full sm:w-48 text-white">
+            <Button size="lg" className="bg-gradient-primary hover:shadow-gold-strong hover:scale-110 transition-all duration-300 gold-glow w-full sm:w-48 text-white font-bold">
               <a href="/auth">立即免费试用</a>
               <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
             </Button>
-            <Button variant="outline" size="lg" className="border-primary/50 hover:bg-primary/20 hover-float hover:shadow-purple w-full sm:w-48 text-white hover:text-white">
+            <Button variant="outline" size="lg" className="border-2 hover:bg-gradient-primary/20 hover-float hover:shadow-gold w-full sm:w-48 text-white hover:text-white font-semibold" style={{borderColor: 'hsl(45 100% 60%)'}}>
               <a href="/download">下载客户端</a>
             </Button>
           </div>
@@ -96,10 +96,11 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 悬浮特效元素 */}
-          <div className="absolute -top-6 -left-6 w-12 h-12 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute -bottom-6 -right-6 w-12 h-12 bg-accent/20 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute top-1/2 -right-8 w-8 h-8 bg-secondary/20 rounded-full blur-lg animate-pulse"></div>
+          {/* 悬浮特效元素 - 紫金配色 */}
+          <div className="absolute -top-6 -left-6 w-12 h-12 rounded-full blur-xl animate-pulse" style={{backgroundColor: 'hsl(270 95% 65% / 0.3)'}}></div>
+          <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full blur-xl animate-pulse" style={{backgroundColor: 'hsl(45 100% 60% / 0.3)'}}></div>
+          <div className="absolute top-1/2 -right-8 w-8 h-8 rounded-full blur-lg animate-pulse" style={{backgroundColor: 'hsl(48 100% 70% / 0.3)'}}></div>
+          <div className="absolute bottom-1/3 -left-8 w-10 h-10 rounded-full blur-lg animate-pulse" style={{backgroundColor: 'hsl(290 100% 70% / 0.2)'}}></div>
         </div>
 
         {/* 滚动提示 */}

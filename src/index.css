@@ -6,27 +6,27 @@
 
 @layer base {
   :root {
-    /* 深蓝科技背景 */
-    --background: 220 45% 8%;
-    --foreground: 210 20% 95%;
+    /* 天蓝科技背景 */
+    --background: 200 60% 15%;
+    --foreground: 210 20% 98%;
 
-    /* 卡片和弹窗 - 深蓝玻璃质感 */
-    --card: 220 40% 12%;
-    --card-foreground: 210 20% 95%;
-    --popover: 220 42% 10%;
-    --popover-foreground: 210 20% 95%;
+    /* 卡片和弹窗 - 天蓝玻璃质感 */
+    --card: 200 55% 20%;
+    --card-foreground: 210 20% 98%;
+    --popover: 200 58% 18%;
+    --popover-foreground: 210 20% 98%;
 
     /* 主色调 - 科技蓝光 */
     --primary: 210 100% 60%;
     --primary-foreground: 0 0% 0%;
 
-    /* 次要色调 - 深蓝 */
-    --secondary: 220 35% 15%;
-    --secondary-foreground: 210 20% 95%;
+    /* 次要色调 - 天蓝 */
+    --secondary: 200 50% 22%;
+    --secondary-foreground: 210 20% 98%;
 
     /* 柔和色调 */
-    --muted: 220 30% 12%;
-    --muted-foreground: 210 10% 65%;
+    --muted: 200 45% 18%;
+    --muted-foreground: 210 10% 75%;
 
     /* 强调色 - 蓝色光效 */
     --accent: 200 100% 70%;
@@ -36,18 +36,18 @@
     --destructive: 0 62% 30%;
     --destructive-foreground: 210 20% 98%;
 
-    /* 边框和输入框 - 深蓝科技感 */
-    --border: 220 30% 20%;
-    --input: 220 30% 20%;
-    --ring: 210 100% 60%;
+    /* 边框和输入框 - 天蓝科技感 */
+    --border: 200 40% 30%;
+    --input: 200 40% 30%;
+    --ring: 200 100% 60%;
     --radius: 0.75rem;
 
-    /* 紫蓝科技渐变 */
-    --gradient-primary: linear-gradient(135deg, hsl(210 100% 60%), hsl(270 85% 70%));
-    --gradient-hero: linear-gradient(135deg, hsl(220 45% 8%) 0%, hsl(210 100% 60% / 0.3) 50%, hsl(270 85% 70% / 0.2) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(220 40% 12%) 0%, hsl(220 42% 10%) 100%);
-    --gradient-brand: linear-gradient(90deg, hsl(210 100% 60%), hsl(200 100% 70%), hsl(270 85% 70%));
-    --gradient-background: radial-gradient(ellipse at top, hsl(220 45% 12%) 0%, hsl(220 50% 6%) 100%);
+    /* 天蓝科技渐变 */
+    --gradient-primary: linear-gradient(135deg, hsl(200 100% 60%), hsl(180 85% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(200 60% 15%) 0%, hsl(200 100% 60% / 0.3) 50%, hsl(180 85% 70% / 0.2) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(200 55% 20%) 0%, hsl(200 58% 18%) 100%);
+    --gradient-brand: linear-gradient(90deg, hsl(200 100% 60%), hsl(180 100% 70%), hsl(190 90% 65%));
+    --gradient-background: radial-gradient(ellipse at top, hsl(200 60% 18%) 0%, hsl(200 65% 10%) 100%);
     
     /* 功能渐变色系 */
     --gradient-feature-1: linear-gradient(135deg, hsl(200 100% 70%), hsl(210 100% 60%));

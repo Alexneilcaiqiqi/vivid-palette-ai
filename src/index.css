@@ -6,69 +6,69 @@
 
 @layer base {
   :root {
-    /* 天蓝科技背景 */
-    --background: 200 60% 15%;
-    --foreground: 210 20% 98%;
+    /* 橙色科技背景 */
+    --background: 20 70% 12%;
+    --foreground: 30 20% 98%;
 
-    /* 卡片和弹窗 - 天蓝玻璃质感 */
-    --card: 200 55% 20%;
-    --card-foreground: 210 20% 98%;
-    --popover: 200 58% 18%;
-    --popover-foreground: 210 20% 98%;
+    /* 卡片和弹窗 - 深橙玻璃质感 */
+    --card: 20 65% 16%;
+    --card-foreground: 30 20% 98%;
+    --popover: 20 68% 14%;
+    --popover-foreground: 30 20% 98%;
 
-    /* 主色调 - 科技蓝光 */
-    --primary: 210 100% 60%;
+    /* 主色调 - 明亮橙色 */
+    --primary: 30 100% 55%;
     --primary-foreground: 0 0% 0%;
 
-    /* 次要色调 - 天蓝 */
-    --secondary: 200 50% 22%;
-    --secondary-foreground: 210 20% 98%;
+    /* 次要色调 - 深橙 */
+    --secondary: 20 60% 20%;
+    --secondary-foreground: 30 20% 98%;
 
     /* 柔和色调 */
-    --muted: 200 45% 18%;
-    --muted-foreground: 210 10% 75%;
+    --muted: 20 55% 16%;
+    --muted-foreground: 30 10% 75%;
 
-    /* 强调色 - 蓝色光效 */
-    --accent: 200 100% 70%;
+    /* 强调色 - 金橙色光效 */
+    --accent: 40 100% 60%;
     --accent-foreground: 0 0% 0%;
 
     /* 危险色 */
     --destructive: 0 62% 30%;
     --destructive-foreground: 210 20% 98%;
 
-    /* 边框和输入框 - 天蓝科技感 */
-    --border: 200 40% 30%;
-    --input: 200 40% 30%;
-    --ring: 200 100% 60%;
+    /* 边框和输入框 - 橙色科技感 */
+    --border: 20 50% 25%;
+    --input: 20 50% 25%;
+    --ring: 30 100% 55%;
     --radius: 0.75rem;
 
-    /* 天蓝科技渐变 */
-    --gradient-primary: linear-gradient(135deg, hsl(200 100% 60%), hsl(180 85% 70%));
-    --gradient-hero: linear-gradient(135deg, hsl(200 60% 15%) 0%, hsl(200 100% 60% / 0.3) 50%, hsl(180 85% 70% / 0.2) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(200 55% 20%) 0%, hsl(200 58% 18%) 100%);
-    --gradient-brand: linear-gradient(90deg, hsl(200 100% 60%), hsl(180 100% 70%), hsl(190 90% 65%));
-    --gradient-background: radial-gradient(ellipse at top, hsl(200 60% 18%) 0%, hsl(200 65% 10%) 100%);
+    /* 橙色科技渐变 */
+    --gradient-primary: linear-gradient(135deg, hsl(30 100% 55%), hsl(40 100% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(20 70% 12%) 0%, hsl(30 100% 55% / 0.3) 50%, hsl(40 100% 60% / 0.2) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(20 65% 16%) 0%, hsl(20 68% 14%) 100%);
+    --gradient-brand: linear-gradient(90deg, hsl(30 100% 55%), hsl(40 100% 60%), hsl(45 100% 65%));
+    --gradient-background: radial-gradient(ellipse at top, hsl(20 70% 15%) 0%, hsl(20 75% 8%) 100%);
     
-    /* 功能渐变色系 */
-    --gradient-feature-1: linear-gradient(135deg, hsl(200 100% 70%), hsl(210 100% 60%));
-    --gradient-feature-2: linear-gradient(135deg, hsl(270 85% 70%), hsl(260 90% 65%));
-    --gradient-feature-3: linear-gradient(135deg, hsl(320 85% 70%), hsl(340 90% 65%));
-    --gradient-feature-4: linear-gradient(135deg, hsl(170 85% 60%), hsl(180 90% 65%));
-    --gradient-feature-5: linear-gradient(135deg, hsl(30 85% 65%), hsl(40 90% 60%));
-    --gradient-feature-6: linear-gradient(135deg, hsl(260 85% 70%), hsl(270 90% 65%));
+    /* 功能渐变色系 - 橙色系 */
+    --gradient-feature-1: linear-gradient(135deg, hsl(30 100% 55%), hsl(25 100% 50%));
+    --gradient-feature-2: linear-gradient(135deg, hsl(40 100% 60%), hsl(35 100% 55%));
+    --gradient-feature-3: linear-gradient(135deg, hsl(15 100% 55%), hsl(10 100% 50%));
+    --gradient-feature-4: linear-gradient(135deg, hsl(45 100% 60%), hsl(50 100% 55%));
+    --gradient-feature-5: linear-gradient(135deg, hsl(20 100% 50%), hsl(15 100% 45%));
+    --gradient-feature-6: linear-gradient(135deg, hsl(35 100% 55%), hsl(40 100% 60%));
     
-    /* 统计数据渐变 */
-    --gradient-stat-1: linear-gradient(135deg, hsl(210 100% 60%), hsl(200 100% 70%));
-    --gradient-stat-2: linear-gradient(135deg, hsl(170 85% 60%), hsl(180 90% 65%));
-    --gradient-stat-3: linear-gradient(135deg, hsl(270 85% 70%), hsl(320 85% 70%));
-    --gradient-stat-4: linear-gradient(135deg, hsl(30 85% 65%), hsl(10 85% 60%));
+    /* 统计数据渐变 - 橙色系 */
+    --gradient-stat-1: linear-gradient(135deg, hsl(30 100% 55%), hsl(40 100% 60%));
+    --gradient-stat-2: linear-gradient(135deg, hsl(45 100% 60%), hsl(50 100% 55%));
+    --gradient-stat-3: linear-gradient(135deg, hsl(25 100% 50%), hsl(15 100% 55%));
+    --gradient-stat-4: linear-gradient(135deg, hsl(35 100% 55%), hsl(20 100% 50%));
     
-    /* 蓝色光效阴影 */
-    --shadow-neon: 0 0 30px hsl(210 100% 60% / 0.4);
-    --shadow-neon-strong: 0 0 60px hsl(210 100% 60% / 0.5);
-    --shadow-cyan: 0 0 30px hsl(200 100% 70% / 0.4);
-    --shadow-purple: 0 0 30px hsl(270 85% 70% / 0.4);
-    --shadow-pink: 0 0 30px hsl(320 85% 70% / 0.4);
+    /* 橙色光效阴影 */
+    --shadow-neon: 0 0 30px hsl(30 100% 55% / 0.4);
+    --shadow-neon-strong: 0 0 60px hsl(30 100% 55% / 0.5);
+    --shadow-cyan: 0 0 30px hsl(40 100% 60% / 0.4);
+    --shadow-purple: 0 0 30px hsl(25 100% 50% / 0.4);
+    --shadow-pink: 0 0 30px hsl(15 100% 55% / 0.4);
 
     /* 动画效果 */
     --animation-float: float 8s ease-in-out infinite;
@@ -110,7 +110,7 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 
-  /* 蓝色科技粒子背景 */
+  /* 橙色科技粒子背景 */
   body::before {
     content: '';
     position: fixed;
@@ -119,9 +119,9 @@
     width: 100%;
     height: 100%;
     background: 
-      radial-gradient(circle at 25% 25%, hsl(210 100% 60% / 0.15) 1px, transparent 1px),
-      radial-gradient(circle at 75% 75%, hsl(200 100% 70% / 0.1) 1px, transparent 1px),
-      radial-gradient(circle at 50% 50%, hsl(190 100% 65% / 0.08) 1px, transparent 1px);
+      radial-gradient(circle at 25% 25%, hsl(30 100% 55% / 0.15) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, hsl(40 100% 60% / 0.1) 1px, transparent 1px),
+      radial-gradient(circle at 50% 50%, hsl(35 100% 58% / 0.08) 1px, transparent 1px);
     background-size: 100px 100px, 80px 80px, 120px 120px;
     pointer-events: none;
     z-index: -1;
@@ -215,9 +215,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 25% 25%, hsl(210 100% 60% / 0.12) 1px, transparent 1px),
-                radial-gradient(circle at 75% 75%, hsl(200 100% 70% / 0.08) 1px, transparent 1px),
-                radial-gradient(circle at 50% 50%, hsl(190 100% 65% / 0.06) 1px, transparent 1px);
+    background: radial-gradient(circle at 25% 25%, hsl(30 100% 55% / 0.12) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, hsl(40 100% 60% / 0.08) 1px, transparent 1px),
+                radial-gradient(circle at 50% 50%, hsl(35 100% 58% / 0.06) 1px, transparent 1px);
     background-size: 100px 100px, 80px 80px, 120px 120px;
     animation: var(--animation-drift);
     pointer-events: none;

@@ -5,7 +5,7 @@ const Scenarios = () => {
     {
       icon: Film,
       title: "影音娱乐",
-      description: "流畅观看海外视频平台，享受高清流媒体体验",
+      description: "流畅观看国内视频平台，享受高清流媒体体验",
       gradient: "from-purple-500 to-pink-500"
     },
     {

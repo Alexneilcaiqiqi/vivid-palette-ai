@@ -11,7 +11,7 @@ const Scenarios = () => {
     {
       icon: Trophy,
       title: "体育赛事",
-      description: "实时观看全球体育赛事直播，不错过精彩瞬间",
+      description: "实时观看大陆体育赛事直播，不错过精彩瞬间",
       gradient: "from-blue-500 to-cyan-500"
     },
     {
@@ -23,7 +23,7 @@ const Scenarios = () => {
     {
       icon: GraduationCap,
       title: "远程学习",
-      description: "稳定连接全球教育平台，在线学习无忧",
+      description: "稳定连接大陆教育平台，在线学习无忧",
       gradient: "from-orange-500 to-amber-500"
     },
     {

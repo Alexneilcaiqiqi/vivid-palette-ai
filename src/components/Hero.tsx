@@ -56,7 +56,7 @@ const Hero = () => {
         {/* 设备展示 */}
         <div className="relative max-w-5xl mx-auto px-4">
           <div className="relative rounded-2xl p-4 sm:p-6 md:p-12 glass-effect border border-primary/20 mt-12 md:mt-[100px] scale-100 md:scale-110">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 sm:gap-4 md:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
               {/* 支持的平台 */}
               {[{
               name: "Windows",
@@ -78,11 +78,6 @@ const Hero = () => {
               icon: <Smartphone className="w-8 h-8 text-foreground" strokeWidth={1.5} />,
               desc: "安卓手机",
               downloadUrl: "/android-app.apk"
-            }, {
-              name: "路由器",
-              icon: <Router className="w-8 h-8 text-foreground" strokeWidth={1.5} />,
-              desc: "全家共享",
-              downloadUrl: null
             }, {
               name: "浏览器",
               icon: <Globe className="w-8 h-8 text-foreground" strokeWidth={1.5} />,

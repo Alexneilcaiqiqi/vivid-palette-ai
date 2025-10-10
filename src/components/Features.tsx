@@ -70,21 +70,21 @@ const Features = () => {
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="group relative p-4 sm:p-5 md:p-6 bg-card/30 rounded-2xl border border-border/50 hover-float hover:border-primary/50 transition-all duration-500"
+              className="group relative p-4 sm:p-5 md:p-6 bg-card/40 rounded-2xl border border-primary/30 hover:-translate-y-2 hover:border-primary/60 transition-all duration-500"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* 背景渐变效果 */}
-              <div className={`absolute inset-0 ${feature.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
+              {/* 背景渐变效果增强 */}
+              <div className={`absolute inset-0 ${feature.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`}></div>
               
-              {/* 图标 - 苹果风格方形 */}
+              {/* 图标 - 苹果风格方形增强版 */}
               <div className={`flex justify-center sm:justify-start mb-6`}>
                 <div className="relative">
-                  {/* 外层光晕 */}
-                  <div className={`absolute inset-0 ${feature.gradient} rounded-2xl blur-xl opacity-40 group-hover:opacity-60 transition-all duration-500`}></div>
-                  {/* 图标容器 */}
-                  <div className={`relative inline-flex p-4 ${feature.gradient} rounded-2xl text-white shadow-2xl backdrop-blur-sm group-hover:scale-110 group-hover:shadow-[0_20px_60px_rgba(139,92,246,0.5)] transition-all duration-500`}>
-                    <div className="absolute inset-0 bg-white/10 rounded-2xl"></div>
-                    <div className="relative">
+                  {/* 外层光晕增强 */}
+                  <div className={`absolute inset-0 ${feature.gradient} rounded-[20px] blur-2xl opacity-50 group-hover:opacity-80 transition-all duration-500`}></div>
+                  {/* 图标容器 - 更大圆角 */}
+                  <div className={`relative inline-flex p-5 ${feature.gradient} rounded-[20px] text-white shadow-[0_20px_60px_rgba(139,92,246,0.4)] backdrop-blur-sm group-hover:scale-110 group-hover:shadow-[0_30px_80px_rgba(139,92,246,0.6)] group-hover:rotate-2 transition-all duration-500`}>
+                    <div className="absolute inset-0 bg-white/20 rounded-[20px]"></div>
+                    <div className="relative drop-shadow-lg">
                       {feature.icon}
                     </div>
                   </div>
@@ -105,8 +105,8 @@ const Features = () => {
                 {feature.highlight}
               </div>
 
-              {/* 悬浮光效 */}
-              <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl opacity-0 group-hover:opacity-100 -z-10 blur transition-opacity duration-500"></div>
+              {/* 悬浮光效增强 */}
+              <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/40 to-accent/40 rounded-2xl opacity-0 group-hover:opacity-100 -z-10 blur-xl transition-opacity duration-500"></div>
             </div>
           ))}
         </div>

@@ -157,10 +157,10 @@ const Pricing = () => {
                   : 'hover:scale-105'
               } transition-all duration-500`}
             >
-              {/* 最受欢迎标签 */}
+              {/* 最受欢迎标签 - 增强脉动效果 */}
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                  <div className="bg-gradient-primary px-4 py-1 rounded-full text-white text-sm font-medium">
+                  <div className="bg-gradient-primary px-4 py-1 rounded-full text-white text-sm font-medium pulse-strong shadow-neon">
                     🔥 最受欢迎
                   </div>
                 </div>
@@ -185,11 +185,11 @@ const Pricing = () => {
                   <p className="text-muted-foreground text-xs sm:text-sm">{plan.description}</p>
                 </div>
 
-                {/* 价格 */}
+                {/* 价格 - 增强发光效果 */}
                 <div className="text-center mb-6 md:mb-8">
                   <div className="flex items-end justify-center">
                     <span className="text-xs sm:text-sm font-light text-muted-foreground mr-1 mb-2">HK$</span>
-                    <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient">{plan.price}</span>
+                    <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient drop-shadow-[0_0_10px_rgba(139,92,246,0.5)]">{plan.price}</span>
                     <span className="text-sm sm:text-base text-muted-foreground ml-1 mb-1">{plan.period}</span>
                   </div>
                 </div>

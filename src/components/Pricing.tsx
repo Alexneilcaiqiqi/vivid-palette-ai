@@ -157,10 +157,10 @@ const Pricing = () => {
                   : 'hover:scale-105'
               } transition-all duration-500`}
             >
-              {/* 最受欢迎标签 - 紫金闪耀 */}
+              {/* 最受欢迎标签 - 增强脉动效果 */}
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                  <div className="bg-gradient-primary px-4 py-1.5 rounded-full text-white text-sm font-bold pulse-strong shadow-gold-strong border-2" style={{borderColor: 'hsl(48 100% 70% / 0.5)'}}>
+                  <div className="bg-gradient-primary px-4 py-1 rounded-full text-white text-sm font-medium pulse-strong shadow-neon">
                     🔥 最受欢迎
                   </div>
                 </div>

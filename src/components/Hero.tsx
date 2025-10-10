@@ -43,17 +43,13 @@ const Hero = () => {
 
           {/* CTA按钮 */}
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center scale-100 sm:scale-110 md:scale-[1.3] -mt-6 md:-mt-12 px-4">
-            <a href="/auth" className="w-full sm:w-48">
-              <Button size="lg" className="bg-gradient-primary hover:shadow-neon-strong hover:scale-105 transition-all duration-300 cyber-glow w-full" aria-label="立即免费试用归巢回国加速服务">
-                立即免费试用
-                <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" aria-hidden="true" />
-              </Button>
-            </a>
-            <a href="/download" className="w-full sm:w-48">
-              <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 hover-float w-full" aria-label="下载归巢客户端">
-                下载客户端
-              </Button>
-            </a>
+            <Button size="lg" className="bg-gradient-primary hover:shadow-neon-strong hover:scale-105 transition-all duration-300 cyber-glow w-full sm:w-48">
+              <a href="/auth">立即免费试用</a>
+              <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
+            </Button>
+            <Button variant="outline" size="lg" className="border-primary/30 hover:bg-primary/10 hover-float w-full sm:w-48">
+              <a href="/download">下载客户端</a>
+            </Button>
           </div>
         </div>
 
@@ -95,10 +91,10 @@ const Hero = () => {
             }].map((platform, index) => <div key={platform.name} className={`p-2 sm:p-3 md:p-4 bg-card/30 rounded-xl border border-border/50 hover-float hover:border-primary/50 transition-all duration-300 ${platform.downloadUrl ? 'cursor-pointer' : ''}`} style={{
               animationDelay: `${index * 0.1}s`
             }} onClick={platform.downloadUrl ? () => window.open(platform.downloadUrl, '_blank') : undefined}>
-                  <div className="text-lg sm:text-2xl md:text-3xl mb-1 sm:mb-2 flex justify-center" role="img" aria-label={`${platform.name}图标`}>
+                  <div className="text-lg sm:text-2xl md:text-3xl mb-1 sm:mb-2 flex justify-center">
                     {typeof platform.icon === 'string' ? platform.icon : platform.icon}
                   </div>
-                  <p className="font-semibold text-foreground mb-1 text-xs sm:text-sm md:text-base">{platform.name}</p>
+                  <h3 className="font-semibold text-foreground mb-1 text-xs sm:text-sm md:text-base">{platform.name}</h3>
                   <p className="text-[10px] sm:text-xs text-muted-foreground">{platform.desc}</p>
                   {platform.downloadUrl && <p className="text-[10px] sm:text-xs text-primary mt-1">点击下载</p>}
                 </div>)}

@@ -10,7 +10,7 @@ const Header = () => {
         <div className="flex items-center">
           <a href="/" className="relative" aria-label="归巢首页">
             <div className="w-16 h-16 md:w-[120px] md:h-[120px] rounded-xl flex items-center justify-center relative overflow-hidden">
-              <img src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" alt="归巢 GuiChao - 海外华人回国网络加速服务Logo" className="w-full h-full object-contain" width="120" height="120" loading="eager" />
+              <img src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" alt="归巢 GuiChao - 海外华人回国网络加速服务Logo" className="w-full h-full object-contain" width="120" height="120" />
             </div>
           </a>
           {/* Vertical separator - hidden on mobile */}
@@ -48,16 +48,12 @@ const Header = () => {
 
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center space-x-4">
-          <a href="/auth" className="hover-float">
-            <Button variant="ghost" size="sm" asChild>
-              <span>登录</span>
-            </Button>
-          </a>
-          <a href="/auth">
-            <Button variant="default" size="sm" className="bg-gradient-primary text-white shadow-neon hover:shadow-neon-strong hover:scale-105 transition-all duration-300">
-              免费试用
-            </Button>
-          </a>
+          <Button variant="ghost" size="sm" className="hover-float">
+            <a href="/auth">登录</a>
+          </Button>
+          <Button variant="default" size="sm" className="bg-gradient-primary text-white shadow-neon hover:shadow-neon-strong hover:scale-105 transition-all duration-300">
+            <a href="/auth">免费试用</a>
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -90,16 +86,12 @@ const Header = () => {
               联系我们
             </a>
             <div className="flex flex-col space-y-2 pt-4 border-t border-border/50">
-              <a href="/auth">
-                <Button variant="ghost" size="sm" className="w-full">
-                  登录
-                </Button>
-              </a>
-              <a href="/auth">
-                <Button variant="default" size="sm" className="bg-gradient-primary w-full">
-                  免费试用
-                </Button>
-              </a>
+              <Button variant="ghost" size="sm">
+                <a href="/auth">登录</a>
+              </Button>
+              <Button variant="default" size="sm" className="bg-gradient-primary">
+                <a href="/auth">免费试用</a>
+              </Button>
             </div>
           </nav>
         </div>}

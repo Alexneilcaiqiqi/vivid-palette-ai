@@ -76,10 +76,18 @@ const Features = () => {
               {/* 背景渐变效果 */}
               <div className={`absolute inset-0 ${feature.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
               
-              {/* 图标 */}
+              {/* 图标 - 苹果风格 */}
               <div className={`flex justify-center sm:justify-start mb-6`}>
-                <div className={`inline-flex p-3 ${feature.gradient} rounded-xl text-white group-hover:scale-110 transition-transform duration-300`}>
-                  {feature.icon}
+                <div className="relative">
+                  {/* 外层光晕 */}
+                  <div className={`absolute inset-0 ${feature.gradient} rounded-full blur-xl opacity-40 group-hover:opacity-60 transition-all duration-500`}></div>
+                  {/* 图标容器 */}
+                  <div className={`relative inline-flex p-4 ${feature.gradient} rounded-full text-white shadow-2xl backdrop-blur-sm group-hover:scale-110 group-hover:shadow-[0_20px_60px_rgba(139,92,246,0.5)] transition-all duration-500`}>
+                    <div className="absolute inset-0 bg-white/10 rounded-full"></div>
+                    <div className="relative">
+                      {feature.icon}
+                    </div>
+                  </div>
                 </div>
               </div>
 

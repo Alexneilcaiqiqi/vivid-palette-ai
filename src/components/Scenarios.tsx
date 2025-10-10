@@ -71,9 +71,17 @@ const Scenarios = () => {
                 key={index}
                 className="group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6 md:p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
               >
-                {/* 图标容器 */}
-                <div className={`w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br ${scenario.gradient} p-3 mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                  <Icon className="w-full h-full text-white" aria-hidden="true" />
+                {/* 图标容器 - 苹果风格 */}
+                <div className="relative w-14 h-14 md:w-16 md:h-16 mb-4 md:mb-6">
+                  {/* 外层光晕 */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${scenario.gradient} rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-all duration-500`}></div>
+                  {/* 图标主体 */}
+                  <div className={`relative w-full h-full bg-gradient-to-br ${scenario.gradient} rounded-full p-3 shadow-[0_8px_32px_rgba(0,0,0,0.12)] backdrop-blur-sm group-hover:scale-110 group-hover:shadow-[0_12px_48px_rgba(0,0,0,0.18)] transition-all duration-500`}>
+                    {/* 内部高光 */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent rounded-full"></div>
+                    {/* 图标 */}
+                    <Icon className="w-full h-full text-white relative z-10" aria-hidden="true" />
+                  </div>
                 </div>
 
                 {/* 文字内容 */}

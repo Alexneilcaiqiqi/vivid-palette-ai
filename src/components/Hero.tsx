@@ -81,7 +81,7 @@ const Hero = () => {
             }, {
               name: "浏览器",
               icon: <Globe className="w-8 h-8 text-foreground" strokeWidth={1.5} />,
-              desc: "免装插件",
+              desc: "Chrome插件",
               downloadUrl: null
             }].map((platform, index) => <div key={platform.name} className={`p-2 sm:p-3 md:p-4 bg-card/30 rounded-xl border border-border/50 hover-float hover:border-primary/50 transition-all duration-300 ${platform.downloadUrl ? 'cursor-pointer' : ''}`} style={{
               animationDelay: `${index * 0.1}s`

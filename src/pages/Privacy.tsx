@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Shield, Lock, Eye, Users, FileText, Bell, Globe, HelpCircle, Mail } from "lucide-react";
 
 const Privacy = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen" itemScope itemType="https://schema.org/WebPage">
       <Header />

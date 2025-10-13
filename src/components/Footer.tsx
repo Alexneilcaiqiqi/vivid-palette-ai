@@ -120,7 +120,7 @@ const Footer = () => {
               © 2024 归巢 GuiChao.win. 保留所有权利。
             </div>
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
-              <a href="#" className="hover:text-primary transition-colors">隐私政策</a>
+              <a href="/privacy" className="hover:text-primary transition-colors">隐私政策</a>
               <a href="#" className="hover:text-primary transition-colors">服务条款</a>
               <a href="#" className="hover:text-primary transition-colors">Cookie政策</a>
             </div>

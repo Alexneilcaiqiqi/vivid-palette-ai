@@ -94,7 +94,7 @@ const Footer = () => {
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">常见问题</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">联系客服</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">意见反馈</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">服务条款</a></li>
+              <li><a href="/terms" className="text-muted-foreground hover:text-primary transition-colors">服务条款</a></li>
             </ul>
             
             {/* 邮件订阅 */}
@@ -121,7 +121,7 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <a href="/privacy" className="hover:text-primary transition-colors">隐私政策</a>
-              <a href="#" className="hover:text-primary transition-colors">服务条款</a>
+              <a href="/terms" className="hover:text-primary transition-colors">服务条款</a>
               <a href="#" className="hover:text-primary transition-colors">Cookie政策</a>
             </div>
           </div>

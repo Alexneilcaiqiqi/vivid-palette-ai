@@ -95,7 +95,15 @@ const Footer = () => {
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">常见问题</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">联系客服</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">意见反馈</a></li>
-              <li><Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">服务条款</Link></li>
+              <li>
+                <Link 
+                  to="/terms" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  服务条款
+                </Link>
+              </li>
             </ul>
             
             {/* 邮件订阅 */}
@@ -121,8 +129,20 @@ const Footer = () => {
               © 2024 归巢 GuiChao.win. 保留所有权利。
             </div>
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
-              <Link to="/privacy" className="hover:text-primary transition-colors">隐私政策</Link>
-              <Link to="/terms" className="hover:text-primary transition-colors">服务条款</Link>
+              <Link 
+                to="/privacy" 
+                className="hover:text-primary transition-colors"
+                onClick={() => window.scrollTo(0, 0)}
+              >
+                隐私政策
+              </Link>
+              <Link 
+                to="/terms" 
+                className="hover:text-primary transition-colors"
+                onClick={() => window.scrollTo(0, 0)}
+              >
+                服务条款
+              </Link>
               <a href="#" className="hover:text-primary transition-colors">Cookie政策</a>
             </div>
           </div>

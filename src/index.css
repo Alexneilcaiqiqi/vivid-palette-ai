@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 秀月字体 */
+@font-face {
+  font-family: 'XiuYue';
+  src: url('/fonts/H-XiuYue.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* 归巢 - 海外华人回国网络加速专家设计系统 */
 
 @layer base {

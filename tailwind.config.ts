@@ -19,7 +19,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'song': ['STSong', 'SimSun', 'Songti SC', 'serif'],
+				'xiuyue': ['XiuYue', 'STSong', 'SimSun', 'serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

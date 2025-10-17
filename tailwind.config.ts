@@ -20,6 +20,7 @@ export default {
 		extend: {
 			fontFamily: {
 				'xiuyue': ['XiuYue', 'STSong', 'SimSun', 'serif'],
+				'sans-sc': ['Noto Sans SC', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

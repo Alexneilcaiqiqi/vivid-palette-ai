@@ -12,7 +12,7 @@ const Hero = () => {
           alt="Global Network" 
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/50"></div>
       </div>
       <div className="container mx-auto px-4 text-center relative z-10">
         {/* 主标题区 */}

@@ -22,7 +22,7 @@ const Hero = () => {
             倦鸟归巢 一键回国
           </h1>
           
-          <p className="text-base md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-[2.5]">
+          <p className="text-base md:text-xl text-white/90 mb-12 max-w-3xl mx-auto leading-[2.5]">
             专业的回国网络加速服务，让海外华人轻松访问国内所有网络服务
           </p>
 

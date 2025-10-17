@@ -10,7 +10,7 @@ const Hero = () => {
         <img 
           src={heroBackground} 
           alt="Global Network" 
-          className="w-full h-full object-cover object-[center_60%]"
+          className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/50"></div>
       </div>
@@ -18,7 +18,7 @@ const Hero = () => {
         {/* 主标题区 */}
         <div className="max-w-4xl mx-auto mb-20">          
           
-          <h1 className="text-5xl md:text-7xl font-sans font-extralight mb-6 leading-tight tracking-[0.2em] mt-[112px] bg-[linear-gradient(180deg,hsl(40_40%_85%),hsl(35_60%_60%))] bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-xiuyue font-light mb-6 leading-tight tracking-[0.2em] mt-[112px] bg-[linear-gradient(180deg,hsl(40_40%_85%),hsl(35_60%_60%))] bg-clip-text text-transparent">
             倦鸟归巢 一键回国
           </h1>
           
@@ -51,7 +51,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="mb-8 -mt-4">
+          <div className="mb-8 mt-[120px]">
             <span className="text-2xl font-semibold inline-block px-4 py-2 border border-primary/30 rounded-full bg-primary/10 text-primary">高速稳定 • 安全可靠 • 一键连接</span>
           </div>
 

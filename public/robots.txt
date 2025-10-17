@@ -1,15 +1,7 @@
-# 允许所有搜索引擎抓取
-User-agent: *
-Allow: /
-
-# 特定搜索引擎
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
-Allow: /
-
-User-agent: Baiduspider
 Allow: /
 
 User-agent: Twitterbot
@@ -18,10 +10,5 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-# 禁止抓取的路径
-Disallow: /api/
-Disallow: /admin/
-Disallow: /*.json$
-
-# Sitemap位置
-Sitemap: https://guichao.win/sitemap.xml
+User-agent: *
+Allow: /

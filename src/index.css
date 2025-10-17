@@ -6,69 +6,69 @@
 
 @layer base {
   :root {
-    /* 深空紫色背景 - 更深邃 */
-    --background: 265 70% 8%;
-    --foreground: 30 20% 98%;
+    /* 纯黑科技背景 */
+    --background: 0 0% 4%;
+    --foreground: 210 20% 95%;
 
-    /* 卡片和弹窗 - 深紫玻璃质感 */
-    --card: 260 60% 14%;
-    --card-foreground: 30 20% 98%;
-    --popover: 260 65% 12%;
-    --popover-foreground: 30 20% 98%;
+    /* 卡片和弹窗 - 深黑玻璃质感 */
+    --card: 0 0% 8%;
+    --card-foreground: 210 20% 95%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 210 20% 95%;
 
-    /* 主色调 - 霓虹紫色 */
-    --primary: 270 95% 65%;
+    /* 主色调 - 科技蓝光 */
+    --primary: 210 100% 60%;
     --primary-foreground: 0 0% 0%;
 
-    /* 次要色调 - 深紫 */
-    --secondary: 260 60% 18%;
-    --secondary-foreground: 30 20% 98%;
+    /* 次要色调 - 深灰 */
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 210 20% 95%;
 
     /* 柔和色调 */
-    --muted: 260 50% 15%;
-    --muted-foreground: 30 10% 75%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 210 10% 65%;
 
-    /* 强调色 - 电光紫粉 */
-    --accent: 290 100% 70%;
+    /* 强调色 - 蓝色光效 */
+    --accent: 200 100% 70%;
     --accent-foreground: 0 0% 0%;
 
     /* 危险色 */
     --destructive: 0 62% 30%;
     --destructive-foreground: 210 20% 98%;
 
-    /* 边框和输入框 */
-    --border: 260 50% 22%;
-    --input: 260 50% 22%;
-    --ring: 270 95% 65%;
+    /* 边框和输入框 - 暗色科技感 */
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 210 100% 60%;
     --radius: 0.75rem;
 
-    /* 紫色科技渐变 - 三色增强 */
-    --gradient-primary: linear-gradient(135deg, hsl(270 95% 65%) 0%, hsl(280 90% 68%) 50%, hsl(290 100% 70%) 100%);
-    --gradient-hero: radial-gradient(ellipse at top, hsl(270 95% 65% / 0.15) 0%, hsl(265 70% 8%) 50%, hsl(260 80% 5%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(260 60% 14%) 0%, hsl(260 65% 12%) 100%);
-    --gradient-brand: linear-gradient(90deg, hsl(270 95% 65%), hsl(280 90% 68%), hsl(290 100% 70%));
-    --gradient-background: radial-gradient(ellipse at top, hsl(260 70% 12%) 0%, hsl(265 75% 6%) 100%);
+    /* 紫蓝科技渐变 */
+    --gradient-primary: linear-gradient(135deg, hsl(210 100% 60%), hsl(270 85% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 4%) 0%, hsl(210 100% 60% / 0.3) 50%, hsl(270 85% 70% / 0.2) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 8%) 0%, hsl(0 0% 6%) 100%);
+    --gradient-brand: linear-gradient(90deg, hsl(210 100% 60%), hsl(200 100% 70%), hsl(270 85% 70%));
+    --gradient-background: radial-gradient(ellipse at top, hsl(0 0% 8%) 0%, hsl(0 0% 2%) 100%);
     
-    /* 功能渐变色系 - 更鲜艳的三色渐变 */
-    --gradient-feature-1: linear-gradient(135deg, hsl(270 95% 65%), hsl(280 90% 68%), hsl(290 100% 70%));
-    --gradient-feature-2: linear-gradient(135deg, hsl(250 90% 60%), hsl(260 95% 65%), hsl(270 90% 68%));
-    --gradient-feature-3: linear-gradient(135deg, hsl(290 100% 70%), hsl(300 95% 68%), hsl(310 90% 65%));
-    --gradient-feature-4: linear-gradient(135deg, hsl(240 95% 60%), hsl(250 90% 65%), hsl(260 95% 68%));
-    --gradient-feature-5: linear-gradient(135deg, hsl(280 90% 68%), hsl(270 95% 65%), hsl(260 90% 63%));
-    --gradient-feature-6: linear-gradient(135deg, hsl(300 95% 68%), hsl(290 100% 70%), hsl(280 95% 68%));
+    /* 功能渐变色系 */
+    --gradient-feature-1: linear-gradient(135deg, hsl(200 100% 70%), hsl(210 100% 60%));
+    --gradient-feature-2: linear-gradient(135deg, hsl(270 85% 70%), hsl(260 90% 65%));
+    --gradient-feature-3: linear-gradient(135deg, hsl(320 85% 70%), hsl(340 90% 65%));
+    --gradient-feature-4: linear-gradient(135deg, hsl(170 85% 60%), hsl(180 90% 65%));
+    --gradient-feature-5: linear-gradient(135deg, hsl(30 85% 65%), hsl(40 90% 60%));
+    --gradient-feature-6: linear-gradient(135deg, hsl(260 85% 70%), hsl(270 90% 65%));
     
-    /* 统计数据渐变 - 鲜艳紫色系 */
-    --gradient-stat-1: linear-gradient(135deg, hsl(270 95% 65%), hsl(280 90% 68%));
-    --gradient-stat-2: linear-gradient(135deg, hsl(290 100% 70%), hsl(295 95% 68%));
-    --gradient-stat-3: linear-gradient(135deg, hsl(265 90% 63%), hsl(260 95% 65%));
-    --gradient-stat-4: linear-gradient(135deg, hsl(285 95% 68%), hsl(270 95% 63%));
+    /* 统计数据渐变 */
+    --gradient-stat-1: linear-gradient(135deg, hsl(210 100% 60%), hsl(200 100% 70%));
+    --gradient-stat-2: linear-gradient(135deg, hsl(170 85% 60%), hsl(180 90% 65%));
+    --gradient-stat-3: linear-gradient(135deg, hsl(270 85% 70%), hsl(320 85% 70%));
+    --gradient-stat-4: linear-gradient(135deg, hsl(30 85% 65%), hsl(10 85% 60%));
     
-    /* 增强光效阴影 */
-    --shadow-neon: 0 0 40px hsl(270 95% 65% / 0.6), 0 0 80px hsl(270 95% 65% / 0.3);
-    --shadow-neon-strong: 0 0 60px hsl(270 95% 65% / 0.8), 0 0 120px hsl(270 95% 65% / 0.4);
-    --shadow-cyan: 0 0 50px hsl(290 100% 70% / 0.6), 0 0 100px hsl(290 100% 70% / 0.3);
-    --shadow-purple: 0 0 50px hsl(280 90% 68% / 0.6), 0 0 100px hsl(280 90% 68% / 0.3);
-    --shadow-pink: 0 0 50px hsl(290 100% 70% / 0.6), 0 0 100px hsl(290 100% 70% / 0.3);
+    /* 蓝色光效阴影 */
+    --shadow-neon: 0 0 30px hsl(210 100% 60% / 0.4);
+    --shadow-neon-strong: 0 0 60px hsl(210 100% 60% / 0.5);
+    --shadow-cyan: 0 0 30px hsl(200 100% 70% / 0.4);
+    --shadow-purple: 0 0 30px hsl(270 85% 70% / 0.4);
+    --shadow-pink: 0 0 30px hsl(320 85% 70% / 0.4);
 
     /* 动画效果 */
     --animation-float: float 8s ease-in-out infinite;
@@ -110,6 +110,23 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 
+  /* 蓝色科技粒子背景 */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 25% 25%, hsl(210 100% 60% / 0.15) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, hsl(200 100% 70% / 0.1) 1px, transparent 1px),
+      radial-gradient(circle at 50% 50%, hsl(190 100% 65% / 0.08) 1px, transparent 1px);
+    background-size: 100px 100px, 80px 80px, 120px 120px;
+    pointer-events: none;
+    z-index: -1;
+    animation: var(--animation-drift);
+  }
 }
 
 /* 动画关键帧 */
@@ -130,25 +147,17 @@
   }
 }
 
+@keyframes drift {
+  0% { transform: translateX(-50px) translateY(0px); }
+  25% { transform: translateX(50px) translateY(-20px); }
+  50% { transform: translateX(30px) translateY(-10px); }
+  75% { transform: translateX(-30px) translateY(-15px); }
+  100% { transform: translateX(-50px) translateY(0px); }
+}
 
 @keyframes gradient-shift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
-}
-
-@keyframes text-shimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-@keyframes card-breathe {
-  0%, 100% { box-shadow: 0 0 20px hsl(270 95% 65% / 0.3); }
-  50% { box-shadow: 0 0 40px hsl(270 95% 65% / 0.6); }
-}
-
-@keyframes float-enhanced {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-20px) scale(1.05); }
 }
 
 /* 归巢特色样式 */
@@ -159,7 +168,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: text-shimmer 3s ease-in-out infinite;
+    animation: gradient-shift 3s ease infinite;
   }
 
   .glass-effect {
@@ -195,29 +204,30 @@
     background-size: 50px 50px;
   }
 
+  .floating-particles {
+    position: relative;
+  }
+
+  .floating-particles::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 25% 25%, hsl(210 100% 60% / 0.12) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, hsl(200 100% 70% / 0.08) 1px, transparent 1px),
+                radial-gradient(circle at 50% 50%, hsl(190 100% 65% / 0.06) 1px, transparent 1px);
+    background-size: 100px 100px, 80px 80px, 120px 120px;
+    animation: var(--animation-drift);
+    pointer-events: none;
+  }
 
   .neon-text {
     text-shadow: 
+      0 0 5px hsl(var(--primary)),
       0 0 10px hsl(var(--primary)),
-      0 0 20px hsl(var(--primary)),
-      0 0 30px hsl(var(--primary) / 0.5);
-  }
-
-  .glass-effect-enhanced {
-    background: rgba(139, 92, 246, 0.05);
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    box-shadow: 
-      0 8px 32px 0 rgba(139, 92, 246, 0.15),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-  }
-
-  .card-breathe {
-    animation: card-breathe 3s ease-in-out infinite;
-  }
-
-  .pulse-strong {
-    animation: pulse-glow 2s ease-in-out infinite;
+      0 0 15px hsl(var(--primary));
   }
 
   .cyber-border {

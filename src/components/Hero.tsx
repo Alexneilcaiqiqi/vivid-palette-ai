@@ -18,7 +18,7 @@ const Hero = () => {
         {/* 主标题区 */}
         <div className="max-w-4xl mx-auto mb-20">          
           
-          <h1 className="text-5xl md:text-7xl font-light mb-6 leading-tight tracking-[0.2em] mt-[112px] bg-[linear-gradient(135deg,hsl(45_90%_70%),hsl(35_80%_55%))] bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-light mb-6 leading-tight tracking-[0.2em] mt-[112px] bg-[linear-gradient(180deg,hsl(45_90%_70%),hsl(35_80%_55%))] bg-clip-text text-transparent">
             倦鸟归巢 一键回国
           </h1>
           

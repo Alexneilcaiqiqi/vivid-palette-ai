@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 秀月字体 */
+/* 秀月Regular字体 */
 @font-face {
   font-family: 'XiuYue';
-  src: url('/fonts/H-XiuYue.ttf') format('truetype');
+  src: url('/fonts/H-SIUNIU-REGULAR.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

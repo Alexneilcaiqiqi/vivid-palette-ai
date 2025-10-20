@@ -59,8 +59,8 @@ const Features = () => {
       <div className="container mx-auto px-4 relative z-20">
         {/* 标题部分 */}
         <header className="text-center mb-20">
-          <div className="inline-flex items-center px-4 py-2 bg-card/50 rounded-full border border-primary/20 mb-6 glass-effect">
-            <span className="text-sm text-primary font-medium">⚡ 产品特色</span>
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#5DB5FF] via-[#7B8EFF] via-50% to-[#9B6FFF] rounded-full border border-white/30 mb-6 shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
+            <span className="text-sm text-white font-medium">⚡ 产品特色</span>
           </div>
           
           <h2 id="features-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 px-4">

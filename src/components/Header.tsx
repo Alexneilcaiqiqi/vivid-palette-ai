@@ -2,17 +2,18 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return <header className="fixed top-0 left-0 right-0 z-50" role="banner">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
-          <a href="/" className="relative" aria-label="归巢首页">
+          <Link to="/" className="relative" aria-label="归巢首页">
             <div className="w-16 h-16 md:w-[120px] md:h-[120px] rounded-xl flex items-center justify-center relative overflow-hidden">
               <img src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" alt="归巢 GuiChao - 海外华人回国网络加速服务Logo" className="w-full h-full object-contain" width="120" height="120" />
             </div>
-          </a>
+          </Link>
           {/* Vertical separator - hidden on mobile */}
           <div className="hidden md:block h-8 w-px bg-muted-foreground/30 mx-4"></div>
           {/* Tagline - hidden on mobile */}
@@ -36,10 +37,10 @@ const Header = () => {
             <span className="text-sm">套餐价格</span>
             <span className="text-[10px] opacity-70">Pricing</span>
           </a>
-          <a href="/download" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
+          <Link to="/download" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
             <span className="text-sm">下载客户端</span>
             <span className="text-[10px] opacity-70">Download</span>
-          </a>
+          </Link>
           <a href="#contact" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
             <span className="text-sm">联系我们</span>
             <span className="text-[10px] opacity-70">Contact</span>
@@ -48,11 +49,11 @@ const Header = () => {
 
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="ghost" size="sm" className="hover-float">
-            <a href="/auth">登录</a>
+          <Button variant="ghost" size="sm" className="hover-float" asChild>
+            <Link to="/auth">登录</Link>
           </Button>
-          <Button variant="default" size="sm" className="bg-gradient-primary text-white shadow-neon hover:shadow-neon-strong hover:scale-105 transition-all duration-300">
-            <a href="/auth">免费试用</a>
+          <Button variant="default" size="sm" className="bg-gradient-primary text-white shadow-neon hover:shadow-neon-strong hover:scale-105 transition-all duration-300" asChild>
+            <Link to="/auth">免费试用</Link>
           </Button>
         </div>
 
@@ -79,18 +80,18 @@ const Header = () => {
             <a href="#pricing" className="block py-2 text-foreground hover:text-primary transition-colors">
               套餐价格
             </a>
-            <a href="/download" className="block py-2 text-foreground hover:text-primary transition-colors">
+            <Link to="/download" className="block py-2 text-foreground hover:text-primary transition-colors">
               下载客户端
-            </a>
+            </Link>
             <a href="#contact" className="block py-2 text-foreground hover:text-primary transition-colors">
               联系我们
             </a>
             <div className="flex flex-col space-y-2 pt-4 border-t border-border/50">
-              <Button variant="ghost" size="sm">
-                <a href="/auth">登录</a>
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/auth">登录</Link>
               </Button>
-              <Button variant="default" size="sm" className="bg-gradient-primary">
-                <a href="/auth">免费试用</a>
+              <Button variant="default" size="sm" className="bg-gradient-primary" asChild>
+                <Link to="/auth">免费试用</Link>
               </Button>
             </div>
           </nav>

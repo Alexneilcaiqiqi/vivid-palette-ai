@@ -42,37 +42,37 @@
     --ring: 25 95% 70%;
     --radius: 0.75rem;
 
-    /* 金色渐变系统 */
-    --gradient-primary: linear-gradient(135deg, hsl(35 85% 85%) 0%, hsl(25 95% 70%) 50%, hsl(20 90% 65%) 100%);
+    /* 金色渐变系统 - 统一为标题渐变色 */
+    --gradient-primary: linear-gradient(135deg, hsl(40 65% 85%) 0%, hsl(30 100% 72%) 100%);
     --gradient-hero: radial-gradient(ellipse at center, hsl(220 50% 20%) 0%, hsl(220 60% 10%) 50%, hsl(220 70% 5%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(35 85% 85%) 0%, hsl(25 90% 72%) 100%);
-    --gradient-brand: linear-gradient(90deg, hsl(35 85% 85%), hsl(25 95% 70%), hsl(20 90% 65%));
+    --gradient-card: linear-gradient(145deg, hsl(40 65% 85%) 0%, hsl(30 100% 72%) 100%);
+    --gradient-brand: linear-gradient(90deg, hsl(40 65% 85%), hsl(30 100% 72%));
     --gradient-background: radial-gradient(ellipse at center, hsl(220 50% 20%) 0%, hsl(220 60% 10%) 100%);
     
     /* 蓝紫渐变 - 用于次要按钮 */
     --gradient-blue: linear-gradient(135deg, hsl(215 90% 65%) 0%, hsl(235 85% 65%) 100%);
     --gradient-blue-button: linear-gradient(135deg, hsl(215 90% 65%), hsl(225 85% 60%));
     
-    /* 功能渐变色系 - 金色系 */
-    --gradient-feature-1: linear-gradient(135deg, hsl(35 85% 85%), hsl(25 95% 70%), hsl(20 90% 65%));
-    --gradient-feature-2: linear-gradient(135deg, hsl(40 80% 82%), hsl(30 90% 68%), hsl(25 85% 63%));
-    --gradient-feature-3: linear-gradient(135deg, hsl(30 90% 80%), hsl(20 95% 68%), hsl(15 90% 60%));
+    /* 功能渐变色系 - 统一为标题金色系 */
+    --gradient-feature-1: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
+    --gradient-feature-2: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
+    --gradient-feature-3: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
     --gradient-feature-4: linear-gradient(135deg, hsl(215 90% 65%), hsl(225 85% 60%), hsl(235 80% 58%));
-    --gradient-feature-5: linear-gradient(135deg, hsl(38 85% 83%), hsl(28 90% 70%), hsl(22 85% 65%));
-    --gradient-feature-6: linear-gradient(135deg, hsl(32 88% 82%), hsl(22 92% 69%), hsl(18 88% 62%));
+    --gradient-feature-5: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
+    --gradient-feature-6: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
     
-    /* 统计数据渐变 - 金色系 */
-    --gradient-stat-1: linear-gradient(135deg, hsl(35 85% 85%), hsl(25 95% 70%));
-    --gradient-stat-2: linear-gradient(135deg, hsl(30 90% 78%), hsl(20 92% 68%));
+    /* 统计数据渐变 - 统一为标题金色系 */
+    --gradient-stat-1: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
+    --gradient-stat-2: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
     --gradient-stat-3: linear-gradient(135deg, hsl(215 90% 65%), hsl(225 85% 60%));
-    --gradient-stat-4: linear-gradient(135deg, hsl(38 85% 82%), hsl(28 90% 72%));
+    --gradient-stat-4: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
     
     /* 增强光效阴影 - 金色和蓝色 */
-    --shadow-neon: 0 0 40px hsl(25 95% 70% / 0.5), 0 0 80px hsl(25 95% 70% / 0.25);
-    --shadow-neon-strong: 0 0 60px hsl(25 95% 70% / 0.7), 0 0 120px hsl(25 95% 70% / 0.35);
+    --shadow-neon: 0 0 40px hsl(30 100% 72% / 0.5), 0 0 80px hsl(30 100% 72% / 0.25);
+    --shadow-neon-strong: 0 0 60px hsl(30 100% 72% / 0.7), 0 0 120px hsl(30 100% 72% / 0.35);
     --shadow-cyan: 0 0 50px hsl(215 90% 65% / 0.5), 0 0 100px hsl(215 90% 65% / 0.25);
     --shadow-purple: 0 0 50px hsl(225 85% 60% / 0.5), 0 0 100px hsl(225 85% 60% / 0.25);
-    --shadow-pink: 0 0 50px hsl(25 95% 70% / 0.5), 0 0 100px hsl(25 95% 70% / 0.25);
+    --shadow-pink: 0 0 50px hsl(30 100% 72% / 0.5), 0 0 100px hsl(30 100% 72% / 0.25);
 
     /* 动画效果 */
     --animation-float: float 8s ease-in-out infinite;
@@ -146,8 +146,8 @@
 }
 
 @keyframes card-breathe {
-  0%, 100% { box-shadow: 0 0 20px hsl(25 95% 70% / 0.3); }
-  50% { box-shadow: 0 0 40px hsl(25 95% 70% / 0.6); }
+  0%, 100% { box-shadow: 0 0 20px hsl(30 100% 72% / 0.3); }
+  50% { box-shadow: 0 0 40px hsl(30 100% 72% / 0.6); }
 }
 
 @keyframes float-enhanced {

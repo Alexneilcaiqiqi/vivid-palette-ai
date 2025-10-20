@@ -20,23 +20,8 @@ const Hero = () => {
             专业的回国网络加速服务，让海外华人轻松访问国内所有网络服务
           </p>
 
-          {/* CTA按钮 */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center scale-[1.3] mb-12">
-            <Button size="xl" className="bg-gradient-primary hover:shadow-neon-strong hover:scale-105 transition-all duration-300 cyber-glow w-48">
-              <a href="/auth">立即免费试用</a>
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Button variant="outline" size="xl" className="border-primary/30 hover:bg-primary/10 hover-float w-48">
-              <a href="/download">下载客户端</a>
-            </Button>
-          </div>
-
-          <div className="mb-8">
-            <span className="text-2xl inline-block border border-primary/30 rounded-full bg-primary/10 text-primary py-0 mx-[32px] px-[18px] my-[8px] font-medium">高速稳定 • 安全可靠 • 一键连接</span>
-          </div>
-
           {/* 信任指标 */}
-          <div className="flex flex-wrap justify-center items-center gap-16 text-sm text-muted-foreground mb-20">
+          <div className="flex flex-wrap justify-center items-center gap-16 text-sm text-muted-foreground mb-20 mt-4">
             <div className="flex items-center gap-4">
               <Shield className="w-4 h-4 text-muted-foreground scale-[2]" strokeWidth={1} />
               <div className="flex flex-col items-start">
@@ -58,6 +43,21 @@ const Hero = () => {
                 <span className="text-xs opacity-70">Global Network</span>
               </div>
             </div>
+          </div>
+
+          <div className="mb-8 mt-[20px]">
+            <span className="text-2xl inline-block border border-primary/30 rounded-full bg-primary/10 text-primary py-0 mx-[32px] px-[18px] my-[8px] font-medium">高速稳定 • 安全可靠 • 一键连接</span>
+          </div>
+
+          {/* CTA按钮 */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center scale-[1.3] -mt-12">
+            <Button size="xl" className="bg-gradient-primary hover:shadow-neon-strong hover:scale-105 transition-all duration-300 cyber-glow w-48">
+              <a href="/auth">立即免费试用</a>
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            <Button variant="outline" size="xl" className="border-primary/30 hover:bg-primary/10 hover-float w-48">
+              <a href="/download">下载客户端</a>
+            </Button>
           </div>
         </div>
 

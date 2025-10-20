@@ -21,7 +21,7 @@ const Hero = () => {
           </p>
 
           {/* 信任指标 */}
-          <div className="flex flex-wrap justify-center items-center gap-16 text-sm text-muted-foreground mb-20 mt-4">
+          <div className="flex flex-wrap justify-center items-center gap-16 text-sm text-muted-foreground mb-8 mt-4">
             <div className="flex items-center gap-4">
               <Shield className="w-4 h-4 text-muted-foreground scale-[2]" strokeWidth={1} />
               <div className="flex flex-col items-start">
@@ -45,7 +45,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="mb-8 mt-[20px]">
+          <div className="mb-12">
             <span className="text-2xl inline-block border border-primary/30 rounded-full bg-primary/10 text-primary py-0 mx-[32px] px-[18px] my-[8px] font-medium">高速稳定 • 安全可靠 • 一键连接</span>
           </div>
 

@@ -13,7 +13,7 @@ const Hero = () => {
           <p className="text-sm sm:text-base md:text-xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed md:leading-[2.5] px-4" itemProp="description">专业的回国网络加速服务，让海外华人轻松访问国内网络资源</p>
 
           <div className="mb-6 md:mb-8 mt-8 md:mt-12">
-            <span className="text-sm sm:text-lg md:text-2xl font-semibold inline-block px-3 md:px-4 py-2 border border-white/30 rounded-full bg-gradient-to-r from-[#5DB5FF] via-[#7B8EFF] via-50% to-[#9B6FFF] text-white shadow-[0_4px_12px_rgba(0,0,0,0.15)]">高速稳定 • 安全可靠 • 一键连接</span>
+            <span className="text-sm sm:text-lg md:text-2xl font-semibold inline-block px-3 md:px-4 py-2 border border-white/30 rounded-full bg-gradient-to-r from-[#5DB5FF]/50 via-[#7B8EFF]/50 via-50% to-[#9B6FFF]/50 text-white shadow-[0_4px_12px_rgba(0,0,0,0.15)]">高速稳定 • 安全可靠 • 一键连接</span>
           </div>
 
           {/* 信任指标 */}

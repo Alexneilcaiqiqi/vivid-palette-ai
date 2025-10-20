@@ -53,6 +53,55 @@ const Hero = () => {
           </div>
         </div>
 
+        {/* 设备展示 */}
+        <div className="relative max-w-5xl mx-auto px-4">
+          <div className="relative rounded-2xl p-4 sm:p-6 md:p-12 mt-12 md:mt-[100px] scale-100 md:scale-110 hover:shadow-cyan transition-all duration-500 z-30">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
+              {/* 支持的平台 */}
+              {[{
+              name: "Windows",
+              icon: <Monitor className="w-8 h-8 text-white" strokeWidth={1.5} aria-hidden="true" />,
+              desc: "PC客户端",
+              downloadUrl: null
+            }, {
+              name: "macOS",
+              icon: <Laptop className="w-8 h-8 text-white" strokeWidth={1.5} aria-hidden="true" />,
+              desc: "Mac客户端",
+              downloadUrl: null
+            }, {
+              name: "iOS",
+              icon: <Smartphone className="w-8 h-8 text-white" strokeWidth={1.5} />,
+              desc: "iPhone/iPad",
+              downloadUrl: null
+            }, {
+              name: "Android",
+              icon: <Smartphone className="w-8 h-8 text-white" strokeWidth={1.5} />,
+              desc: "安卓手机",
+              downloadUrl: "/android-app.apk"
+            }, {
+              name: "浏览器",
+              icon: <Globe className="w-8 h-8 text-white" strokeWidth={1.5} />,
+              desc: "Chrome插件",
+              downloadUrl: null
+            }].map((platform, index) => <div key={platform.name} className={`p-2 sm:p-3 md:p-4 bg-card/40 rounded-xl border border-primary/30 hover-float hover:border-primary/70 hover:shadow-purple transition-all duration-300 ${platform.downloadUrl ? 'cursor-pointer' : ''}`} style={{
+              animationDelay: `${index * 0.1}s`
+            }} onClick={platform.downloadUrl ? () => window.open(platform.downloadUrl, '_blank') : undefined}>
+                  <div className="text-lg sm:text-2xl md:text-3xl mb-1 sm:mb-2 flex justify-center">
+                    {typeof platform.icon === 'string' ? platform.icon : platform.icon}
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-1 text-xs sm:text-sm md:text-base">{platform.name}</h3>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground">{platform.desc}</p>
+                  {platform.downloadUrl && <p className="text-[10px] sm:text-xs text-primary mt-1">点击下载</p>}
+                </div>)}
+            </div>
+          </div>
+
+          {/* 悬浮特效元素 */}
+          <div className="absolute -top-6 -left-6 w-12 h-12 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute -bottom-6 -right-6 w-12 h-12 bg-accent/20 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute top-1/2 -right-8 w-8 h-8 bg-secondary/20 rounded-full blur-lg animate-pulse"></div>
+        </div>
+
         {/* 滚动提示 */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center">

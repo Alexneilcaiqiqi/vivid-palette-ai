@@ -42,30 +42,30 @@
     --ring: 25 95% 70%;
     --radius: 0.75rem;
 
-    /* 金色渐变系统 - 统一为标题渐变色 */
-    --gradient-primary: linear-gradient(135deg, hsl(40 65% 85%) 0%, hsl(30 100% 72%) 100%);
+    /* 金色渐变系统 - 统一为标题渐变色（从上到下）*/
+    --gradient-primary: linear-gradient(180deg, hsl(40 65% 85%) 0%, hsl(30 100% 72%) 100%);
     --gradient-hero: radial-gradient(ellipse at center, hsl(220 50% 20%) 0%, hsl(220 60% 10%) 50%, hsl(220 70% 5%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(40 65% 85%) 0%, hsl(30 100% 72%) 100%);
-    --gradient-brand: linear-gradient(90deg, hsl(40 65% 85%), hsl(30 100% 72%));
+    --gradient-card: linear-gradient(180deg, hsl(40 65% 85%) 0%, hsl(30 100% 72%) 100%);
+    --gradient-brand: linear-gradient(180deg, hsl(40 65% 85%), hsl(30 100% 72%));
     --gradient-background: radial-gradient(ellipse at center, hsl(220 50% 20%) 0%, hsl(220 60% 10%) 100%);
     
     /* 蓝紫渐变 - 用于次要按钮 */
-    --gradient-blue: linear-gradient(135deg, hsl(215 90% 65%) 0%, hsl(235 85% 65%) 100%);
-    --gradient-blue-button: linear-gradient(135deg, hsl(215 90% 65%), hsl(225 85% 60%));
+    --gradient-blue: linear-gradient(180deg, hsl(215 90% 65%) 0%, hsl(235 85% 65%) 100%);
+    --gradient-blue-button: linear-gradient(180deg, hsl(215 90% 65%), hsl(225 85% 60%));
     
-    /* 功能渐变色系 - 统一为标题金色系 */
-    --gradient-feature-1: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
-    --gradient-feature-2: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
-    --gradient-feature-3: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
-    --gradient-feature-4: linear-gradient(135deg, hsl(215 90% 65%), hsl(225 85% 60%), hsl(235 80% 58%));
-    --gradient-feature-5: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
-    --gradient-feature-6: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
+    /* 功能渐变色系 - 统一为标题金色系（从上到下）*/
+    --gradient-feature-1: linear-gradient(180deg, hsl(40 65% 85%), hsl(30 100% 72%));
+    --gradient-feature-2: linear-gradient(180deg, hsl(40 65% 85%), hsl(30 100% 72%));
+    --gradient-feature-3: linear-gradient(180deg, hsl(40 65% 85%), hsl(30 100% 72%));
+    --gradient-feature-4: linear-gradient(180deg, hsl(215 90% 65%), hsl(225 85% 60%), hsl(235 80% 58%));
+    --gradient-feature-5: linear-gradient(180deg, hsl(40 65% 85%), hsl(30 100% 72%));
+    --gradient-feature-6: linear-gradient(180deg, hsl(40 65% 85%), hsl(30 100% 72%));
     
-    /* 统计数据渐变 - 统一为标题金色系 */
-    --gradient-stat-1: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
-    --gradient-stat-2: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
-    --gradient-stat-3: linear-gradient(135deg, hsl(215 90% 65%), hsl(225 85% 60%));
-    --gradient-stat-4: linear-gradient(135deg, hsl(40 65% 85%), hsl(30 100% 72%));
+    /* 统计数据渐变 - 统一为标题金色系（从上到下）*/
+    --gradient-stat-1: linear-gradient(180deg, hsl(40 65% 85%), hsl(30 100% 72%));
+    --gradient-stat-2: linear-gradient(180deg, hsl(40 65% 85%), hsl(30 100% 72%));
+    --gradient-stat-3: linear-gradient(180deg, hsl(215 90% 65%), hsl(225 85% 60%));
+    --gradient-stat-4: linear-gradient(180deg, hsl(40 65% 85%), hsl(30 100% 72%));
     
     /* 增强光效阴影 - 金色和蓝色 */
     --shadow-neon: 0 0 40px hsl(30 100% 72% / 0.5), 0 0 80px hsl(30 100% 72% / 0.25);

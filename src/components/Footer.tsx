@@ -12,30 +12,30 @@ const Footer = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         {/* 主要内容 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           
           {/* 品牌信息 */}
-          <div className="lg:col-span-1 space-y-6">
-            <div className="flex items-center mb-8">
-              <Link to="/" aria-label="归巢首页" className="transition-transform hover:scale-105">
+          <div className="lg:col-span-1">
+            <div className="flex items-center space-x-3 mb-6">
+              <Link to="/" aria-label="归巢首页">
                 <img 
                   src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" 
                   alt="归巢 GuiChao - 海外华人回国网络加速服务Logo" 
-                  className="w-28 h-28 object-contain"
+                  className="w-32 h-32 object-contain"
                   width="120" 
                   height="120" 
                 />
               </Link>
             </div>
-            <p className="text-muted-foreground/90 leading-relaxed text-sm max-w-xs">
+            <p className="text-muted-foreground mb-6 leading-relaxed">
               专为海外华人打造的回国网络加速服务，让您在海外也能无缝享受国内的网络体验。
             </p>
-            <div className="flex flex-wrap gap-3 pt-2">
-              <Button variant="outline" size="sm" className="hover-float border-border/50 hover:border-primary/50 hover:bg-primary/5">
+            <div className="flex space-x-4">
+              <Button variant="outline" size="sm" className="hover-float">
                 <MessageCircle className="w-4 h-4 mr-2" />
                 微信群
               </Button>
-              <Button variant="outline" size="sm" className="hover-float border-border/50 hover:border-primary/50 hover:bg-primary/5">
+              <Button variant="outline" size="sm" className="hover-float">
                 <Mail className="w-4 h-4 mr-2" />
                 邮箱
               </Button>
@@ -43,66 +43,66 @@ const Footer = () => {
           </div>
 
           {/* 产品服务 */}
-          <div className="space-y-5">
-            <h4 className="font-semibold text-foreground text-base tracking-wide mb-6 relative inline-block after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-gradient-primary">产品服务</h4>
-            <ul className="space-y-4">
-              <li><a href="#features" className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm hover:translate-x-1 inline-block">产品特色</a></li>
-              <li><a href="#pricing" className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm hover:translate-x-1 inline-block">套餐价格</a></li>
-              <li><Link to="/auth" className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm hover:translate-x-1 inline-block">免费试用</Link></li>
-              <li><a href="#" className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm hover:translate-x-1 inline-block">节点状态</a></li>
-              <li><a href="#" className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm hover:translate-x-1 inline-block">速度测试</a></li>
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">产品服务</h4>
+            <ul className="space-y-3">
+              <li><a href="#features" className="text-muted-foreground hover:text-primary transition-colors">产品特色</a></li>
+              <li><a href="#pricing" className="text-muted-foreground hover:text-primary transition-colors">套餐价格</a></li>
+              <li><Link to="/auth" className="text-muted-foreground hover:text-primary transition-colors">免费试用</Link></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">节点状态</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">速度测试</a></li>
             </ul>
           </div>
 
           {/* 客户端下载 */}
-          <div className="space-y-5">
-            <h4 className="font-semibold text-foreground text-base tracking-wide mb-6 relative inline-block after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-gradient-primary">客户端下载</h4>
-            <ul className="space-y-4">
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">客户端下载</h4>
+            <ul className="space-y-3">
               <li>
-                <Link to="/download" className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm flex items-center gap-2 group">
-                  <Download className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
-                  <span className="group-hover:translate-x-1 inline-block transition-transform">Windows 客户端</span>
+                <Link to="/download" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <Download className="w-4 h-4 mr-2" />
+                  Windows 客户端
                 </Link>
               </li>
               <li>
-                <Link to="/download" className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm flex items-center gap-2 group">
-                  <Download className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
-                  <span className="group-hover:translate-x-1 inline-block transition-transform">macOS 客户端</span>
+                <Link to="/download" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <Download className="w-4 h-4 mr-2" />
+                  macOS 客户端
                 </Link>
               </li>
               <li>
-                <Link to="/download" className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm flex items-center gap-2 group">
-                  <Download className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
-                  <span className="group-hover:translate-x-1 inline-block transition-transform">iOS 应用</span>
+                <Link to="/download" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <Download className="w-4 h-4 mr-2" />
+                  iOS 应用
                 </Link>
               </li>
               <li>
-                <Link to="/download" className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm flex items-center gap-2 group">
-                  <Download className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
-                  <span className="group-hover:translate-x-1 inline-block transition-transform">Android 应用</span>
+                <Link to="/download" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <Download className="w-4 h-4 mr-2" />
+                  Android 应用
                 </Link>
               </li>
               <li>
-                <Link to="/download" className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm flex items-center gap-2 group">
-                  <Globe className="w-4 h-4 transition-transform group-hover:rotate-12" />
-                  <span className="group-hover:translate-x-1 inline-block transition-transform">网页版</span>
+                <Link to="/download" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
+                  <Globe className="w-4 h-4 mr-2" />
+                  网页版
                 </Link>
               </li>
             </ul>
           </div>
 
           {/* 帮助支持 */}
-          <div className="space-y-5">
-            <h4 className="font-semibold text-foreground text-base tracking-wide mb-6 relative inline-block after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-gradient-primary">帮助支持</h4>
-            <ul className="space-y-4 mb-8">
-              <li><a href="#" className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm hover:translate-x-1 inline-block">使用教程</a></li>
-              <li><a href="#" className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm hover:translate-x-1 inline-block">常见问题</a></li>
-              <li><a href="#" className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm hover:translate-x-1 inline-block">联系客服</a></li>
-              <li><a href="#" className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm hover:translate-x-1 inline-block">意见反馈</a></li>
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">帮助支持</h4>
+            <ul className="space-y-3 mb-6">
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">使用教程</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">常见问题</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">联系客服</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">意见反馈</a></li>
               <li>
                 <Link 
                   to="/terms" 
-                  className="text-muted-foreground/80 hover:text-primary transition-all duration-300 text-sm hover:translate-x-1 inline-block"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                   onClick={() => window.scrollTo(0, 0)}
                 >
                   服务条款
@@ -111,14 +111,14 @@ const Footer = () => {
             </ul>
             
             {/* 邮件订阅 */}
-            <div className="pt-4 border-t border-border/30">
-              <h5 className="font-medium text-foreground mb-4 text-sm tracking-wide">订阅最新动态</h5>
+            <div>
+              <h5 className="font-medium text-foreground mb-3">最新动态</h5>
               <div className="flex gap-2">
                 <Input 
                   placeholder="输入邮箱地址" 
-                  className="bg-card/30 border-border/40 focus:border-primary/50 focus:bg-card/50 text-sm transition-all"
+                  className="bg-card/50 border-border/50 focus:border-primary"
                 />
-                <Button size="sm" className="bg-gradient-primary hover:shadow-strong whitespace-nowrap">
+                <Button size="sm" className="bg-gradient-primary hover:shadow-strong">
                   订阅
                 </Button>
               </div>

@@ -3,7 +3,7 @@ import { ArrowRight, Globe, Shield, Zap, Smartphone, Router, Monitor, Laptop } f
 const Hero = () => {
   return <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-20 floating-particles" aria-label="首页英雄区">
       {/* 背景图层 - 在蒙版下方 */}
-      <div className="absolute inset-0 z-0" style={{ backgroundImage: 'url(/hero-background.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+      <div className="absolute inset-0 -z-10" style={{ backgroundImage: 'url(/hero-background.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
       
       <div className="container mx-auto px-4 text-center relative z-10">
         {/* 主标题区 */}

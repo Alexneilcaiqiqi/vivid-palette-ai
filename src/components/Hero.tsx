@@ -12,12 +12,12 @@ const Hero = () => {
           
           <p className="text-sm sm:text-base md:text-xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed md:leading-[2.5] px-4" itemProp="description">专业的回国网络加速服务，让海外华人轻松访问国内网络资源</p>
 
-          <div className="mb-6 md:mb-8 mt-12 md:mt-[200px]">
+          <div className="mb-6 md:mb-8 mt-8 md:mt-12">
             <span className="text-sm sm:text-lg md:text-2xl font-semibold inline-block px-3 md:px-4 py-2 border border-primary/30 rounded-full bg-primary/10 text-primary">高速稳定 • 安全可靠 • 一键连接</span>
           </div>
 
           {/* 信任指标 */}
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-16 text-sm text-muted-foreground mb-12 md:mb-20 mt-4 px-4">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-16 text-sm text-muted-foreground mb-8 md:mb-12 mt-4 px-4">
             <div className="flex items-center gap-3 md:gap-4">
               <Shield className="w-4 h-4 text-muted-foreground scale-150 md:scale-[2]" strokeWidth={1} />
               <div className="flex flex-col items-start">
@@ -42,7 +42,7 @@ const Hero = () => {
           </div>
 
           {/* CTA按钮 */}
-          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center scale-100 sm:scale-110 md:scale-[1.3] -mt-6 md:-mt-12 px-4">
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center scale-100 sm:scale-110 md:scale-[1.3] mt-4 md:mt-6 px-4">
             <Button size="lg" className="bg-gradient-to-r from-[#5DB5FF] via-[#7B8EFF] via-50% to-[#9B6FFF] shadow-[0_4px_12px_rgba(0,0,0,0.15)] active:scale-105 active:shadow-[0_0_30px_rgba(255,255,255,0.9),0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 w-full sm:w-48 text-white">
               <a href="/auth">立即免费试用</a>
               <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />

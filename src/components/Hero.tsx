@@ -106,7 +106,7 @@ const Hero = () => {
         </div>
 
         {/* 底部渐变蒙版 - 自然过渡到下一页面 */}
-        <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-b from-transparent via-[#0F0F0F]/20 via-[#0F0F0F]/60 to-[#0F0F0F] pointer-events-none z-20"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-b from-transparent via-[#0F0F0F]/20 via-[#0F0F0F]/60 to-[#0F0F0F] pointer-events-none z-[5]"></div>
 
         {/* 滚动提示 */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">

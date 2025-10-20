@@ -6,30 +6,30 @@
 
 @layer base {
   :root {
-    /* 深空紫色背景 - 更深邃 */
-    --background: 265 70% 8%;
+    /* 深空背景 */
+    --background: 220 60% 8%;
     --foreground: 30 20% 98%;
 
-    /* 卡片和弹窗 - 深紫玻璃质感 */
-    --card: 260 60% 14%;
+    /* 卡片和弹窗 */
+    --card: 220 50% 14%;
     --card-foreground: 30 20% 98%;
-    --popover: 260 65% 12%;
+    --popover: 220 55% 12%;
     --popover-foreground: 30 20% 98%;
 
-    /* 主色调 - 霓虹紫色 */
-    --primary: 270 95% 65%;
+    /* 主色调 - 金橙色 */
+    --primary: 25 95% 70%;
     --primary-foreground: 0 0% 0%;
 
-    /* 次要色调 - 深紫 */
-    --secondary: 260 60% 18%;
-    --secondary-foreground: 30 20% 98%;
+    /* 次要色调 - 蓝紫色 */
+    --secondary: 220 85% 60%;
+    --secondary-foreground: 0 0% 100%;
 
     /* 柔和色调 */
-    --muted: 260 50% 15%;
+    --muted: 220 45% 15%;
     --muted-foreground: 30 10% 75%;
 
-    /* 强调色 - 电光紫粉 */
-    --accent: 290 100% 70%;
+    /* 强调色 - 亮蓝 */
+    --accent: 215 90% 65%;
     --accent-foreground: 0 0% 0%;
 
     /* 危险色 */
@@ -37,38 +37,42 @@
     --destructive-foreground: 210 20% 98%;
 
     /* 边框和输入框 */
-    --border: 260 50% 22%;
-    --input: 260 50% 22%;
-    --ring: 270 95% 65%;
+    --border: 220 45% 22%;
+    --input: 220 45% 22%;
+    --ring: 25 95% 70%;
     --radius: 0.75rem;
 
-    /* 紫色科技渐变 - 三色增强 */
-    --gradient-primary: linear-gradient(135deg, hsl(270 95% 65%) 0%, hsl(280 90% 68%) 50%, hsl(290 100% 70%) 100%);
-    --gradient-hero: radial-gradient(ellipse at top, hsl(270 95% 65% / 0.15) 0%, hsl(265 70% 8%) 50%, hsl(260 80% 5%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(260 60% 14%) 0%, hsl(260 65% 12%) 100%);
-    --gradient-brand: linear-gradient(90deg, hsl(270 95% 65%), hsl(280 90% 68%), hsl(290 100% 70%));
-    --gradient-background: radial-gradient(ellipse at top, hsl(260 70% 12%) 0%, hsl(265 75% 6%) 100%);
+    /* 金色渐变系统 */
+    --gradient-primary: linear-gradient(135deg, hsl(35 85% 85%) 0%, hsl(25 95% 70%) 50%, hsl(20 90% 65%) 100%);
+    --gradient-hero: radial-gradient(ellipse at center, hsl(220 50% 20%) 0%, hsl(220 60% 10%) 50%, hsl(220 70% 5%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(35 85% 85%) 0%, hsl(25 90% 72%) 100%);
+    --gradient-brand: linear-gradient(90deg, hsl(35 85% 85%), hsl(25 95% 70%), hsl(20 90% 65%));
+    --gradient-background: radial-gradient(ellipse at center, hsl(220 50% 20%) 0%, hsl(220 60% 10%) 100%);
     
-    /* 功能渐变色系 - 更鲜艳的三色渐变 */
-    --gradient-feature-1: linear-gradient(135deg, hsl(270 95% 65%), hsl(280 90% 68%), hsl(290 100% 70%));
-    --gradient-feature-2: linear-gradient(135deg, hsl(250 90% 60%), hsl(260 95% 65%), hsl(270 90% 68%));
-    --gradient-feature-3: linear-gradient(135deg, hsl(290 100% 70%), hsl(300 95% 68%), hsl(310 90% 65%));
-    --gradient-feature-4: linear-gradient(135deg, hsl(240 95% 60%), hsl(250 90% 65%), hsl(260 95% 68%));
-    --gradient-feature-5: linear-gradient(135deg, hsl(280 90% 68%), hsl(270 95% 65%), hsl(260 90% 63%));
-    --gradient-feature-6: linear-gradient(135deg, hsl(300 95% 68%), hsl(290 100% 70%), hsl(280 95% 68%));
+    /* 蓝紫渐变 - 用于次要按钮 */
+    --gradient-blue: linear-gradient(135deg, hsl(215 90% 65%) 0%, hsl(235 85% 65%) 100%);
+    --gradient-blue-button: linear-gradient(135deg, hsl(215 90% 65%), hsl(225 85% 60%));
     
-    /* 统计数据渐变 - 鲜艳紫色系 */
-    --gradient-stat-1: linear-gradient(135deg, hsl(270 95% 65%), hsl(280 90% 68%));
-    --gradient-stat-2: linear-gradient(135deg, hsl(290 100% 70%), hsl(295 95% 68%));
-    --gradient-stat-3: linear-gradient(135deg, hsl(265 90% 63%), hsl(260 95% 65%));
-    --gradient-stat-4: linear-gradient(135deg, hsl(285 95% 68%), hsl(270 95% 63%));
+    /* 功能渐变色系 - 金色系 */
+    --gradient-feature-1: linear-gradient(135deg, hsl(35 85% 85%), hsl(25 95% 70%), hsl(20 90% 65%));
+    --gradient-feature-2: linear-gradient(135deg, hsl(40 80% 82%), hsl(30 90% 68%), hsl(25 85% 63%));
+    --gradient-feature-3: linear-gradient(135deg, hsl(30 90% 80%), hsl(20 95% 68%), hsl(15 90% 60%));
+    --gradient-feature-4: linear-gradient(135deg, hsl(215 90% 65%), hsl(225 85% 60%), hsl(235 80% 58%));
+    --gradient-feature-5: linear-gradient(135deg, hsl(38 85% 83%), hsl(28 90% 70%), hsl(22 85% 65%));
+    --gradient-feature-6: linear-gradient(135deg, hsl(32 88% 82%), hsl(22 92% 69%), hsl(18 88% 62%));
     
-    /* 增强光效阴影 */
-    --shadow-neon: 0 0 40px hsl(270 95% 65% / 0.6), 0 0 80px hsl(270 95% 65% / 0.3);
-    --shadow-neon-strong: 0 0 60px hsl(270 95% 65% / 0.8), 0 0 120px hsl(270 95% 65% / 0.4);
-    --shadow-cyan: 0 0 50px hsl(290 100% 70% / 0.6), 0 0 100px hsl(290 100% 70% / 0.3);
-    --shadow-purple: 0 0 50px hsl(280 90% 68% / 0.6), 0 0 100px hsl(280 90% 68% / 0.3);
-    --shadow-pink: 0 0 50px hsl(290 100% 70% / 0.6), 0 0 100px hsl(290 100% 70% / 0.3);
+    /* 统计数据渐变 - 金色系 */
+    --gradient-stat-1: linear-gradient(135deg, hsl(35 85% 85%), hsl(25 95% 70%));
+    --gradient-stat-2: linear-gradient(135deg, hsl(30 90% 78%), hsl(20 92% 68%));
+    --gradient-stat-3: linear-gradient(135deg, hsl(215 90% 65%), hsl(225 85% 60%));
+    --gradient-stat-4: linear-gradient(135deg, hsl(38 85% 82%), hsl(28 90% 72%));
+    
+    /* 增强光效阴影 - 金色和蓝色 */
+    --shadow-neon: 0 0 40px hsl(25 95% 70% / 0.5), 0 0 80px hsl(25 95% 70% / 0.25);
+    --shadow-neon-strong: 0 0 60px hsl(25 95% 70% / 0.7), 0 0 120px hsl(25 95% 70% / 0.35);
+    --shadow-cyan: 0 0 50px hsl(215 90% 65% / 0.5), 0 0 100px hsl(215 90% 65% / 0.25);
+    --shadow-purple: 0 0 50px hsl(225 85% 60% / 0.5), 0 0 100px hsl(225 85% 60% / 0.25);
+    --shadow-pink: 0 0 50px hsl(25 95% 70% / 0.5), 0 0 100px hsl(25 95% 70% / 0.25);
 
     /* 动画效果 */
     --animation-float: float 8s ease-in-out infinite;
@@ -142,8 +146,8 @@
 }
 
 @keyframes card-breathe {
-  0%, 100% { box-shadow: 0 0 20px hsl(270 95% 65% / 0.3); }
-  50% { box-shadow: 0 0 40px hsl(270 95% 65% / 0.6); }
+  0%, 100% { box-shadow: 0 0 20px hsl(25 95% 70% / 0.3); }
+  50% { box-shadow: 0 0 40px hsl(25 95% 70% / 0.6); }
 }
 
 @keyframes float-enhanced {
@@ -204,11 +208,11 @@
   }
 
   .glass-effect-enhanced {
-    background: rgba(139, 92, 246, 0.05);
+    background: linear-gradient(135deg, rgba(245, 230, 211, 0.15) 0%, rgba(255, 176, 138, 0.1) 100%);
     backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(255, 176, 138, 0.3);
     box-shadow: 
-      0 8px 32px 0 rgba(139, 92, 246, 0.15),
+      0 8px 32px 0 rgba(255, 176, 138, 0.2),
       inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
   }
 

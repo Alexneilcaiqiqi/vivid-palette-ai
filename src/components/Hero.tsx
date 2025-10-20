@@ -45,7 +45,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="mb-8 mt-[120px] my-[109px]">
+          <div className="mb-8 mt-[60px]">
             <span className="text-2xl inline-block border border-primary/30 rounded-full bg-primary/10 text-primary py-0 mx-[32px] px-[18px] my-[8px] font-medium">高速稳定 • 安全可靠 • 一键连接</span>
           </div>
 

@@ -7,13 +7,13 @@
 @layer base {
   :root {
     /* 深空背景 */
-    --background: 220 60% 8%;
+    --background: 0 0% 6%;
     --foreground: 30 20% 98%;
 
     /* 卡片和弹窗 */
-    --card: 220 50% 14%;
+    --card: 0 0% 10%;
     --card-foreground: 30 20% 98%;
-    --popover: 220 55% 12%;
+    --popover: 0 0% 8%;
     --popover-foreground: 30 20% 98%;
 
     /* 主色调 - 金橙色 */
@@ -108,7 +108,7 @@
 
   body {
     @apply bg-background text-foreground;
-    background: radial-gradient(ellipse at center, hsl(225 50% 20%) 0%, hsl(220 60% 10%) 50%, hsl(220 70% 5%) 100%);
+    background: #0F0F0F;
     background-attachment: fixed;
     overflow-x: hidden;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;

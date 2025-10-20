@@ -87,10 +87,8 @@ const Features = () => {
               {/* 图标 - 苹果风格方形增强版 */}
               <div className={`flex justify-center sm:justify-start mb-6`}>
                 <div className="relative">
-                  {/* 外层光晕增强 */}
-                  <div className={`absolute inset-0 ${feature.gradient} rounded-[20px] blur-2xl opacity-50 group-hover:opacity-80 transition-all duration-500`}></div>
                   {/* 图标容器 - 更大圆角 */}
-                  <div className={`relative inline-flex p-5 ${feature.gradient} rounded-[20px] text-white shadow-[0_20px_60px_rgba(139,92,246,0.4)] backdrop-blur-sm group-hover:scale-110 group-hover:shadow-[0_30px_80px_rgba(139,92,246,0.6)] group-hover:rotate-2 transition-all duration-500`}>
+                  <div className={`relative inline-flex p-5 ${feature.gradient} rounded-[20px] text-white backdrop-blur-sm group-hover:scale-110 group-hover:rotate-2 transition-all duration-500`}>
                     <div className="absolute inset-0 bg-white/20 rounded-[20px]"></div>
                     <div className="relative drop-shadow-lg">
                       {feature.icon}
@@ -112,9 +110,6 @@ const Features = () => {
               <div className="inline-flex items-center px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full border border-primary/20">
                 {feature.highlight}
               </div>
-
-              {/* 悬浮光效增强 */}
-              <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/40 to-accent/40 rounded-2xl opacity-0 group-hover:opacity-100 -z-10 blur-xl transition-opacity duration-500"></div>
             </div>
           ))}
         </div>

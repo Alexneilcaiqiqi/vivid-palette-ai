@@ -52,7 +52,7 @@ const Header = () => {
           <Button variant="ghost" size="sm" className="hover-float" asChild>
             <Link to="/auth">登录</Link>
           </Button>
-          <Button variant="default" size="sm" className="bg-gradient-to-r from-[#5DB5FF] via-[#7B8EFF] to-[#9B6FFF] text-white shadow-cyan hover:shadow-purple hover:scale-105 transition-all duration-300" asChild>
+          <Button variant="default" size="sm" className="bg-gradient-to-b from-[#5DB5FF] via-[#7B8EFF] via-75% to-[#9B6FFF] text-white shadow-cyan hover:shadow-purple hover:scale-105 transition-all duration-300" asChild>
             <Link to="/auth">免费试用</Link>
           </Button>
         </div>
@@ -90,7 +90,7 @@ const Header = () => {
               <Button variant="ghost" size="sm" asChild>
                 <Link to="/auth">登录</Link>
               </Button>
-              <Button variant="default" size="sm" className="bg-gradient-to-r from-[#5DB5FF] via-[#7B8EFF] to-[#9B6FFF] text-white" asChild>
+              <Button variant="default" size="sm" className="bg-gradient-to-b from-[#5DB5FF] via-[#7B8EFF] via-75% to-[#9B6FFF] text-white" asChild>
                 <Link to="/auth">免费试用</Link>
               </Button>
             </div>

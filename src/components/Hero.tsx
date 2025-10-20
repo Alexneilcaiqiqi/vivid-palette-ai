@@ -43,7 +43,7 @@ const Hero = () => {
 
           {/* CTA按钮 */}
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center scale-100 sm:scale-110 md:scale-[1.3] -mt-6 md:-mt-12 px-4">
-            <Button size="lg" className="bg-gradient-to-r from-[#5DB5FF] via-[#7B8EFF] via-85% to-[#9B6FFF] shadow-[0_4px_12px_rgba(0,0,0,0.15)] active:scale-105 active:shadow-[0_0_30px_rgba(255,255,255,0.9),0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 pulse-strong w-full sm:w-48 text-white">
+            <Button size="lg" className="bg-gradient-to-r from-[#F5E6BB] to-[#FFB472] shadow-[0_4px_12px_rgba(0,0,0,0.15)] active:scale-105 active:shadow-[0_0_30px_rgba(255,255,255,0.9),0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-300 pulse-strong w-full sm:w-48 text-gray-900">
               <a href="/auth">立即免费试用</a>
               <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
             </Button>

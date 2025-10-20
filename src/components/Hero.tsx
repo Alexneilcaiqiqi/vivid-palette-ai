@@ -47,7 +47,7 @@ const Hero = () => {
               <a href="/auth">立即免费试用</a>
               <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
             </Button>
-            <Button variant="outline" size="lg" className="bg-gradient-to-b from-[#F5E6D3] to-[#FFB08A] border-0 hover:opacity-90 hover-float hover:shadow-purple w-full sm:w-48 text-gray-900 hover:text-gray-900">
+            <Button variant="outline" size="lg" className="bg-gradient-to-b from-[#F5E6BB] to-[#FFB472] border-0 hover:opacity-90 hover-float hover:shadow-purple w-full sm:w-48 text-gray-900 hover:text-gray-900">
               <a href="/download">下载客户端</a>
             </Button>
           </div>

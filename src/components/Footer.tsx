@@ -5,8 +5,12 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="relative py-32 border-t border-border/50 bg-gradient-to-b from-transparent to-card/5" id="contact" role="contentinfo">
-      <div className="container mx-auto px-4">
+    <footer className="relative py-32 border-t border-border/50 bg-gradient-to-b from-transparent to-card/5 overflow-hidden" id="contact" role="contentinfo">
+      {/* 蓝色光晕装饰 */}
+      <div className="absolute top-20 right-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-40 left-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         {/* 主要内容 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           

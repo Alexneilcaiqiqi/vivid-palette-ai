@@ -123,8 +123,13 @@ const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="py-32 relative bg-gradient-to-b from-transparent to-card/10 border-t border-border/20" aria-labelledby="pricing-heading">
-      <div className="container mx-auto px-4">
+    <section id="pricing" className="py-32 relative bg-gradient-to-b from-transparent to-card/10 border-t border-border/20 overflow-hidden" aria-labelledby="pricing-heading">
+      {/* 蓝色光晕装饰 */}
+      <div className="absolute top-40 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute top-1/2 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2.5s' }}></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         {/* 标题部分 */}
         <header className="text-center mb-20">
           <div className="inline-flex items-center px-4 py-2 bg-card/50 rounded-full border border-primary/20 mb-6 glass-effect">

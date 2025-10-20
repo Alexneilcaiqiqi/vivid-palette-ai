@@ -83,7 +83,7 @@ const Hero = () => {
               icon: <Globe className="w-8 h-8 text-white" strokeWidth={1.5} />,
               desc: "Chrome插件",
               downloadUrl: null
-            }].map((platform, index) => <div key={platform.name} className={`p-2 sm:p-3 md:p-4 bg-card/40 rounded-xl border border-primary/30 hover-float hover:border-primary/70 hover:shadow-purple transition-all duration-300 ${platform.downloadUrl ? 'cursor-pointer' : ''}`} style={{
+            }].map((platform, index) => <div key={platform.name} className={`p-2 sm:p-3 md:p-4 bg-card/40 rounded-xl border border-primary/30 hover-float hover:border-primary/70 hover:shadow-purple transition-all duration-300 z-50 ${platform.downloadUrl ? 'cursor-pointer' : ''}`} style={{
               animationDelay: `${index * 0.1}s`
             }} onClick={platform.downloadUrl ? () => window.open(platform.downloadUrl, '_blank') : undefined}>
                   <div className="text-lg sm:text-2xl md:text-3xl mb-1 sm:mb-2 flex justify-center">

@@ -78,7 +78,7 @@ const Features = () => {
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="group relative p-4 sm:p-5 md:p-6 bg-card/40 rounded-2xl border border-blue-400/30 hover:-translate-y-2 hover:border-blue-400/60 transition-all duration-500"
+              className="group relative p-4 sm:p-5 md:p-6 bg-card/40 rounded-2xl border border-blue-400/20 hover:-translate-y-2 hover:border-blue-400/40 transition-all duration-500"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* 背景渐变效果增强 */}

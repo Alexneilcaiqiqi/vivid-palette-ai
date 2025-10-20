@@ -123,20 +123,20 @@ const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="py-32 relative bg-gradient-to-b from-transparent to-card/10 border-t border-border/20">
+    <section id="pricing" className="py-32 relative bg-gradient-to-b from-transparent to-card/10 border-t border-border/20" aria-labelledby="pricing-heading">
       <div className="container mx-auto px-4">
         {/* 标题部分 */}
-        <div className="text-center mb-20">
+        <header className="text-center mb-20">
           <div className="inline-flex items-center px-4 py-2 bg-card/50 rounded-full border border-primary/20 mb-6 glass-effect">
             <span className="text-sm text-primary font-medium">💰 套餐价格</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 id="pricing-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 px-4">
             <span className="text-foreground">选择适合您的</span>
-            <span className="text-gradient ml-3">套餐</span>
+            <span className="text-gradient ml-2 md:ml-3">套餐</span>
           </h2>
           
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 px-4">
             灵活的价格方案，满足不同用户需求。支持微信、支付宝、USDT等多种支付方式
           </p>
 
@@ -144,10 +144,10 @@ const Pricing = () => {
           <div className="inline-flex items-center px-4 py-2 bg-gradient-primary/10 rounded-full border border-primary/30">
             <span className="text-primary font-medium">🎉 年付用户享8折优惠，可节省高达HK$140</span>
           </div>
-        </div>
+        </header>
 
         {/* 价格卡片 */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 max-w-6xl mx-auto px-4">
           {plans.map((plan, index) => (
             <div
               key={plan.name}
@@ -157,17 +157,17 @@ const Pricing = () => {
                   : 'hover:scale-105'
               } transition-all duration-500`}
             >
-              {/* 最受欢迎标签 */}
+              {/* 最受欢迎标签 - 增强脉动效果 */}
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                  <div className="bg-gradient-primary px-4 py-1 rounded-full text-white text-sm font-medium">
+                  <div className="bg-gradient-primary px-4 py-1 rounded-full text-white text-sm font-medium pulse-strong shadow-neon">
                     🔥 最受欢迎
                   </div>
                 </div>
               )}
 
               <div 
-                className={`relative p-8 bg-card/30 rounded-2xl border transition-all duration-500 ${
+                className={`relative p-4 sm:p-6 md:p-8 bg-card/30 rounded-2xl border transition-all duration-500 ${
                   plan.popular 
                     ? 'border-primary/50 shadow-cyan' 
                     : 'border-border/50 hover:border-primary/30'
@@ -181,25 +181,25 @@ const Pricing = () => {
                   <div className={`inline-flex p-3 bg-gradient-to-br ${plan.gradient} rounded-xl text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
                     {plan.icon}
                   </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-2">{plan.name}</h3>
-                  <p className="text-muted-foreground text-sm">{plan.description}</p>
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">{plan.name}</h3>
+                  <p className="text-muted-foreground text-xs sm:text-sm">{plan.description}</p>
                 </div>
 
-                {/* 价格 */}
-                <div className="text-center mb-8">
+                {/* 价格 - 增强发光效果 */}
+                <div className="text-center mb-6 md:mb-8">
                   <div className="flex items-end justify-center">
-                    <span className="text-sm font-light text-muted-foreground mr-1 mb-2">HK$</span>
-                    <span className="text-4xl md:text-5xl font-bold text-gradient">{plan.price}</span>
-                    <span className="text-muted-foreground ml-1 mb-1">{plan.period}</span>
+                    <span className="text-xs sm:text-sm font-light text-muted-foreground mr-1 mb-2">HK$</span>
+                    <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient drop-shadow-[0_0_10px_rgba(139,92,246,0.5)]">{plan.price}</span>
+                    <span className="text-sm sm:text-base text-muted-foreground ml-1 mb-1">{plan.period}</span>
                   </div>
                 </div>
 
                 {/* 功能列表 */}
-                <div className="space-y-3 mb-8">
+                <div className="space-y-2 sm:space-y-3 mb-6 md:mb-8">
                   {plan.features.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-center">
-                      <Check className="w-5 h-5 text-primary mr-3 flex-shrink-0" />
-                      <span className="text-foreground">{feature}</span>
+                      <Check className="w-4 h-4 sm:w-5 sm:h-5 text-primary mr-2 sm:mr-3 flex-shrink-0" />
+                      <span className="text-sm sm:text-base text-foreground">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -243,28 +243,28 @@ const Pricing = () => {
         </div>
 
         {/* 底部保障信息 */}
-        <div className="mt-24 text-center">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto">
+        <div className="mt-16 md:mt-24 text-center px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto">
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 bg-gradient-primary/20 rounded-full flex items-center justify-center mb-3">
-                <span className="text-primary font-bold text-xl">7</span>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-primary/20 rounded-full flex items-center justify-center mb-3">
+                <span className="text-primary font-bold text-lg sm:text-xl">7</span>
               </div>
-              <h4 className="font-semibold text-foreground mb-1">7天无忧退款</h4>
-              <p className="text-muted-foreground text-sm">不满意随时退款</p>
+              <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">7天无忧退款</h4>
+              <p className="text-muted-foreground text-xs sm:text-sm">不满意随时退款</p>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 bg-gradient-primary/20 rounded-full flex items-center justify-center mb-3">
-                <span className="text-primary font-bold text-xl">24</span>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-primary/20 rounded-full flex items-center justify-center mb-3">
+                <span className="text-primary font-bold text-lg sm:text-xl">24</span>
               </div>
-              <h4 className="font-semibold text-foreground mb-1">24小时客服</h4>
-              <p className="text-muted-foreground text-sm">随时为您解答问题</p>
+              <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">24小时客服</h4>
+              <p className="text-muted-foreground text-xs sm:text-sm">随时为您解答问题</p>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 bg-gradient-primary/20 rounded-full flex items-center justify-center mb-3">
-                <span className="text-primary font-bold text-xl">∞</span>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-primary/20 rounded-full flex items-center justify-center mb-3">
+                <span className="text-primary font-bold text-lg sm:text-xl">∞</span>
               </div>
-              <h4 className="font-semibold text-foreground mb-1">无限流量</h4>
-              <p className="text-muted-foreground text-sm">畅享高速网络体验</p>
+              <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">无限流量</h4>
+              <p className="text-muted-foreground text-xs sm:text-sm">畅享高速网络体验</p>
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { Globe, Mail, MessageCircle, Download } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="relative py-32 border-t border-border/50 bg-gradient-to-b from-transparent to-card/5" id="contact">
+    <footer className="relative py-32 border-t border-border/50 bg-gradient-to-b from-transparent to-card/5" id="contact" role="contentinfo">
       <div className="container mx-auto px-4">
         {/* 主要内容 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
@@ -12,13 +12,15 @@ const Footer = () => {
           {/* 品牌信息 */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-xl">归</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-bold text-gradient">归巢</span>
-                <span className="text-xs text-muted-foreground -mt-1">GuiChao.win</span>
-              </div>
+              <a href="/" aria-label="归巢首页">
+                <img 
+                  src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" 
+                  alt="归巢 GuiChao - 海外华人回国网络加速服务Logo" 
+                  className="w-32 h-32 object-contain"
+                  width="120" 
+                  height="120" 
+                />
+              </a>
             </div>
             <p className="text-muted-foreground mb-6 leading-relaxed">
               专为海外华人打造的回国网络加速服务，让您在海外也能无缝享受国内的网络体验。

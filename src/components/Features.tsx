@@ -47,46 +47,56 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-32 relative bg-black border-t border-border/20">
+    <section id="features" className="py-32 relative border-t border-border/20" aria-labelledby="features-heading">
       <div className="container mx-auto px-4">
         {/* 标题部分 */}
-        <div className="text-center mb-20">
+        <header className="text-center mb-20">
           <div className="inline-flex items-center px-4 py-2 bg-card/50 rounded-full border border-primary/20 mb-6 glass-effect">
             <span className="text-sm text-primary font-medium">⚡ 产品特色</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 id="features-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 px-4">
             <span className="text-foreground">为什么选择</span>
-            <span className="text-gradient ml-3">归巢</span>
+            <span className="text-gradient ml-2 md:ml-3">归巢</span>
           </h2>
           
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
             专为海外华人打造的回国网络解决方案，让您在海外也能无缝享受国内的网络服务
           </p>
-        </div>
+        </header>
 
         {/* 特色功能网格 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 px-4">
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="group relative p-6 bg-card/30 rounded-2xl border border-border/50 hover-float hover:border-primary/50 transition-all duration-500"
+              className="group relative p-4 sm:p-5 md:p-6 bg-card/40 rounded-2xl border border-primary/30 hover:-translate-y-2 hover:border-primary/60 transition-all duration-500"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* 背景渐变效果 */}
-              <div className={`absolute inset-0 ${feature.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
+              {/* 背景渐变效果增强 */}
+              <div className={`absolute inset-0 ${feature.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`}></div>
               
-              {/* 图标 */}
-              <div className={`inline-flex p-3 ${feature.gradient} rounded-xl text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                {feature.icon}
+              {/* 图标 - 苹果风格方形增强版 */}
+              <div className={`flex justify-center sm:justify-start mb-6`}>
+                <div className="relative">
+                  {/* 外层光晕增强 */}
+                  <div className={`absolute inset-0 ${feature.gradient} rounded-[20px] blur-2xl opacity-50 group-hover:opacity-80 transition-all duration-500`}></div>
+                  {/* 图标容器 - 更大圆角 */}
+                  <div className={`relative inline-flex p-5 ${feature.gradient} rounded-[20px] text-white shadow-[0_20px_60px_rgba(139,92,246,0.4)] backdrop-blur-sm group-hover:scale-110 group-hover:shadow-[0_30px_80px_rgba(139,92,246,0.6)] group-hover:rotate-2 transition-all duration-500`}>
+                    <div className="absolute inset-0 bg-white/20 rounded-[20px]"></div>
+                    <div className="relative drop-shadow-lg">
+                      {feature.icon}
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* 标题和描述 */}
-              <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+              <h3 className="text-lg sm:text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                 {feature.title}
               </h3>
               
-              <p className="text-muted-foreground mb-4 leading-relaxed">
+              <p className="text-sm sm:text-base text-muted-foreground mb-4 leading-relaxed">
                 {feature.description}
               </p>
 
@@ -95,8 +105,8 @@ const Features = () => {
                 {feature.highlight}
               </div>
 
-              {/* 悬浮光效 */}
-              <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl opacity-0 group-hover:opacity-100 -z-10 blur transition-opacity duration-500"></div>
+              {/* 悬浮光效增强 */}
+              <div className="absolute -inset-0.5 bg-gradient-to-br from-primary/40 to-accent/40 rounded-2xl opacity-0 group-hover:opacity-100 -z-10 blur-xl transition-opacity duration-500"></div>
             </div>
           ))}
         </div>
@@ -107,7 +117,7 @@ const Features = () => {
             {/* 背景装饰 */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 rounded-3xl blur-3xl"></div>
             
-            <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="relative grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 px-4">
               {[
                 { number: "100万+", label: "用户信赖", icon: "👥", gradient: "bg-gradient-stat-1" },
                 { number: "50+", label: "全球节点", icon: "🌍", gradient: "bg-gradient-stat-2" },
@@ -116,7 +126,7 @@ const Features = () => {
               ].map((stat, index) => (
                 <div key={stat.label} className="group relative">
                   {/* 卡片容器 */}
-                  <div className="relative p-8 bg-card/30 backdrop-blur-sm rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
+                  <div className="relative p-4 sm:p-6 md:p-8 bg-card/30 backdrop-blur-sm rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
                     {/* 背景渐变光效 */}
                     <div className={`absolute inset-0 ${stat.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
                     
@@ -127,15 +137,15 @@ const Features = () => {
                     
                     {/* 数字 */}
                     <div className="relative">
-                      <div className={`text-4xl md:text-5xl font-bold ${stat.gradient} bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-all duration-300`}>
+                      <div className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold ${stat.gradient} bg-clip-text text-transparent mb-2 md:mb-3 group-hover:scale-110 transition-all duration-300`}>
                         {stat.number}
                       </div>
                       {/* 数字下划线装饰 */}
-                      <div className={`w-12 h-1 ${stat.gradient} rounded-full mx-auto mb-4 opacity-60 group-hover:opacity-100 group-hover:w-16 transition-all duration-300`}></div>
+                      <div className={`w-8 sm:w-10 md:w-12 h-1 ${stat.gradient} rounded-full mx-auto mb-3 md:mb-4 opacity-60 group-hover:opacity-100 group-hover:w-12 sm:group-hover:w-14 md:group-hover:w-16 transition-all duration-300`}></div>
                     </div>
                     
                     {/* 标签 */}
-                    <div className="text-foreground/80 font-medium text-lg group-hover:text-foreground transition-colors duration-300">
+                    <div className="text-foreground/80 font-medium text-sm sm:text-base md:text-lg group-hover:text-foreground transition-colors duration-300">
                       {stat.label}
                     </div>
                     

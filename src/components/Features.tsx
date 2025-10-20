@@ -82,7 +82,7 @@ const Features = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* 背景渐变效果增强 */}
-              <div className={`absolute inset-0 ${feature.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`}></div>
+              <div className="absolute inset-0 bg-black/50 rounded-2xl transition-opacity duration-500"></div>
               
               {/* 图标 - 苹果风格方形增强版 */}
               <div className={`flex justify-center sm:justify-start mb-6`}>

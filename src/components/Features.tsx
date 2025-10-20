@@ -49,7 +49,7 @@ const Features = () => {
   return (
     <section id="features" className="py-32 relative" aria-labelledby="features-heading">
       {/* 顶部渐变蒙版 - 与首页自然衔接 */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0F0F0F] to-transparent pointer-events-none z-10"></div>
+      <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[#0F0F0F] via-[#0F0F0F]/50 to-transparent pointer-events-none z-10"></div>
       
       <div className="container mx-auto px-4">
         {/* 标题部分 */}

@@ -6,7 +6,7 @@ const Hero = () => {
         {/* 主标题区 */}
         <div className="max-w-4xl mx-auto mb-20">          
           
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light mb-6 leading-tight tracking-[0.1em] md:tracking-[0.2em] mt-16 md:mt-[112px] bg-gradient-to-b from-[#F5E6D3] to-[#FFB08A] bg-clip-text text-transparent" itemProp="headline">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light mb-6 leading-tight tracking-[0.1em] md:tracking-[0.2em] mt-16 md:mt-[112px] bg-gradient-to-b from-[#F5E6A3] to-[#FFB85A] bg-clip-text text-transparent" itemProp="headline">
             倦鸟归巢 一键回国
           </h1>
           

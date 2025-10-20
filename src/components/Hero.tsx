@@ -60,27 +60,27 @@ const Hero = () => {
               {/* 支持的平台 */}
               {[{
               name: "Windows",
-              icon: <Monitor className="w-8 h-8 text-foreground" strokeWidth={1.5} aria-hidden="true" />,
+              icon: <Monitor className="w-8 h-8 text-white" strokeWidth={1.5} aria-hidden="true" />,
               desc: "PC客户端",
               downloadUrl: null
             }, {
               name: "macOS",
-              icon: <Laptop className="w-8 h-8 text-foreground" strokeWidth={1.5} aria-hidden="true" />,
+              icon: <Laptop className="w-8 h-8 text-white" strokeWidth={1.5} aria-hidden="true" />,
               desc: "Mac客户端",
               downloadUrl: null
             }, {
               name: "iOS",
-              icon: <Smartphone className="w-8 h-8 text-foreground" strokeWidth={1.5} />,
+              icon: <Smartphone className="w-8 h-8 text-white" strokeWidth={1.5} />,
               desc: "iPhone/iPad",
               downloadUrl: null
             }, {
               name: "Android",
-              icon: <Smartphone className="w-8 h-8 text-primary" strokeWidth={1.5} />,
+              icon: <Smartphone className="w-8 h-8 text-white" strokeWidth={1.5} />,
               desc: "安卓手机",
               downloadUrl: "/android-app.apk"
             }, {
               name: "浏览器",
-              icon: <Globe className="w-8 h-8 text-primary" strokeWidth={1.5} />,
+              icon: <Globe className="w-8 h-8 text-white" strokeWidth={1.5} />,
               desc: "Chrome插件",
               downloadUrl: null
             }].map((platform, index) => <div key={platform.name} className={`p-2 sm:p-3 md:p-4 bg-card/40 rounded-xl border border-primary/30 hover-float hover:border-primary/70 hover:shadow-purple transition-all duration-300 ${platform.downloadUrl ? 'cursor-pointer' : ''}`} style={{

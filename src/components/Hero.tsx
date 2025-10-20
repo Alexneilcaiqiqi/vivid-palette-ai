@@ -109,6 +109,9 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      
+      {/* 底部渐变蒙版 - 自然过渡到下一页面 */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0F0F0F] pointer-events-none z-20"></div>
     </section>;
 };
 export default Hero;

@@ -35,15 +35,15 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6 tracking-wider ml-auto mr-8" role="navigation" aria-label="主导航">
-          <a href="#home" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
+          <a href="/#home" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
             <span className="text-sm">首页</span>
             <span className="text-[10px] opacity-70">Home</span>
           </a>
-          <a href="#features" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
+          <a href="/#features" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
             <span className="text-sm">产品特色</span>
             <span className="text-[10px] opacity-70">Features</span>
           </a>
-          <a href="#pricing" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
+          <a href="/#pricing" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
             <span className="text-sm">套餐价格</span>
             <span className="text-[10px] opacity-70">Pricing</span>
           </a>
@@ -51,7 +51,7 @@ const Header = () => {
             <span className="text-sm">下载客户端</span>
             <span className="text-[10px] opacity-70">Download</span>
           </Link>
-          <a href="#contact" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
+          <a href="/#contact" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
             <span className="text-sm">联系我们</span>
             <span className="text-[10px] opacity-70">Contact</span>
           </a>
@@ -81,19 +81,19 @@ const Header = () => {
       {/* Mobile Menu */}
       {isMenuOpen && <div className="md:hidden glass-effect border-t border-border/50">
           <nav className="container mx-auto px-4 py-4 space-y-4">
-            <a href="#home" className="block py-2 text-foreground hover:text-primary transition-colors">
+            <a href="/#home" className="block py-2 text-foreground hover:text-primary transition-colors">
               首页
             </a>
-            <a href="#features" className="block py-2 text-foreground hover:text-primary transition-colors">
+            <a href="/#features" className="block py-2 text-foreground hover:text-primary transition-colors">
               产品特色
             </a>
-            <a href="#pricing" className="block py-2 text-foreground hover:text-primary transition-colors">
+            <a href="/#pricing" className="block py-2 text-foreground hover:text-primary transition-colors">
               套餐价格
             </a>
             <Link to="/download" className="block py-2 text-foreground hover:text-primary transition-colors">
               下载客户端
             </Link>
-            <a href="#contact" className="block py-2 text-foreground hover:text-primary transition-colors">
+            <a href="/#contact" className="block py-2 text-foreground hover:text-primary transition-colors">
               联系我们
             </a>
             <div className="flex flex-col space-y-2 pt-4 border-t border-border/50">

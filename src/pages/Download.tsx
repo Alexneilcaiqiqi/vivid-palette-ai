@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Download, Smartphone, Monitor, Tablet, Router, Globe, CheckCircle, Star } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const DownloadPage = () => {
   const platforms = [
@@ -98,9 +100,10 @@ const DownloadPage = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
+      <Header />
       {/* Hero Section */}
-      <section className="py-20 relative floating-particles">
+      <section className="py-20 pt-32 relative floating-particles">
         <div className="container mx-auto px-4 text-center">
           <div className="inline-flex items-center px-4 py-2 bg-card/50 rounded-full border border-primary/20 mb-6 glass-effect">
             <span className="text-sm text-primary font-medium">📱 客户端下载</span>
@@ -246,6 +249,8 @@ const DownloadPage = () => {
           </div>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 };

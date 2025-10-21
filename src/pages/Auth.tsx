@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -180,6 +181,13 @@ const AuthPage = () => {
                         {isLoading ? "登录中..." : "登录"}
                         <ArrowRight className="ml-2 w-4 h-4" />
                       </Button>
+                      
+                      <p className="text-xs text-center text-muted-foreground mt-4">
+                        登录即表示您同意我们的
+                        <Link to="/terms" className="text-primary hover:underline ml-1">服务条款</Link>
+                        和
+                        <Link to="/privacy" className="text-primary hover:underline ml-1">隐私协议</Link>
+                      </p>
                     </form>
                   </TabsContent>
                   
@@ -266,9 +274,9 @@ const AuthPage = () => {
                         <input type="checkbox" className="rounded border-border mt-1" required />
                         <span className="text-sm text-muted-foreground">
                           我已阅读并同意
-                          <a href="#" className="text-primary hover:underline ml-1">《用户协议》</a>
+                          <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
                           和
-                          <a href="#" className="text-primary hover:underline ml-1">《隐私政策》</a>
+                          <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
                         </span>
                       </div>
                       

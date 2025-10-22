@@ -30,35 +30,35 @@ const Pricing = () => {
       name: "香港支付宝",
       icon: <DollarSign className="w-6 h-6" />,
       description: "支付宝(香港)便捷支付",
-      gradient: "bg-gradient-feature-1"
+      gradient: "bg-gradient-feature-4"
     },
     {
       id: "paypal",
       name: "PayPal",
       icon: <CreditCard className="w-6 h-6" />,
       description: "全球通用在线支付",
-      gradient: "bg-gradient-feature-2"
+      gradient: "bg-gradient-feature-4"
     },
     {
       id: "google_pay",
       name: "Google Pay",
       icon: <Chrome className="w-6 h-6" />,
       description: "Google 快速支付",
-      gradient: "bg-gradient-feature-5"
+      gradient: "bg-gradient-feature-4"
     },
     {
       id: "apple_pay",
       name: "Apple Pay",
       icon: <Apple className="w-6 h-6" />,
       description: "Apple 设备专用支付",
-      gradient: "bg-gradient-feature-6"
+      gradient: "bg-gradient-feature-4"
     },
     {
       id: "stripe",
       name: "Stripe",
       icon: <CreditCard className="w-6 h-6" />,
       description: "信用卡/借记卡支付",
-      gradient: "bg-gradient-feature-3"
+      gradient: "bg-gradient-feature-4"
     }
   ];
   const plans = [
@@ -78,7 +78,7 @@ const Pricing = () => {
       buttonText: "立即试用",
       buttonVariant: "outline" as const,
       popular: false,
-      gradient: "bg-gradient-feature-2"
+      gradient: "bg-gradient-feature-4"
     },
     {
       name: "标准版",
@@ -97,7 +97,7 @@ const Pricing = () => {
       buttonText: "选择标准版",
       buttonVariant: "default" as const,
       popular: true,
-      gradient: "bg-gradient-feature-1"
+      gradient: "bg-gradient-feature-4"
     },
     {
       name: "旗舰版", 
@@ -118,7 +118,7 @@ const Pricing = () => {
       buttonText: "选择旗舰版",
       buttonVariant: "default" as const,
       popular: false,
-      gradient: "bg-gradient-feature-3"
+      gradient: "bg-gradient-feature-4"
     }
   ];
 
@@ -172,18 +172,18 @@ const Pricing = () => {
               )}
 
               <div 
-                className={`relative p-4 sm:p-6 md:p-8 bg-card/30 rounded-2xl border transition-all duration-500 ${
+                className={`relative p-4 sm:p-6 md:p-8 bg-card/40 rounded-2xl border transition-all duration-500 ${
                   plan.popular 
-                    ? 'border-primary/50 shadow-cyan' 
-                    : 'border-border/50 hover:border-primary/30'
-                } hover-float`}
+                    ? 'border-blue-400/40 shadow-cyan' 
+                    : 'border-blue-400/20 hover:border-blue-400/40'
+                } hover:-translate-y-2`}
               >
-                {/* 背景渐变 */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${plan.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
+                {/* 背景渐变效果 */}
+                <div className="absolute inset-0 bg-blue-950/30 group-hover:bg-blue-500/30 rounded-2xl transition-all duration-500"></div>
 
                 {/* 图标和标题 */}
-                <div className="text-center mb-6">
-                  <div className={`inline-flex p-3 bg-gradient-to-br ${plan.gradient} rounded-xl text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                <div className="relative z-10 text-center mb-6">
+                  <div className={`inline-flex p-3 ${plan.gradient} rounded-xl text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
                     {plan.icon}
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">{plan.name}</h3>
@@ -191,7 +191,7 @@ const Pricing = () => {
                 </div>
 
                 {/* 价格 - 增强发光效果 */}
-                <div className="text-center mb-6 md:mb-8">
+                <div className="relative z-10 text-center mb-6 md:mb-8">
                   <div className="flex items-end justify-center">
                     <span className="text-xs sm:text-sm font-light text-muted-foreground mr-1 mb-2">HK$</span>
                     <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient drop-shadow-[0_0_10px_rgba(139,92,246,0.5)]">{plan.price}</span>
@@ -200,7 +200,7 @@ const Pricing = () => {
                 </div>
 
                 {/* 功能列表 */}
-                <div className="space-y-2 sm:space-y-3 mb-6 md:mb-8">
+                <div className="relative z-10 space-y-2 sm:space-y-3 mb-6 md:mb-8">
                   {plan.features.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-center">
                       <Check className="w-4 h-4 sm:w-5 sm:h-5 text-primary mr-2 sm:mr-3 flex-shrink-0" />
@@ -226,7 +226,7 @@ const Pricing = () => {
                     zIndex: 10,
                     position: 'relative'
                   }}
-                  className={`w-full p-4 rounded-lg cursor-pointer text-center font-semibold transition-all duration-300 ${
+                  className={`relative z-10 w-full p-4 rounded-lg cursor-pointer text-center font-semibold transition-all duration-300 ${
                     plan.popular 
                       ? 'bg-gradient-primary text-white hover:shadow-neon-strong' 
                       : plan.buttonVariant === 'outline' 

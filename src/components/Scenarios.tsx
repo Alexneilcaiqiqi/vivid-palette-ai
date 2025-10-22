@@ -6,19 +6,19 @@ const Scenarios = () => {
       icon: Film,
       title: "影音娱乐",
       description: "流畅观看国内视频平台，享受高清流媒体",
-      gradientClass: "bg-gradient-feature-1"
+      gradientClass: "bg-gradient-feature-4"
     },
     {
       icon: Trophy,
       title: "体育赛事",
       description: "实时观看大陆体育赛事直播，不错过精彩瞬间",
-      gradientClass: "bg-gradient-feature-2"
+      gradientClass: "bg-gradient-feature-4"
     },
     {
       icon: Gamepad2,
       title: "国服游戏",
       description: "降低游戏延迟，畅玩国服热门游戏",
-      gradientClass: "bg-gradient-feature-3"
+      gradientClass: "bg-gradient-feature-4"
     },
     {
       icon: GraduationCap,
@@ -30,13 +30,13 @@ const Scenarios = () => {
       icon: Users,
       title: "办公会议",
       description: "高效跨境视频会议，团队协作更流畅",
-      gradientClass: "bg-gradient-feature-5"
+      gradientClass: "bg-gradient-feature-4"
     },
     {
       icon: Radio,
       title: "达人直播",
       description: "高清流畅直播推流，内容创作更专业",
-      gradientClass: "bg-gradient-feature-6"
+      gradientClass: "bg-gradient-feature-4"
     }
   ];
 
@@ -73,10 +73,12 @@ const Scenarios = () => {
             return (
               <div
                 key={index}
-                className="group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6 md:p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
+                className="group relative p-6 md:p-8 bg-card/40 rounded-2xl border border-blue-400/20 hover:border-blue-400/40 transition-all duration-500 hover:-translate-y-2"
               >
+                {/* 背景渐变效果 */}
+                <div className="absolute inset-0 bg-blue-950/30 group-hover:bg-blue-500/30 rounded-2xl transition-all duration-500"></div>
                 {/* 图标容器 - 苹果风格方形 */}
-                <div className="relative w-14 h-14 md:w-16 md:h-16 mb-4 md:mb-6">
+                <div className="relative w-14 h-14 md:w-16 md:h-16 mb-4 md:mb-6 z-10">
                   {/* 外层光晕 */}
                   <div className={`absolute inset-0 ${scenario.gradientClass} rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-all duration-500`}></div>
                   {/* 图标主体 */}
@@ -89,15 +91,12 @@ const Scenarios = () => {
                 </div>
 
                 {/* 文字内容 */}
-                <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3">
+                <h3 className="relative z-10 text-xl md:text-2xl font-bold mb-2 md:mb-3 group-hover:text-primary transition-colors duration-300">
                   {scenario.title}
                 </h3>
-                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                <p className="relative z-10 text-sm md:text-base text-muted-foreground leading-relaxed">
                   {scenario.description}
                 </p>
-
-                {/* 悬停效果光晕 */}
-                <div className={`absolute inset-0 rounded-2xl ${scenario.gradientClass} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`} />
               </div>
             );
           })}

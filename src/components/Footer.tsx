@@ -31,11 +31,11 @@ const Footer = () => {
               专为海外华人打造的回国网络加速服务，让您在海外也能无缝享受国内的网络体验。
             </p>
             <div className="flex space-x-4">
-              <Button variant="outline" size="sm" className="hover-float">
+              <Button variant="outline" size="sm" className="border-blue-400/20 hover:border-blue-400/40 hover:bg-blue-500/10 transition-all duration-300">
                 <MessageCircle className="w-4 h-4 mr-2" />
                 微信群
               </Button>
-              <Button variant="outline" size="sm" className="hover-float">
+              <Button variant="outline" size="sm" className="border-blue-400/20 hover:border-blue-400/40 hover:bg-blue-500/10 transition-all duration-300">
                 <Mail className="w-4 h-4 mr-2" />
                 邮箱
               </Button>
@@ -116,9 +116,9 @@ const Footer = () => {
               <div className="flex gap-2">
                 <Input 
                   placeholder="输入邮箱地址" 
-                  className="bg-card/50 border-border/50 focus:border-primary"
+                  className="bg-card/50 border-blue-400/20 focus:border-blue-400/40 transition-colors duration-300"
                 />
-                <Button size="sm" className="bg-gradient-primary hover:shadow-strong">
+                <Button size="sm" className="bg-gradient-feature-4 text-white hover:shadow-lg hover:scale-105 transition-all duration-300">
                   订阅
                 </Button>
               </div>

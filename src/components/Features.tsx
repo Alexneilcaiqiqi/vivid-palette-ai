@@ -129,12 +129,12 @@ const Features = () => {
               ].map((stat, index) => (
                 <div key={stat.label} className="group relative">
                   {/* 卡片容器 */}
-                  <div className="relative p-4 sm:p-6 md:p-8 bg-card/30 backdrop-blur-sm rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
-                    {/* 背景渐变光效 */}
-                    <div className={`absolute inset-0 ${stat.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-500`}></div>
+                  <div className="relative p-4 sm:p-6 md:p-8 bg-card/40 rounded-2xl border border-blue-400/20 hover:border-blue-400/40 transition-all duration-500 hover:-translate-y-2">
+                    {/* 背景渐变效果 */}
+                    <div className="absolute inset-0 bg-black/50 group-hover:bg-blue-500/30 rounded-2xl transition-all duration-500"></div>
                     
                     {/* 图标 */}
-                    <div className="text-3xl mb-4 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="relative text-3xl mb-4 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
                       {stat.icon}
                     </div>
                     
@@ -148,12 +148,9 @@ const Features = () => {
                     </div>
                     
                     {/* 标签 */}
-                    <div className="text-foreground/80 font-medium text-sm sm:text-base md:text-lg group-hover:text-foreground transition-colors duration-300">
+                    <div className="relative text-foreground/80 font-medium text-sm sm:text-base md:text-lg group-hover:text-foreground transition-colors duration-300">
                       {stat.label}
                     </div>
-                    
-                    {/* 悬浮光效边框 */}
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl opacity-0 group-hover:opacity-100 -z-10 blur-sm transition-opacity duration-500"></div>
                   </div>
                 </div>
               ))}

@@ -120,7 +120,7 @@ const DownloadPage = () => {
 
           {/* 快速下载按钮 */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button size="xl" className="bg-gradient-feature-4 text-white hover:shadow-lg hover:scale-105 transition-all duration-300">
+            <Button size="xl" className="bg-gradient-to-b from-[#5DB5FF] via-[#7B8EFF] via-50% to-[#9B6FFF] text-white hover:shadow-lg hover:scale-105 transition-all duration-300">
               <Download className="mr-2 w-5 h-5" />
               智能下载
             </Button>
@@ -199,7 +199,7 @@ const DownloadPage = () => {
                   <div className="relative z-10 space-y-4">
                     {tutorial.steps.map((step, stepIndex) => (
                       <div key={stepIndex} className="flex items-start">
-                        <div className="w-8 h-8 bg-gradient-feature-4 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3 flex-shrink-0">
+                        <div className="w-8 h-8 bg-gradient-to-b from-[#5DB5FF] via-[#7B8EFF] via-50% to-[#9B6FFF] rounded-full flex items-center justify-center text-white font-bold text-sm mr-3 flex-shrink-0">
                           {stepIndex + 1}
                         </div>
                         <p className="text-foreground">{step}</p>
@@ -249,7 +249,7 @@ const DownloadPage = () => {
               </div>
             </div>
 
-            <Button size="xl" className="bg-gradient-feature-4 text-white hover:shadow-lg hover:scale-105 transition-all duration-300">
+            <Button size="xl" className="bg-gradient-to-b from-[#5DB5FF] via-[#7B8EFF] via-50% to-[#9B6FFF] text-white hover:shadow-lg hover:scale-105 transition-all duration-300">
               联系客服
             </Button>
           </div>

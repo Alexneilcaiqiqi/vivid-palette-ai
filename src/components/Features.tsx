@@ -122,10 +122,10 @@ const Features = () => {
             
             <div className="relative grid grid-cols-2 md:grid-cols-4 gap-12 sm:gap-16 md:gap-20 px-4 font-inter">
               {[
-                { number: "1M+", label: "Active Users", gradient: "bg-gradient-stat-1" },
-                { number: "50+", label: "Global Nodes", gradient: "bg-gradient-stat-2" },
-                { number: "99.9%", label: "Uptime SLA", gradient: "bg-gradient-stat-3" },
-                { number: "24/7", label: "Support", gradient: "bg-gradient-stat-4" }
+                { number: "1M+", label: "用户信赖", gradient: "bg-gradient-stat-1" },
+                { number: "50+", label: "全球节点", gradient: "bg-gradient-stat-2" },
+                { number: "99.9%", label: "稳定运行", gradient: "bg-gradient-stat-3" },
+                { number: "24/7", label: "技术支持", gradient: "bg-gradient-stat-4" }
               ].map((stat, index) => (
                 <div key={stat.label} className="group relative text-center">
                   {/* 数字 */}

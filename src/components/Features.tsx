@@ -7,21 +7,21 @@ const Features = () => {
       title: "极速连接",
       description: "采用最新加速技术，连接速度提升300%，观看4K视频无缓冲",
       highlight: "毫秒级延迟",
-      gradient: "bg-gradient-feature-1"
+      gradient: "bg-gradient-feature-4"
     },
     {
       icon: <Shield className="w-8 h-8" />,
       title: "军用级加密",
       description: "AES-256位加密技术，保护您的网络安全和隐私数据",
       highlight: "银行级安全",
-      gradient: "bg-gradient-feature-2"
+      gradient: "bg-gradient-feature-4"
     },
     {
       icon: <Globe className="w-8 h-8" />,
       title: "全球节点",
       description: "覆盖全球50+城市，智能选择最优线路，确保连接稳定",
       highlight: "50+节点",
-      gradient: "bg-gradient-feature-3"
+      gradient: "bg-gradient-feature-4"
     },
     {
       icon: <Users className="w-8 h-8" />,
@@ -35,14 +35,14 @@ const Features = () => {
       title: "7x24在线",
       description: "99.9%服务可用性，全年无休为您提供稳定的网络服务",
       highlight: "99.9%稳定",
-      gradient: "bg-gradient-feature-5"
+      gradient: "bg-gradient-feature-4"
     },
     {
       icon: <HeadphonesIcon className="w-8 h-8" />,
       title: "专业客服",
       description: "中文技术支持团队，微信群实时答疑，问题快速解决",
       highlight: "中文支持",
-      gradient: "bg-gradient-feature-6"
+      gradient: "bg-gradient-feature-4"
     }
   ];
 

@@ -74,7 +74,7 @@ const Features = () => {
         </header>
 
         {/* 特色功能网格 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 px-4">
+        <div className="relative z-30 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 px-4">
           {features.map((feature, index) => (
             <div
               key={feature.title}

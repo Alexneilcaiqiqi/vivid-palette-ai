@@ -143,7 +143,7 @@ const DownloadPage = () => {
                   
                   {/* 图标和名称 */}
                   <div className="relative z-10 flex items-center mb-4">
-                    <div className={`p-3 ${platform.gradient} rounded-xl text-white mr-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className="p-3 bg-gradient-to-b from-[#5DB5FF] via-[#7B8EFF] via-50% to-[#9B6FFF] rounded-xl text-white mr-4 group-hover:scale-110 transition-transform duration-300">
                       {platform.icon}
                     </div>
                     <div>

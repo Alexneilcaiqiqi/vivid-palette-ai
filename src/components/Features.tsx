@@ -122,10 +122,10 @@ const Features = () => {
             
             <div className="relative grid grid-cols-2 md:grid-cols-4 gap-12 sm:gap-16 md:gap-20 px-4 font-inter">
               {[
-                { number: "1M+", label: "用户信赖", gradient: "bg-gradient-stat-1" },
-                { number: "50+", label: "全球节点", gradient: "bg-gradient-stat-2" },
-                { number: "99.9%", label: "稳定运行", gradient: "bg-gradient-stat-3" },
-                { number: "24/7", label: "技术支持", gradient: "bg-gradient-stat-4" }
+                { number: "1M+", label: "用户信赖", labelEn: "Active Users", gradient: "bg-gradient-stat-1" },
+                { number: "50+", label: "全球节点", labelEn: "Global Nodes", gradient: "bg-gradient-stat-2" },
+                { number: "99.9%", label: "稳定运行", labelEn: "Uptime SLA", gradient: "bg-gradient-stat-3" },
+                { number: "24/7", label: "技术支持", labelEn: "Support", gradient: "bg-gradient-stat-4" }
               ].map((stat, index) => (
                 <div key={stat.label} className="group relative text-center">
                   {/* 数字 */}
@@ -136,8 +136,13 @@ const Features = () => {
                   </div>
                   
                   {/* 标签 */}
-                  <div className="text-foreground/60 font-medium text-sm sm:text-base md:text-lg tracking-wide uppercase group-hover:text-foreground/80 transition-colors duration-300">
-                    {stat.label}
+                  <div className="space-y-1">
+                    <div className="text-foreground/70 font-medium text-base sm:text-lg md:text-xl group-hover:text-foreground transition-colors duration-300">
+                      {stat.label}
+                    </div>
+                    <div className="text-foreground/50 font-normal text-xs sm:text-sm tracking-wide uppercase">
+                      {stat.labelEn}
+                    </div>
                   </div>
                 </div>
               ))}

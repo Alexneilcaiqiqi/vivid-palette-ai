@@ -64,8 +64,8 @@ const Features = () => {
           </div>
           
           <h2 id="features-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-6 px-4">
-            <span className="text-gradient-blue">为什么选择</span>
-            <span className="text-gradient-blue ml-2 md:ml-3">归巢</span>
+            <span className="text-gradient">为什么选择</span>
+            <span className="text-gradient ml-2 md:ml-3">归巢</span>
           </h2>
           
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">

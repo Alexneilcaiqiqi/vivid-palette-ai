@@ -39,8 +39,13 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen pt-16 flex items-center justify-center">
-      <div className="container mx-auto px-4 py-20">
+    <div className="min-h-screen pt-16 flex items-center justify-center relative overflow-hidden">
+      {/* 蓝色光晕装饰 */}
+      <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute top-1/2 right-1/4 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+      
+      <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           {/* 左侧信息 */}
@@ -58,8 +63,9 @@ const AuthPage = () => {
             {/* 特色功能 */}
             <div className="space-y-6">
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-feature-1 rounded-xl flex items-center justify-center">
-                  <Zap className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 bg-gradient-feature-4 rounded-[20px] flex items-center justify-center shadow-lg">
+                  <div className="absolute inset-0 bg-white/20 rounded-[20px]"></div>
+                  <Zap className="w-6 h-6 text-white relative z-10 drop-shadow-lg" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">极速连接</h3>
@@ -68,8 +74,9 @@ const AuthPage = () => {
               </div>
               
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-feature-2 rounded-xl flex items-center justify-center">
-                  <Shield className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 bg-gradient-feature-4 rounded-[20px] flex items-center justify-center shadow-lg">
+                  <div className="absolute inset-0 bg-white/20 rounded-[20px]"></div>
+                  <Shield className="w-6 h-6 text-white relative z-10 drop-shadow-lg" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">军用级加密</h3>
@@ -78,8 +85,9 @@ const AuthPage = () => {
               </div>
               
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-feature-3 rounded-xl flex items-center justify-center">
-                  <Globe className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 bg-gradient-feature-4 rounded-[20px] flex items-center justify-center shadow-lg">
+                  <div className="absolute inset-0 bg-white/20 rounded-[20px]"></div>
+                  <Globe className="w-6 h-6 text-white relative z-10 drop-shadow-lg" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">全球节点</h3>
@@ -89,7 +97,7 @@ const AuthPage = () => {
             </div>
 
             {/* 用户评价 */}
-            <div className="p-6 bg-card/30 rounded-2xl border border-border/50">
+            <div className="p-6 bg-card/40 rounded-2xl border border-blue-400/20 hover:border-blue-400/40 transition-all duration-300">
               <div className="flex items-center mb-3">
                 <div className="flex text-yellow-400">
                   {[...Array(5)].map((_, i) => (
@@ -105,7 +113,7 @@ const AuthPage = () => {
 
           {/* 右侧登录/注册表单 */}
           <div className="w-full max-w-md mx-auto">
-            <Card className="bg-card/30 border-border/50 backdrop-blur-xl">
+            <Card className="bg-card/40 border-blue-400/20 backdrop-blur-xl hover:border-blue-400/40 transition-all duration-300">
               <CardHeader className="text-center pb-4">
                 <div className="flex items-center justify-center mx-auto mb-4">
                   <img src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" alt="归巢" className="h-16" />
@@ -175,7 +183,7 @@ const AuthPage = () => {
                       
                       <Button 
                         type="submit" 
-                        className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
+                        className="w-full bg-gradient-to-b from-[#5DB5FF] via-[#7B8EFF] via-50% to-[#9B6FFF] text-white hover:shadow-neon-strong hover:scale-105 transition-all duration-300"
                         disabled={isLoading}
                       >
                         {isLoading ? "登录中..." : "登录"}
@@ -282,7 +290,7 @@ const AuthPage = () => {
                       
                       <Button 
                         type="submit" 
-                        className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
+                        className="w-full bg-gradient-to-b from-[#5DB5FF] via-[#7B8EFF] via-50% to-[#9B6FFF] text-white hover:shadow-neon-strong hover:scale-105 transition-all duration-300"
                         disabled={isLoading}
                       >
                         {isLoading ? "注册中..." : "注册账号"}

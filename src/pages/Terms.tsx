@@ -9,14 +9,19 @@ const Terms = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-primary/5">
+    <div className="min-h-screen bg-gradient-to-b from-background via-background to-primary/5 relative overflow-hidden">
+      {/* 蓝色光晕装饰 */}
+      <div className="absolute top-40 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute top-1/3 right-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute bottom-40 left-1/4 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+      
       <Header />
       
-      <main className="container mx-auto px-4 py-16 max-w-4xl">
+      <main className="container mx-auto px-4 py-16 max-w-4xl relative z-10">
         <div className="space-y-8">
           {/* Header */}
           <div className="text-center space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-5xl font-bold text-gradient">
               服务条款
             </h1>
             <p className="text-muted-foreground">
@@ -25,7 +30,7 @@ const Terms = () => {
           </div>
 
           {/* Important Notice */}
-          <div className="bg-primary/10 border border-primary/20 rounded-lg p-6">
+          <div className="bg-card/40 border border-blue-400/20 rounded-lg p-6 hover:border-blue-400/40 transition-all duration-300">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
               <div className="space-y-2">
@@ -229,7 +234,7 @@ const Terms = () => {
           </div>
 
           {/* Agreement Notice */}
-          <div className="bg-secondary/10 border border-secondary/20 rounded-lg p-6 mt-8">
+          <div className="bg-card/40 border border-blue-400/20 rounded-lg p-6 mt-8 hover:border-blue-400/40 transition-all duration-300">
             <p className="text-sm text-muted-foreground text-center">
               使用我们的服务即表示您已阅读、理解并同意遵守本服务条款的所有内容。
             </p>

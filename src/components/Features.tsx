@@ -68,7 +68,7 @@ const Features = () => {
             <span className="text-gradient ml-2 md:ml-3">归巢</span>
           </h2>
           
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
+          <p className="text-base sm:text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto px-4">
             专为海外华人打造的回国网络解决方案，让您在海外也能无缝享受国内的网络服务
           </p>
         </header>
@@ -102,7 +102,7 @@ const Features = () => {
                 {feature.title}
               </h3>
               
-              <p className="text-sm sm:text-base text-muted-foreground mb-4 leading-relaxed">
+              <p className="text-sm sm:text-base text-foreground/70 mb-4 leading-relaxed">
                 {feature.description}
               </p>
 
@@ -137,10 +137,10 @@ const Features = () => {
                   
                   {/* 标签 */}
                   <div className="space-y-1">
-                    <div className="text-foreground/70 font-medium text-base sm:text-lg md:text-xl group-hover:text-foreground transition-colors duration-300">
+                    <div className="text-foreground/80 font-medium text-base sm:text-lg md:text-xl group-hover:text-foreground transition-colors duration-300">
                       {stat.label}
                     </div>
-                    <div className="text-foreground/50 font-normal text-xs sm:text-sm tracking-wide uppercase">
+                    <div className="text-foreground/60 font-normal text-xs sm:text-sm tracking-wide uppercase">
                       {stat.labelEn}
                     </div>
                   </div>

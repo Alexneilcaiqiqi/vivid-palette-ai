@@ -9,20 +9,15 @@ const Privacy = () => {
   }, []);
 
   return (
-    <div className="min-h-screen relative overflow-hidden" itemScope itemType="https://schema.org/WebPage">
-      {/* 蓝色光晕装饰 */}
-      <div className="absolute top-40 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute top-1/3 right-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-      <div className="absolute bottom-40 left-1/4 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-      
+    <div className="min-h-screen" itemScope itemType="https://schema.org/WebPage">
       <Header />
-      <main className="container mx-auto px-4 py-16 md:py-24 relative z-10" role="main">
+      <main className="container mx-auto px-4 py-16 md:py-24" role="main">
         {/* 页面标题 */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center p-3 bg-gradient-feature-4 rounded-2xl mb-6 shadow-lg">
+          <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-2xl mb-6">
             <Shield className="w-8 h-8 text-primary" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
             隐私政策
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -35,7 +30,7 @@ const Privacy = () => {
         </div>
 
         {/* 特别提示 */}
-        <div className="max-w-4xl mx-auto mb-12 p-6 bg-card/40 border border-blue-400/20 rounded-2xl hover:border-blue-400/40 transition-all duration-300">
+        <div className="max-w-4xl mx-auto mb-12 p-6 bg-primary/5 border border-primary/20 rounded-2xl">
           <h2 className="text-xl font-bold mb-4 flex items-center">
             <Bell className="w-5 h-5 mr-2 text-primary" />
             特别提示
@@ -50,7 +45,7 @@ const Privacy = () => {
         {/* 主要内容 */}
         <div className="max-w-4xl mx-auto space-y-12">
           {/* 目录 */}
-          <section className="p-8 bg-card/40 backdrop-blur-sm border border-blue-400/20 rounded-2xl hover:border-blue-400/40 transition-all duration-300">
+          <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <FileText className="w-6 h-6 mr-3 text-primary" />
               目录
@@ -82,7 +77,7 @@ const Privacy = () => {
           </section>
 
           {/* 第一部分 */}
-          <section className="p-8 bg-card/40 backdrop-blur-sm border border-blue-400/20 rounded-2xl hover:border-blue-400/40 transition-all duration-300">
+          <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <Eye className="w-6 h-6 mr-3 text-primary" />
               一、我们如何收集和使用您的个人信息
@@ -139,7 +134,7 @@ const Privacy = () => {
           </section>
 
           {/* 第二部分 */}
-          <section className="p-8 bg-card/40 backdrop-blur-sm border border-blue-400/20 rounded-2xl hover:border-blue-400/40 transition-all duration-300">
+          <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <Globe className="w-6 h-6 mr-3 text-primary" />
               二、我们如何使用 Cookie 和同类技术
@@ -165,7 +160,7 @@ const Privacy = () => {
           </section>
 
           {/* 第三部分 */}
-          <section className="p-8 bg-card/40 backdrop-blur-sm border border-blue-400/20 rounded-2xl hover:border-blue-400/40 transition-all duration-300">
+          <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <Users className="w-6 h-6 mr-3 text-primary" />
               三、我们如何共享、转让、公开披露您的个人信息
@@ -202,7 +197,7 @@ const Privacy = () => {
           </section>
 
           {/* 第四部分 */}
-          <section className="p-8 bg-card/40 backdrop-blur-sm border border-blue-400/20 rounded-2xl hover:border-blue-400/40 transition-all duration-300">
+          <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <Lock className="w-6 h-6 mr-3 text-primary" />
               四、我们如何存储和保护您的个人信息
@@ -242,7 +237,7 @@ const Privacy = () => {
           </section>
 
           {/* 第五部分 */}
-          <section className="p-8 bg-card/40 backdrop-blur-sm border border-blue-400/20 rounded-2xl hover:border-blue-400/40 transition-all duration-300">
+          <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <Shield className="w-6 h-6 mr-3 text-primary" />
               五、您管理个人信息的权利
@@ -299,7 +294,7 @@ const Privacy = () => {
           </section>
 
           {/* 第六部分 */}
-          <section className="p-8 bg-card/40 backdrop-blur-sm border border-blue-400/20 rounded-2xl hover:border-blue-400/40 transition-all duration-300">
+          <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <Users className="w-6 h-6 mr-3 text-primary" />
               六、未成年人个人信息的保护
@@ -321,7 +316,7 @@ const Privacy = () => {
           </section>
 
           {/* 第七部分 */}
-          <section className="p-8 bg-card/40 backdrop-blur-sm border border-blue-400/20 rounded-2xl hover:border-blue-400/40 transition-all duration-300">
+          <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <FileText className="w-6 h-6 mr-3 text-primary" />
               七、隐私政策的变更和修订
@@ -349,7 +344,7 @@ const Privacy = () => {
           </section>
 
           {/* 第八部分 */}
-          <section className="p-8 bg-card/40 backdrop-blur-sm border border-blue-400/20 rounded-2xl hover:border-blue-400/40 transition-all duration-300">
+          <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <HelpCircle className="w-6 h-6 mr-3 text-primary" />
               八、如何联系我们
@@ -359,7 +354,7 @@ const Privacy = () => {
                 如果您对本隐私政策有任何疑问、意见或建议，或您在使用我们的服务时遇到任何与个人信息保护相关的问题，
                 您可以通过以下方式与我们联系：
               </p>
-              <div className="p-6 bg-card/40 rounded-xl space-y-3 border border-blue-400/20">
+              <div className="p-6 bg-primary/5 rounded-xl space-y-3">
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-primary" />
                   <div>
@@ -384,7 +379,7 @@ const Privacy = () => {
           </section>
 
           {/* 再次提醒 */}
-          <div className="p-6 bg-card/40 border border-blue-400/20 rounded-2xl text-center hover:border-blue-400/40 transition-all duration-300">
+          <div className="p-6 bg-primary/5 border border-primary/20 rounded-2xl text-center">
             <p className="text-foreground font-semibold mb-2">
               再次感谢您对归巢的信任！
             </p>

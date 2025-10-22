@@ -120,37 +120,29 @@ const Features = () => {
             {/* 背景装饰 */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 rounded-3xl blur-3xl"></div>
             
-            <div className="relative grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 px-4">
+            <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12 px-4">
               {[
                 { number: "100万+", label: "用户信赖", icon: "👥", gradient: "bg-gradient-stat-1" },
                 { number: "50+", label: "全球节点", icon: "🌍", gradient: "bg-gradient-stat-2" },
                 { number: "99.9%", label: "稳定运行", icon: "⚡", gradient: "bg-gradient-stat-3" },
                 { number: "24/7", label: "技术支持", icon: "🛡️", gradient: "bg-gradient-stat-4" }
               ].map((stat, index) => (
-                <div key={stat.label} className="group relative">
-                  {/* 卡片容器 */}
-                  <div className="relative p-4 sm:p-6 md:p-8 bg-card/40 rounded-2xl border border-blue-400/20 hover:border-blue-400/40 transition-all duration-500 hover:-translate-y-2">
-                    {/* 背景渐变效果 */}
-                    <div className="absolute inset-0 bg-black/50 group-hover:bg-blue-500/30 rounded-2xl transition-all duration-500"></div>
-                    
-                    {/* 图标 */}
-                    <div className="relative text-3xl mb-4 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                      {stat.icon}
+                <div key={stat.label} className="group relative text-center">
+                  {/* 图标 */}
+                  <div className="text-4xl sm:text-5xl mb-4 opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
+                    {stat.icon}
+                  </div>
+                  
+                  {/* 数字 */}
+                  <div className="relative mb-3">
+                    <div className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold ${stat.gradient} bg-clip-text text-transparent group-hover:scale-110 transition-all duration-300`}>
+                      {stat.number}
                     </div>
-                    
-                    {/* 数字 */}
-                    <div className="relative">
-                      <div className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold ${stat.gradient} bg-clip-text text-transparent mb-2 md:mb-3 group-hover:scale-110 transition-all duration-300`}>
-                        {stat.number}
-                      </div>
-                      {/* 数字下划线装饰 */}
-                      <div className={`w-8 sm:w-10 md:w-12 h-1 ${stat.gradient} rounded-full mx-auto mb-3 md:mb-4 opacity-60 group-hover:opacity-100 group-hover:w-12 sm:group-hover:w-14 md:group-hover:w-16 transition-all duration-300`}></div>
-                    </div>
-                    
-                    {/* 标签 */}
-                    <div className="relative text-foreground/80 font-medium text-sm sm:text-base md:text-lg group-hover:text-foreground transition-colors duration-300">
-                      {stat.label}
-                    </div>
+                  </div>
+                  
+                  {/* 标签 */}
+                  <div className="text-foreground/70 font-medium text-base sm:text-lg md:text-xl group-hover:text-foreground transition-colors duration-300">
+                    {stat.label}
                   </div>
                 </div>
               ))}

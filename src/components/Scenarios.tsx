@@ -84,7 +84,7 @@ const Scenarios = () => {
                   {/* 图标主体 */}
                   <div className={`relative w-full h-full ${scenario.gradientClass} rounded-2xl p-3 shadow-[0_8px_32px_rgba(0,0,0,0.12)] backdrop-blur-sm group-hover:scale-110 group-hover:shadow-[0_12px_48px_rgba(0,0,0,0.18)] transition-all duration-500`}>
                     {/* 内部高光 */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent rounded-2xl"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#5DB5FF] via-[#7B8EFF] via-50% to-[#9B6FFF] opacity-20 rounded-2xl"></div>
                     {/* 图标 */}
                     <Icon className="w-full h-full text-white relative z-10" aria-hidden="true" />
                   </div>

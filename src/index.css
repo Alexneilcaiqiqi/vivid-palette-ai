@@ -166,6 +166,15 @@
     animation: text-shimmer 3s ease-in-out infinite;
   }
 
+  .text-gradient-blue {
+    background: var(--gradient-feature-4);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: text-shimmer 3s ease-in-out infinite;
+  }
+
   .glass-effect {
     background: rgba(30, 30, 30, 0.3);
     backdrop-filter: blur(20px);

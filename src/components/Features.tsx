@@ -115,33 +115,28 @@ const Features = () => {
         </div>
 
         {/* 底部统计数据 */}
-        <div className="mt-24">
+        <div className="mt-32">
           <div className="relative">
             {/* 背景装饰 */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 rounded-3xl blur-3xl"></div>
             
-            <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12 px-4">
+            <div className="relative grid grid-cols-2 md:grid-cols-4 gap-12 sm:gap-16 md:gap-20 px-4 font-inter">
               {[
-                { number: "100万+", label: "用户信赖", icon: "👥", gradient: "bg-gradient-stat-1" },
-                { number: "50+", label: "全球节点", icon: "🌍", gradient: "bg-gradient-stat-2" },
-                { number: "99.9%", label: "稳定运行", icon: "⚡", gradient: "bg-gradient-stat-3" },
-                { number: "24/7", label: "技术支持", icon: "🛡️", gradient: "bg-gradient-stat-4" }
+                { number: "1M+", label: "Active Users", gradient: "bg-gradient-stat-1" },
+                { number: "50+", label: "Global Nodes", gradient: "bg-gradient-stat-2" },
+                { number: "99.9%", label: "Uptime SLA", gradient: "bg-gradient-stat-3" },
+                { number: "24/7", label: "Support", gradient: "bg-gradient-stat-4" }
               ].map((stat, index) => (
                 <div key={stat.label} className="group relative text-center">
-                  {/* 图标 */}
-                  <div className="text-4xl sm:text-5xl mb-4 opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
-                    {stat.icon}
-                  </div>
-                  
                   {/* 数字 */}
-                  <div className="relative mb-3">
-                    <div className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold ${stat.gradient} bg-clip-text text-transparent group-hover:scale-110 transition-all duration-300`}>
+                  <div className="relative mb-4">
+                    <div className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold ${stat.gradient} bg-clip-text text-transparent group-hover:scale-105 transition-all duration-500 tracking-tight`}>
                       {stat.number}
                     </div>
                   </div>
                   
                   {/* 标签 */}
-                  <div className="text-foreground/70 font-medium text-base sm:text-lg md:text-xl group-hover:text-foreground transition-colors duration-300">
+                  <div className="text-foreground/60 font-medium text-sm sm:text-base md:text-lg tracking-wide uppercase group-hover:text-foreground/80 transition-colors duration-300">
                     {stat.label}
                   </div>
                 </div>

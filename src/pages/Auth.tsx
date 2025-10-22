@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Shield, Zap, Globe } from "lucide-react";
+import Header from "@/components/Header";
 
 const AuthPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -39,7 +40,9 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen pt-16 flex items-center justify-center">
+    <>
+      <Header />
+      <div className="min-h-screen pt-16 flex items-center justify-center">
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
@@ -343,6 +346,7 @@ const AuthPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -49,7 +49,7 @@ const Features = () => {
   return (
     <section id="features" className="py-32 relative overflow-hidden" aria-labelledby="features-heading">
       {/* 顶部渐变蒙版 - 与首页自然衔接 */}
-      <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-[#0F0F0F] via-[#0F0F0F]/60 via-[#0F0F0F]/20 to-transparent pointer-events-none z-10"></div>
+      <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[#0F0F0F]/40 via-[#0F0F0F]/20 to-transparent pointer-events-none z-0"></div>
       
       {/* 蓝色光晕装饰 */}
       <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>

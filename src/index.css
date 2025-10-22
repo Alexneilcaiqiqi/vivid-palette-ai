@@ -64,7 +64,7 @@
     /* 统计数据渐变 - 统一为标题金色系（从上到下）*/
     --gradient-stat-1: linear-gradient(180deg, hsl(40 65% 85%), hsl(30 100% 72%));
     --gradient-stat-2: linear-gradient(180deg, hsl(40 65% 85%), hsl(30 100% 72%));
-    --gradient-stat-3: linear-gradient(180deg, hsl(215 90% 65%), hsl(225 85% 60%));
+    --gradient-stat-3: linear-gradient(180deg, hsl(40 65% 85%), hsl(30 100% 72%));
     --gradient-stat-4: linear-gradient(180deg, hsl(40 65% 85%), hsl(30 100% 72%));
     
     /* 增强光效阴影 - 金色和蓝色 */

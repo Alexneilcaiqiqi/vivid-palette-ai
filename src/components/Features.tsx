@@ -130,7 +130,7 @@ const Features = () => {
                 <div key={stat.label} className="group relative text-center">
                   {/* 数字 */}
                   <div className="relative mb-4">
-                    <div className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light ${stat.gradient} bg-clip-text text-transparent group-hover:scale-105 transition-all duration-500 tracking-tight`}>
+                    <div className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light ${stat.gradient} bg-clip-text text-transparent group-hover:scale-105 transition-all duration-500 tracking-tight`}>
                       {stat.number}
                     </div>
                   </div>

@@ -89,17 +89,32 @@ const AuthPage = () => {
             </div>
 
             {/* 用户评价 */}
-            <div className="p-6 bg-card/30 rounded-2xl border border-border/50">
-              <div className="flex items-center mb-3">
-                <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i}>⭐</span>
-                  ))}
+            <div className="space-y-4">
+              <div className="p-6 bg-card/30 rounded-2xl border border-border/50">
+                <div className="flex items-center mb-3">
+                  <div className="flex text-yellow-400">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i}>⭐</span>
+                    ))}
+                  </div>
+                  <span className="ml-2 text-sm text-muted-foreground">5.0/5.0</span>
                 </div>
-                <span className="ml-2 text-sm text-muted-foreground">5.0/5.0</span>
+                <p className="text-foreground mb-2">"归巢真的太好用了！连接速度超快，看国内视频完全没问题。"</p>
+                <p className="text-sm text-muted-foreground">- 来自美国的用户 张先生</p>
               </div>
-              <p className="text-foreground mb-2">"归巢真的太好用了！连接速度超快，看国内视频完全没问题。"</p>
-              <p className="text-sm text-muted-foreground">- 来自美国的用户 张先生</p>
+
+              <div className="p-6 bg-card/30 rounded-2xl border border-border/50">
+                <div className="flex items-center mb-3">
+                  <div className="flex text-yellow-400">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i}>⭐</span>
+                    ))}
+                  </div>
+                  <span className="ml-2 text-sm text-muted-foreground">5.0/5.0</span>
+                </div>
+                <p className="text-foreground mb-2">"在海外工作需要经常查询企查查和天眼查，之前用国内手机流量又慢又贵。归巢完美解决了我的痛点，速度快、价格实惠，商务办公必备！"</p>
+                <p className="text-sm text-muted-foreground">- 来自英国的用户 李女士</p>
+              </div>
             </div>
           </div>
 

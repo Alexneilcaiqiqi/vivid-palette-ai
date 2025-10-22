@@ -15,7 +15,7 @@ const DownloadPage = () => {
       requirements: "Windows 10/11 (64-bit)",
       downloadUrl: "#",
       features: ["一键连接", "智能路由", "开机自启"],
-      gradient: "gradient-feature-1"
+      gradient: "bg-gradient-feature-4"
     },
     {
       name: "macOS",
@@ -25,7 +25,7 @@ const DownloadPage = () => {
       requirements: "macOS 11.0 或更高版本",
       downloadUrl: "#",
       features: ["原生支持", "菜单栏控制", "系统集成"],
-      gradient: "gradient-feature-2"
+      gradient: "bg-gradient-feature-4"
     },
     {
       name: "iOS",
@@ -35,7 +35,7 @@ const DownloadPage = () => {
       requirements: "iOS 13.0 或更高版本",
       downloadUrl: "#",
       features: ["App Store 下载", "快捷指令", "Siri 支持"],
-      gradient: "gradient-feature-3"
+      gradient: "bg-gradient-feature-4"
     },
     {
       name: "Android",
@@ -45,7 +45,7 @@ const DownloadPage = () => {
       requirements: "Android 7.0 或更高版本",
       downloadUrl: "#",
       features: ["Google Play", "一键分享", "省电模式"],
-      gradient: "gradient-feature-4"
+      gradient: "bg-gradient-feature-4"
     },
     {
       name: "路由器固件",
@@ -55,7 +55,7 @@ const DownloadPage = () => {
       requirements: "支持OpenWrt的路由器",
       downloadUrl: "#",
       features: ["全家共享", "设备管控", "定时开关"],
-      gradient: "gradient-feature-5"
+      gradient: "bg-gradient-feature-4"
     },
     {
       name: "浏览器插件",
@@ -65,7 +65,7 @@ const DownloadPage = () => {
       requirements: "Chrome/Firefox/Safari",
       downloadUrl: "#",
       features: ["免费使用", "网页代理", "智能分流"],
-      gradient: "gradient-feature-6"
+      gradient: "bg-gradient-feature-4"
     }
   ];
 
@@ -120,11 +120,11 @@ const DownloadPage = () => {
 
           {/* 快速下载按钮 */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button size="xl" className="bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300">
+            <Button size="xl" className="bg-gradient-feature-4 text-white hover:shadow-lg hover:scale-105 transition-all duration-300">
               <Download className="mr-2 w-5 h-5" />
               智能下载
             </Button>
-            <Button variant="outline" size="xl" className="border-primary/30 hover:bg-primary/10">
+            <Button variant="outline" size="xl" className="border-blue-400/20 hover:border-blue-400/40 hover:bg-blue-500/10 transition-all duration-300">
               查看教程
             </Button>
           </div>
@@ -136,24 +136,27 @@ const DownloadPage = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {platforms.map((platform, index) => (
-              <Card key={platform.name} className="group relative bg-card/30 border-border/50 hover:border-primary/50 hover-float transition-all duration-500">
+              <Card key={platform.name} className="group relative bg-card/40 border-blue-400/20 hover:border-blue-400/40 hover:-translate-y-2 transition-all duration-500">
                 <CardContent className="p-6">
+                  {/* 背景渐变效果 */}
+                  <div className="absolute inset-0 bg-blue-950/30 group-hover:bg-blue-500/30 rounded-2xl transition-all duration-500"></div>
+                  
                   {/* 图标和名称 */}
-                  <div className="flex items-center mb-4">
-                    <div className={`p-3 bg-${platform.gradient} rounded-xl text-white mr-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="relative z-10 flex items-center mb-4">
+                    <div className={`p-3 ${platform.gradient} rounded-xl text-white mr-4 group-hover:scale-110 transition-transform duration-300`}>
                       {platform.icon}
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-foreground">{platform.name}</h3>
+                      <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">{platform.name}</h3>
                       <p className="text-sm text-muted-foreground">{platform.version} • {platform.size}</p>
                     </div>
                   </div>
 
                   {/* 系统要求 */}
-                  <p className="text-sm text-muted-foreground mb-4">{platform.requirements}</p>
+                  <p className="relative z-10 text-sm text-muted-foreground mb-4">{platform.requirements}</p>
 
                   {/* 特色功能 */}
-                  <div className="space-y-2 mb-6">
+                  <div className="relative z-10 space-y-2 mb-6">
                     {platform.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center">
                         <CheckCircle className="w-4 h-4 text-primary mr-2" />
@@ -163,7 +166,7 @@ const DownloadPage = () => {
                   </div>
 
                   {/* 下载按钮 */}
-                  <Button className={`w-full bg-${platform.gradient} hover:shadow-neon-strong hover:scale-105 transition-all duration-300`}>
+                  <Button className={`relative z-10 w-full ${platform.gradient} text-white hover:shadow-lg hover:scale-105 transition-all duration-300`}>
                     <Download className="mr-2 w-4 h-4" />
                     下载 {platform.name}
                   </Button>
@@ -187,13 +190,16 @@ const DownloadPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {tutorials.map((tutorial, index) => (
-              <Card key={tutorial.platform} className="bg-card/30 border-border/50 hover:border-primary/50 hover-float transition-all duration-300">
+              <Card key={tutorial.platform} className="group relative bg-card/40 border-blue-400/20 hover:border-blue-400/40 hover:-translate-y-2 transition-all duration-500">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-foreground mb-6 text-center">{tutorial.platform}</h3>
-                  <div className="space-y-4">
+                  {/* 背景渐变效果 */}
+                  <div className="absolute inset-0 bg-blue-950/30 group-hover:bg-blue-500/30 rounded-2xl transition-all duration-500"></div>
+                  
+                  <h3 className="relative z-10 text-xl font-bold text-foreground group-hover:text-primary mb-6 text-center transition-colors duration-300">{tutorial.platform}</h3>
+                  <div className="relative z-10 space-y-4">
                     {tutorial.steps.map((step, stepIndex) => (
                       <div key={stepIndex} className="flex items-start">
-                        <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center text-white font-bold text-sm mr-3 flex-shrink-0">
+                        <div className="w-8 h-8 bg-gradient-feature-4 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3 flex-shrink-0">
                           {stepIndex + 1}
                         </div>
                         <p className="text-foreground">{step}</p>
@@ -221,21 +227,21 @@ const DownloadPage = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Download className="w-8 h-8 text-primary" />
                 </div>
                 <h4 className="font-semibold text-foreground mb-2">下载问题</h4>
                 <p className="text-muted-foreground text-sm">下载失败、安装错误等问题</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Star className="w-8 h-8 text-primary" />
                 </div>
                 <h4 className="font-semibold text-foreground mb-2">使用教程</h4>
                 <p className="text-muted-foreground text-sm">详细的图文和视频教程</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Globe className="w-8 h-8 text-primary" />
                 </div>
                 <h4 className="font-semibold text-foreground mb-2">24/7客服</h4>
@@ -243,7 +249,7 @@ const DownloadPage = () => {
               </div>
             </div>
 
-            <Button size="xl" className="bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300">
+            <Button size="xl" className="bg-gradient-feature-4 text-white hover:shadow-lg hover:scale-105 transition-all duration-300">
               联系客服
             </Button>
           </div>

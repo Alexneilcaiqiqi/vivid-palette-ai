@@ -42,7 +42,7 @@ const Scenarios = () => {
 
   return (
     <section 
-      className="py-12 md:py-20 px-4 md:px-8 lg:px-16 relative overflow-hidden"
+      className="py-12 md:py-20 px-4 md:px-8 lg:px-16 relative overflow-hidden mt-[-100px]"
       aria-labelledby="scenarios-title"
     >
       {/* 背景装饰 */}

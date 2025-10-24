@@ -56,7 +56,7 @@ const Features = () => {
       <div className="absolute top-40 right-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
       <div className="absolute bottom-20 left-1/3 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       
-      <div className="container mx-auto px-4 relative z-20">
+      <div className="container mx-auto px-4 relative z-20 mt-[-100px]">
         {/* 标题部分 */}
         <header className="text-center mb-20">
           <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#5DB5FF] via-[#7B8EFF] via-50% to-[#9B6FFF] rounded-full border border-white/30 mb-6 shadow-[0_4px_12px_rgba(0,0,0,0.15)]">

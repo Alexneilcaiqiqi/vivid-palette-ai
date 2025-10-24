@@ -183,7 +183,7 @@ const Pricing = () => {
 
                 {/* 图标和标题 */}
                 <div className="relative z-10 text-center mb-6">
-                  <div className={`inline-flex p-3 ${plan.gradient} rounded-xl text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="inline-flex p-3 bg-gradient-primary rounded-xl text-white mb-4 group-hover:scale-110 transition-transform duration-300">
                     {plan.icon}
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">{plan.name}</h3>

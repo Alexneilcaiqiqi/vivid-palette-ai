@@ -76,7 +76,7 @@ const Scenarios = () => {
                 className="group relative p-6 md:p-8 bg-card/40 rounded-2xl border border-blue-400/20 hover:border-blue-400/40 transition-all duration-500 hover:-translate-y-2"
               >
                 {/* 背景渐变效果 */}
-                <div className="absolute inset-0 bg-blue-950/30 group-hover:bg-blue-500/30 rounded-2xl transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 rounded-2xl transition-all duration-500"></div>
                 {/* 图标容器 - 苹果风格方形 */}
                 <div className="relative w-14 h-14 md:w-16 md:h-16 mb-4 md:mb-6 z-10">
                   {/* 外层光晕 */}

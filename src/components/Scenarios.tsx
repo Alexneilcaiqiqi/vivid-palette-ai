@@ -52,7 +52,7 @@ const Scenarios = () => {
       <div className="absolute top-32 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-40 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
       
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10 mt-[-100px]">
         {/* 标题区域 */}
         <header className="text-center mb-12 md:mb-16">
           <h2 

@@ -120,27 +120,27 @@ const Features = () => {
             {/* 背景装饰 */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 rounded-3xl blur-3xl"></div>
             
-            <div className="relative grid grid-cols-2 md:grid-cols-4 gap-12 sm:gap-16 md:gap-20 px-4 font-inter">
+            <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 md:gap-16 px-4 font-inter">
               {[
                 { number: "1M+", label: "用户信赖", labelEn: "Active Users", gradient: "bg-gradient-stat-1" },
                 { number: "50+", label: "全球节点", labelEn: "Global Nodes", gradient: "bg-gradient-stat-2" },
                 { number: "99.9%", label: "稳定运行", labelEn: "Uptime SLA", gradient: "bg-gradient-stat-3" },
                 { number: "24/7", label: "技术支持", labelEn: "Support", gradient: "bg-gradient-stat-4" }
               ].map((stat, index) => (
-                <div key={stat.label} className="group relative text-center">
+                <div key={stat.label} className="group relative text-center border-r border-foreground/10 last:border-r-0">
                   {/* 数字 */}
-                  <div className="relative mb-4">
-                    <div className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light bg-clip-text text-transparent group-hover:scale-105 transition-all duration-500 tracking-tight ${stat.gradient} group-hover:bg-gradient-feature-4`}>
+                  <div className="relative mb-3">
+                    <div className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light bg-clip-text text-transparent group-hover:scale-105 transition-all duration-500 tracking-tight ${stat.gradient} group-hover:bg-gradient-feature-4`}>
                       {stat.number}
                     </div>
                   </div>
                   
                   {/* 标签 */}
                   <div className="space-y-1">
-                    <div className="text-foreground/80 font-medium text-base sm:text-lg md:text-xl group-hover:text-foreground transition-colors duration-300">
+                    <div className="text-foreground/80 font-medium text-sm sm:text-base md:text-lg group-hover:text-foreground transition-colors duration-300">
                       {stat.label}
                     </div>
-                    <div className="text-foreground/60 font-normal text-xs sm:text-sm tracking-wide uppercase">
+                    <div className="text-foreground/60 font-normal text-xs tracking-wide uppercase">
                       {stat.labelEn}
                     </div>
                   </div>

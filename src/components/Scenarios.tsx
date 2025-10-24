@@ -42,7 +42,7 @@ const Scenarios = () => {
 
   return (
     <section 
-      className="py-12 md:py-20 px-4 md:px-8 lg:px-16 relative overflow-hidden mt-[-300px]"
+      className="py-12 md:py-20 px-4 md:px-8 lg:px-16 relative overflow-hidden mt-[-200px]"
       aria-labelledby="scenarios-title"
     >
       {/* 背景装饰 */}
@@ -52,7 +52,7 @@ const Scenarios = () => {
       <div className="absolute top-32 right-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-40 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
       
-      <div className="max-w-7xl mx-auto relative z-10 mt-[-100px]">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* 标题区域 */}
         <header className="text-center mb-12 md:mb-16">
           <h2 

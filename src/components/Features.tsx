@@ -127,7 +127,7 @@ const Features = () => {
                 { number: "99.9%", label: "稳定运行", labelEn: "Uptime SLA", gradient: "bg-gradient-stat-3" },
                 { number: "24/7", label: "技术支持", labelEn: "Support", gradient: "bg-gradient-stat-4" }
               ].map((stat, index) => (
-                <div key={stat.label} className="group relative text-center border-r border-foreground/10 last:border-r-0">
+                <div key={stat.label} className="group relative text-center border-r border-foreground/10 last:border-r-0 px-4 md:px-6">
                   {/* 数字 */}
                   <div className="relative mb-3">
                     <div className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light bg-clip-text text-transparent group-hover:scale-105 transition-all duration-500 tracking-tight ${stat.gradient} group-hover:bg-gradient-feature-4`}>

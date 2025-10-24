@@ -179,7 +179,7 @@ const Pricing = () => {
                 } hover:-translate-y-2`}
               >
                 {/* 背景渐变效果 */}
-                <div className="absolute inset-0 bg-blue-950/30 group-hover:bg-blue-500/30 rounded-2xl transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 rounded-2xl transition-all duration-500"></div>
 
                 {/* 图标和标题 */}
                 <div className="relative z-10 text-center mb-6">

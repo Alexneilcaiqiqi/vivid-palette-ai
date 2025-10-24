@@ -237,6 +237,11 @@ const Pricing = () => {
                   <ShoppingCart className="w-5 h-5 mr-2 inline-block align-middle" />
                   <span className="align-middle">点击选择 {plan.buttonText}</span>
                 </div>
+
+                {/* 悬浮光效 */}
+                {plan.popular && (
+                  <div className="absolute -inset-0.5 bg-gradient-primary opacity-20 rounded-2xl -z-10 blur"></div>
+                )}
               </div>
             </div>
           ))}

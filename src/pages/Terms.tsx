@@ -2,8 +2,11 @@ import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Shield, FileText, AlertCircle, Scale, UserCheck, Ban } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Terms = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -17,10 +20,10 @@ const Terms = () => {
           {/* Header */}
           <div className="text-center space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              服务条款
+              {t('terms.title')}
             </h1>
             <p className="text-muted-foreground">
-              最后更新日期：2024年1月
+              {t('terms.lastUpdate')}
             </p>
           </div>
 
@@ -29,9 +32,9 @@ const Terms = () => {
             <div className="flex items-start gap-3">
               <AlertCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
               <div className="space-y-2">
-                <h3 className="font-semibold text-lg">重要提示</h3>
+                <h3 className="font-semibold text-lg">{t('terms.importantTitle')}</h3>
                 <p className="text-sm text-muted-foreground">
-                  在使用我们的服务之前，请仔细阅读并理解本服务条款。使用我们的服务即表示您同意接受本条款的约束。
+                  {t('terms.importantText')}
                 </p>
               </div>
             </div>
@@ -43,7 +46,7 @@ const Terms = () => {
             <section className="space-y-4">
               <div className="flex items-center gap-3">
                 <FileText className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl font-bold">1. 服务说明</h2>
+                <h2 className="text-2xl font-bold">{t('terms.section1Title')}</h2>
               </div>
               <div className="space-y-3 text-muted-foreground pl-9">
                 <p>
@@ -65,7 +68,7 @@ const Terms = () => {
             <section className="space-y-4">
               <div className="flex items-center gap-3">
                 <UserCheck className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl font-bold">2. 用户责任与义务</h2>
+                <h2 className="text-2xl font-bold">{t('terms.section2Title')}</h2>
               </div>
               <div className="space-y-3 text-muted-foreground pl-9">
                 <p>作为服务用户，您同意：</p>
@@ -84,7 +87,7 @@ const Terms = () => {
             <section className="space-y-4">
               <div className="flex items-center gap-3">
                 <Ban className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl font-bold">3. 禁止行为</h2>
+                <h2 className="text-2xl font-bold">{t('terms.section3Title')}</h2>
               </div>
               <div className="space-y-3 text-muted-foreground pl-9">
                 <p>使用我们的服务时，严禁从事以下行为：</p>
@@ -103,7 +106,7 @@ const Terms = () => {
             <section className="space-y-4">
               <div className="flex items-center gap-3">
                 <Scale className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl font-bold">4. 知识产权</h2>
+                <h2 className="text-2xl font-bold">{t('terms.section4Title')}</h2>
               </div>
               <div className="space-y-3 text-muted-foreground pl-9">
                 <p>
@@ -119,7 +122,7 @@ const Terms = () => {
             <section className="space-y-4">
               <div className="flex items-center gap-3">
                 <Shield className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl font-bold">5. 免责声明</h2>
+                <h2 className="text-2xl font-bold">{t('terms.section5Title')}</h2>
               </div>
               <div className="space-y-3 text-muted-foreground pl-9">
                 <p>
@@ -141,7 +144,7 @@ const Terms = () => {
             <section className="space-y-4">
               <div className="flex items-center gap-3">
                 <FileText className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl font-bold">6. 费用与支付</h2>
+                <h2 className="text-2xl font-bold">{t('terms.section6Title')}</h2>
               </div>
               <div className="space-y-3 text-muted-foreground pl-9">
                 <p>
@@ -160,7 +163,7 @@ const Terms = () => {
             <section className="space-y-4">
               <div className="flex items-center gap-3">
                 <AlertCircle className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl font-bold">7. 账户终止</h2>
+                <h2 className="text-2xl font-bold">{t('terms.section7Title')}</h2>
               </div>
               <div className="space-y-3 text-muted-foreground pl-9">
                 <p>
@@ -182,7 +185,7 @@ const Terms = () => {
             <section className="space-y-4">
               <div className="flex items-center gap-3">
                 <FileText className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl font-bold">8. 条款变更</h2>
+                <h2 className="text-2xl font-bold">{t('terms.section8Title')}</h2>
               </div>
               <div className="space-y-3 text-muted-foreground pl-9">
                 <p>
@@ -198,7 +201,7 @@ const Terms = () => {
             <section className="space-y-4">
               <div className="flex items-center gap-3">
                 <Scale className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl font-bold">9. 争议解决</h2>
+                <h2 className="text-2xl font-bold">{t('terms.section9Title')}</h2>
               </div>
               <div className="space-y-3 text-muted-foreground pl-9">
                 <p>
@@ -214,15 +217,15 @@ const Terms = () => {
             <section className="space-y-4">
               <div className="flex items-center gap-3">
                 <FileText className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl font-bold">10. 联系我们</h2>
+                <h2 className="text-2xl font-bold">{t('terms.section10Title')}</h2>
               </div>
               <div className="space-y-3 text-muted-foreground pl-9">
                 <p>
                   如您对本服务条款有任何疑问或建议，请通过以下方式联系我们：
                 </p>
                 <ul className="list-none space-y-2">
-                  <li>📧 邮箱：support@example.com</li>
-                  <li>💬 在线客服：工作日 9:00-18:00</li>
+                  <li>📧 {t('terms.contactEmail')}</li>
+                  <li>💬 {t('terms.contactService')}</li>
                 </ul>
               </div>
             </section>
@@ -231,7 +234,7 @@ const Terms = () => {
           {/* Agreement Notice */}
           <div className="bg-secondary/10 border border-secondary/20 rounded-lg p-6 mt-8">
             <p className="text-sm text-muted-foreground text-center">
-              使用我们的服务即表示您已阅读、理解并同意遵守本服务条款的所有内容。
+              {t('terms.agreementText')}
             </p>
           </div>
         </div>

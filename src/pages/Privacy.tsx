@@ -2,8 +2,11 @@ import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Shield, Lock, Eye, Users, FileText, Bell, Globe, HelpCircle, Mail } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Privacy = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -18,14 +21,14 @@ const Privacy = () => {
             <Shield className="w-8 h-8 text-primary" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
-            隐私政策
+            {t('privacy.title')}
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            归巢 GuiChao 深知个人信息对您的重要性，我们将按照法律法规的要求，采取相应安全保护措施，尽力保护您的个人信息安全可控。
+            {t('privacy.subtitle')}
           </p>
           <div className="mt-6 text-sm text-muted-foreground">
-            <p>更新日期：2024年12月30日</p>
-            <p>生效日期：2024年12月30日</p>
+            <p>{t('privacy.updateDate')}</p>
+            <p>{t('privacy.effectiveDate')}</p>
           </div>
         </div>
 
@@ -33,12 +36,10 @@ const Privacy = () => {
         <div className="max-w-4xl mx-auto mb-12 p-6 bg-primary/5 border border-primary/20 rounded-2xl">
           <h2 className="text-xl font-bold mb-4 flex items-center">
             <Bell className="w-5 h-5 mr-2 text-primary" />
-            特别提示
+            {t('privacy.importantTitle')}
           </h2>
           <p className="text-muted-foreground leading-relaxed">
-            请您仔细阅读本《归巢隐私政策》（尤其是<strong className="text-foreground">加粗</strong>的内容）并确定了解我们对您个人信息的处理规则。
-            在阅读过程中，如您有任何疑问，可通过本政策中约定的联系方式与我们联系。
-            <strong className="text-foreground">如您不同意本协议中的任何条款，您应立即停止访问和使用归巢服务。</strong>
+            {t('privacy.importantText')}
           </p>
         </div>
 
@@ -48,17 +49,17 @@ const Privacy = () => {
           <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <FileText className="w-6 h-6 mr-3 text-primary" />
-              目录
+              {t('privacy.tocTitle')}
             </h2>
             <ul className="space-y-3 text-muted-foreground">
-              <li className="hover:text-primary transition-colors cursor-pointer">一、我们如何收集和使用您的个人信息</li>
-              <li className="hover:text-primary transition-colors cursor-pointer">二、我们如何使用 Cookie 和同类技术</li>
-              <li className="hover:text-primary transition-colors cursor-pointer">三、我们如何共享、转让、公开披露您的个人信息</li>
-              <li className="hover:text-primary transition-colors cursor-pointer">四、我们如何存储和保护您的个人信息</li>
-              <li className="hover:text-primary transition-colors cursor-pointer">五、您管理个人信息的权利</li>
-              <li className="hover:text-primary transition-colors cursor-pointer">六、未成年人个人信息的保护</li>
-              <li className="hover:text-primary transition-colors cursor-pointer">七、隐私政策的变更和修订</li>
-              <li className="hover:text-primary transition-colors cursor-pointer">八、如何联系我们</li>
+              <li className="hover:text-primary transition-colors cursor-pointer">{t('privacy.section1')}</li>
+              <li className="hover:text-primary transition-colors cursor-pointer">{t('privacy.section2')}</li>
+              <li className="hover:text-primary transition-colors cursor-pointer">{t('privacy.section3')}</li>
+              <li className="hover:text-primary transition-colors cursor-pointer">{t('privacy.section4')}</li>
+              <li className="hover:text-primary transition-colors cursor-pointer">{t('privacy.section5')}</li>
+              <li className="hover:text-primary transition-colors cursor-pointer">{t('privacy.section6')}</li>
+              <li className="hover:text-primary transition-colors cursor-pointer">{t('privacy.section7')}</li>
+              <li className="hover:text-primary transition-colors cursor-pointer">{t('privacy.section8')}</li>
             </ul>
           </section>
 
@@ -80,7 +81,7 @@ const Privacy = () => {
           <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <Eye className="w-6 h-6 mr-3 text-primary" />
-              一、我们如何收集和使用您的个人信息
+              {t('privacy.section1')}
             </h2>
             <div className="space-y-6">
               <div>
@@ -137,7 +138,7 @@ const Privacy = () => {
           <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <Globe className="w-6 h-6 mr-3 text-primary" />
-              二、我们如何使用 Cookie 和同类技术
+              {t('privacy.section2')}
             </h2>
             <div className="space-y-6">
               <p className="text-muted-foreground leading-relaxed">
@@ -163,7 +164,7 @@ const Privacy = () => {
           <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <Users className="w-6 h-6 mr-3 text-primary" />
-              三、我们如何共享、转让、公开披露您的个人信息
+              {t('privacy.section3')}
             </h2>
             <div className="space-y-6">
               <div>
@@ -200,7 +201,7 @@ const Privacy = () => {
           <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <Lock className="w-6 h-6 mr-3 text-primary" />
-              四、我们如何存储和保护您的个人信息
+              {t('privacy.section4')}
             </h2>
             <div className="space-y-6">
               <div>
@@ -240,7 +241,7 @@ const Privacy = () => {
           <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <Shield className="w-6 h-6 mr-3 text-primary" />
-              五、您管理个人信息的权利
+              {t('privacy.section5')}
             </h2>
             <div className="space-y-6">
               <p className="text-muted-foreground leading-relaxed">
@@ -297,7 +298,7 @@ const Privacy = () => {
           <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <Users className="w-6 h-6 mr-3 text-primary" />
-              六、未成年人个人信息的保护
+              {t('privacy.section6')}
             </h2>
             <div className="space-y-4">
               <p className="text-muted-foreground leading-relaxed">
@@ -319,7 +320,7 @@ const Privacy = () => {
           <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <FileText className="w-6 h-6 mr-3 text-primary" />
-              七、隐私政策的变更和修订
+              {t('privacy.section7')}
             </h2>
             <div className="space-y-4">
               <p className="text-muted-foreground leading-relaxed">
@@ -347,7 +348,7 @@ const Privacy = () => {
           <section className="p-8 bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl">
             <h2 className="text-2xl font-bold mb-6 flex items-center">
               <HelpCircle className="w-6 h-6 mr-3 text-primary" />
-              八、如何联系我们
+              {t('privacy.section8')}
             </h2>
             <div className="space-y-4">
               <p className="text-muted-foreground leading-relaxed">
@@ -358,14 +359,14 @@ const Privacy = () => {
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-primary" />
                   <div>
-                    <p className="font-semibold text-foreground">电子邮件</p>
+                    <p className="font-semibold text-foreground">{t('privacy.contactEmail')}</p>
                     <p className="text-muted-foreground">privacy@guichao.win</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <Globe className="w-5 h-5 text-primary" />
                   <div>
-                    <p className="font-semibold text-foreground">公司名称</p>
+                    <p className="font-semibold text-foreground">{t('privacy.companyName')}</p>
                     <p className="text-muted-foreground">HK Guichao Technology Co., Limited</p>
                   </div>
                 </div>
@@ -381,10 +382,10 @@ const Privacy = () => {
           {/* 再次提醒 */}
           <div className="p-6 bg-primary/5 border border-primary/20 rounded-2xl text-center">
             <p className="text-foreground font-semibold mb-2">
-              再次感谢您对归巢的信任！
+              {t('privacy.thanksTitle')}
             </p>
             <p className="text-muted-foreground">
-              我们将竭诚为您提供安全、可靠的网络加速服务，并持续保护您的个人信息安全。
+              {t('privacy.thanksText')}
             </p>
           </div>
         </div>

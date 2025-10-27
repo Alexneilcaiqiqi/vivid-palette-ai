@@ -1,8 +1,10 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const NotFound = () => {
   const location = useLocation();
+  const { t } = useLanguage();
 
   useEffect(() => {
     console.error(
@@ -19,11 +21,11 @@ const NotFound = () => {
             <span className="text-white font-bold text-4xl">404</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-foreground">页面</span>
-            <span className="text-gradient ml-3">走丢了</span>
+            <span className="text-foreground">{t('notFound.title')}</span>
+            <span className="text-gradient ml-3">{t('notFound.titleBrand')}</span>
           </h1>
           <p className="text-xl text-muted-foreground mb-8">
-            抱歉，您访问的页面不存在或已被移动
+            {t('notFound.subtitle')}
           </p>
         </div>
         
@@ -32,10 +34,10 @@ const NotFound = () => {
             href="/" 
             className="inline-flex items-center px-8 py-3 bg-gradient-primary text-white rounded-lg hover:shadow-neon-strong hover:scale-105 transition-all duration-300 font-medium"
           >
-            返回首页
+            {t('notFound.backHome')}
           </a>
           <p className="text-sm text-muted-foreground">
-            或者您可以尝试使用导航菜单找到您需要的内容
+            {t('notFound.hint')}
           </p>
         </div>
       </div>

@@ -7,8 +7,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Shield, Zap, Globe } from "lucide-react";
 import Header from "@/components/Header";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const AuthPage = () => {
+  const { t } = useLanguage();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -50,11 +52,11 @@ const AuthPage = () => {
           <div className="space-y-8">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="text-foreground">加入</span>
-                <span className="text-gradient ml-3">归巢</span>
+                <span className="text-foreground">{t('auth.joinTitle')}</span>
+                <span className="text-gradient ml-3">{t('auth.joinBrand')}</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                专为海外华人打造的回国网络加速服务，让您在海外也能无缝享受国内的网络体验。
+                {t('auth.subtitle')}
               </p>
             </div>
 
@@ -65,8 +67,8 @@ const AuthPage = () => {
                   <Zap className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">极速连接</h3>
-                  <p className="text-muted-foreground text-sm">毫秒级延迟，4K视频无缓冲</p>
+                  <h3 className="font-semibold text-foreground">{t('auth.fastConnection')}</h3>
+                  <p className="text-muted-foreground text-sm">{t('auth.fastDesc')}</p>
                 </div>
               </div>
               
@@ -75,8 +77,8 @@ const AuthPage = () => {
                   <Shield className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">军用级加密</h3>
-                  <p className="text-muted-foreground text-sm">AES-256位加密，保护隐私安全</p>
+                  <h3 className="font-semibold text-foreground">{t('auth.militaryEncryption')}</h3>
+                  <p className="text-muted-foreground text-sm">{t('auth.encryptionDesc')}</p>
                 </div>
               </div>
               
@@ -85,8 +87,8 @@ const AuthPage = () => {
                   <Globe className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">全球节点</h3>
-                  <p className="text-muted-foreground text-sm">覆盖50+城市，智能路由优化</p>
+                  <h3 className="font-semibold text-foreground">{t('auth.globalNodes')}</h3>
+                  <p className="text-muted-foreground text-sm">{t('auth.nodesDesc')}</p>
                 </div>
               </div>
             </div>
@@ -102,8 +104,8 @@ const AuthPage = () => {
                   </div>
                   <span className="ml-2 text-sm text-muted-foreground">5.0/5.0</span>
                 </div>
-                <p className="text-foreground mb-2">"归巢真的太好用了！连接速度超快，看国内视频完全没问题。"</p>
-                <p className="text-sm text-muted-foreground">- 来自美国的用户 张先生</p>
+                <p className="text-foreground mb-2">{t('auth.review1')}</p>
+                <p className="text-sm text-muted-foreground">{t('auth.reviewer1')}</p>
               </div>
 
               <div className="p-6 bg-card/30 rounded-2xl border border-border/50">
@@ -115,8 +117,8 @@ const AuthPage = () => {
                   </div>
                   <span className="ml-2 text-sm text-muted-foreground">5.0/5.0</span>
                 </div>
-                <p className="text-foreground mb-2">"在海外工作需要经常查询企查查和天眼查，之前用国内手机流量又慢又贵。归巢完美解决了我的痛点，速度快、价格实惠，商务办公必备！"</p>
-                <p className="text-sm text-muted-foreground">- 来自英国的用户 李女士</p>
+                <p className="text-foreground mb-2">{t('auth.review2')}</p>
+                <p className="text-sm text-muted-foreground">{t('auth.reviewer2')}</p>
               </div>
             </div>
           </div>
@@ -128,29 +130,29 @@ const AuthPage = () => {
                 <div className="flex items-center justify-center mx-auto mb-4">
                   <img src="/lovable-uploads/5b8e0c01-b116-40df-ace4-3794622b3737.png" alt="归巢" className="h-16" />
                 </div>
-                <CardTitle className="text-2xl">欢迎使用归巢</CardTitle>
-                <CardDescription>请登录或注册您的账号</CardDescription>
+                <CardTitle className="text-2xl">{t('auth.welcomeTitle')}</CardTitle>
+                <CardDescription>{t('auth.welcomeDesc')}</CardDescription>
               </CardHeader>
               
               <CardContent>
                 <Tabs defaultValue="login" className="w-full">
                   <TabsList className="grid w-full grid-cols-2 mb-6">
-                    <TabsTrigger value="login">登录</TabsTrigger>
-                    <TabsTrigger value="register">注册</TabsTrigger>
+                    <TabsTrigger value="login">{t('auth.login')}</TabsTrigger>
+                    <TabsTrigger value="register">{t('auth.register')}</TabsTrigger>
                   </TabsList>
                   
                   {/* 登录表单 */}
                   <TabsContent value="login">
                     <form onSubmit={handleLogin} className="space-y-4">
                       <div className="space-y-2">
-                        <Label htmlFor="login-email">邮箱</Label>
+                        <Label htmlFor="login-email">{t('auth.email')}</Label>
                         <div className="relative">
                           <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                           <Input
                             id="login-email"
                             name="email"
                             type="email"
-                            placeholder="请输入邮箱地址"
+                            placeholder={t('auth.emailPlaceholder')}
                             value={formData.email}
                             onChange={handleInputChange}
                             className="pl-10 bg-background/50 border-border/50 focus:border-primary"
@@ -160,14 +162,14 @@ const AuthPage = () => {
                       </div>
                       
                       <div className="space-y-2">
-                        <Label htmlFor="login-password">密码</Label>
+                        <Label htmlFor="login-password">{t('auth.password')}</Label>
                         <div className="relative">
                           <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                           <Input
                             id="login-password"
                             name="password"
                             type={showPassword ? "text" : "password"}
-                            placeholder="请输入密码"
+                            placeholder={t('auth.passwordPlaceholder')}
                             value={formData.password}
                             onChange={handleInputChange}
                             className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
@@ -186,9 +188,9 @@ const AuthPage = () => {
                       <div className="flex items-center justify-between text-sm">
                         <label className="flex items-center space-x-2 cursor-pointer">
                           <input type="checkbox" className="rounded border-border" />
-                          <span className="text-muted-foreground">记住我</span>
+                          <span className="text-muted-foreground">{t('auth.rememberMe')}</span>
                         </label>
-                        <a href="#" className="text-primary hover:underline">忘记密码？</a>
+                        <a href="#" className="text-primary hover:underline">{t('auth.forgotPassword')}</a>
                       </div>
                       
                       <Button 
@@ -196,15 +198,15 @@ const AuthPage = () => {
                         className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
                         disabled={isLoading}
                       >
-                        {isLoading ? "登录中..." : "登录"}
+                        {isLoading ? t('auth.loggingIn') : t('auth.loginButton')}
                         <ArrowRight className="ml-2 w-4 h-4" />
                       </Button>
                       
                       <p className="text-xs text-center text-muted-foreground mt-4">
-                        登录即表示您同意我们的
-                        <Link to="/terms" className="text-primary hover:underline ml-1">服务条款</Link>
-                        和
-                        <Link to="/privacy" className="text-primary hover:underline ml-1">隐私协议</Link>
+                        {t('auth.agreeTerms1')}
+                        <Link to="/terms" className="text-primary hover:underline ml-1">{t('auth.agreeTerms2')}</Link>
+                        {t('auth.agreeTerms3')}
+                        <Link to="/privacy" className="text-primary hover:underline ml-1">{t('auth.agreeTerms4')}</Link>
                       </p>
                     </form>
                   </TabsContent>
@@ -213,14 +215,14 @@ const AuthPage = () => {
                   <TabsContent value="register">
                     <form onSubmit={handleRegister} className="space-y-4">
                       <div className="space-y-2">
-                        <Label htmlFor="register-username">用户名</Label>
+                        <Label htmlFor="register-username">{t('auth.username')}</Label>
                         <div className="relative">
                           <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                           <Input
                             id="register-username"
                             name="username"
                             type="text"
-                            placeholder="请输入用户名"
+                            placeholder={t('auth.usernamePlaceholder')}
                             value={formData.username}
                             onChange={handleInputChange}
                             className="pl-10 bg-background/50 border-border/50 focus:border-primary"
@@ -230,14 +232,14 @@ const AuthPage = () => {
                       </div>
                       
                       <div className="space-y-2">
-                        <Label htmlFor="register-email">邮箱</Label>
+                        <Label htmlFor="register-email">{t('auth.email')}</Label>
                         <div className="relative">
                           <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                           <Input
                             id="register-email"
                             name="email"
                             type="email"
-                            placeholder="请输入邮箱地址"
+                            placeholder={t('auth.emailPlaceholder')}
                             value={formData.email}
                             onChange={handleInputChange}
                             className="pl-10 bg-background/50 border-border/50 focus:border-primary"
@@ -247,14 +249,14 @@ const AuthPage = () => {
                       </div>
                       
                       <div className="space-y-2">
-                        <Label htmlFor="register-password">密码</Label>
+                        <Label htmlFor="register-password">{t('auth.password')}</Label>
                         <div className="relative">
                           <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                           <Input
                             id="register-password"
                             name="password"
                             type={showPassword ? "text" : "password"}
-                            placeholder="请输入密码（至少8位）"
+                            placeholder={t('auth.passwordPlaceholder8')}
                             value={formData.password}
                             onChange={handleInputChange}
                             className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
@@ -272,14 +274,14 @@ const AuthPage = () => {
                       </div>
                       
                       <div className="space-y-2">
-                        <Label htmlFor="confirm-password">确认密码</Label>
+                        <Label htmlFor="confirm-password">{t('auth.confirmPassword')}</Label>
                         <div className="relative">
                           <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                           <Input
                             id="confirm-password"
                             name="confirmPassword"
                             type="password"
-                            placeholder="请再次输入密码"
+                            placeholder={t('auth.confirmPasswordPlaceholder')}
                             value={formData.confirmPassword}
                             onChange={handleInputChange}
                             className="pl-10 bg-background/50 border-border/50 focus:border-primary"
@@ -291,10 +293,10 @@ const AuthPage = () => {
                       <div className="flex items-start space-x-2">
                         <input type="checkbox" className="rounded border-border mt-1" required />
                         <span className="text-sm text-muted-foreground">
-                          我已阅读并同意
-                          <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
-                          和
-                          <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
+                          {t('auth.readAgree')}
+                          <Link to="/terms" className="text-primary hover:underline ml-1">{`《${t('auth.termsLink')}》`}</Link>
+                          {t('auth.agreeTerms3')}
+                          <Link to="/privacy" className="text-primary hover:underline ml-1">{`《${t('auth.privacyLink')}》`}</Link>
                         </span>
                       </div>
                       
@@ -303,7 +305,7 @@ const AuthPage = () => {
                         className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
                         disabled={isLoading}
                       >
-                        {isLoading ? "注册中..." : "注册账号"}
+                        {isLoading ? t('auth.registering') : t('auth.registerButton')}
                         <ArrowRight className="ml-2 w-4 h-4" />
                       </Button>
                     </form>
@@ -317,7 +319,7 @@ const AuthPage = () => {
                       <div className="w-full border-t border-border/50"></div>
                     </div>
                     <div className="relative flex justify-center text-sm">
-                      <span className="px-2 bg-card text-muted-foreground">或</span>
+                      <span className="px-2 bg-card text-muted-foreground">{t('auth.orDivider')}</span>
                     </div>
                   </div>
                   
@@ -329,14 +331,14 @@ const AuthPage = () => {
                         <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                         <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                       </svg>
-                      使用 Google 登录
+                      {t('auth.googleLogin')}
                     </Button>
                     
                     <Button variant="outline" className="w-full border-border/50 hover:bg-background/50">
                       <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.024-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.1.12.112.225.085.347-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.751-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.986C24.007 5.367 18.641.001 12.017.001z"/>
                       </svg>
-                      使用微信登录
+                      {t('auth.wechatLogin')}
                     </Button>
                   </div>
                 </div>

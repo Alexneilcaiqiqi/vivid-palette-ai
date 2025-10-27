@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X, Globe, LogOut, Shield } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/contexts/AuthContext";
 import {
   Select,
   SelectContent,
@@ -16,6 +17,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const { user, isAdmin, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,17 +95,41 @@ const Header = () => {
             </SelectContent>
           </Select>
           
-          <Button variant="ghost" size="sm" className="hover-float" asChild>
-            <Link to="/auth">{t('header.login')}</Link>
-          </Button>
-          <Button 
-            variant="default" 
-            size="sm" 
-            className="bg-gradient-to-r from-[#5DB5FF] via-[#7B8EFF] to-[#9B6FFF] text-white shadow-cyan hover:shadow-purple hover:scale-105 transition-all duration-300" 
-            asChild
-          >
-            <Link to="/auth">{t('header.freeTrial')}</Link>
-          </Button>
+          {user ? (
+            <>
+              {isAdmin && (
+                <Button variant="outline" size="sm" className="hover-float" asChild>
+                  <Link to="/admin">
+                    <Shield className="w-4 h-4 mr-2" />
+                    后台管理
+                  </Link>
+                </Button>
+              )}
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="hover-float"
+                onClick={signOut}
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                退出登录
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button variant="ghost" size="sm" className="hover-float" asChild>
+                <Link to="/auth">{t('header.login')}</Link>
+              </Button>
+              <Button 
+                variant="default" 
+                size="sm" 
+                className="bg-gradient-to-r from-[#5DB5FF] via-[#7B8EFF] to-[#9B6FFF] text-white shadow-cyan hover:shadow-purple hover:scale-105 transition-all duration-300" 
+                asChild
+              >
+                <Link to="/auth">{t('header.freeTrial')}</Link>
+              </Button>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -151,17 +177,40 @@ const Header = () => {
             </div>
             
             <div className="flex flex-col space-y-2 pt-4 border-t border-border/50">
-              <Button variant="ghost" size="sm" asChild>
-                <Link to="/auth">{t('header.login')}</Link>
-              </Button>
-              <Button 
-                variant="default" 
-                size="sm" 
-                className="bg-gradient-to-r from-[#5DB5FF] via-[#7B8EFF] to-[#9B6FFF] text-white" 
-                asChild
-              >
-                <Link to="/auth">{t('header.freeTrial')}</Link>
-              </Button>
+              {user ? (
+                <>
+                  {isAdmin && (
+                    <Button variant="outline" size="sm" asChild>
+                      <Link to="/admin">
+                        <Shield className="w-4 h-4 mr-2" />
+                        后台管理
+                      </Link>
+                    </Button>
+                  )}
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={signOut}
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    退出登录
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button variant="ghost" size="sm" asChild>
+                    <Link to="/auth">{t('header.login')}</Link>
+                  </Button>
+                  <Button 
+                    variant="default" 
+                    size="sm" 
+                    className="bg-gradient-to-r from-[#5DB5FF] via-[#7B8EFF] to-[#9B6FFF] text-white" 
+                    asChild
+                  >
+                    <Link to="/auth">{t('header.freeTrial')}</Link>
+                  </Button>
+                </>
+              )}
             </div>
           </nav>
         </div>

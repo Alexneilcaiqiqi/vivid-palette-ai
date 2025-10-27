@@ -1,47 +1,50 @@
 import { Shield, Zap, Globe, Users, Clock, HeadphonesIcon } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Features = () => {
+  const { t } = useLanguage();
+  
   const features = [
     {
       icon: <Zap className="w-8 h-8" />,
-      title: "极速连接",
-      description: "采用最新加速技术，连接速度提升300%，观看4K视频无缓冲",
-      highlight: "毫秒级延迟",
+      title: t('features.speed'),
+      description: t('features.speedDesc'),
+      highlight: t('features.speedHighlight'),
       gradient: "bg-gradient-feature-4"
     },
     {
       icon: <Shield className="w-8 h-8" />,
-      title: "军用级加密",
-      description: "AES-256位加密技术，保护您的网络安全和隐私数据",
-      highlight: "银行级安全",
+      title: t('features.encryption'),
+      description: t('features.encryptionDesc'),
+      highlight: t('features.encryptionHighlight'),
       gradient: "bg-gradient-feature-4"
     },
     {
       icon: <Globe className="w-8 h-8" />,
-      title: "全球节点",
-      description: "覆盖全球50+城市，智能选择最优线路，确保连接稳定",
-      highlight: "50+节点",
+      title: t('features.nodes'),
+      description: t('features.nodesDesc'),
+      highlight: t('features.nodesHighlight'),
       gradient: "bg-gradient-feature-4"
     },
     {
       icon: <Users className="w-8 h-8" />,
-      title: "多设备支持",
-      description: "一个账户支持10台设备同时使用，全家共享无忧",
-      highlight: "10台设备",
+      title: t('features.devices'),
+      description: t('features.devicesDesc'),
+      highlight: t('features.devicesHighlight'),
       gradient: "bg-gradient-feature-4"
     },
     {
       icon: <Clock className="w-8 h-8" />,
-      title: "7x24在线",
-      description: "99.9%服务可用性，全年无休为您提供稳定的网络服务",
-      highlight: "99.9%稳定",
+      title: t('features.uptime'),
+      description: t('features.uptimeDesc'),
+      highlight: t('features.uptimeHighlight'),
       gradient: "bg-gradient-feature-4"
     },
     {
       icon: <HeadphonesIcon className="w-8 h-8" />,
-      title: "专业客服",
-      description: "中文技术支持团队，微信群实时答疑，问题快速解决",
-      highlight: "中文支持",
+      title: t('features.support'),
+      description: t('features.supportDesc'),
+      highlight: t('features.supportHighlight'),
       gradient: "bg-gradient-feature-4"
     }
   ];
@@ -60,16 +63,16 @@ const Features = () => {
         {/* 标题部分 */}
         <header className="text-center mb-20">
           <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#5DB5FF] via-[#7B8EFF] via-50% to-[#9B6FFF] rounded-full border border-white/30 mb-6 shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
-            <span className="text-sm text-white font-medium">⚡ 产品特色</span>
+            <span className="text-sm text-white font-medium">{t('features.badge')}</span>
           </div>
           
           <h2 id="features-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 px-4">
-            <span className="text-gradient">为什么选择</span>
-            <span className="text-gradient ml-2 md:ml-3">归巢</span>
+            <span className="text-gradient">{t('features.title')}</span>
+            <span className="text-gradient ml-2 md:ml-3">{t('features.titleBrand')}</span>
           </h2>
           
           <p className="text-base sm:text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto px-4">
-            专为海外华人打造的回国网络解决方案，让您在海外也能无缝享受国内的网络服务
+            {t('features.subtitle')}
           </p>
         </header>
 
@@ -122,10 +125,10 @@ const Features = () => {
             
             <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 md:gap-16 px-4 font-inter">
               {[
-                { number: "1M+", label: "用户信赖", labelEn: "Active Users", gradient: "bg-gradient-stat-1" },
-                { number: "50+", label: "全球节点", labelEn: "Global Nodes", gradient: "bg-gradient-stat-2" },
-                { number: "99.9%", label: "稳定运行", labelEn: "Uptime SLA", gradient: "bg-gradient-stat-3" },
-                { number: "24/7", label: "技术支持", labelEn: "Support", gradient: "bg-gradient-stat-4" }
+                { number: t('features.stat1'), label: t('features.stat1Label'), labelEn: t('features.stat1En'), gradient: "bg-gradient-stat-1" },
+                { number: t('features.stat2'), label: t('features.stat2Label'), labelEn: t('features.stat2En'), gradient: "bg-gradient-stat-2" },
+                { number: t('features.stat3'), label: t('features.stat3Label'), labelEn: t('features.stat3En'), gradient: "bg-gradient-stat-3" },
+                { number: t('features.stat4'), label: t('features.stat4Label'), labelEn: t('features.stat4En'), gradient: "bg-gradient-stat-4" }
               ].map((stat, index) => (
                 <div key={stat.label} className="group relative text-center border-r border-foreground/10 last:border-r-0 px-4 md:px-6">
                   {/* 数字 */}

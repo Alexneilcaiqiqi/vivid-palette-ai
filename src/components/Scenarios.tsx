@@ -1,41 +1,44 @@
 import { Film, Trophy, Gamepad2, GraduationCap, Users, Radio } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Scenarios = () => {
+  const { t } = useLanguage();
+  
   const scenarios = [
     {
       icon: Film,
-      title: "影音娱乐",
-      description: "流畅观看国内视频平台，享受高清流媒体",
+      title: t('scenarios.video'),
+      description: t('scenarios.videoDesc'),
       gradientClass: "bg-gradient-feature-4"
     },
     {
       icon: Trophy,
-      title: "体育赛事",
-      description: "实时观看大陆体育赛事直播，不错过精彩瞬间",
+      title: t('scenarios.sports'),
+      description: t('scenarios.sportsDesc'),
       gradientClass: "bg-gradient-feature-4"
     },
     {
       icon: Gamepad2,
-      title: "国服游戏",
-      description: "降低游戏延迟，畅玩国服热门游戏",
+      title: t('scenarios.gaming'),
+      description: t('scenarios.gamingDesc'),
       gradientClass: "bg-gradient-feature-4"
     },
     {
       icon: GraduationCap,
-      title: "远程学习",
-      description: "稳定连接大陆教育平台，在线学习无忧",
+      title: t('scenarios.education'),
+      description: t('scenarios.educationDesc'),
       gradientClass: "bg-gradient-feature-4"
     },
     {
       icon: Users,
-      title: "办公会议",
-      description: "高效跨境视频会议，团队协作更流畅",
+      title: t('scenarios.meeting'),
+      description: t('scenarios.meetingDesc'),
       gradientClass: "bg-gradient-feature-4"
     },
     {
       icon: Radio,
-      title: "达人直播",
-      description: "高清流畅直播推流，内容创作更专业",
+      title: t('scenarios.streaming'),
+      description: t('scenarios.streamingDesc'),
       gradientClass: "bg-gradient-feature-4"
     }
   ];
@@ -59,10 +62,10 @@ const Scenarios = () => {
             id="scenarios-title"
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gradient"
           >
-            支持加速多种场景
+            {t('scenarios.title')}
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            无论是娱乐、学习还是工作，归巢为您提供全方位的加速支持
+            {t('scenarios.subtitle')}
           </p>
         </header>
 

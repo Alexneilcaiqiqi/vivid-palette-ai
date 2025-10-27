@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Check, Star, Crown, Zap, CreditCard, Smartphone, DollarSign, Apple, Chrome, X, ShoppingCart } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Pricing = () => {
+  const { t, language } = useLanguage();
   const [isPaymentDialogOpen, setIsPaymentDialogOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<{
     name: string;
@@ -11,7 +13,6 @@ const Pricing = () => {
   } | null>(null);
 
   const handlePlanSelect = (plan: { name: string; price: string; period: string }) => {
-    // 最简单的测试 - 改变页面标题
     document.title = `已选择: ${plan.name}`;
     setSelectedPlan(plan);
     setIsPaymentDialogOpen(true);
@@ -20,102 +21,93 @@ const Pricing = () => {
   const paymentMethods = [
     {
       id: "wechat",
-      name: "微信支付",
+      name: t('pricing.wechat'),
       icon: <Smartphone className="w-6 h-6" />,
-      description: "使用微信快速支付",
+      description: t('pricing.wechatDesc'),
       gradient: "bg-gradient-feature-4"
     },
     {
       id: "alipay_hk",
-      name: "香港支付宝",
+      name: t('pricing.alipayHK'),
       icon: <DollarSign className="w-6 h-6" />,
-      description: "支付宝(香港)便捷支付",
+      description: t('pricing.alipayHKDesc'),
       gradient: "bg-gradient-feature-4"
     },
     {
       id: "paypal",
-      name: "PayPal",
+      name: t('pricing.paypal'),
       icon: <CreditCard className="w-6 h-6" />,
-      description: "全球通用在线支付",
+      description: t('pricing.paypalDesc'),
       gradient: "bg-gradient-feature-4"
     },
     {
       id: "google_pay",
-      name: "Google Pay",
+      name: t('pricing.googlePay'),
       icon: <Chrome className="w-6 h-6" />,
-      description: "Google 快速支付",
+      description: t('pricing.googlePayDesc'),
       gradient: "bg-gradient-feature-4"
     },
     {
       id: "apple_pay",
-      name: "Apple Pay",
+      name: t('pricing.applePay'),
       icon: <Apple className="w-6 h-6" />,
-      description: "Apple 设备专用支付",
+      description: t('pricing.applePayDesc'),
       gradient: "bg-gradient-feature-4"
     },
     {
       id: "stripe",
-      name: "Stripe",
+      name: t('pricing.stripe'),
       icon: <CreditCard className="w-6 h-6" />,
-      description: "信用卡/借记卡支付",
+      description: t('pricing.stripeDesc'),
       gradient: "bg-gradient-feature-4"
     }
   ];
+
+  const trialFeatures = language === 'zh' 
+    ? ["3天免费试用", "2台设备同时在线", "基础线路访问", "标准客服支持", "1GB/天流量限制"]
+    : ["3-day free trial", "2 devices simultaneously", "Basic route access", "Standard support", "1GB/day data limit"];
+
+  const standardFeatures = language === 'zh'
+    ? ["5台设备同时在线", "高速专线访问", "无流量限制", "7x24客服支持", "全球50+节点", "智能路由优化"]
+    : ["5 devices simultaneously", "High-speed dedicated access", "Unlimited data", "7x24 support", "Global 50+ nodes", "Smart routing optimization"];
+
+  const premiumFeatures = language === 'zh'
+    ? ["10台设备同时在线", "VIP专属线路", "无限流量使用", "优先技术支持", "全球节点任选", "游戏加速优化", "独立IP可选", "远程技术支持"]
+    : ["10 devices simultaneously", "VIP exclusive routes", "Unlimited data usage", "Priority technical support", "Global node selection", "Gaming acceleration", "Dedicated IP optional", "Remote technical support"];
+
   const plans = [
     {
-      name: "体验版",
+      name: t('pricing.trial'),
       icon: <Zap className="w-6 h-6" />,
-      price: "免费",
-      period: "3天试用",
-      description: "新用户专享，体验归巢服务",
-      features: [
-        "3天免费试用",
-        "2台设备同时在线", 
-        "基础线路访问",
-        "标准客服支持",
-        "1GB/天流量限制"
-      ],
-      buttonText: "立即试用",
+      price: t('pricing.trialPrice'),
+      period: t('pricing.trialPeriod'),
+      description: t('pricing.trialDesc'),
+      features: trialFeatures,
+      buttonText: t('pricing.trialButton'),
       buttonVariant: "outline" as const,
       popular: false,
       gradient: "bg-gradient-feature-4"
     },
     {
-      name: "标准版",
+      name: t('pricing.standard'),
       icon: <Star className="w-6 h-6" />,
       price: "29",
-      period: "/月",
-      description: "个人用户推荐，性价比之选",
-      features: [
-        "5台设备同时在线",
-        "高速专线访问",
-        "无流量限制",
-        "7x24客服支持",
-        "全球50+节点",
-        "智能路由优化"
-      ],
-      buttonText: "选择标准版",
+      period: language === 'zh' ? "/月" : "/month",
+      description: t('pricing.standardDesc'),
+      features: standardFeatures,
+      buttonText: t('pricing.standardButton'),
       buttonVariant: "default" as const,
       popular: true,
       gradient: "bg-gradient-feature-4"
     },
     {
-      name: "旗舰版", 
+      name: t('pricing.premium'),
       icon: <Crown className="w-6 h-6" />,
       price: "59",
-      period: "/月",
-      description: "家庭/企业用户首选",
-      features: [
-        "10台设备同时在线",
-        "VIP专属线路",
-        "无限流量使用",
-        "优先技术支持",
-        "全球节点任选",
-        "游戏加速优化",
-        "独立IP可选",
-        "远程技术支持"
-      ],
-      buttonText: "选择旗舰版",
+      period: language === 'zh' ? "/月" : "/month",
+      description: t('pricing.premiumDesc'),
+      features: premiumFeatures,
+      buttonText: t('pricing.premiumButton'),
       buttonVariant: "default" as const,
       popular: false,
       gradient: "bg-gradient-feature-4"
@@ -133,21 +125,21 @@ const Pricing = () => {
         {/* 标题部分 */}
         <header className="text-center mb-20">
           <div className="inline-flex items-center px-4 py-2 bg-card/50 rounded-full border border-primary/20 mb-6 glass-effect">
-            <span className="text-sm text-primary font-medium">💰 套餐价格</span>
+            <span className="text-sm text-primary font-medium">{t('pricing.badge')}</span>
           </div>
           
           <h2 id="pricing-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 px-4">
-            <span className="text-foreground">选择适合您的</span>
-            <span className="text-gradient ml-2 md:ml-3">套餐</span>
+            <span className="text-foreground">{t('pricing.title')}</span>
+            <span className="text-gradient ml-2 md:ml-3">{t('pricing.titleBrand')}</span>
           </h2>
           
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 px-4">
-            灵活的价格方案，满足不同用户需求。支持微信、支付宝、USDT等多种支付方式
+            {t('pricing.subtitle')}
           </p>
 
           {/* 优惠提示 */}
           <div className="inline-flex items-center px-4 py-2 bg-gradient-primary/10 rounded-full border border-primary/30">
-            <span className="text-primary font-medium">🎉 年付用户享8折优惠，可节省高达HK$140</span>
+            <span className="text-primary font-medium">{t('pricing.discount')}</span>
           </div>
         </header>
 
@@ -166,7 +158,7 @@ const Pricing = () => {
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
                   <div className="bg-gradient-primary px-4 py-1 rounded-full text-white text-sm font-medium pulse-strong shadow-neon">
-                    🔥 最受欢迎
+                    {t('pricing.popular')}
                   </div>
                 </div>
               )}
@@ -235,7 +227,7 @@ const Pricing = () => {
                   } hover:scale-105`}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2 inline-block align-middle" />
-                  <span className="align-middle">点击选择 {plan.buttonText}</span>
+                  <span className="align-middle">{t('pricing.selectPlan')} {plan.buttonText}</span>
                 </div>
 
                 {/* 悬浮光效 */}
@@ -254,22 +246,22 @@ const Pricing = () => {
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-primary/20 rounded-full flex items-center justify-center mb-3">
                 <span className="text-primary font-bold text-lg sm:text-xl">7</span>
               </div>
-              <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">7天无忧退款</h4>
-              <p className="text-muted-foreground text-xs sm:text-sm">不满意随时退款</p>
+              <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">{t('pricing.guarantee1')}</h4>
+              <p className="text-muted-foreground text-xs sm:text-sm">{t('pricing.guarantee1Desc')}</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-primary/20 rounded-full flex items-center justify-center mb-3">
                 <span className="text-primary font-bold text-lg sm:text-xl">24</span>
               </div>
-              <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">24小时客服</h4>
-              <p className="text-muted-foreground text-xs sm:text-sm">随时为您解答问题</p>
+              <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">{t('pricing.guarantee2')}</h4>
+              <p className="text-muted-foreground text-xs sm:text-sm">{t('pricing.guarantee2Desc')}</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-primary/20 rounded-full flex items-center justify-center mb-3">
                 <span className="text-primary font-bold text-lg sm:text-xl">∞</span>
               </div>
-              <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">无限流量</h4>
-              <p className="text-muted-foreground text-xs sm:text-sm">畅享高速网络体验</p>
+              <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">{t('pricing.guarantee3')}</h4>
+              <p className="text-muted-foreground text-xs sm:text-sm">{t('pricing.guarantee3Desc')}</p>
             </div>
           </div>
         </div>
@@ -282,7 +274,7 @@ const Pricing = () => {
             <div className="p-6">
               {/* 头部 */}
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-foreground">选择支付方式</h2>
+                <h2 className="text-2xl font-bold text-foreground">{t('pricing.paymentTitle')}</h2>
                 <button
                   onClick={() => setIsPaymentDialogOpen(false)}
                   className="p-2 hover:bg-muted rounded-full transition-colors"
@@ -329,12 +321,12 @@ const Pricing = () => {
                 onClick={() => setIsPaymentDialogOpen(false)}
                 className="w-full p-3 border border-primary/30 rounded-lg text-foreground hover:bg-primary/10 transition-colors"
               >
-                取消
+                {t('pricing.cancel')}
               </button>
 
               {/* 安全提示 */}
               <p className="text-xs text-muted-foreground text-center mt-4">
-                支付过程安全加密，支持7天无忧退款
+                {t('pricing.paymentSecurity')}
               </p>
             </div>
           </div>

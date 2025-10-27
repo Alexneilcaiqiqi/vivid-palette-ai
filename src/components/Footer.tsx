@@ -150,7 +150,13 @@ const Footer = () => {
               >
                 {t('footer.terms')}
               </Link>
-              <a href="#" className="hover:text-primary transition-colors">{t('footer.cookie')}</a>
+              <Link 
+                to="/cookie" 
+                className="hover:text-primary transition-colors"
+                onClick={() => window.scrollTo(0, 0)}
+              >
+                {t('footer.cookie')}
+              </Link>
             </div>
           </div>
           

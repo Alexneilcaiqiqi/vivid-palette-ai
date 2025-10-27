@@ -412,6 +412,70 @@ const translations = {
       thanksTitle: '再次感谢您对归巢的信任！',
       thanksText: '我们将竭诚为您提供安全、可靠的网络加速服务，并持续保护您的个人信息安全。'
     },
+    cookie: {
+      title: 'Cookie政策',
+      lastUpdated: '最后更新日期：2024年1月',
+      intro: '本Cookie政策说明AI智联加速器（"我们"或"本服务"）如何使用Cookie及类似技术来识别您访问我们的网站、应用程序和服务时的身份。本政策解释了这些技术是什么，我们为何使用它们，以及您如何控制它们的使用。',
+      
+      whatAreCookies: {
+        title: '什么是Cookie？',
+        content: 'Cookie是当您访问网站时放置在您的计算机或移动设备上的小型数据文件。网站所有者广泛使用Cookie来使其网站运行或更高效地运行，以及提供报告信息。网站所有者设置的Cookie称为"第一方Cookie"。由网站所有者以外的各方设置的Cookie称为"第三方Cookie"。第三方Cookie启用可在网站上或通过网站提供的第三方功能或功能（例如广告、交互式内容和分析）。设置这些第三方Cookie的各方可以在您的计算机访问相关网站以及访问某些其他网站时识别您的计算机。'
+      },
+      
+      whyWeUseCookies: {
+        title: '我们为什么使用Cookie？',
+        content: '我们使用第一方和第三方Cookie的原因有多种。出于技术原因，我们的网站需要某些Cookie才能运行，我们将其称为"必需"或"绝对必要"Cookie。其他Cookie还使我们能够跟踪和定位用户的兴趣，以增强我们在线资产上的体验。第三方通过我们的网站提供Cookie，用于广告、分析和其他目的。'
+      },
+      
+      typesOfCookies: {
+        title: '我们使用的Cookie类型',
+        essential: {
+          title: '必需Cookie',
+          description: '这些Cookie对于向您提供通过我们的网站可用的服务以及使用其某些功能（例如访问安全区域）是绝对必要的。由于这些Cookie对于向您提供服务是绝对必要的，因此您无法拒绝它们而不影响我们网站的功能。您可以通过更改浏览器设置来阻止或删除它们，但这可能会影响网站的某些功能。'
+        },
+        performance: {
+          title: '性能和功能Cookie',
+          description: '这些Cookie用于增强我们网站的性能和功能，但对其使用并非必不可少。但是，如果没有这些Cookie，某些功能（如视频）可能会变得不可用，或者您将需要每次访问网站时输入您的登录详细信息，因为我们无法记住您之前已登录。'
+        },
+        analytics: {
+          title: '分析和定制Cookie',
+          description: '这些Cookie收集用于汇总分析我们网站使用情况的信息，以便我们可以改善访问者体验。它们还允许我们测试新想法并监控和改善我们网站的性能。例如，我们使用这些Cookie来计算网站的访问者数量并查看访问者如何浏览网站。我们使用这些信息来改进我们网站的工作方式，例如，通过确保用户轻松找到所需内容。'
+        },
+        advertising: {
+          title: '广告Cookie',
+          description: '这些Cookie用于使广告信息与您更相关。它们执行诸如防止相同广告不断重新出现、确保广告正确显示给广告主以及在某些情况下根据您的兴趣选择广告等功能。'
+        }
+      },
+      
+      howToControl: {
+        title: '如何控制Cookie？',
+        content: '您有权决定是否接受或拒绝Cookie。您可以通过在Cookie同意管理器中设置您的首选项来行使您的Cookie权利。Cookie同意管理器允许您选择接受或拒绝哪些类别的Cookie。必需Cookie不能被拒绝，因为它们对于向您提供服务是绝对必要的。',
+        browserSettings: '如果您选择拒绝Cookie，您仍可以使用我们的网站，但您对网站某些功能和区域的访问可能会受到限制。您还可以设置或修改Web浏览器控件以接受或拒绝Cookie。'
+      },
+      
+      specificCookies: {
+        title: '我们使用的具体Cookie',
+        sessionCookies: '会话Cookie：这些Cookie在您浏览会话期间临时存储信息。它们在您关闭浏览器时被删除。',
+        persistentCookies: '持久Cookie：这些Cookie在您的设备上保留更长时间，用于记住您的偏好设置和登录信息。',
+        securityCookies: '安全Cookie：这些Cookie用于验证用户身份、防止欺诈性使用登录凭证，并保护用户数据免受未经授权方的侵害。'
+      },
+      
+      thirdParty: {
+        title: '第三方Cookie',
+        content: '除了我们自己的Cookie之外，我们还可能使用各种第三方Cookie来报告我们网站的使用统计信息、投放广告等。这些第三方服务提供商可能会使用Cookie来收集您访问我们网站和其他网站的信息。我们不控制这些第三方Cookie，它们的使用受提供它们的公司的隐私政策约束。'
+      },
+      
+      updates: {
+        title: '本Cookie政策的更新',
+        content: '我们可能会不时更新本Cookie政策，以反映我们使用的Cookie的更改或出于其他运营、法律或监管原因。因此，请定期重新访问本Cookie政策以了解我们对Cookie和相关技术的使用情况。本Cookie政策顶部的日期表示其最后更新时间。'
+      },
+      
+      contact: {
+        title: '联系我们',
+        content: '如果您对我们使用Cookie或其他技术有任何疑问，请通过以下方式与我们联系：',
+        email: '邮箱：support@ai-accelerator.com'
+      }
+    },
     terms: {
       title: '服务条款',
       lastUpdate: '最后更新日期：2024年1月',
@@ -840,6 +904,70 @@ const translations = {
       companyName: 'Company Name',
       thanksTitle: 'Thank you again for trusting GuiChao!',
       thanksText: 'We will provide secure and reliable network acceleration services and continue to protect your personal information.'
+    },
+    cookie: {
+      title: 'Cookie Policy',
+      lastUpdated: 'Last Updated: January 2024',
+      intro: 'This Cookie Policy explains how AI Smart Accelerator (\'we\' or \'the Service\') uses cookies and similar technologies to recognize you when you visit our websites, applications, and services. It explains what these technologies are, why we use them, and how you can control their use.',
+      
+      whatAreCookies: {
+        title: 'What Are Cookies?',
+        content: 'Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners to make their websites work, or to work more efficiently, as well as to provide reporting information. Cookies set by the website owner (in this case, AI Smart Accelerator) are called \'first-party cookies.\' Cookies set by parties other than the website owner are called \'third-party cookies.\' Third-party cookies enable third-party features or functionality to be provided on or through the website (e.g., advertising, interactive content, and analytics). The parties that set these third-party cookies can recognize your computer both when it visits the website in question and also when it visits certain other websites.'
+      },
+      
+      whyWeUseCookies: {
+        title: 'Why Do We Use Cookies?',
+        content: 'We use first-party and third-party cookies for several reasons. Some cookies are required for technical reasons for our websites to operate, and we refer to these as \'essential\' or \'strictly necessary\' cookies. Other cookies enable us to track and target the interests of our users to enhance the experience on our online properties. Third parties serve cookies through our websites for advertising, analytics, and other purposes.'
+      },
+      
+      typesOfCookies: {
+        title: 'Types of Cookies We Use',
+        essential: {
+          title: 'Essential Cookies',
+          description: 'These cookies are strictly necessary to provide you with services available through our websites and to use some of its features, such as access to secure areas. Because these cookies are strictly necessary to deliver the services to you, you cannot refuse them without impacting how our websites function. You can block or delete them by changing your browser settings, but this may affect certain features of the website.'
+        },
+        performance: {
+          title: 'Performance and Functionality Cookies',
+          description: 'These cookies are used to enhance the performance and functionality of our websites but are not essential to their use. However, without these cookies, certain functionality (like videos) may become unavailable, or you would be required to enter your login details every time you visit the website as we would not be able to remember that you had logged in previously.'
+        },
+        analytics: {
+          title: 'Analytics and Customization Cookies',
+          description: 'These cookies collect information that is used to help us understand how our websites are being used or how effective our marketing campaigns are, or to help us customize our websites for you. For example, we use these cookies to count the number of visitors to the website and see how visitors move around the website. We use this information to improve the way our websites work, for example, by ensuring that users are finding what they are looking for easily.'
+        },
+        advertising: {
+          title: 'Advertising Cookies',
+          description: 'These cookies are used to make advertising messages more relevant to you. They perform functions like preventing the same ad from continuously reappearing, ensuring that ads are properly displayed for advertisers, and in some cases selecting advertisements that are based on your interests.'
+        }
+      },
+      
+      howToControl: {
+        title: 'How Can You Control Cookies?',
+        content: 'You have the right to decide whether to accept or reject cookies. You can exercise your cookie rights by setting your preferences in the Cookie Consent Manager. The Cookie Consent Manager allows you to select which categories of cookies you accept or reject. Essential cookies cannot be rejected as they are strictly necessary to provide you with services.',
+        browserSettings: 'If you choose to reject cookies, you may still use our website, but your access to some functionality and areas of our website may be restricted. You may also set or amend your web browser controls to accept or refuse cookies.'
+      },
+      
+      specificCookies: {
+        title: 'Specific Cookies We Use',
+        sessionCookies: 'Session Cookies: These cookies temporarily store information during your browsing session. They are deleted when you close your browser.',
+        persistentCookies: 'Persistent Cookies: These cookies remain on your device for a longer period and are used to remember your preferences and login information.',
+        securityCookies: 'Security Cookies: These cookies are used to authenticate users, prevent fraudulent use of login credentials, and protect user data from unauthorized parties.'
+      },
+      
+      thirdParty: {
+        title: 'Third-Party Cookies',
+        content: 'In addition to our own cookies, we may also use various third-party cookies to report usage statistics of the website, deliver advertisements, and so on. These third-party service providers may use cookies to collect information about your visits to our website and other websites. We do not control these third-party cookies, and their use is governed by the privacy policies of the companies that provide them.'
+      },
+      
+      updates: {
+        title: 'Updates to This Cookie Policy',
+        content: 'We may update this Cookie Policy from time to time to reflect changes to the cookies we use or for other operational, legal, or regulatory reasons. Please therefore revisit this Cookie Policy regularly to stay informed about our use of cookies and related technologies. The date at the top of this Cookie Policy indicates when it was last updated.'
+      },
+      
+      contact: {
+        title: 'Contact Us',
+        content: 'If you have any questions about our use of cookies or other technologies, please contact us at:',
+        email: 'Email: support@ai-accelerator.com'
+      }
     },
     terms: {
       title: 'Terms of Service',

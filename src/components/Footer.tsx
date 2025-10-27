@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Globe, Mail, MessageCircle, Download } from "lucide-react";
+import { Globe, Mail, MessageCircle, Download, FlaskConical } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -15,7 +15,7 @@ const Footer = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         {/* 主要内容 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
           
           {/* 品牌信息 */}
           <div className="lg:col-span-1">
@@ -97,7 +97,7 @@ const Footer = () => {
           {/* 帮助支持 */}
           <div>
             <h4 className="font-semibold text-foreground mb-4">{t('footer.support')}</h4>
-            <ul className="space-y-3 mb-6">
+            <ul className="space-y-3">
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.tutorial')}</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.faq')}</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.contactSupport')}</a></li>
@@ -111,6 +111,18 @@ const Footer = () => {
                   {t('footer.terms')}
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          {/* 加速器技术研究 */}
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">{t('footer.research')}</h4>
+            <ul className="space-y-3 mb-6">
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.techBlog')}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.whitepapers')}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.caseStudies')}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.networkOptimization')}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.securityResearch')}</a></li>
             </ul>
             
             {/* 邮件订阅 */}

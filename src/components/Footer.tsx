@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Globe, Mail, MessageCircle, Download } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+  
   return (
     <footer className="relative py-32 border-t border-border/50 bg-gradient-to-b from-transparent to-card/5 overflow-hidden" id="contact" role="contentinfo">
       {/* 蓝色光晕装饰 */}
@@ -28,64 +31,64 @@ const Footer = () => {
               </Link>
             </div>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              专为海外华人打造的回国网络加速服务，让您在海外也能无缝享受国内的网络体验。
+              {t('footer.brand')}
             </p>
             <div className="flex space-x-4">
               <Button variant="outline" size="sm" className="border-blue-400/20 hover:border-blue-400/40 hover:bg-blue-500/10 transition-all duration-300">
                 <MessageCircle className="w-4 h-4 mr-2" />
-                微信群
+                {t('footer.wechatGroup')}
               </Button>
               <Button variant="outline" size="sm" className="border-blue-400/20 hover:border-blue-400/40 hover:bg-blue-500/10 transition-all duration-300">
                 <Mail className="w-4 h-4 mr-2" />
-                邮箱
+                {t('footer.email')}
               </Button>
             </div>
           </div>
 
           {/* 产品服务 */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">产品服务</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('footer.products')}</h4>
             <ul className="space-y-3">
-              <li><a href="#features" className="text-muted-foreground hover:text-primary transition-colors">产品特色</a></li>
-              <li><a href="#pricing" className="text-muted-foreground hover:text-primary transition-colors">套餐价格</a></li>
-              <li><Link to="/auth" className="text-muted-foreground hover:text-primary transition-colors">免费试用</Link></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">节点状态</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">速度测试</a></li>
+              <li><a href="#features" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.features')}</a></li>
+              <li><a href="#pricing" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.pricing')}</a></li>
+              <li><Link to="/auth" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.freeTrial')}</Link></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.nodeStatus')}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.speedTest')}</a></li>
             </ul>
           </div>
 
           {/* 客户端下载 */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">客户端下载</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('footer.download')}</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/download" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <Download className="w-4 h-4 mr-2" />
-                  Windows 客户端
+                  {t('footer.windowsClient')}
                 </Link>
               </li>
               <li>
                 <Link to="/download" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <Download className="w-4 h-4 mr-2" />
-                  macOS 客户端
+                  {t('footer.macosClient')}
                 </Link>
               </li>
               <li>
                 <Link to="/download" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <Download className="w-4 h-4 mr-2" />
-                  iOS 应用
+                  {t('footer.iosApp')}
                 </Link>
               </li>
               <li>
                 <Link to="/download" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <Download className="w-4 h-4 mr-2" />
-                  Android 应用
+                  {t('footer.androidApp')}
                 </Link>
               </li>
               <li>
                 <Link to="/download" className="text-muted-foreground hover:text-primary transition-colors flex items-center">
                   <Globe className="w-4 h-4 mr-2" />
-                  网页版
+                  {t('footer.webVersion')}
                 </Link>
               </li>
             </ul>
@@ -93,33 +96,33 @@ const Footer = () => {
 
           {/* 帮助支持 */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">帮助支持</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('footer.support')}</h4>
             <ul className="space-y-3 mb-6">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">使用教程</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">常见问题</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">联系客服</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">意见反馈</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.tutorial')}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.faq')}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.contactSupport')}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t('footer.feedback')}</a></li>
               <li>
                 <Link 
                   to="/terms" 
                   className="text-muted-foreground hover:text-primary transition-colors"
                   onClick={() => window.scrollTo(0, 0)}
                 >
-                  服务条款
+                  {t('footer.terms')}
                 </Link>
               </li>
             </ul>
             
             {/* 邮件订阅 */}
             <div>
-              <h5 className="font-medium text-foreground mb-3">最新动态</h5>
+              <h5 className="font-medium text-foreground mb-3">{t('footer.newsletter')}</h5>
               <div className="flex gap-2">
                 <Input 
-                  placeholder="输入邮箱地址" 
+                  placeholder={t('footer.emailPlaceholder')} 
                   className="bg-card/50 border-blue-400/20 focus:border-blue-400/40 transition-colors duration-300"
                 />
                 <Button size="sm" className="bg-gradient-feature-4 text-white hover:shadow-lg hover:scale-105 transition-all duration-300">
-                  订阅
+                  {t('footer.subscribe')}
                 </Button>
               </div>
             </div>
@@ -130,7 +133,7 @@ const Footer = () => {
         <div className="pt-8 border-t border-border/50">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-muted-foreground text-sm">
-              © 2024 归巢 GuiChao.win. 保留所有权利。
+              {t('footer.copyright')}
             </div>
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <Link 
@@ -138,23 +141,23 @@ const Footer = () => {
                 className="hover:text-primary transition-colors"
                 onClick={() => window.scrollTo(0, 0)}
               >
-                隐私政策
+                {t('footer.privacy')}
               </Link>
               <Link 
                 to="/terms" 
                 className="hover:text-primary transition-colors"
                 onClick={() => window.scrollTo(0, 0)}
               >
-                服务条款
+                {t('footer.terms')}
               </Link>
-              <a href="#" className="hover:text-primary transition-colors">Cookie政策</a>
+              <a href="#" className="hover:text-primary transition-colors">{t('footer.cookie')}</a>
             </div>
           </div>
           
           {/* 备案信息 */}
           <div className="mt-4 text-center text-xs text-muted-foreground">
-            <p>专业的海外华人回国网络服务提供商 | 让距离不再是障碍</p>
-            <p className="mt-2">本网页是属于 HK Guichao Technology Co., Limited所拥有和全权使用</p>
+            <p>{t('footer.tagline')}</p>
+            <p className="mt-2">{t('footer.ownership')}</p>
           </div>
         </div>
       </div>

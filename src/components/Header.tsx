@@ -80,6 +80,10 @@ const Header = () => {
             <span className="text-sm">{t('header.contact')}</span>
             <span className="text-[10px] opacity-70">{t('header.contactEn')}</span>
           </a>
+          <a href="#research" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
+            <span className="text-sm">技术研究</span>
+            <span className="text-[10px] opacity-70">Research</span>
+          </a>
         </nav>
 
         {/* Language Selector & CTA Buttons */}
@@ -161,6 +165,9 @@ const Header = () => {
             </Link>
             <a href="/#contact" className="block py-2 text-foreground hover:text-primary transition-colors">
               {t('header.contact')}
+            </a>
+            <a href="#research" className="block py-2 text-foreground hover:text-primary transition-colors">
+              技术研究
             </a>
             
             <div className="flex items-center space-x-2 py-2">

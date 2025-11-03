@@ -169,5 +169,22 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- 在线客服插件 -->
+    <script type='text/javascript'>
+    (function(a, b, c, d, e, j, s) {
+        a._t = d;
+        a[d] = a[d] || function() {
+            (a[d].a = a[d].a || []).push(arguments)
+        };
+        j = b.createElement(c),
+            s = b.getElementsByTagName(c)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = 'https://chat.mix-chat.com/entry.js';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MIXDESK');
+    _MIXDESK('entId', '0ab8cfbbdb545cc528f258f3fed10713');
+    </script>
   </body>
 </html>

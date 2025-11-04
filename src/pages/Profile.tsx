@@ -308,46 +308,6 @@ const Profile = () => {
                       </div>
                     )}
                   </div>
-
-                  <div className="pt-4 space-y-3">
-                    <Button
-                      onClick={handleSignOut}
-                      variant="outline"
-                      className="w-full"
-                    >
-                      <LogOut className="w-4 h-4 mr-2" />
-                      注销登录
-                    </Button>
-
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button
-                          variant="destructive"
-                          className="w-full"
-                        >
-                          <Trash2 className="w-4 h-4 mr-2" />
-                          删除账号
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>确认删除账号？</AlertDialogTitle>
-                          <AlertDialogDescription>
-                            此操作无法撤销。这将永久删除您的账号及所有相关数据。
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>取消</AlertDialogCancel>
-                          <AlertDialogAction
-                            onClick={handleDeleteAccount}
-                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                          >
-                            确认删除
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                  </div>
                 </CardContent>
               </Card>
             </TabsContent>
@@ -500,61 +460,107 @@ const Profile = () => {
             <TabsContent value="security">
               <Card className="glass-effect border-primary/20">
                 <CardHeader>
-                  <CardTitle>修改密码</CardTitle>
+                  <CardTitle>安全设置</CardTitle>
                   <CardDescription>
-                    更新您的账号密码
+                    管理您的密码和账号安全
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <form onSubmit={passwordForm.handleSubmit(onPasswordSubmit)} className="space-y-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="newPassword">新密码</Label>
-                      <Input
-                        id="newPassword"
-                        type="password"
-                        {...passwordForm.register('newPassword')}
-                        placeholder="请输入新密码"
-                      />
-                      {passwordForm.formState.errors.newPassword && (
-                        <p className="text-sm text-destructive">
-                          {passwordForm.formState.errors.newPassword.message}
-                        </p>
-                      )}
-                    </div>
+                <CardContent className="space-y-8">
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">修改密码</h3>
+                    <form onSubmit={passwordForm.handleSubmit(onPasswordSubmit)} className="space-y-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="newPassword">新密码</Label>
+                        <Input
+                          id="newPassword"
+                          type="password"
+                          {...passwordForm.register('newPassword')}
+                          placeholder="请输入新密码"
+                        />
+                        {passwordForm.formState.errors.newPassword && (
+                          <p className="text-sm text-destructive">
+                            {passwordForm.formState.errors.newPassword.message}
+                          </p>
+                        )}
+                      </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="confirmPassword">确认新密码</Label>
-                      <Input
-                        id="confirmPassword"
-                        type="password"
-                        {...passwordForm.register('confirmPassword')}
-                        placeholder="请再次输入新密码"
-                      />
-                      {passwordForm.formState.errors.confirmPassword && (
-                        <p className="text-sm text-destructive">
-                          {passwordForm.formState.errors.confirmPassword.message}
-                        </p>
-                      )}
-                    </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="confirmPassword">确认新密码</Label>
+                        <Input
+                          id="confirmPassword"
+                          type="password"
+                          {...passwordForm.register('confirmPassword')}
+                          placeholder="请再次输入新密码"
+                        />
+                        {passwordForm.formState.errors.confirmPassword && (
+                          <p className="text-sm text-destructive">
+                            {passwordForm.formState.errors.confirmPassword.message}
+                          </p>
+                        )}
+                      </div>
 
-                    <Button
-                      type="submit"
-                      disabled={submitting}
-                      className="w-full"
-                    >
-                      {submitting ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          修改中...
-                        </>
-                      ) : (
-                        <>
-                          <Lock className="w-4 h-4 mr-2" />
-                          修改密码
-                        </>
-                      )}
-                    </Button>
-                  </form>
+                      <Button
+                        type="submit"
+                        disabled={submitting}
+                        className="w-full"
+                      >
+                        {submitting ? (
+                          <>
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                            修改中...
+                          </>
+                        ) : (
+                          <>
+                            <Lock className="w-4 h-4 mr-2" />
+                            修改密码
+                          </>
+                        )}
+                      </Button>
+                    </form>
+                  </div>
+
+                  <div className="pt-6 border-t border-border/50">
+                    <h3 className="text-lg font-semibold mb-4">账号操作</h3>
+                    <div className="space-y-3">
+                      <Button
+                        onClick={handleSignOut}
+                        variant="outline"
+                        className="w-full"
+                      >
+                        <LogOut className="w-4 h-4 mr-2" />
+                        注销登录
+                      </Button>
+
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button
+                            variant="destructive"
+                            className="w-full"
+                          >
+                            <Trash2 className="w-4 h-4 mr-2" />
+                            删除账号
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>确认删除账号？</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              此操作无法撤销。这将永久删除您的账号及所有相关数据。
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>取消</AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={handleDeleteAccount}
+                              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                            >
+                              确认删除
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </TabsContent>

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Menu, X, Globe, LogOut, Shield } from "lucide-react";
+import { Menu, X, Globe, LogOut, Shield, UserCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -101,6 +101,12 @@ const Header = () => {
           
           {user ? (
             <>
+              <Button variant="outline" size="sm" className="hover-float" asChild>
+                <Link to="/profile">
+                  <UserCircle className="w-4 h-4 mr-2" />
+                  账号管理
+                </Link>
+              </Button>
               {isAdmin && (
                 <Button variant="outline" size="sm" className="hover-float" asChild>
                   <Link to="/admin">
@@ -186,6 +192,12 @@ const Header = () => {
             <div className="flex flex-col space-y-2 pt-4 border-t border-border/50">
               {user ? (
                 <>
+                  <Button variant="outline" size="sm" asChild>
+                    <Link to="/profile">
+                      <UserCircle className="w-4 h-4 mr-2" />
+                      账号管理
+                    </Link>
+                  </Button>
                   {isAdmin && (
                     <Button variant="outline" size="sm" asChild>
                       <Link to="/admin">

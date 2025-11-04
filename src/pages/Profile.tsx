@@ -9,12 +9,15 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { User, Lock, Save, Loader2 } from 'lucide-react';
+import { User, Lock, Save, Loader2, CreditCard, Info, LogOut, Trash2, Clock } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { formatDistanceToNow } from 'date-fns';
+import { zhCN } from 'date-fns/locale';
 
 const profileSchema = z.object({
   username: z.string().min(2, '用户名至少2个字符').max(50, '用户名最多50个字符').optional(),
@@ -33,12 +36,24 @@ const passwordSchema = z.object({
 type ProfileFormData = z.infer<typeof profileSchema>;
 type PasswordFormData = z.infer<typeof passwordSchema>;
 
+interface Purchase {
+  id: string;
+  amount: number;
+  product_name: string;
+  product_description: string | null;
+  status: string;
+  created_at: string;
+}
+
 const Profile = () => {
-  const { user, loading } = useAuth();
+  const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [profileLoading, setProfileLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  const [subscriptionExpiresAt, setSubscriptionExpiresAt] = useState<string | null>(null);
+  const [purchases, setPurchases] = useState<Purchase[]>([]);
+  const [purchasesLoading, setPurchasesLoading] = useState(true);
 
   const profileForm = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
@@ -66,6 +81,7 @@ const Profile = () => {
   useEffect(() => {
     if (user) {
       loadProfile();
+      loadPurchases();
     }
   }, [user]);
 
@@ -73,7 +89,7 @@ const Profile = () => {
     try {
       const { data, error } = await supabase
         .from('profiles')
-        .select('username, avatar_url, bio')
+        .select('username, avatar_url, bio, subscription_expires_at')
         .eq('id', user!.id)
         .maybeSingle();
 
@@ -85,6 +101,7 @@ const Profile = () => {
           avatar_url: data.avatar_url || '',
           bio: data.bio || '',
         });
+        setSubscriptionExpiresAt(data.subscription_expires_at);
       }
     } catch (error: any) {
       toast({
@@ -94,6 +111,27 @@ const Profile = () => {
       });
     } finally {
       setProfileLoading(false);
+    }
+  };
+
+  const loadPurchases = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('purchases')
+        .select('*')
+        .eq('user_id', user!.id)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setPurchases(data || []);
+    } catch (error: any) {
+      toast({
+        title: '加载购买记录失败',
+        description: error.message,
+        variant: 'destructive',
+      });
+    } finally {
+      setPurchasesLoading(false);
     }
   };
 
@@ -152,6 +190,43 @@ const Profile = () => {
     }
   };
 
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      toast({
+        title: '已退出登录',
+        description: '您已成功退出账号',
+      });
+      navigate('/auth');
+    } catch (error: any) {
+      toast({
+        title: '退出失败',
+        description: error.message,
+        variant: 'destructive',
+      });
+    }
+  };
+
+  const handleDeleteAccount = () => {
+    toast({
+      title: '删除账号',
+      description: '请联系管理员删除您的账号',
+    });
+  };
+
+  const calculateRemainingTime = () => {
+    if (!subscriptionExpiresAt) return '未设置订阅';
+    
+    const expiresAt = new Date(subscriptionExpiresAt);
+    const now = new Date();
+    
+    if (expiresAt < now) {
+      return '已过期';
+    }
+    
+    return formatDistanceToNow(expiresAt, { addSuffix: true, locale: zhCN });
+  };
+
   if (loading || profileLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-primary/5">
@@ -175,11 +250,19 @@ const Profile = () => {
             </p>
           </div>
 
-          <Tabs defaultValue="profile" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-2 max-w-md">
+          <Tabs defaultValue="account" className="space-y-6">
+            <TabsList className="grid w-full grid-cols-4 max-w-4xl">
+              <TabsTrigger value="account" className="flex items-center gap-2">
+                <Info className="w-4 h-4" />
+                账号信息
+              </TabsTrigger>
               <TabsTrigger value="profile" className="flex items-center gap-2">
                 <User className="w-4 h-4" />
-                个人信息
+                个人资料
+              </TabsTrigger>
+              <TabsTrigger value="purchases" className="flex items-center gap-2">
+                <CreditCard className="w-4 h-4" />
+                购买记录
               </TabsTrigger>
               <TabsTrigger value="security" className="flex items-center gap-2">
                 <Lock className="w-4 h-4" />
@@ -187,10 +270,92 @@ const Profile = () => {
               </TabsTrigger>
             </TabsList>
 
+            <TabsContent value="account">
+              <Card className="glass-effect border-primary/20">
+                <CardHeader>
+                  <CardTitle>账号信息</CardTitle>
+                  <CardDescription>
+                    查看您的账号状态和订阅信息
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="grid gap-4">
+                    <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">
+                      <div className="space-y-1">
+                        <p className="text-sm text-muted-foreground">邮箱地址</p>
+                        <p className="font-medium">{user?.email}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">
+                      <div className="space-y-1">
+                        <p className="text-sm text-muted-foreground">账户状态</p>
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4 text-primary" />
+                          <p className="font-medium">{calculateRemainingTime()}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {subscriptionExpiresAt && (
+                      <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">到期时间</p>
+                          <p className="font-medium">
+                            {new Date(subscriptionExpiresAt).toLocaleString('zh-CN')}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="pt-4 space-y-3">
+                    <Button
+                      onClick={handleSignOut}
+                      variant="outline"
+                      className="w-full"
+                    >
+                      <LogOut className="w-4 h-4 mr-2" />
+                      注销登录
+                    </Button>
+
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant="destructive"
+                          className="w-full"
+                        >
+                          <Trash2 className="w-4 h-4 mr-2" />
+                          删除账号
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>确认删除账号？</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            此操作无法撤销。这将永久删除您的账号及所有相关数据。
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>取消</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={handleDeleteAccount}
+                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                          >
+                            确认删除
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
             <TabsContent value="profile">
               <Card className="glass-effect border-primary/20">
                 <CardHeader>
-                  <CardTitle>个人信息</CardTitle>
+                  <CardTitle>个人资料</CardTitle>
                   <CardDescription>
                     更新您的个人资料信息
                   </CardDescription>
@@ -272,6 +437,62 @@ const Profile = () => {
                       )}
                     </Button>
                   </form>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="purchases">
+              <Card className="glass-effect border-primary/20">
+                <CardHeader>
+                  <CardTitle>购买记录</CardTitle>
+                  <CardDescription>
+                    查看您的所有购买历史
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {purchasesLoading ? (
+                    <div className="flex items-center justify-center py-8">
+                      <Loader2 className="w-6 h-6 animate-spin text-primary" />
+                    </div>
+                  ) : purchases.length === 0 ? (
+                    <div className="text-center py-8 text-muted-foreground">
+                      暂无购买记录
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {purchases.map((purchase) => (
+                        <div
+                          key={purchase.id}
+                          className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
+                        >
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-2">
+                              <CreditCard className="w-5 h-5 text-primary" />
+                              <h4 className="font-semibold">{purchase.product_name}</h4>
+                            </div>
+                            {purchase.product_description && (
+                              <p className="text-sm text-muted-foreground mb-2">
+                                {purchase.product_description}
+                              </p>
+                            )}
+                            <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                              <span>
+                                {new Date(purchase.created_at).toLocaleString('zh-CN')}
+                              </span>
+                              <span className="px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
+                                {purchase.status === 'completed' ? '已完成' : purchase.status}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-2xl font-bold text-primary">
+                              ¥{purchase.amount.toFixed(2)}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </TabsContent>

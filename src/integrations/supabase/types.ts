@@ -76,6 +76,7 @@ export type Database = {
           bio: string | null
           created_at: string
           id: string
+          subscription_expires_at: string | null
           updated_at: string
           username: string | null
         }
@@ -84,6 +85,7 @@ export type Database = {
           bio?: string | null
           created_at?: string
           id: string
+          subscription_expires_at?: string | null
           updated_at?: string
           username?: string | null
         }
@@ -92,8 +94,39 @@ export type Database = {
           bio?: string | null
           created_at?: string
           id?: string
+          subscription_expires_at?: string | null
           updated_at?: string
           username?: string | null
+        }
+        Relationships: []
+      }
+      purchases: {
+        Row: {
+          amount: number
+          created_at: string
+          id: string
+          product_description: string | null
+          product_name: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          id?: string
+          product_description?: string | null
+          product_name: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          id?: string
+          product_description?: string | null
+          product_name?: string
+          status?: string
+          user_id?: string
         }
         Relationships: []
       }

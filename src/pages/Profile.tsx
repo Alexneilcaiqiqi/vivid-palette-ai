@@ -13,13 +13,13 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { User, Lock, Save, Loader2, CreditCard, Info, LogOut, Trash2, Clock, FileText, Mail, Phone, Edit2 } from 'lucide-react';
+import { User, Lock, Save, Loader2, CreditCard, Info, LogOut, Trash2, Clock, FileText, Mail, Phone, Edit2, Crown, Calendar } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNow, differenceInDays, isBefore } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
 
 const profileSchema = z.object({
@@ -633,14 +633,32 @@ const Profile = () => {
                     </div>
 
                     <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">
-                      <div className="space-y-1">
-                        <p className="text-sm text-muted-foreground">账户状态</p>
-                        <div className="flex items-center gap-2">
-                          <Clock className="w-4 h-4 text-primary" />
-                          <p className="font-medium">{calculateRemainingTime()}</p>
+                      <div className="flex items-center gap-3 flex-1">
+                        <Crown className="w-5 h-5 text-primary" />
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">会员状态</p>
+                          <p className="font-medium">
+                            {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) 
+                              ? 'VIP会员' 
+                              : '普通用户'}
+                          </p>
                         </div>
                       </div>
                     </div>
+
+                    {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) && (
+                      <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">
+                        <div className="flex items-center gap-3 flex-1">
+                          <Calendar className="w-5 h-5 text-primary" />
+                          <div className="space-y-1">
+                            <p className="text-sm text-muted-foreground">剩余VIP天数</p>
+                            <p className="font-medium">
+                              {differenceInDays(new Date(subscriptionExpiresAt), new Date())} 天
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
 
                     {subscriptionExpiresAt && (
                       <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">

@@ -643,24 +643,41 @@ const Profile = () => {
                             ? 'VIP会员' 
                             : '普通用户'}
                         </p>
-                        <div className="flex items-center gap-2 text-sm">
-                          <Calendar className="w-4 h-4 text-muted-foreground" />
-                          <span className="text-muted-foreground">
-                            VIP剩余时长: <span className="font-semibold text-foreground">
-                              {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) 
-                                ? `${differenceInDays(new Date(subscriptionExpiresAt), new Date())} 天`
-                                : '0 天'}
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="flex items-center gap-2 text-sm">
+                            <Calendar className="w-4 h-4 text-muted-foreground" />
+                            <span className="text-muted-foreground">
+                              VIP剩余时长: <span className={`font-semibold ${
+                                subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) && differenceInDays(new Date(subscriptionExpiresAt), new Date()) < 7
+                                  ? 'text-destructive'
+                                  : 'text-foreground'
+                              }`}>
+                                {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) 
+                                  ? `${differenceInDays(new Date(subscriptionExpiresAt), new Date())} 天`
+                                  : '0 天'}
+                              </span>
                             </span>
-                          </span>
+                          </div>
+                          <Button 
+                            onClick={() => navigate('/#pricing')}
+                            size="sm"
+                            className={`${
+                              (!subscriptionExpiresAt || isBefore(new Date(subscriptionExpiresAt), new Date()) || 
+                              (subscriptionExpiresAt && differenceInDays(new Date(subscriptionExpiresAt), new Date()) < 7))
+                                ? 'animate-pulse'
+                                : ''
+                            }`}
+                            variant={
+                              (!subscriptionExpiresAt || isBefore(new Date(subscriptionExpiresAt), new Date()) || 
+                              (subscriptionExpiresAt && differenceInDays(new Date(subscriptionExpiresAt), new Date()) < 7))
+                                ? "destructive"
+                                : "outline"
+                            }
+                          >
+                            <CreditCard className="w-4 h-4 mr-1" />
+                            {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) ? '续费' : '购买'}
+                          </Button>
                         </div>
-                        <Button 
-                          onClick={() => navigate('/#pricing')}
-                          className="w-full"
-                          variant={subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) ? "outline" : "default"}
-                        >
-                          <CreditCard className="w-4 h-4 mr-2" />
-                          {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) ? '续费会员' : '购买会员'}
-                        </Button>
                       </div>
                     </div>
 

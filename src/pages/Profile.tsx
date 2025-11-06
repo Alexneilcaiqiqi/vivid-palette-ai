@@ -539,18 +539,11 @@ const Profile = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="p-4 border border-primary/20 rounded-lg bg-primary/5">
-                    <p className="text-sm font-medium text-foreground mb-4">
-                      归巢GUICHAO提醒您：注销账号是不可逆的操作，请在提交申请前仔细阅读以下内容：
-                    </p>
-                  </div>
-
                   <ScrollArea className="h-[400px] w-full rounded-lg border border-border/50 p-6 bg-muted/30">
                     <div className="space-y-6 text-sm">
                       <div>
                         <h3 className="font-bold text-base mb-3 text-foreground">一、注销前需满足的条件</h3>
                         <ol className="space-y-2 list-decimal list-inside text-muted-foreground">
-                          <li>为保障您的账号安全，请确认是否满足以下条件：</li>
                           <li>已取消所有自动订阅服务，确保无未完成的订阅套餐；</li>
                           <li>账号当前不存在任何纠纷、投诉或被举报的情况，且未违反用户协议。</li>
                         </ol>
@@ -567,11 +560,9 @@ const Profile = () => {
                       <div>
                         <h3 className="font-bold text-base mb-3 text-foreground">三、数据删除与保留说明</h3>
                         <ol className="space-y-2 list-decimal list-inside text-muted-foreground">
-                          <li>账号注销后，我们将删除以下信息：</li>
-                          <li>账号注册时使用的邮箱、手机号及密码；</li>
-                          <li>付款订单记录与订阅信息；</li>
-                          <li>账号登录记录及使用GUICHAO服务的历史数据；</li>
-                          <li>账号剩余会员天数、金币余额等所有权益将清空，无法恢复。</li>
+                          <li>账号注销后，我们将删除账号注册时使用的邮箱、手机号及密码；</li>
+                          <li>同时删除订单记录、登录记录及使用GUICHAO服务的历史数据；</li>
+                          <li>账号剩余会员天数等所有权益将清空，无法恢复。</li>
                         </ol>
                       </div>
 

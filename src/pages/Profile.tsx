@@ -894,7 +894,7 @@ const Profile = () => {
             </TabsContent>
           </Tabs>
         </div>
-      </div>
+      </main>
       <Footer />
     </div>
   );

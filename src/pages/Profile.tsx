@@ -637,7 +637,7 @@ const Profile = () => {
                         <Crown className="w-5 h-5 text-primary" />
                         <p className="text-sm text-muted-foreground">会员状态</p>
                       </div>
-                      <div className="space-y-2">
+                      <div className="space-y-3">
                         <p className="font-medium text-lg">
                           {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) 
                             ? 'VIP会员' 
@@ -653,6 +653,14 @@ const Profile = () => {
                             </span>
                           </span>
                         </div>
+                        <Button 
+                          onClick={() => navigate('/#pricing')}
+                          className="w-full"
+                          variant={subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) ? "outline" : "default"}
+                        >
+                          <CreditCard className="w-4 h-4 mr-2" />
+                          {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) ? '续费会员' : '购买会员'}
+                        </Button>
                       </div>
                     </div>
 

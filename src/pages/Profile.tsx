@@ -12,7 +12,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { User, Lock, Save, Loader2, CreditCard, Info, LogOut, Trash2, Clock } from 'lucide-react';
+import { User, Lock, Save, Loader2, CreditCard, Info, LogOut, Trash2, Clock, FileText } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -54,6 +56,7 @@ const Profile = () => {
   const [subscriptionExpiresAt, setSubscriptionExpiresAt] = useState<string | null>(null);
   const [purchases, setPurchases] = useState<Purchase[]>([]);
   const [purchasesLoading, setPurchasesLoading] = useState(true);
+  const [agreementRead, setAgreementRead] = useState(false);
 
   const profileForm = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
@@ -530,54 +533,117 @@ const Profile = () => {
             <TabsContent value="delete">
               <Card className="glass-effect border-destructive/20">
                 <CardHeader>
-                  <CardTitle className="text-destructive">删除账号</CardTitle>
+                  <CardTitle className="text-destructive flex items-center gap-2">
+                    <FileText className="w-5 h-5" />
+                    账号注销协议
+                  </CardTitle>
                   <CardDescription>
-                    永久删除您的账号及所有相关数据
+                    请仔细阅读以下协议内容，注销账号是不可逆的操作
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="p-4 border border-destructive/30 rounded-lg bg-destructive/5">
-                      <h4 className="font-semibold text-destructive mb-2">警告：此操作无法撤销</h4>
-                      <p className="text-sm text-muted-foreground">
-                        删除账号将永久删除以下内容：
-                      </p>
-                      <ul className="mt-2 space-y-1 text-sm text-muted-foreground list-disc list-inside">
-                        <li>您的所有个人资料</li>
-                        <li>购买记录和订阅信息</li>
-                        <li>账号相关的所有数据</li>
-                      </ul>
-                    </div>
-
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button
-                          variant="destructive"
-                          className="w-full"
-                        >
-                          <Trash2 className="w-4 h-4 mr-2" />
-                          删除账号
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>确认删除账号？</AlertDialogTitle>
-                          <AlertDialogDescription>
-                            此操作无法撤销。这将永久删除您的账号及所有相关数据。
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>取消</AlertDialogCancel>
-                          <AlertDialogAction
-                            onClick={handleDeleteAccount}
-                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                          >
-                            确认删除
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
+                <CardContent className="space-y-6">
+                  <div className="p-4 border border-primary/20 rounded-lg bg-primary/5">
+                    <p className="text-sm font-medium text-foreground mb-4">
+                      归巢GUICHAO提醒您：注销账号是不可逆的操作，请在提交申请前仔细阅读以下内容：
+                    </p>
                   </div>
+
+                  <ScrollArea className="h-[400px] w-full rounded-lg border border-border/50 p-6 bg-muted/30">
+                    <div className="space-y-6 text-sm">
+                      <div>
+                        <h3 className="font-bold text-base mb-3 text-foreground">一、注销前需满足的条件</h3>
+                        <ol className="space-y-2 list-decimal list-inside text-muted-foreground">
+                          <li>为保障您的账号安全，请确认是否满足以下条件：</li>
+                          <li>已取消所有自动订阅服务，确保无未完成的订阅套餐；</li>
+                          <li>账号当前不存在任何纠纷、投诉或被举报的情况，且未违反用户协议。</li>
+                        </ol>
+                      </div>
+
+                      <div>
+                        <h3 className="font-bold text-base mb-3 text-foreground">二、注销流程说明</h3>
+                        <ol className="space-y-2 list-decimal list-inside text-muted-foreground">
+                          <li>确认满足上述条件后，可提交账号删除申请，提交后无法撤回；</li>
+                          <li>申请提交后账号将立即注销，所有数据将被清除。</li>
+                        </ol>
+                      </div>
+
+                      <div>
+                        <h3 className="font-bold text-base mb-3 text-foreground">三、数据删除与保留说明</h3>
+                        <ol className="space-y-2 list-decimal list-inside text-muted-foreground">
+                          <li>账号注销后，我们将删除以下信息：</li>
+                          <li>账号注册时使用的邮箱、手机号及密码；</li>
+                          <li>付款订单记录与订阅信息；</li>
+                          <li>账号登录记录及使用GUICHAO服务的历史数据；</li>
+                          <li>账号剩余会员天数、金币余额等所有权益将清空，无法恢复。</li>
+                        </ol>
+                      </div>
+
+                      <div>
+                        <h3 className="font-bold text-base mb-3 text-foreground">四、其他提示</h3>
+                        <ol className="space-y-2 list-decimal list-inside text-muted-foreground">
+                          <li>注销后，原账号绑定的手机号、邮箱及第三方登录信息将被释放，可重新用于注册或绑定；</li>
+                          <li>已注销账号无法再次登录或恢复，重新注册亦无法享受此前已获得的新用户福利；</li>
+                          <li>如需再次使用GUICHAO服务，需重新注册账号。</li>
+                        </ol>
+                      </div>
+                    </div>
+                  </ScrollArea>
+
+                  <div className="flex items-start space-x-3 p-4 border border-border/50 rounded-lg bg-muted/30">
+                    <Checkbox
+                      id="agreement"
+                      checked={agreementRead}
+                      onCheckedChange={(checked) => setAgreementRead(checked as boolean)}
+                    />
+                    <label
+                      htmlFor="agreement"
+                      className="text-sm font-medium leading-relaxed cursor-pointer select-none"
+                    >
+                      我已仔细阅读并理解《账号注销协议》的全部内容，明确知晓注销后的所有后果，并自愿申请注销账号
+                    </label>
+                  </div>
+
+                  <div className="p-4 border border-destructive/30 rounded-lg bg-destructive/5">
+                    <h4 className="font-semibold text-destructive mb-2">警告：此操作无法撤销</h4>
+                    <p className="text-sm text-muted-foreground">
+                      删除账号将永久删除以下内容：
+                    </p>
+                    <ul className="mt-2 space-y-1 text-sm text-muted-foreground list-disc list-inside">
+                      <li>您的所有个人资料</li>
+                      <li>购买记录和订阅信息</li>
+                      <li>账号相关的所有数据</li>
+                    </ul>
+                  </div>
+
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        variant="destructive"
+                        className="w-full"
+                        disabled={!agreementRead}
+                      >
+                        <Trash2 className="w-4 h-4 mr-2" />
+                        删除账号
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>确认删除账号？</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          此操作无法撤销。这将永久删除您的账号及所有相关数据。
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>取消</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={handleDeleteAccount}
+                          className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                        >
+                          确认删除
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
                 </CardContent>
               </Card>
             </TabsContent>

@@ -62,7 +62,9 @@ const translations = {
       contact: '联系我们',
       contactEn: 'Contact',
       login: '登录',
-      freeTrial: '免费试用'
+      freeTrial: '免费试用',
+      accountManagement: '账号管理',
+      logout: '退出登录'
     },
     hero: {
       title: '倦鸟归巢 一键回国',
@@ -696,7 +698,9 @@ const translations = {
       contact: 'Contact',
       contactEn: '联系我们',
       login: 'Login',
-      freeTrial: 'Free Trial'
+      freeTrial: 'Free Trial',
+      accountManagement: 'Account',
+      logout: 'Logout'
     },
     hero: {
       title: 'Home Network Access Simplified',

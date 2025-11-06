@@ -104,7 +104,7 @@ const Header = () => {
               <Button variant="outline" size="sm" className="hover-float" asChild>
                 <Link to="/profile">
                   <UserCircle className="w-4 h-4 mr-2" />
-                  账号管理
+                  {t('header.accountManagement')}
                 </Link>
               </Button>
               {isAdmin && (
@@ -122,7 +122,7 @@ const Header = () => {
                 onClick={signOut}
               >
                 <LogOut className="w-4 h-4 mr-2" />
-                退出登录
+                {t('header.logout')}
               </Button>
             </>
           ) : (
@@ -195,7 +195,7 @@ const Header = () => {
                   <Button variant="outline" size="sm" asChild>
                     <Link to="/profile">
                       <UserCircle className="w-4 h-4 mr-2" />
-                      账号管理
+                      {t('header.accountManagement')}
                     </Link>
                   </Button>
                   {isAdmin && (
@@ -212,7 +212,7 @@ const Header = () => {
                     onClick={signOut}
                   >
                     <LogOut className="w-4 h-4 mr-2" />
-                    退出登录
+                    {t('header.logout')}
                   </Button>
                 </>
               ) : (

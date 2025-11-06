@@ -693,31 +693,59 @@ const Profile = () => {
                       {purchases.map((purchase) => (
                         <div
                           key={purchase.id}
-                          className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
+                          className="p-5 border border-border/50 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors space-y-4"
                         >
-                          <div className="flex-1">
-                            <div className="flex items-center gap-3 mb-2">
+                          <div className="flex items-start justify-between">
+                            <div className="flex items-center gap-3">
                               <CreditCard className="w-5 h-5 text-primary" />
-                              <h4 className="font-semibold">{purchase.product_name}</h4>
+                              <h4 className="font-semibold text-lg">{purchase.product_name}</h4>
                             </div>
-                            {purchase.product_description && (
-                              <p className="text-sm text-muted-foreground mb-2">
-                                {purchase.product_description}
+                            <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                              {purchase.status === 'completed' ? '已完成' : purchase.status}
+                            </span>
+                          </div>
+                          
+                          <div className="grid grid-cols-2 gap-4 text-sm">
+                            <div className="space-y-1">
+                              <p className="text-muted-foreground">订单日期</p>
+                              <p className="font-medium">
+                                {new Date(purchase.created_at).toLocaleString('zh-CN', {
+                                  year: 'numeric',
+                                  month: '2-digit',
+                                  day: '2-digit',
+                                  hour: '2-digit',
+                                  minute: '2-digit'
+                                })}
                               </p>
-                            )}
-                            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                              <span>
-                                {new Date(purchase.created_at).toLocaleString('zh-CN')}
-                              </span>
-                              <span className="px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
-                                {purchase.status === 'completed' ? '已完成' : purchase.status}
-                              </span>
+                            </div>
+                            
+                            <div className="space-y-1">
+                              <p className="text-muted-foreground">订单编号</p>
+                              <p className="font-medium font-mono text-xs">
+                                {purchase.id.substring(0, 8).toUpperCase()}
+                              </p>
+                            </div>
+                            
+                            <div className="space-y-1">
+                              <p className="text-muted-foreground">会员时长</p>
+                              <p className="font-medium">
+                                {purchase.product_description || '永久'}
+                              </p>
+                            </div>
+                            
+                            <div className="space-y-1">
+                              <p className="text-muted-foreground">获取途径</p>
+                              <p className="font-medium">
+                                {parseFloat(purchase.amount.toString()) === 0 ? '赠送' : '购买'}
+                              </p>
                             </div>
                           </div>
-                          <div className="text-right">
-                            <p className="text-2xl font-bold text-primary">
+                          
+                          <div className="pt-3 border-t border-border/50 flex items-center justify-between">
+                            <span className="text-sm text-muted-foreground">支付金额</span>
+                            <span className="text-2xl font-bold text-primary">
                               ¥{purchase.amount.toFixed(2)}
-                            </p>
+                            </span>
                           </div>
                         </div>
                       ))}

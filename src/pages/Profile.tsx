@@ -13,7 +13,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { User, Lock, Save, Loader2, CreditCard, Info, LogOut, Trash2, Clock, FileText, Mail, Phone, Edit2, Crown, Calendar } from 'lucide-react';
+import { User, Lock, Save, Loader2, CreditCard, Info, LogOut, Trash2, Clock, FileText, Mail, Phone, Edit2, Crown, Calendar, Check, Zap, Star } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useForm } from 'react-hook-form';
@@ -671,6 +671,36 @@ const Profile = () => {
                             <CreditCard className="w-4 h-4 mr-1" />
                             {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) ? '续费' : '购买'}
                           </Button>
+                        </div>
+                        
+                        <div className="pt-3 border-t border-border/50">
+                          <p className="text-xs text-muted-foreground mb-2 font-medium">VIP会员权益</p>
+                          <div className="grid grid-cols-2 gap-2">
+                            <div className="flex items-center gap-2 text-xs">
+                              <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center">
+                                <Check className="w-3 h-3 text-primary" />
+                              </div>
+                              <span className="text-muted-foreground">AI高级功能</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-xs">
+                              <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center">
+                                <Zap className="w-3 h-3 text-primary" />
+                              </div>
+                              <span className="text-muted-foreground">优先处理</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-xs">
+                              <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center">
+                                <Star className="w-3 h-3 text-primary" />
+                              </div>
+                              <span className="text-muted-foreground">专属客服</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-xs">
+                              <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center">
+                                <Crown className="w-3 h-3 text-primary" />
+                              </div>
+                              <span className="text-muted-foreground">独家内容</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>

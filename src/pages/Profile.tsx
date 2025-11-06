@@ -13,13 +13,13 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { User, Lock, Save, Loader2, CreditCard, Info, LogOut, Trash2, Clock, FileText, Mail, Phone, Edit2, Crown, Calendar } from 'lucide-react';
+import { User, Lock, Save, Loader2, CreditCard, Info, LogOut, Trash2, Clock, FileText, Mail, Phone, Edit2 } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { formatDistanceToNow, differenceInDays, isBefore } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
 
 const profileSchema = z.object({
@@ -329,7 +329,7 @@ const Profile = () => {
         description: error.message,
         variant: 'destructive',
       });
-    } finally{
+    } finally {
       setSendingCode(false);
     }
   };
@@ -615,7 +615,7 @@ const Profile = () => {
                             ) : (
                               <Button
                                 onClick={handleVerifyCode}
-                                disabled={verifying || verificationCode.length !== 6}
+                                disabled={verifying || !verificationCode.trim()}
                               >
                                 {verifying ? (
                                   <>
@@ -623,7 +623,7 @@ const Profile = () => {
                                     验证中...
                                   </>
                                 ) : (
-                                  '验证并保存'
+                                  '验证并更新'
                                 )}
                               </Button>
                             )}
@@ -632,32 +632,26 @@ const Profile = () => {
                       </Dialog>
                     </div>
 
-                    <div className="p-4 border border-border/50 rounded-lg bg-muted/30">
-                      <div className="flex items-center gap-3 mb-4">
-                        <Crown className="w-5 h-5 text-primary" />
-                        <div>
-                          <p className="text-sm text-muted-foreground">会员状态</p>
+                    <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">
+                      <div className="space-y-1">
+                        <p className="text-sm text-muted-foreground">账户状态</p>
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4 text-primary" />
+                          <p className="font-medium">{calculateRemainingTime()}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {subscriptionExpiresAt && (
+                      <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">到期时间</p>
                           <p className="font-medium">
-                            {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) ? (
-                              <span className="text-primary">VIP会员</span>
-                            ) : (
-                              <span className="text-muted-foreground">普通用户</span>
-                            )}
+                            {new Date(subscriptionExpiresAt).toLocaleString('zh-CN')}
                           </p>
                         </div>
                       </div>
-                      {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) && (
-                        <div className="flex items-center gap-3">
-                          <Calendar className="w-5 h-5 text-primary" />
-                          <div>
-                            <p className="text-sm text-muted-foreground">剩余VIP天数</p>
-                            <p className="font-medium text-primary">
-                              {differenceInDays(new Date(subscriptionExpiresAt), new Date())} 天
-                            </p>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -674,41 +668,46 @@ const Profile = () => {
                 <CardContent>
                   {purchasesLoading ? (
                     <div className="flex items-center justify-center py-8">
-                      <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                      <Loader2 className="w-6 h-6 animate-spin text-primary" />
                     </div>
                   ) : purchases.length === 0 ? (
                     <div className="text-center py-8 text-muted-foreground">
                       暂无购买记录
                     </div>
                   ) : (
-                    <ScrollArea className="h-[400px] pr-4">
-                      <div className="space-y-4">
-                        {purchases.map((purchase) => (
-                          <div
-                            key={purchase.id}
-                            className="p-4 border border-border/50 rounded-lg space-y-2"
-                          >
-                            <div className="flex items-center justify-between">
-                              <h3 className="font-medium">{purchase.product_name}</h3>
-                              <span className="text-lg font-bold text-primary">
-                                ¥{purchase.amount}
-                              </span>
+                    <div className="space-y-4">
+                      {purchases.map((purchase) => (
+                        <div
+                          key={purchase.id}
+                          className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
+                        >
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-2">
+                              <CreditCard className="w-5 h-5 text-primary" />
+                              <h4 className="font-semibold">{purchase.product_name}</h4>
                             </div>
                             {purchase.product_description && (
-                              <p className="text-sm text-muted-foreground">
+                              <p className="text-sm text-muted-foreground mb-2">
                                 {purchase.product_description}
                               </p>
                             )}
-                            <div className="flex items-center justify-between text-sm text-muted-foreground">
-                              <span>{new Date(purchase.created_at).toLocaleString('zh-CN')}</span>
-                              <span className={purchase.status === 'completed' ? 'text-green-500' : 'text-yellow-500'}>
-                                {purchase.status === 'completed' ? '已完成' : '处理中'}
+                            <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                              <span>
+                                {new Date(purchase.created_at).toLocaleString('zh-CN')}
+                              </span>
+                              <span className="px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
+                                {purchase.status === 'completed' ? '已完成' : purchase.status}
                               </span>
                             </div>
                           </div>
-                        ))}
-                      </div>
-                    </ScrollArea>
+                          <div className="text-right">
+                            <p className="text-2xl font-bold text-primary">
+                              ¥{purchase.amount.toFixed(2)}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   )}
                 </CardContent>
               </Card>
@@ -717,76 +716,80 @@ const Profile = () => {
             <TabsContent value="security">
               <Card className="glass-effect border-primary/20">
                 <CardHeader>
-                  <CardTitle>密码管理</CardTitle>
+                  <CardTitle>安全设置</CardTitle>
                   <CardDescription>
-                    修改您的登录密码
+                    管理您的密码和账号安全
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <form onSubmit={passwordForm.handleSubmit(onPasswordSubmit)} className="space-y-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="currentPassword">当前密码</Label>
-                      <Input
-                        id="currentPassword"
-                        type="password"
-                        {...passwordForm.register('currentPassword')}
-                        placeholder="请输入当前密码"
-                      />
-                      {passwordForm.formState.errors.currentPassword && (
-                        <p className="text-sm text-destructive">
-                          {passwordForm.formState.errors.currentPassword.message}
-                        </p>
-                      )}
-                    </div>
+                <CardContent className="space-y-8">
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">修改密码</h3>
+                    <form onSubmit={passwordForm.handleSubmit(onPasswordSubmit)} className="space-y-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="currentPassword">当前密码</Label>
+                        <Input
+                          id="currentPassword"
+                          type="password"
+                          {...passwordForm.register('currentPassword')}
+                          placeholder="请输入当前密码"
+                        />
+                        {passwordForm.formState.errors.currentPassword && (
+                          <p className="text-sm text-destructive">
+                            {passwordForm.formState.errors.currentPassword.message}
+                          </p>
+                        )}
+                      </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="newPassword">新密码</Label>
-                      <Input
-                        id="newPassword"
-                        type="password"
-                        {...passwordForm.register('newPassword')}
-                        placeholder="请输入新密码（至少6个字符）"
-                      />
-                      {passwordForm.formState.errors.newPassword && (
-                        <p className="text-sm text-destructive">
-                          {passwordForm.formState.errors.newPassword.message}
-                        </p>
-                      )}
-                    </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="newPassword">新密码</Label>
+                        <Input
+                          id="newPassword"
+                          type="password"
+                          {...passwordForm.register('newPassword')}
+                          placeholder="请输入新密码"
+                        />
+                        {passwordForm.formState.errors.newPassword && (
+                          <p className="text-sm text-destructive">
+                            {passwordForm.formState.errors.newPassword.message}
+                          </p>
+                        )}
+                      </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="confirmPassword">确认新密码</Label>
-                      <Input
-                        id="confirmPassword"
-                        type="password"
-                        {...passwordForm.register('confirmPassword')}
-                        placeholder="请再次输入新密码"
-                      />
-                      {passwordForm.formState.errors.confirmPassword && (
-                        <p className="text-sm text-destructive">
-                          {passwordForm.formState.errors.confirmPassword.message}
-                        </p>
-                      )}
-                    </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="confirmPassword">确认新密码</Label>
+                        <Input
+                          id="confirmPassword"
+                          type="password"
+                          {...passwordForm.register('confirmPassword')}
+                          placeholder="请再次输入新密码"
+                        />
+                        {passwordForm.formState.errors.confirmPassword && (
+                          <p className="text-sm text-destructive">
+                            {passwordForm.formState.errors.confirmPassword.message}
+                          </p>
+                        )}
+                      </div>
 
-                    <Button
-                      type="submit"
-                      disabled={submitting}
-                      className="w-full"
-                    >
-                      {submitting ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          修改中...
-                        </>
-                      ) : (
-                        <>
-                          <Lock className="w-4 h-4 mr-2" />
-                          修改密码
-                        </>
-                      )}
-                    </Button>
-                  </form>
+                      <Button
+                        type="submit"
+                        disabled={submitting}
+                        className="w-full"
+                      >
+                        {submitting ? (
+                          <>
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                            修改中...
+                          </>
+                        ) : (
+                          <>
+                            <Lock className="w-4 h-4 mr-2" />
+                            修改密码
+                          </>
+                        )}
+                      </Button>
+                    </form>
+                  </div>
+
                 </CardContent>
               </Card>
             </TabsContent>
@@ -794,39 +797,51 @@ const Profile = () => {
             <TabsContent value="delete">
               <Card className="glass-effect border-destructive/20">
                 <CardHeader>
-                  <CardTitle className="text-destructive">删除账号</CardTitle>
-                  <CardDescription>
-                    永久删除您的账号和所有相关数据
-                  </CardDescription>
+                  <CardTitle className="text-destructive flex items-center gap-2">
+                    <FileText className="w-5 h-5" />
+                    账号注销协议
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="p-4 border border-destructive/50 rounded-lg bg-destructive/10">
-                    <p className="text-sm text-foreground mb-2">
-                      <strong>警告：</strong>删除账号是不可逆的操作
-                    </p>
-                    <ul className="text-sm text-muted-foreground space-y-1 ml-4 list-disc">
-                      <li>您的所有个人信息将被永久删除</li>
-                      <li>您的购买记录将无法恢复</li>
-                      <li>您的订阅将立即终止</li>
-                      <li>此操作无法撤销</li>
-                    </ul>
-                  </div>
+                  <ScrollArea className="h-[400px] w-full rounded-lg border border-border/50 p-6 bg-muted/30">
+                    <div className="space-y-6 text-sm">
+                      <div>
+                        <h3 className="font-bold text-base mb-3 text-foreground">一、注销前需满足的条件</h3>
+                        <ol className="space-y-2 list-decimal list-inside text-muted-foreground">
+                          <li>已取消所有自动订阅服务，确保无未完成的订阅套餐；</li>
+                          <li>账号当前不存在任何纠纷、投诉或被举报的情况，且未违反用户协议。</li>
+                        </ol>
+                      </div>
 
-                  <ScrollArea className="h-[200px] border border-border/50 rounded-lg p-4">
-                    <div className="prose prose-sm dark:prose-invert">
-                      <h3>账号删除协议</h3>
-                      <p>在您决定删除账号之前，请仔细阅读以下内容：</p>
-                      <ol>
-                        <li>账号删除后，您的所有个人数据将在30天内从我们的服务器中完全删除。</li>
-                        <li>删除期间，您的账号将被禁用，无法登录或使用服务。</li>
-                        <li>如果您在30天内改变主意，可以通过联系客服恢复您的账号。</li>
-                        <li>30天后，您的数据将被永久删除，无法恢复。</li>
-                        <li>删除账号不会影响您已经完成的交易记录（根据法律要求）。</li>
-                      </ol>
+                      <div>
+                        <h3 className="font-bold text-base mb-3 text-foreground">二、注销流程说明</h3>
+                        <ol className="space-y-2 list-decimal list-inside text-muted-foreground">
+                          <li>确认满足上述条件后，可提交账号删除申请，提交后无法撤回；</li>
+                          <li>申请提交后账号将立即注销，所有数据将被清除。</li>
+                        </ol>
+                      </div>
+
+                      <div>
+                        <h3 className="font-bold text-base mb-3 text-foreground">三、数据删除与保留说明</h3>
+                        <ol className="space-y-2 list-decimal list-inside text-muted-foreground">
+                          <li>账号注销后，我们将删除账号注册时使用的邮箱、手机号及密码；</li>
+                          <li>同时删除订单记录、登录记录及使用GUICHAO服务的历史数据；</li>
+                          <li>账号剩余会员天数等所有权益将清空，无法恢复。</li>
+                        </ol>
+                      </div>
+
+                      <div>
+                        <h3 className="font-bold text-base mb-3 text-foreground">四、其他提示</h3>
+                        <ol className="space-y-2 list-decimal list-inside text-muted-foreground">
+                          <li>注销后，原账号绑定的手机号、邮箱及第三方登录信息将被释放，可重新用于注册或绑定；</li>
+                          <li>已注销账号无法再次登录或恢复，重新注册亦无法享受此前已获得的新用户福利；</li>
+                          <li>如需再次使用GUICHAO服务，需重新注册账号。</li>
+                        </ol>
+                      </div>
                     </div>
                   </ScrollArea>
 
-                  <div className="flex items-start space-x-2">
+                  <div className="flex items-start space-x-3 p-4 border border-border/50 rounded-lg bg-muted/30">
                     <Checkbox
                       id="agreement"
                       checked={agreementRead}
@@ -834,10 +849,22 @@ const Profile = () => {
                     />
                     <label
                       htmlFor="agreement"
-                      className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      className="text-sm font-medium leading-relaxed cursor-pointer select-none"
                     >
-                      我已阅读并理解账号删除协议,同意删除我的账号
+                      我已仔细阅读并理解《账号注销协议》的全部内容，明确知晓注销后的所有后果，并自愿申请注销账号
                     </label>
+                  </div>
+
+                  <div className="p-4 border border-destructive/30 rounded-lg bg-destructive/5">
+                    <h4 className="font-semibold text-destructive mb-2">警告：此操作无法撤销</h4>
+                    <p className="text-sm text-muted-foreground">
+                      删除账号将永久删除以下内容：
+                    </p>
+                    <ul className="mt-2 space-y-1 text-sm text-muted-foreground list-disc list-inside">
+                      <li>您的所有个人资料</li>
+                      <li>购买记录和订阅信息</li>
+                      <li>账号相关的所有数据</li>
+                    </ul>
                   </div>
 
                   <AlertDialog>
@@ -855,27 +882,37 @@ const Profile = () => {
                       <AlertDialogHeader>
                         <AlertDialogTitle>确认删除账号</AlertDialogTitle>
                         <AlertDialogDescription>
-                          请输入您的登录密码以确认删除操作。此操作不可撤销。
+                          为了确保账号安全，请输入您的登录密码以继续删除操作。
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <div className="py-4">
-                        <Label htmlFor="delete-password">登录密码</Label>
+                        <Label htmlFor="delete-password" className="text-sm font-medium">
+                          登录密码
+                        </Label>
                         <Input
                           id="delete-password"
                           type="password"
                           placeholder="请输入您的登录密码"
                           value={deletePassword}
                           onChange={(e) => setDeletePassword(e.target.value)}
+                          className="mt-2"
+                          disabled={deletingAccount}
                         />
+                        <p className="text-xs text-muted-foreground mt-2">
+                          此操作无法撤销，将永久删除您的账号及所有相关数据。
+                        </p>
                       </div>
                       <AlertDialogFooter>
-                        <AlertDialogCancel onClick={() => setDeletePassword('')}>
+                        <AlertDialogCancel 
+                          onClick={() => setDeletePassword('')}
+                          disabled={deletingAccount}
+                        >
                           取消
                         </AlertDialogCancel>
                         <AlertDialogAction
                           onClick={handleDeleteAccount}
+                          className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                           disabled={deletingAccount || !deletePassword.trim()}
-                          className="bg-destructive hover:bg-destructive/90"
                         >
                           {deletingAccount ? (
                             <>
@@ -895,6 +932,7 @@ const Profile = () => {
           </Tabs>
         </div>
       </main>
+
       <Footer />
     </div>
   );

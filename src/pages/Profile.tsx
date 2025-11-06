@@ -661,12 +661,6 @@ const Profile = () => {
                           <Button 
                             onClick={() => navigate('/#pricing')}
                             size="sm"
-                            className={`${
-                              (!subscriptionExpiresAt || isBefore(new Date(subscriptionExpiresAt), new Date()) || 
-                              (subscriptionExpiresAt && differenceInDays(new Date(subscriptionExpiresAt), new Date()) < 7))
-                                ? 'animate-pulse'
-                                : ''
-                            }`}
                             variant={
                               (!subscriptionExpiresAt || isBefore(new Date(subscriptionExpiresAt), new Date()) || 
                               (subscriptionExpiresAt && differenceInDays(new Date(subscriptionExpiresAt), new Date()) < 7))

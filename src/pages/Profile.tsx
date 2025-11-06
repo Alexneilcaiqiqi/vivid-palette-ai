@@ -251,7 +251,7 @@ const Profile = () => {
           </div>
 
           <Tabs defaultValue="account" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-4 max-w-4xl">
+            <TabsList className="grid w-full grid-cols-5 max-w-5xl">
               <TabsTrigger value="account" className="flex items-center gap-2">
                 <Info className="w-4 h-4" />
                 账号信息
@@ -267,6 +267,10 @@ const Profile = () => {
               <TabsTrigger value="security" className="flex items-center gap-2">
                 <Lock className="w-4 h-4" />
                 安全设置
+              </TabsTrigger>
+              <TabsTrigger value="delete" className="flex items-center gap-2">
+                <Trash2 className="w-4 h-4" />
+                删除账号
               </TabsTrigger>
             </TabsList>
 
@@ -519,47 +523,60 @@ const Profile = () => {
                     </form>
                   </div>
 
-                  <div className="pt-6 border-t border-border/50">
-                    <h3 className="text-lg font-semibold mb-4">账号操作</h3>
-                    <div className="space-y-3">
-                      <Button
-                        onClick={handleSignOut}
-                        variant="outline"
-                        className="w-full"
-                      >
-                        <LogOut className="w-4 h-4 mr-2" />
-                        注销登录
-                      </Button>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button
-                            variant="destructive"
-                            className="w-full"
-                          >
-                            <Trash2 className="w-4 h-4 mr-2" />
-                            删除账号
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>确认删除账号？</AlertDialogTitle>
-                            <AlertDialogDescription>
-                              此操作无法撤销。这将永久删除您的账号及所有相关数据。
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel>取消</AlertDialogCancel>
-                            <AlertDialogAction
-                              onClick={handleDeleteAccount}
-                              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                            >
-                              确认删除
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
+            <TabsContent value="delete">
+              <Card className="glass-effect border-destructive/20">
+                <CardHeader>
+                  <CardTitle className="text-destructive">删除账号</CardTitle>
+                  <CardDescription>
+                    永久删除您的账号及所有相关数据
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="p-4 border border-destructive/30 rounded-lg bg-destructive/5">
+                      <h4 className="font-semibold text-destructive mb-2">警告：此操作无法撤销</h4>
+                      <p className="text-sm text-muted-foreground">
+                        删除账号将永久删除以下内容：
+                      </p>
+                      <ul className="mt-2 space-y-1 text-sm text-muted-foreground list-disc list-inside">
+                        <li>您的所有个人资料</li>
+                        <li>购买记录和订阅信息</li>
+                        <li>账号相关的所有数据</li>
+                      </ul>
                     </div>
+
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant="destructive"
+                          className="w-full"
+                        >
+                          <Trash2 className="w-4 h-4 mr-2" />
+                          删除账号
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>确认删除账号？</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            此操作无法撤销。这将永久删除您的账号及所有相关数据。
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>取消</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={handleDeleteAccount}
+                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                          >
+                            确认删除
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </div>
                 </CardContent>
               </Card>

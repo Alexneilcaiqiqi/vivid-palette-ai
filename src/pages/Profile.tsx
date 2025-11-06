@@ -433,14 +433,10 @@ const Profile = () => {
           </div>
 
           <Tabs defaultValue="account" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-5 max-w-5xl">
+            <TabsList className="grid w-full grid-cols-4 max-w-4xl">
               <TabsTrigger value="account" className="flex items-center gap-2">
                 <Info className="w-4 h-4" />
                 账号信息
-              </TabsTrigger>
-              <TabsTrigger value="profile" className="flex items-center gap-2">
-                <User className="w-4 h-4" />
-                个人资料
               </TabsTrigger>
               <TabsTrigger value="purchases" className="flex items-center gap-2">
                 <CreditCard className="w-4 h-4" />
@@ -657,95 +653,6 @@ const Profile = () => {
                       </div>
                     )}
                   </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="profile">
-              <Card className="glass-effect border-primary/20">
-                <CardHeader>
-                  <CardTitle>个人资料</CardTitle>
-                  <CardDescription>
-                    更新您的个人资料信息
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={profileForm.handleSubmit(onProfileSubmit)} className="space-y-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="email">邮箱地址</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={user?.email || ''}
-                        disabled
-                        className="bg-muted/50"
-                      />
-                      <p className="text-xs text-muted-foreground">
-                        邮箱地址不可修改
-                      </p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="username">用户名</Label>
-                      <Input
-                        id="username"
-                        {...profileForm.register('username')}
-                        placeholder="请输入用户名"
-                      />
-                      {profileForm.formState.errors.username && (
-                        <p className="text-sm text-destructive">
-                          {profileForm.formState.errors.username.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="avatar_url">头像URL</Label>
-                      <Input
-                        id="avatar_url"
-                        {...profileForm.register('avatar_url')}
-                        placeholder="https://example.com/avatar.jpg"
-                      />
-                      {profileForm.formState.errors.avatar_url && (
-                        <p className="text-sm text-destructive">
-                          {profileForm.formState.errors.avatar_url.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="bio">个人简介</Label>
-                      <Textarea
-                        id="bio"
-                        {...profileForm.register('bio')}
-                        placeholder="介绍一下自己..."
-                        rows={4}
-                      />
-                      {profileForm.formState.errors.bio && (
-                        <p className="text-sm text-destructive">
-                          {profileForm.formState.errors.bio.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <Button
-                      type="submit"
-                      disabled={submitting}
-                      className="w-full"
-                    >
-                      {submitting ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          保存中...
-                        </>
-                      ) : (
-                        <>
-                          <Save className="w-4 h-4 mr-2" />
-                          保存修改
-                        </>
-                      )}
-                    </Button>
-                  </form>
                 </CardContent>
               </Card>
             </TabsContent>

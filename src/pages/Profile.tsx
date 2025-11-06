@@ -28,6 +28,7 @@ const profileSchema = z.object({
 });
 
 const passwordSchema = z.object({
+  currentPassword: z.string().min(1, '请输入当前密码'),
   newPassword: z.string().min(6, '密码至少6个字符'),
   confirmPassword: z.string(),
 }).refine((data) => data.newPassword === data.confirmPassword, {
@@ -72,6 +73,7 @@ const Profile = () => {
   const passwordForm = useForm<PasswordFormData>({
     resolver: zodResolver(passwordSchema),
     defaultValues: {
+      currentPassword: '',
       newPassword: '',
       confirmPassword: '',
     },
@@ -173,6 +175,23 @@ const Profile = () => {
   const onPasswordSubmit = async (data: PasswordFormData) => {
     setSubmitting(true);
     try {
+      // 先验证旧密码
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email: user!.email!,
+        password: data.currentPassword,
+      });
+
+      if (signInError) {
+        toast({
+          title: '旧密码错误',
+          description: '您输入的当前密码不正确，请重试',
+          variant: 'destructive',
+        });
+        setSubmitting(false);
+        return;
+      }
+
+      // 旧密码验证成功，更新为新密码
       const { error } = await supabase.auth.updateUser({
         password: data.newPassword,
       });
@@ -518,6 +537,21 @@ const Profile = () => {
                   <div>
                     <h3 className="text-lg font-semibold mb-4">修改密码</h3>
                     <form onSubmit={passwordForm.handleSubmit(onPasswordSubmit)} className="space-y-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="currentPassword">当前密码</Label>
+                        <Input
+                          id="currentPassword"
+                          type="password"
+                          {...passwordForm.register('currentPassword')}
+                          placeholder="请输入当前密码"
+                        />
+                        {passwordForm.formState.errors.currentPassword && (
+                          <p className="text-sm text-destructive">
+                            {passwordForm.formState.errors.currentPassword.message}
+                          </p>
+                        )}
+                      </div>
+
                       <div className="space-y-2">
                         <Label htmlFor="newPassword">新密码</Label>
                         <Input

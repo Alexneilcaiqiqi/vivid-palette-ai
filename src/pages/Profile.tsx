@@ -10,9 +10,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { User, Lock, Save, Loader2, CreditCard, Info, LogOut, Trash2, Clock, FileText } from 'lucide-react';
+import { User, Lock, Save, Loader2, CreditCard, Info, LogOut, Trash2, Clock, FileText, Mail, Phone, Edit2 } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useForm } from 'react-hook-form';
@@ -60,6 +61,13 @@ const Profile = () => {
   const [agreementRead, setAgreementRead] = useState(false);
   const [deletePassword, setDeletePassword] = useState('');
   const [deletingAccount, setDeletingAccount] = useState(false);
+  const [phone, setPhone] = useState<string | null>(null);
+  const [editingContact, setEditingContact] = useState<'email' | 'phone' | null>(null);
+  const [newContactValue, setNewContactValue] = useState('');
+  const [verificationCode, setVerificationCode] = useState('');
+  const [codeSent, setCodeSent] = useState(false);
+  const [sendingCode, setSendingCode] = useState(false);
+  const [verifying, setVerifying] = useState(false);
 
   const profileForm = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
@@ -96,7 +104,7 @@ const Profile = () => {
     try {
       const { data, error } = await supabase
         .from('profiles')
-        .select('username, avatar_url, bio, subscription_expires_at')
+        .select('username, avatar_url, bio, subscription_expires_at, phone')
         .eq('id', user!.id)
         .maybeSingle();
 
@@ -109,6 +117,7 @@ const Profile = () => {
           bio: data.bio || '',
         });
         setSubscriptionExpiresAt(data.subscription_expires_at);
+        setPhone(data.phone);
       }
     } catch (error: any) {
       toast({
@@ -278,6 +287,115 @@ const Profile = () => {
     }
   };
 
+  const handleSendVerificationCode = async () => {
+    if (!newContactValue.trim()) {
+      toast({
+        title: '请输入新的联系方式',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setSendingCode(true);
+    try {
+      if (editingContact === 'email') {
+        const { error } = await supabase.auth.updateUser({
+          email: newContactValue,
+        });
+
+        if (error) throw error;
+
+        toast({
+          title: '验证邮件已发送',
+          description: '请检查您的新邮箱并点击验证链接',
+        });
+      } else if (editingContact === 'phone') {
+        const { error } = await supabase.auth.updateUser({
+          phone: newContactValue,
+        });
+
+        if (error) throw error;
+
+        toast({
+          title: '验证码已发送',
+          description: '请检查您的手机短信',
+        });
+      }
+
+      setCodeSent(true);
+    } catch (error: any) {
+      toast({
+        title: '发送失败',
+        description: error.message,
+        variant: 'destructive',
+      });
+    } finally {
+      setSendingCode(false);
+    }
+  };
+
+  const handleVerifyCode = async () => {
+    if (!verificationCode.trim()) {
+      toast({
+        title: '请输入验证码',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setVerifying(true);
+    try {
+      if (editingContact === 'phone') {
+        const { error } = await supabase.auth.verifyOtp({
+          phone: newContactValue,
+          token: verificationCode,
+          type: 'sms',
+        });
+
+        if (error) throw error;
+
+        // 更新profiles表中的phone字段
+        const { error: updateError } = await supabase
+          .from('profiles')
+          .update({ phone: newContactValue })
+          .eq('id', user!.id);
+
+        if (updateError) throw updateError;
+
+        setPhone(newContactValue);
+        toast({
+          title: '手机号已更新',
+          description: '您的手机号已成功修改',
+        });
+      } else {
+        toast({
+          title: '邮箱验证',
+          description: '请点击邮件中的验证链接完成邮箱更新',
+        });
+      }
+
+      setEditingContact(null);
+      setNewContactValue('');
+      setVerificationCode('');
+      setCodeSent(false);
+    } catch (error: any) {
+      toast({
+        title: '验证失败',
+        description: error.message,
+        variant: 'destructive',
+      });
+    } finally {
+      setVerifying(false);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditingContact(null);
+    setNewContactValue('');
+    setVerificationCode('');
+    setCodeSent(false);
+  };
+
   const calculateRemainingTime = () => {
     if (!subscriptionExpiresAt) return '未设置订阅';
     
@@ -349,10 +467,173 @@ const Profile = () => {
                 <CardContent className="space-y-6">
                   <div className="grid gap-4">
                     <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">
-                      <div className="space-y-1">
-                        <p className="text-sm text-muted-foreground">邮箱地址</p>
-                        <p className="font-medium">{user?.email}</p>
+                      <div className="flex items-center gap-3 flex-1">
+                        <Mail className="w-5 h-5 text-primary" />
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">邮箱地址</p>
+                          <p className="font-medium">{user?.email}</p>
+                        </div>
                       </div>
+                      <Dialog open={editingContact === 'email'} onOpenChange={(open) => !open && handleCancelEdit()}>
+                        <DialogTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setEditingContact('email')}
+                          >
+                            <Edit2 className="w-4 h-4" />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>修改邮箱地址</DialogTitle>
+                            <DialogDescription>
+                              输入新邮箱地址后，我们将发送验证邮件到新邮箱
+                            </DialogDescription>
+                          </DialogHeader>
+                          <div className="space-y-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="new-email">新邮箱地址</Label>
+                              <Input
+                                id="new-email"
+                                type="email"
+                                placeholder="请输入新邮箱地址"
+                                value={newContactValue}
+                                onChange={(e) => setNewContactValue(e.target.value)}
+                                disabled={codeSent}
+                              />
+                            </div>
+                            {codeSent && (
+                              <p className="text-sm text-muted-foreground">
+                                验证邮件已发送到 {newContactValue}，请检查邮箱并点击验证链接
+                              </p>
+                            )}
+                          </div>
+                          <DialogFooter>
+                            <Button
+                              variant="outline"
+                              onClick={handleCancelEdit}
+                              disabled={sendingCode}
+                            >
+                              取消
+                            </Button>
+                            {!codeSent ? (
+                              <Button
+                                onClick={handleSendVerificationCode}
+                                disabled={sendingCode || !newContactValue.trim()}
+                              >
+                                {sendingCode ? (
+                                  <>
+                                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                    发送中...
+                                  </>
+                                ) : (
+                                  '发送验证邮件'
+                                )}
+                              </Button>
+                            ) : (
+                              <Button
+                                onClick={handleCancelEdit}
+                              >
+                                完成
+                              </Button>
+                            )}
+                          </DialogFooter>
+                        </DialogContent>
+                      </Dialog>
+                    </div>
+
+                    <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">
+                      <div className="flex items-center gap-3 flex-1">
+                        <Phone className="w-5 h-5 text-primary" />
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">手机号码</p>
+                          <p className="font-medium">{phone || '未设置'}</p>
+                        </div>
+                      </div>
+                      <Dialog open={editingContact === 'phone'} onOpenChange={(open) => !open && handleCancelEdit()}>
+                        <DialogTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setEditingContact('phone')}
+                          >
+                            <Edit2 className="w-4 h-4" />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>修改手机号码</DialogTitle>
+                            <DialogDescription>
+                              输入新手机号码后，我们将发送验证码到新手机
+                            </DialogDescription>
+                          </DialogHeader>
+                          <div className="space-y-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="new-phone">新手机号码</Label>
+                              <Input
+                                id="new-phone"
+                                type="tel"
+                                placeholder="请输入新手机号码"
+                                value={newContactValue}
+                                onChange={(e) => setNewContactValue(e.target.value)}
+                                disabled={codeSent}
+                              />
+                            </div>
+                            {codeSent && (
+                              <div className="space-y-2">
+                                <Label htmlFor="verification-code">验证码</Label>
+                                <Input
+                                  id="verification-code"
+                                  type="text"
+                                  placeholder="请输入6位验证码"
+                                  value={verificationCode}
+                                  onChange={(e) => setVerificationCode(e.target.value)}
+                                  maxLength={6}
+                                />
+                              </div>
+                            )}
+                          </div>
+                          <DialogFooter>
+                            <Button
+                              variant="outline"
+                              onClick={handleCancelEdit}
+                              disabled={sendingCode || verifying}
+                            >
+                              取消
+                            </Button>
+                            {!codeSent ? (
+                              <Button
+                                onClick={handleSendVerificationCode}
+                                disabled={sendingCode || !newContactValue.trim()}
+                              >
+                                {sendingCode ? (
+                                  <>
+                                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                    发送中...
+                                  </>
+                                ) : (
+                                  '发送验证码'
+                                )}
+                              </Button>
+                            ) : (
+                              <Button
+                                onClick={handleVerifyCode}
+                                disabled={verifying || !verificationCode.trim()}
+                              >
+                                {verifying ? (
+                                  <>
+                                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                    验证中...
+                                  </>
+                                ) : (
+                                  '验证并更新'
+                                )}
+                              </Button>
+                            )}
+                          </DialogFooter>
+                        </DialogContent>
+                      </Dialog>
                     </div>
 
                     <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">

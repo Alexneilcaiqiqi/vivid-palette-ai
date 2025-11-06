@@ -694,13 +694,12 @@ const Profile = () => {
                             <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">会员类型</th>
                             <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">会员时长</th>
                             <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">获取途径</th>
-                            <th className="text-right py-3 px-4 text-sm font-semibold text-muted-foreground">支付金额</th>
                           </tr>
                         </thead>
                         <tbody>
                           {purchases.length === 0 ? (
                             <tr>
-                              <td colSpan={6} className="text-center py-8 text-muted-foreground">
+                              <td colSpan={5} className="text-center py-8 text-muted-foreground">
                                 暂无购买记录
                               </td>
                             </tr>
@@ -736,9 +735,6 @@ const Profile = () => {
                                   }`}>
                                     {parseFloat(purchase.amount.toString()) === 0 ? '赠送' : '购买'}
                                   </span>
-                                </td>
-                                <td className="py-4 px-4 text-right text-sm font-bold text-primary">
-                                  ¥{purchase.amount.toFixed(2)}
                                 </td>
                               </tr>
                             ))

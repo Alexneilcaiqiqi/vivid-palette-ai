@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -13,32 +14,14 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { User, Lock, Save, Loader2, CreditCard, Info, LogOut, Trash2, Clock, FileText, Mail, Phone, Edit2, Crown, Calendar } from 'lucide-react';
+import { User, Lock, Save, Loader2, CreditCard, Info, LogOut, Trash2, Clock, FileText, Mail, Phone, Edit2, Crown, Calendar, Check, Zap, Star } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { formatDistanceToNow, differenceInDays, isBefore } from 'date-fns';
-import { zhCN } from 'date-fns/locale';
-
-const profileSchema = z.object({
-  username: z.string().min(2, '用户名至少2个字符').max(50, '用户名最多50个字符').optional(),
-  avatar_url: z.string().url('请输入有效的URL').optional().or(z.literal('')),
-  bio: z.string().max(500, '简介最多500个字符').optional(),
-});
-
-const passwordSchema = z.object({
-  currentPassword: z.string().min(1, '请输入当前密码'),
-  newPassword: z.string().min(6, '密码至少6个字符'),
-  confirmPassword: z.string(),
-}).refine((data) => data.newPassword === data.confirmPassword, {
-  message: "两次密码输入不一致",
-  path: ["confirmPassword"],
-});
-
-type ProfileFormData = z.infer<typeof profileSchema>;
-type PasswordFormData = z.infer<typeof passwordSchema>;
+import { zhCN, enUS } from 'date-fns/locale';
 
 interface Purchase {
   id: string;
@@ -51,8 +34,28 @@ interface Purchase {
 
 const Profile = () => {
   const { user, loading, signOut } = useAuth();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
   const { toast } = useToast();
+  
+  // Create schemas dynamically based on language
+  const profileSchema = z.object({
+    username: z.string().min(2, t('profile.usernameMin')).max(50, t('profile.usernameMax')).optional(),
+    avatar_url: z.string().url(t('profile.invalidURL')).optional().or(z.literal('')),
+    bio: z.string().max(500, t('profile.bioMax')).optional(),
+  });
+
+  const passwordSchema = z.object({
+    currentPassword: z.string().min(1, t('profile.enterCurrentPassword')),
+    newPassword: z.string().min(6, t('profile.passwordMin')),
+    confirmPassword: z.string(),
+  }).refine((data) => data.newPassword === data.confirmPassword, {
+    message: t('profile.passwordMismatch'),
+    path: ["confirmPassword"],
+  });
+
+  type ProfileFormData = z.infer<typeof profileSchema>;
+  type PasswordFormData = z.infer<typeof passwordSchema>;
   const [profileLoading, setProfileLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [subscriptionExpiresAt, setSubscriptionExpiresAt] = useState<string | null>(null);
@@ -121,7 +124,7 @@ const Profile = () => {
       }
     } catch (error: any) {
       toast({
-        title: '加载失败',
+        title: t('profile.loadFailed'),
         description: error.message,
         variant: 'destructive',
       });
@@ -167,8 +170,8 @@ const Profile = () => {
       if (error) throw error;
 
       toast({
-        title: '保存成功',
-        description: '您的个人信息已更新',
+        title: t('profile.saveSuccess'),
+        description: t('profile.profileUpdated'),
       });
     } catch (error: any) {
       toast({
@@ -397,16 +400,16 @@ const Profile = () => {
   };
 
   const calculateRemainingTime = () => {
-    if (!subscriptionExpiresAt) return '未设置订阅';
+    if (!subscriptionExpiresAt) return t('profile.noSubscription');
     
     const expiresAt = new Date(subscriptionExpiresAt);
     const now = new Date();
     
     if (expiresAt < now) {
-      return '已过期';
+      return t('profile.expired');
     }
     
-    return formatDistanceToNow(expiresAt, { addSuffix: true, locale: zhCN });
+    return formatDistanceToNow(expiresAt, { addSuffix: true, locale: language === 'zh' ? zhCN : enUS });
   };
 
   if (loading || profileLoading) {
@@ -425,10 +428,10 @@ const Profile = () => {
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
             <h1 className="text-4xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-              账号管理
+              {t('profile.title')}
             </h1>
             <p className="mt-2 text-muted-foreground">
-              管理您的个人信息和账号设置
+              {t('profile.subtitle')}
             </p>
           </div>
 
@@ -436,19 +439,19 @@ const Profile = () => {
             <TabsList className="grid w-full grid-cols-4 max-w-4xl">
               <TabsTrigger value="account" className="flex items-center gap-2">
                 <Info className="w-4 h-4" />
-                账号信息
+                {t('profile.accountInfo')}
               </TabsTrigger>
               <TabsTrigger value="purchases" className="flex items-center gap-2">
                 <CreditCard className="w-4 h-4" />
-                购买记录
+                {t('profile.purchases')}
               </TabsTrigger>
               <TabsTrigger value="security" className="flex items-center gap-2">
                 <Lock className="w-4 h-4" />
-                安全设置
+                {t('profile.security')}
               </TabsTrigger>
               <TabsTrigger value="delete" className="flex items-center gap-2">
                 <Trash2 className="w-4 h-4" />
-                删除账号
+                {t('profile.deleteAccount')}
               </TabsTrigger>
             </TabsList>
 

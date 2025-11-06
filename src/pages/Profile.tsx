@@ -145,7 +145,7 @@ const Profile = () => {
       setPurchases(data || []);
     } catch (error: any) {
       toast({
-        title: '加载购买记录失败',
+        title: t('profile.loadPurchasesFailed'),
         description: error.message,
         variant: 'destructive',
       });
@@ -175,7 +175,7 @@ const Profile = () => {
       });
     } catch (error: any) {
       toast({
-        title: '保存失败',
+        title: t('profile.saveFailed'),
         description: error.message,
         variant: 'destructive',
       });
@@ -195,8 +195,8 @@ const Profile = () => {
 
       if (signInError) {
         toast({
-          title: '旧密码错误',
-          description: '您输入的当前密码不正确，请重试',
+          title: t('profile.oldPasswordError'),
+          description: t('profile.oldPasswordErrorDesc'),
           variant: 'destructive',
         });
         setSubmitting(false);
@@ -211,13 +211,13 @@ const Profile = () => {
       if (error) throw error;
 
       toast({
-        title: '修改成功',
-        description: '您的密码已更新',
+        title: t('profile.changeSuccess'),
+        description: t('profile.passwordUpdated'),
       });
       passwordForm.reset();
     } catch (error: any) {
       toast({
-        title: '修改失败',
+        title: t('profile.changeFailed'),
         description: error.message,
         variant: 'destructive',
       });
@@ -230,13 +230,13 @@ const Profile = () => {
     try {
       await signOut();
       toast({
-        title: '已退出登录',
-        description: '您已成功退出账号',
+        title: t('profile.loggedOut'),
+        description: t('profile.logoutSuccess'),
       });
       navigate('/auth');
     } catch (error: any) {
       toast({
-        title: '退出失败',
+        title: t('profile.logoutFailed'),
         description: error.message,
         variant: 'destructive',
       });
@@ -246,8 +246,8 @@ const Profile = () => {
   const handleDeleteAccount = async () => {
     if (!deletePassword.trim()) {
       toast({
-        title: '请输入密码',
-        description: '为了安全起见，请输入您的登录密码',
+        title: t('profile.enterPassword'),
+        description: t('profile.enterPasswordDesc'),
         variant: 'destructive',
       });
       return;
@@ -263,8 +263,8 @@ const Profile = () => {
 
       if (signInError) {
         toast({
-          title: '密码错误',
-          description: '您输入的密码不正确，请重试',
+          title: t('profile.passwordError'),
+          description: t('profile.passwordErrorDesc'),
           variant: 'destructive',
         });
         setDeletePassword('');
@@ -274,15 +274,15 @@ const Profile = () => {
 
       // 密码验证成功
       toast({
-        title: '验证成功',
-        description: '您的账号删除请求已提交，请联系管理员完成删除',
+        title: t('profile.verificationSuccess'),
+        description: t('profile.deleteRequestSubmitted'),
       });
       
       setDeletePassword('');
     } catch (error: any) {
       toast({
-        title: '验证失败',
-        description: error.message || '验证密码时出现错误',
+        title: t('profile.verificationFailed'),
+        description: error.message,
         variant: 'destructive',
       });
     } finally {
@@ -293,7 +293,7 @@ const Profile = () => {
   const handleSendVerificationCode = async () => {
     if (!newContactValue.trim()) {
       toast({
-        title: '请输入新的联系方式',
+        title: t('profile.enterContact'),
         variant: 'destructive',
       });
       return;
@@ -309,8 +309,8 @@ const Profile = () => {
         if (error) throw error;
 
         toast({
-          title: '验证邮件已发送',
-          description: '请检查您的新邮箱并点击验证链接',
+          title: t('profile.emailVerificationSent'),
+          description: t('profile.checkNewEmail'),
         });
       } else if (editingContact === 'phone') {
         const { error } = await supabase.auth.updateUser({
@@ -320,15 +320,15 @@ const Profile = () => {
         if (error) throw error;
 
         toast({
-          title: '验证码已发送',
-          description: '请检查您的手机短信',
+          title: t('profile.codeVerificationSent'),
+          description: t('profile.checkSMS'),
         });
       }
 
       setCodeSent(true);
     } catch (error: any) {
       toast({
-        title: '发送失败',
+        title: t('profile.sendFailed'),
         description: error.message,
         variant: 'destructive',
       });
@@ -340,7 +340,7 @@ const Profile = () => {
   const handleVerifyCode = async () => {
     if (!verificationCode.trim()) {
       toast({
-        title: '请输入验证码',
+        title: t('profile.enterCode'),
         variant: 'destructive',
       });
       return;
@@ -367,13 +367,13 @@ const Profile = () => {
 
         setPhone(newContactValue);
         toast({
-          title: '手机号已更新',
-          description: '您的手机号已成功修改',
+          title: t('profile.phoneUpdated'),
+          description: t('profile.phoneUpdateSuccess'),
         });
       } else {
         toast({
-          title: '邮箱验证',
-          description: '请点击邮件中的验证链接完成邮箱更新',
+          title: t('profile.emailVerification'),
+          description: t('profile.clickEmailLink'),
         });
       }
 
@@ -458,9 +458,9 @@ const Profile = () => {
             <TabsContent value="account">
               <Card className="glass-effect border-primary/20">
                 <CardHeader>
-                  <CardTitle>账号信息</CardTitle>
+                  <CardTitle>{t('profile.accountInfoTitle')}</CardTitle>
                   <CardDescription>
-                    查看您的账号状态和订阅信息
+                    {t('profile.accountInfoDesc')}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
@@ -469,7 +469,7 @@ const Profile = () => {
                       <div className="flex items-center gap-3 flex-1">
                         <Mail className="w-5 h-5 text-primary" />
                         <div className="space-y-1">
-                          <p className="text-sm text-muted-foreground">邮箱地址</p>
+                          <p className="text-sm text-muted-foreground">{t('profile.emailAddress')}</p>
                           <p className="font-medium">{user?.email}</p>
                         </div>
                       </div>
@@ -485,18 +485,18 @@ const Profile = () => {
                         </DialogTrigger>
                         <DialogContent>
                           <DialogHeader>
-                            <DialogTitle>修改邮箱地址</DialogTitle>
+                            <DialogTitle>{t('profile.editEmail')}</DialogTitle>
                             <DialogDescription>
-                              输入新邮箱地址后，我们将发送验证邮件到新邮箱
+                              {t('profile.editEmailDesc')}
                             </DialogDescription>
                           </DialogHeader>
                           <div className="space-y-4">
                             <div className="space-y-2">
-                              <Label htmlFor="new-email">新邮箱地址</Label>
+                              <Label htmlFor="new-email">{t('profile.newEmail')}</Label>
                               <Input
                                 id="new-email"
                                 type="email"
-                                placeholder="请输入新邮箱地址"
+                                placeholder={t('profile.newEmailPlaceholder')}
                                 value={newContactValue}
                                 onChange={(e) => setNewContactValue(e.target.value)}
                                 disabled={codeSent}
@@ -504,7 +504,7 @@ const Profile = () => {
                             </div>
                             {codeSent && (
                               <p className="text-sm text-muted-foreground">
-                                验证邮件已发送到 {newContactValue}，请检查邮箱并点击验证链接
+                                {t('profile.verificationSent')} {newContactValue}{t('profile.checkEmail')}
                               </p>
                             )}
                           </div>
@@ -514,7 +514,7 @@ const Profile = () => {
                               onClick={handleCancelEdit}
                               disabled={sendingCode}
                             >
-                              取消
+                              {t('profile.cancel')}
                             </Button>
                             {!codeSent ? (
                               <Button
@@ -524,17 +524,17 @@ const Profile = () => {
                                 {sendingCode ? (
                                   <>
                                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                    发送中...
+                                    {t('profile.sending')}
                                   </>
                                 ) : (
-                                  '发送验证邮件'
+                                  t('profile.sendVerificationEmail')
                                 )}
                               </Button>
                             ) : (
                               <Button
                                 onClick={handleCancelEdit}
                               >
-                                完成
+                                {t('profile.done')}
                               </Button>
                             )}
                           </DialogFooter>
@@ -546,8 +546,8 @@ const Profile = () => {
                       <div className="flex items-center gap-3 flex-1">
                         <Phone className="w-5 h-5 text-primary" />
                         <div className="space-y-1">
-                          <p className="text-sm text-muted-foreground">手机号码</p>
-                          <p className="font-medium">{phone || '未设置'}</p>
+                          <p className="text-sm text-muted-foreground">{t('profile.phoneNumber')}</p>
+                          <p className="font-medium">{phone || t('profile.notSet')}</p>
                         </div>
                       </div>
                       <Dialog open={editingContact === 'phone'} onOpenChange={(open) => !open && handleCancelEdit()}>
@@ -562,18 +562,18 @@ const Profile = () => {
                         </DialogTrigger>
                         <DialogContent>
                           <DialogHeader>
-                            <DialogTitle>修改手机号码</DialogTitle>
+                            <DialogTitle>{t('profile.editPhone')}</DialogTitle>
                             <DialogDescription>
-                              输入新手机号码后，我们将发送验证码到新手机
+                              {t('profile.editPhoneDesc')}
                             </DialogDescription>
                           </DialogHeader>
                           <div className="space-y-4">
                             <div className="space-y-2">
-                              <Label htmlFor="new-phone">新手机号码</Label>
+                              <Label htmlFor="new-phone">{t('profile.newPhone')}</Label>
                               <Input
                                 id="new-phone"
                                 type="tel"
-                                placeholder="请输入新手机号码"
+                                placeholder={t('profile.newPhonePlaceholder')}
                                 value={newContactValue}
                                 onChange={(e) => setNewContactValue(e.target.value)}
                                 disabled={codeSent}
@@ -581,11 +581,11 @@ const Profile = () => {
                             </div>
                             {codeSent && (
                               <div className="space-y-2">
-                                <Label htmlFor="verification-code">验证码</Label>
+                                <Label htmlFor="verification-code">{t('profile.verificationCode')}</Label>
                                 <Input
                                   id="verification-code"
                                   type="text"
-                                  placeholder="请输入6位验证码"
+                                  placeholder={t('profile.verificationCodePlaceholder')}
                                   value={verificationCode}
                                   onChange={(e) => setVerificationCode(e.target.value)}
                                   maxLength={6}
@@ -599,7 +599,7 @@ const Profile = () => {
                               onClick={handleCancelEdit}
                               disabled={sendingCode || verifying}
                             >
-                              取消
+                              {t('profile.cancel')}
                             </Button>
                             {!codeSent ? (
                               <Button
@@ -609,10 +609,10 @@ const Profile = () => {
                                 {sendingCode ? (
                                   <>
                                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                    发送中...
+                                    {t('profile.sending')}
                                   </>
                                 ) : (
-                                  '发送验证码'
+                                  t('profile.sendCode')
                                 )}
                               </Button>
                             ) : (
@@ -623,10 +623,10 @@ const Profile = () => {
                                 {verifying ? (
                                   <>
                                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                    验证中...
+                                    {t('profile.verifying')}
                                   </>
                                 ) : (
-                                  '验证并更新'
+                                  t('profile.verifyAndUpdate')
                                 )}
                               </Button>
                             )}
@@ -638,26 +638,26 @@ const Profile = () => {
                     <div className="p-4 border border-border/50 rounded-lg bg-muted/30">
                       <div className="flex items-center gap-3 mb-3">
                         <Crown className="w-5 h-5 text-primary" />
-                        <p className="text-sm text-muted-foreground">会员状态</p>
+                        <p className="text-sm text-muted-foreground">{t('profile.memberStatus')}</p>
                       </div>
                       <div className="space-y-3">
                         <p className="font-medium text-lg">
                           {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) 
-                            ? 'VIP会员' 
-                            : '普通用户'}
+                            ? t('profile.vipMember')
+                            : t('profile.regularUser')}
                         </p>
                         <div className="flex items-center justify-between gap-2">
                           <div className="flex items-center gap-2 text-sm">
                             <Calendar className="w-4 h-4 text-muted-foreground" />
                             <span className="text-muted-foreground">
-                              VIP剩余时长: <span className={`font-semibold ${
+                              {t('profile.vipRemaining')}: <span className={`font-semibold ${
                                 subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) && differenceInDays(new Date(subscriptionExpiresAt), new Date()) < 7
                                   ? 'text-destructive'
                                   : 'text-foreground'
                               }`}>
                                 {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) 
-                                  ? `${differenceInDays(new Date(subscriptionExpiresAt), new Date())} 天`
-                                  : '0 天'}
+                                  ? `${differenceInDays(new Date(subscriptionExpiresAt), new Date())} ${t('profile.days')}`
+                                  : `0 ${t('profile.days')}`}
                               </span>
                             </span>
                           </div>
@@ -672,7 +672,7 @@ const Profile = () => {
                             }
                           >
                             <CreditCard className="w-4 h-4 mr-1" />
-                            {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) ? '续费' : '购买'}
+                            {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) ? t('profile.renew') : t('profile.purchase')}
                           </Button>
                         </div>
                       </div>
@@ -681,9 +681,9 @@ const Profile = () => {
                     {subscriptionExpiresAt && (
                       <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">
                         <div className="space-y-1">
-                          <p className="text-sm text-muted-foreground">到期时间</p>
+                          <p className="text-sm text-muted-foreground">{t('profile.expiryTime')}</p>
                           <p className="font-medium">
-                            {new Date(subscriptionExpiresAt).toLocaleString('zh-CN')}
+                            {new Date(subscriptionExpiresAt).toLocaleString(language === 'zh' ? 'zh-CN' : 'en-US')}
                           </p>
                         </div>
                       </div>
@@ -696,9 +696,9 @@ const Profile = () => {
             <TabsContent value="purchases">
               <Card className="glass-effect border-primary/20">
                 <CardHeader>
-                  <CardTitle>购买记录</CardTitle>
+                  <CardTitle>{t('profile.purchasesTitle')}</CardTitle>
                   <CardDescription>
-                    查看您的所有购买历史
+                    {t('profile.purchasesDesc')}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -711,18 +711,18 @@ const Profile = () => {
                       <table className="w-full">
                         <thead>
                           <tr className="border-b border-border/50">
-                            <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">订单日期</th>
-                            <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">订单编号</th>
-                            <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">会员类型</th>
-                            <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">会员时长</th>
-                            <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">获取途径</th>
+                            <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">{t('profile.orderDate')}</th>
+                            <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">{t('profile.orderNumber')}</th>
+                            <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">{t('profile.memberType')}</th>
+                            <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">{t('profile.memberDuration')}</th>
+                            <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">{t('profile.acquisitionMethod')}</th>
                           </tr>
                         </thead>
                         <tbody>
                           {purchases.length === 0 ? (
                             <tr>
                               <td colSpan={5} className="text-center py-8 text-muted-foreground">
-                                暂无购买记录
+                                {t('profile.noPurchases')}
                               </td>
                             </tr>
                           ) : (
@@ -732,7 +732,7 @@ const Profile = () => {
                                 className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                               >
                                 <td className="py-4 px-4 text-sm">
-                                  {new Date(purchase.created_at).toLocaleString('zh-CN', {
+                                  {new Date(purchase.created_at).toLocaleString(language === 'zh' ? 'zh-CN' : 'en-US', {
                                     year: 'numeric',
                                     month: '2-digit',
                                     day: '2-digit',
@@ -747,7 +747,7 @@ const Profile = () => {
                                   {purchase.product_name}
                                 </td>
                                 <td className="py-4 px-4 text-sm">
-                                  {purchase.product_description || '永久'}
+                                  {purchase.product_description || t('profile.permanent')}
                                 </td>
                                 <td className="py-4 px-4 text-sm">
                                   <span className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -755,7 +755,7 @@ const Profile = () => {
                                       ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
                                       : 'bg-primary/10 text-primary'
                                   }`}>
-                                    {parseFloat(purchase.amount.toString()) === 0 ? '赠送' : '购买'}
+                                    {parseFloat(purchase.amount.toString()) === 0 ? t('profile.gifted') : t('profile.purchased')}
                                   </span>
                                 </td>
                               </tr>
@@ -772,22 +772,22 @@ const Profile = () => {
             <TabsContent value="security">
               <Card className="glass-effect border-primary/20">
                 <CardHeader>
-                  <CardTitle>安全设置</CardTitle>
+                  <CardTitle>{t('profile.securityTitle')}</CardTitle>
                   <CardDescription>
-                    管理您的密码和账号安全
+                    {t('profile.securityDesc')}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-8">
                   <div>
-                    <h3 className="text-lg font-semibold mb-4">修改密码</h3>
+                    <h3 className="text-lg font-semibold mb-4">{t('profile.changePassword')}</h3>
                     <form onSubmit={passwordForm.handleSubmit(onPasswordSubmit)} className="space-y-6">
                       <div className="space-y-2">
-                        <Label htmlFor="currentPassword">当前密码</Label>
+                        <Label htmlFor="currentPassword">{t('profile.currentPassword')}</Label>
                         <Input
                           id="currentPassword"
                           type="password"
                           {...passwordForm.register('currentPassword')}
-                          placeholder="请输入当前密码"
+                          placeholder={t('profile.currentPasswordPlaceholder')}
                         />
                         {passwordForm.formState.errors.currentPassword && (
                           <p className="text-sm text-destructive">
@@ -797,12 +797,12 @@ const Profile = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="newPassword">新密码</Label>
+                        <Label htmlFor="newPassword">{t('profile.newPassword')}</Label>
                         <Input
                           id="newPassword"
                           type="password"
                           {...passwordForm.register('newPassword')}
-                          placeholder="请输入新密码"
+                          placeholder={t('profile.newPasswordPlaceholder')}
                         />
                         {passwordForm.formState.errors.newPassword && (
                           <p className="text-sm text-destructive">
@@ -812,12 +812,12 @@ const Profile = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="confirmPassword">确认新密码</Label>
+                        <Label htmlFor="confirmPassword">{t('profile.confirmNewPassword')}</Label>
                         <Input
                           id="confirmPassword"
                           type="password"
                           {...passwordForm.register('confirmPassword')}
-                          placeholder="请再次输入新密码"
+                          placeholder={t('profile.confirmNewPasswordPlaceholder')}
                         />
                         {passwordForm.formState.errors.confirmPassword && (
                           <p className="text-sm text-destructive">
@@ -834,12 +834,12 @@ const Profile = () => {
                         {submitting ? (
                           <>
                             <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                            修改中...
+                            {t('profile.changing')}
                           </>
                         ) : (
                           <>
                             <Lock className="w-4 h-4 mr-2" />
-                            修改密码
+                            {t('profile.changePassword')}
                           </>
                         )}
                       </Button>
@@ -855,43 +855,43 @@ const Profile = () => {
                 <CardHeader>
                   <CardTitle className="text-destructive flex items-center gap-2">
                     <FileText className="w-5 h-5" />
-                    账号注销协议
+                    {t('profile.deleteAccountAgreement')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <ScrollArea className="h-[400px] w-full rounded-lg border border-border/50 p-6 bg-muted/30">
                     <div className="space-y-6 text-sm">
                       <div>
-                        <h3 className="font-bold text-base mb-3 text-foreground">一、注销前需满足的条件</h3>
+                        <h3 className="font-bold text-base mb-3 text-foreground">{t('profile.agreementSection1')}</h3>
                         <ol className="space-y-2 list-decimal list-inside text-muted-foreground">
-                          <li>已取消所有自动订阅服务，确保无未完成的订阅套餐；</li>
-                          <li>账号当前不存在任何纠纷、投诉或被举报的情况，且未违反用户协议。</li>
+                          <li>{t('profile.agreementSection1Item1')}</li>
+                          <li>{t('profile.agreementSection1Item2')}</li>
                         </ol>
                       </div>
 
                       <div>
-                        <h3 className="font-bold text-base mb-3 text-foreground">二、注销流程说明</h3>
+                        <h3 className="font-bold text-base mb-3 text-foreground">{t('profile.agreementSection2')}</h3>
                         <ol className="space-y-2 list-decimal list-inside text-muted-foreground">
-                          <li>确认满足上述条件后，可提交账号删除申请，提交后无法撤回；</li>
-                          <li>申请提交后账号将立即注销，所有数据将被清除。</li>
+                          <li>{t('profile.agreementSection2Item1')}</li>
+                          <li>{t('profile.agreementSection2Item2')}</li>
                         </ol>
                       </div>
 
                       <div>
-                        <h3 className="font-bold text-base mb-3 text-foreground">三、数据删除与保留说明</h3>
+                        <h3 className="font-bold text-base mb-3 text-foreground">{t('profile.agreementSection3')}</h3>
                         <ol className="space-y-2 list-decimal list-inside text-muted-foreground">
-                          <li>账号注销后，我们将删除账号注册时使用的邮箱、手机号及密码；</li>
-                          <li>同时删除订单记录、登录记录及使用GUICHAO服务的历史数据；</li>
-                          <li>账号剩余会员天数等所有权益将清空，无法恢复。</li>
+                          <li>{t('profile.agreementSection3Item1')}</li>
+                          <li>{t('profile.agreementSection3Item2')}</li>
+                          <li>{t('profile.agreementSection3Item3')}</li>
                         </ol>
                       </div>
 
                       <div>
-                        <h3 className="font-bold text-base mb-3 text-foreground">四、其他提示</h3>
+                        <h3 className="font-bold text-base mb-3 text-foreground">{t('profile.agreementSection4')}</h3>
                         <ol className="space-y-2 list-decimal list-inside text-muted-foreground">
-                          <li>注销后，原账号绑定的手机号、邮箱及第三方登录信息将被释放，可重新用于注册或绑定；</li>
-                          <li>已注销账号无法再次登录或恢复，重新注册亦无法享受此前已获得的新用户福利；</li>
-                          <li>如需再次使用GUICHAO服务，需重新注册账号。</li>
+                          <li>{t('profile.agreementSection4Item1')}</li>
+                          <li>{t('profile.agreementSection4Item2')}</li>
+                          <li>{t('profile.agreementSection4Item3')}</li>
                         </ol>
                       </div>
                     </div>
@@ -907,19 +907,19 @@ const Profile = () => {
                       htmlFor="agreement"
                       className="text-sm font-medium leading-relaxed cursor-pointer select-none"
                     >
-                      我已仔细阅读并理解《账号注销协议》的全部内容，明确知晓注销后的所有后果，并自愿申请注销账号
+                      {t('profile.agreementCheckbox')}
                     </label>
                   </div>
 
                   <div className="p-4 border border-destructive/30 rounded-lg bg-destructive/5">
-                    <h4 className="font-semibold text-destructive mb-2">警告：此操作无法撤销</h4>
+                    <h4 className="font-semibold text-destructive mb-2">{t('profile.deleteWarning')}</h4>
                     <p className="text-sm text-muted-foreground">
-                      删除账号将永久删除以下内容：
+                      {t('profile.deleteWarningDesc')}
                     </p>
                     <ul className="mt-2 space-y-1 text-sm text-muted-foreground list-disc list-inside">
-                      <li>您的所有个人资料</li>
-                      <li>购买记录和订阅信息</li>
-                      <li>账号相关的所有数据</li>
+                      <li>{t('profile.deleteWarningItem1')}</li>
+                      <li>{t('profile.deleteWarningItem2')}</li>
+                      <li>{t('profile.deleteWarningItem3')}</li>
                     </ul>
                   </div>
 
@@ -931,31 +931,31 @@ const Profile = () => {
                         disabled={!agreementRead}
                       >
                         <Trash2 className="w-4 h-4 mr-2" />
-                        删除账号
+                        {t('profile.deleteAccount')}
                       </Button>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
-                        <AlertDialogTitle>确认删除账号</AlertDialogTitle>
+                        <AlertDialogTitle>{t('profile.confirmDelete')}</AlertDialogTitle>
                         <AlertDialogDescription>
-                          为了确保账号安全，请输入您的登录密码以继续删除操作。
+                          {t('profile.confirmDeleteDesc')}
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <div className="py-4">
                         <Label htmlFor="delete-password" className="text-sm font-medium">
-                          登录密码
+                          {t('profile.loginPassword')}
                         </Label>
                         <Input
                           id="delete-password"
                           type="password"
-                          placeholder="请输入您的登录密码"
+                          placeholder={t('profile.loginPasswordPlaceholder')}
                           value={deletePassword}
                           onChange={(e) => setDeletePassword(e.target.value)}
                           className="mt-2"
                           disabled={deletingAccount}
                         />
                         <p className="text-xs text-muted-foreground mt-2">
-                          此操作无法撤销，将永久删除您的账号及所有相关数据。
+                          {t('profile.deleteNote')}
                         </p>
                       </div>
                       <AlertDialogFooter>
@@ -963,7 +963,7 @@ const Profile = () => {
                           onClick={() => setDeletePassword('')}
                           disabled={deletingAccount}
                         >
-                          取消
+                          {t('profile.cancel')}
                         </AlertDialogCancel>
                         <AlertDialogAction
                           onClick={handleDeleteAccount}
@@ -973,10 +973,10 @@ const Profile = () => {
                           {deletingAccount ? (
                             <>
                               <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                              删除中...
+                              {t('profile.deleting')}
                             </>
                           ) : (
-                            '确认删除'
+                            t('profile.confirmDeleteBtn')
                           )}
                         </AlertDialogAction>
                       </AlertDialogFooter>

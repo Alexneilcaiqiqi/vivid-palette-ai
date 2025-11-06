@@ -57,6 +57,8 @@ const Profile = () => {
   const [purchases, setPurchases] = useState<Purchase[]>([]);
   const [purchasesLoading, setPurchasesLoading] = useState(true);
   const [agreementRead, setAgreementRead] = useState(false);
+  const [deletePassword, setDeletePassword] = useState('');
+  const [deletingAccount, setDeletingAccount] = useState(false);
 
   const profileForm = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
@@ -210,11 +212,51 @@ const Profile = () => {
     }
   };
 
-  const handleDeleteAccount = () => {
-    toast({
-      title: '删除账号',
-      description: '请联系管理员删除您的账号',
-    });
+  const handleDeleteAccount = async () => {
+    if (!deletePassword.trim()) {
+      toast({
+        title: '请输入密码',
+        description: '为了安全起见，请输入您的登录密码',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setDeletingAccount(true);
+    try {
+      // 验证密码
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email: user!.email!,
+        password: deletePassword,
+      });
+
+      if (signInError) {
+        toast({
+          title: '密码错误',
+          description: '您输入的密码不正确，请重试',
+          variant: 'destructive',
+        });
+        setDeletePassword('');
+        setDeletingAccount(false);
+        return;
+      }
+
+      // 密码验证成功
+      toast({
+        title: '验证成功',
+        description: '您的账号删除请求已提交，请联系管理员完成删除',
+      });
+      
+      setDeletePassword('');
+    } catch (error: any) {
+      toast({
+        title: '验证失败',
+        description: error.message || '验证密码时出现错误',
+        variant: 'destructive',
+      });
+    } finally {
+      setDeletingAccount(false);
+    }
   };
 
   const calculateRemainingTime = () => {
@@ -616,18 +658,48 @@ const Profile = () => {
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
-                        <AlertDialogTitle>确认删除账号？</AlertDialogTitle>
+                        <AlertDialogTitle>确认删除账号</AlertDialogTitle>
                         <AlertDialogDescription>
-                          此操作无法撤销。这将永久删除您的账号及所有相关数据。
+                          为了确保账号安全，请输入您的登录密码以继续删除操作。
                         </AlertDialogDescription>
                       </AlertDialogHeader>
+                      <div className="py-4">
+                        <Label htmlFor="delete-password" className="text-sm font-medium">
+                          登录密码
+                        </Label>
+                        <Input
+                          id="delete-password"
+                          type="password"
+                          placeholder="请输入您的登录密码"
+                          value={deletePassword}
+                          onChange={(e) => setDeletePassword(e.target.value)}
+                          className="mt-2"
+                          disabled={deletingAccount}
+                        />
+                        <p className="text-xs text-muted-foreground mt-2">
+                          此操作无法撤销，将永久删除您的账号及所有相关数据。
+                        </p>
+                      </div>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>取消</AlertDialogCancel>
+                        <AlertDialogCancel 
+                          onClick={() => setDeletePassword('')}
+                          disabled={deletingAccount}
+                        >
+                          取消
+                        </AlertDialogCancel>
                         <AlertDialogAction
                           onClick={handleDeleteAccount}
                           className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                          disabled={deletingAccount || !deletePassword.trim()}
                         >
-                          确认删除
+                          {deletingAccount ? (
+                            <>
+                              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                              删除中...
+                            </>
+                          ) : (
+                            '确认删除'
+                          )}
                         </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>

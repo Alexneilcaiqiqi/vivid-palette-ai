@@ -632,33 +632,29 @@ const Profile = () => {
                       </Dialog>
                     </div>
 
-                    <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">
-                      <div className="flex items-center gap-3 flex-1">
+                    <div className="p-4 border border-border/50 rounded-lg bg-muted/30">
+                      <div className="flex items-center gap-3 mb-3">
                         <Crown className="w-5 h-5 text-primary" />
-                        <div className="space-y-1">
-                          <p className="text-sm text-muted-foreground">会员状态</p>
-                          <p className="font-medium">
-                            {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) 
-                              ? 'VIP会员' 
-                              : '普通用户'}
-                          </p>
-                        </div>
+                        <p className="text-sm text-muted-foreground">会员状态</p>
+                      </div>
+                      <div className="space-y-2">
+                        <p className="font-medium text-lg">
+                          {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) 
+                            ? 'VIP会员' 
+                            : '普通用户'}
+                        </p>
+                        {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) && (
+                          <div className="flex items-center gap-2 text-sm">
+                            <Calendar className="w-4 h-4 text-muted-foreground" />
+                            <span className="text-muted-foreground">
+                              VIP剩余时长: <span className="font-semibold text-foreground">
+                                {differenceInDays(new Date(subscriptionExpiresAt), new Date())} 天
+                              </span>
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </div>
-
-                    {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) && (
-                      <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">
-                        <div className="flex items-center gap-3 flex-1">
-                          <Calendar className="w-5 h-5 text-primary" />
-                          <div className="space-y-1">
-                            <p className="text-sm text-muted-foreground">剩余VIP天数</p>
-                            <p className="font-medium">
-                              {differenceInDays(new Date(subscriptionExpiresAt), new Date())} 天
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
 
                     {subscriptionExpiresAt && (
                       <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-muted/30">

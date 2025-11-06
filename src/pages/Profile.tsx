@@ -537,9 +537,6 @@ const Profile = () => {
                     <FileText className="w-5 h-5" />
                     账号注销协议
                   </CardTitle>
-                  <CardDescription>
-                    请仔细阅读以下协议内容，注销账号是不可逆的操作
-                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="p-4 border border-primary/20 rounded-lg bg-primary/5">

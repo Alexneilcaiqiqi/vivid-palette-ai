@@ -9,10 +9,10 @@ import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Loader2, Search, Calendar, Eye, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
-import { zhCN } from 'date-fns/locale';
+import { zhCN, enUS } from 'date-fns/locale';
 
 const Research = () => {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [articles, setArticles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -41,14 +41,6 @@ const Research = () => {
     }
   };
 
-  const categoryNames: Record<string, { zh: string; en: string }> = {
-    tech_blog: { zh: '技术博客', en: 'Tech Blog' },
-    whitepaper: { zh: '白皮书', en: 'Whitepaper' },
-    case_study: { zh: '案例分析', en: 'Case Study' },
-    network_optimization: { zh: '网络优化', en: 'Network Optimization' },
-    security_research: { zh: '安全研究', en: 'Security Research' },
-  };
-
   const filteredArticles = articles.filter(article =>
     article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     article.excerpt?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -71,13 +63,10 @@ const Research = () => {
             {/* 页头 */}
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-                {language === 'zh' ? '加速器技术研究' : 'Accelerator Technology Research'}
+                {t('research.title')}
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                {language === 'zh' 
-                  ? '探索网络加速技术的前沿，分享我们的技术洞察和实践经验'
-                  : 'Exploring the frontiers of network acceleration technology, sharing our technical insights and practical experience'
-                }
+                {t('research.subtitle')}
               </p>
             </div>
 
@@ -87,7 +76,7 @@ const Research = () => {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <Input
                   type="text"
-                  placeholder={language === 'zh' ? '搜索文章...' : 'Search articles...'}
+                  placeholder={t('research.searchPlaceholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10 bg-card/50 border-border/50 focus:border-primary"
@@ -99,10 +88,7 @@ const Research = () => {
             {filteredArticles.length === 0 ? (
               <div className="text-center py-20">
                 <p className="text-muted-foreground text-lg">
-                  {searchQuery 
-                    ? (language === 'zh' ? '未找到相关文章' : 'No articles found')
-                    : (language === 'zh' ? '暂无文章发布' : 'No articles published yet')
-                  }
+                  {searchQuery ? t('research.noArticlesFound') : t('research.noArticlesPublished')}
                 </p>
               </div>
             ) : (
@@ -127,7 +113,7 @@ const Research = () => {
                     <CardHeader className="space-y-2">
                       <div className="flex items-center gap-2">
                         <Badge variant="secondary" className="text-xs">
-                          {categoryNames[article.category]?.[language] || article.category}
+                          {t(`research.categories.${article.category}` as any) || article.category}
                         </Badge>
                       </div>
                       <h3 className="text-xl font-semibold group-hover:text-primary transition-colors line-clamp-2">
@@ -148,7 +134,7 @@ const Research = () => {
                             <Calendar className="w-3 h-3" />
                             <span>
                               {format(new Date(article.published_at), 'yyyy-MM-dd', {
-                                locale: language === 'zh' ? zhCN : undefined
+                                locale: language === 'zh' ? zhCN : enUS
                               })}
                             </span>
                           </div>
@@ -163,7 +149,7 @@ const Research = () => {
                         to={`/research/${article.slug}`}
                         className="inline-flex items-center text-sm text-primary hover:underline group/link"
                       >
-                        {language === 'zh' ? '阅读全文' : 'Read More'}
+                        {t('research.readMore')}
                         <ArrowRight className="w-4 h-4 ml-1 group-hover/link:translate-x-1 transition-transform" />
                       </Link>
                     </CardContent>

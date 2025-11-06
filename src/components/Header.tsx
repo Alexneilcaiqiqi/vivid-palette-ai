@@ -81,8 +81,8 @@ const Header = () => {
             <span className="text-[10px] opacity-70">{t('header.contactEn')}</span>
           </a>
           <Link to="/research" className="px-4 py-2 rounded-xl text-muted-foreground hover:text-white hover:font-bold transition-all duration-300 relative group font-light flex flex-col items-center">
-            <span className="text-sm">技术研究</span>
-            <span className="text-[10px] opacity-70">Research</span>
+            <span className="text-sm">{t('research.navTitle')}</span>
+            <span className="text-[10px] opacity-70">{t('research.navTitleEn')}</span>
           </Link>
         </nav>
 
@@ -173,7 +173,7 @@ const Header = () => {
               {t('header.contact')}
             </a>
             <Link to="/research" className="block py-2 text-foreground hover:text-primary transition-colors">
-              技术研究
+              {t('research.navTitle')}
             </Link>
             
             <div className="flex items-center space-x-2 py-2">

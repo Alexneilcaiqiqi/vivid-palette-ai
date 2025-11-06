@@ -547,6 +547,23 @@ const translations = {
       contactService: '在线客服：工作日 9:00-18:00',
       agreementText: '使用我们的服务即表示您已阅读、理解并同意遵守本服务条款的所有内容。'
     },
+    research: {
+      title: '加速器技术研究',
+      subtitle: '探索网络加速技术的前沿，分享我们的技术洞察和实践经验',
+      searchPlaceholder: '搜索文章...',
+      noArticlesFound: '未找到相关文章',
+      noArticlesPublished: '暂无文章发布',
+      readMore: '阅读全文',
+      navTitle: '技术研究',
+      navTitleEn: 'Research',
+      categories: {
+        tech_blog: '技术博客',
+        whitepaper: '白皮书',
+        case_study: '案例分析',
+        network_optimization: '网络优化',
+        security_research: '安全研究'
+      }
+    },
     profile: {
       title: '账号管理',
       subtitle: '管理您的个人信息和账号设置',
@@ -1182,6 +1199,23 @@ const translations = {
       contactEmail: 'Email: support@example.com',
       contactService: 'Online Support: Weekdays 9:00-18:00',
       agreementText: 'By using our services, you have read, understood, and agreed to comply with all contents of these Terms of Service.'
+    },
+    research: {
+      title: 'Accelerator Technology Research',
+      subtitle: 'Exploring the frontiers of network acceleration technology, sharing our technical insights and practical experience',
+      searchPlaceholder: 'Search articles...',
+      noArticlesFound: 'No articles found',
+      noArticlesPublished: 'No articles published yet',
+      readMore: 'Read More',
+      navTitle: 'Research',
+      navTitleEn: '技术研究',
+      categories: {
+        tech_blog: 'Tech Blog',
+        whitepaper: 'Whitepaper',
+        case_study: 'Case Study',
+        network_optimization: 'Network Optimization',
+        security_research: 'Security Research'
+      }
     },
     profile: {
       title: 'Account Management',

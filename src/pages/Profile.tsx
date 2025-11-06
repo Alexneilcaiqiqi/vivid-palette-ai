@@ -646,11 +646,7 @@ const Profile = () => {
                         <div className="flex items-center gap-2 text-sm">
                           <Calendar className="w-4 h-4 text-muted-foreground" />
                           <span className="text-muted-foreground">
-                            VIP剩余时长: <span className={`font-semibold ${
-                              subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) && differenceInDays(new Date(subscriptionExpiresAt), new Date()) < 7
-                                ? 'text-destructive'
-                                : 'text-foreground'
-                            }`}>
+                            VIP剩余时长: <span className="font-semibold text-foreground">
                               {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) 
                                 ? `${differenceInDays(new Date(subscriptionExpiresAt), new Date())} 天`
                                 : '0 天'}
@@ -659,18 +655,8 @@ const Profile = () => {
                         </div>
                         <Button 
                           onClick={() => navigate('/#pricing')}
-                          className={`w-full ${
-                            (!subscriptionExpiresAt || isBefore(new Date(subscriptionExpiresAt), new Date()) || 
-                            (subscriptionExpiresAt && differenceInDays(new Date(subscriptionExpiresAt), new Date()) < 7))
-                              ? 'animate-pulse bg-destructive hover:bg-destructive/90 text-destructive-foreground'
-                              : ''
-                          }`}
-                          variant={
-                            (!subscriptionExpiresAt || isBefore(new Date(subscriptionExpiresAt), new Date()) || 
-                            (subscriptionExpiresAt && differenceInDays(new Date(subscriptionExpiresAt), new Date()) < 7))
-                              ? "destructive"
-                              : "outline"
-                          }
+                          className="w-full"
+                          variant={subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) ? "outline" : "default"}
                         >
                           <CreditCard className="w-4 h-4 mr-2" />
                           {subscriptionExpiresAt && !isBefore(new Date(subscriptionExpiresAt), new Date()) ? '续费会员' : '购买会员'}

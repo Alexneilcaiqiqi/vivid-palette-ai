@@ -135,7 +135,7 @@ const Header = () => {
               <Globe className="w-4 h-4 mr-2 flex-shrink-0" />
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="bg-card border-primary/30">
+            <SelectContent className="bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-lg border-primary/30 shadow-[0_8px_32px_rgba(91,181,255,0.15)]">
               <SelectItem value="zh">简体中文</SelectItem>
               <SelectItem value="zh-TW">繁體中文</SelectItem>
               <SelectItem value="en">English</SelectItem>
@@ -183,7 +183,7 @@ const Header = () => {
                 <SelectTrigger className="w-full bg-card/50 border-primary/30">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-card border-primary/30">
+                <SelectContent className="bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-lg border-primary/30 shadow-[0_8px_32px_rgba(91,181,255,0.15)]">
                   <SelectItem value="zh">简体中文</SelectItem>
                   <SelectItem value="zh-TW">繁體中文</SelectItem>
                   <SelectItem value="en">English</SelectItem>

@@ -88,18 +88,6 @@ const Header = () => {
 
         {/* Language Selector & CTA Buttons */}
         <div className="hidden md:flex items-center space-x-4">
-          <Select value={language} onValueChange={(value) => setLanguage(value as 'zh' | 'zh-TW' | 'en')}>
-            <SelectTrigger className="w-[140px] bg-card/50 border-primary/30">
-              <Globe className="w-4 h-4 mr-2 flex-shrink-0" />
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent className="bg-card border-primary/30">
-              <SelectItem value="zh">简体中文</SelectItem>
-              <SelectItem value="zh-TW">繁體中文</SelectItem>
-              <SelectItem value="en">English</SelectItem>
-            </SelectContent>
-          </Select>
-          
           {user ? (
             <>
               <Button variant="outline" size="sm" className="hover-float" asChild>
@@ -141,6 +129,18 @@ const Header = () => {
               </Button>
             </>
           )}
+          
+          <Select value={language} onValueChange={(value) => setLanguage(value as 'zh' | 'zh-TW' | 'en')}>
+            <SelectTrigger className="w-[140px] bg-card/50 border-primary/30">
+              <Globe className="w-4 h-4 mr-2 flex-shrink-0" />
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className="bg-card border-primary/30">
+              <SelectItem value="zh">简体中文</SelectItem>
+              <SelectItem value="zh-TW">繁體中文</SelectItem>
+              <SelectItem value="en">English</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Mobile Menu Button */}

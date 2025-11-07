@@ -131,7 +131,7 @@ const Header = () => {
           )}
           
           <Select value={language} onValueChange={(value) => setLanguage(value as 'zh' | 'zh-TW' | 'en')}>
-            <SelectTrigger className="w-[140px] bg-card/50 border-primary/30">
+            <SelectTrigger className="h-9 w-[140px] bg-card/50 border-primary/30 text-sm px-3">
               <Globe className="w-4 h-4 mr-2 flex-shrink-0" />
               <SelectValue />
             </SelectTrigger>

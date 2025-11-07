@@ -89,8 +89,8 @@ const Header = () => {
         {/* Language Selector & CTA Buttons */}
         <div className="hidden md:flex items-center space-x-4">
           <Select value={language} onValueChange={(value) => setLanguage(value as 'zh' | 'zh-TW' | 'en')}>
-            <SelectTrigger className="w-[120px] bg-card/50 border-primary/30">
-              <Globe className="w-4 h-4 mr-2" />
+            <SelectTrigger className="w-[140px] bg-card/50 border-primary/30">
+              <Globe className="w-4 h-4 mr-2 flex-shrink-0" />
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="bg-card border-primary/30">
@@ -178,9 +178,9 @@ const Header = () => {
             </Link>
             
             <div className="flex items-center space-x-2 py-2">
-              <Globe className="w-4 h-4" />
+              <Globe className="w-4 h-4 flex-shrink-0" />
               <Select value={language} onValueChange={(value) => setLanguage(value as 'zh' | 'zh-TW' | 'en')}>
-                <SelectTrigger className="w-[120px] bg-card/50 border-primary/30">
+                <SelectTrigger className="w-full bg-card/50 border-primary/30">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-card border-primary/30">

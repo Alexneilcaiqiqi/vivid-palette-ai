@@ -88,13 +88,14 @@ const Header = () => {
 
         {/* Language Selector & CTA Buttons */}
         <div className="hidden md:flex items-center space-x-4">
-          <Select value={language} onValueChange={(value) => setLanguage(value as 'zh' | 'en')}>
-            <SelectTrigger className="w-[100px] bg-card/50 border-primary/30">
+          <Select value={language} onValueChange={(value) => setLanguage(value as 'zh' | 'zh-TW' | 'en')}>
+            <SelectTrigger className="w-[120px] bg-card/50 border-primary/30">
               <Globe className="w-4 h-4 mr-2" />
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="bg-card border-primary/30">
-              <SelectItem value="zh">中文</SelectItem>
+              <SelectItem value="zh">简体中文</SelectItem>
+              <SelectItem value="zh-TW">繁體中文</SelectItem>
               <SelectItem value="en">English</SelectItem>
             </SelectContent>
           </Select>
@@ -178,12 +179,13 @@ const Header = () => {
             
             <div className="flex items-center space-x-2 py-2">
               <Globe className="w-4 h-4" />
-              <Select value={language} onValueChange={(value) => setLanguage(value as 'zh' | 'en')}>
+              <Select value={language} onValueChange={(value) => setLanguage(value as 'zh' | 'zh-TW' | 'en')}>
                 <SelectTrigger className="w-[120px] bg-card/50 border-primary/30">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-card border-primary/30">
-                  <SelectItem value="zh">中文</SelectItem>
+                  <SelectItem value="zh">简体中文</SelectItem>
+                  <SelectItem value="zh-TW">繁體中文</SelectItem>
                   <SelectItem value="en">English</SelectItem>
                 </SelectContent>
               </Select>

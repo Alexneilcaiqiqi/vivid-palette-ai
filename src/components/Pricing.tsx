@@ -65,14 +65,20 @@ const Pricing = () => {
 
   const trialFeatures = language === 'zh' 
     ? ["3天免费试用", "2台设备同时在线", "基础线路访问", "标准客服支持", "1GB/天流量限制"]
+    : language === 'zh-TW'
+    ? ["3天免費試用", "2台裝置同時在線", "基礎線路訪問", "標準客服支援", "1GB/天流量限制"]
     : ["3-day free trial", "2 devices simultaneously", "Basic route access", "Standard support", "1GB/day data limit"];
 
   const standardFeatures = language === 'zh'
     ? ["5台设备同时在线", "高速专线访问", "无流量限制", "7x24客服支持", "全球50+节点", "智能路由优化"]
+    : language === 'zh-TW'
+    ? ["5台裝置同時在線", "高速專線訪問", "無流量限制", "7x24客服支援", "全球50+節點", "智慧路由優化"]
     : ["5 devices simultaneously", "High-speed dedicated access", "Unlimited data", "7x24 support", "Global 50+ nodes", "Smart routing optimization"];
 
   const premiumFeatures = language === 'zh'
     ? ["10台设备同时在线", "VIP专属线路", "无限流量使用", "优先技术支持", "全球节点任选", "游戏加速优化", "独立IP可选", "远程技术支持"]
+    : language === 'zh-TW'
+    ? ["10台裝置同時在線", "VIP專屬線路", "無限流量使用", "優先技術支援", "全球節點任選", "遊戲加速優化", "獨立IP可選", "遠端技術支援"]
     : ["10 devices simultaneously", "VIP exclusive routes", "Unlimited data usage", "Priority technical support", "Global node selection", "Gaming acceleration", "Dedicated IP optional", "Remote technical support"];
 
   const plans = [
@@ -92,7 +98,7 @@ const Pricing = () => {
       name: t('pricing.standard'),
       icon: <Star className="w-6 h-6" />,
       price: "29",
-      period: language === 'zh' ? "/月" : "/month",
+      period: language === 'zh' || language === 'zh-TW' ? "/月" : "/month",
       description: t('pricing.standardDesc'),
       features: standardFeatures,
       buttonText: t('pricing.standardButton'),
@@ -104,7 +110,7 @@ const Pricing = () => {
       name: t('pricing.premium'),
       icon: <Crown className="w-6 h-6" />,
       price: "59",
-      period: language === 'zh' ? "/月" : "/month",
+      period: language === 'zh' || language === 'zh-TW' ? "/月" : "/month",
       description: t('pricing.premiumDesc'),
       features: premiumFeatures,
       buttonText: t('pricing.premiumButton'),

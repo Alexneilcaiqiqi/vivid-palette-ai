@@ -179,11 +179,18 @@
         g.async = true;
         s.parentNode.insertBefore(g,s);
         g.onload=function(){
-          window.chatwootSDK.run({
-            websiteToken: 'zbx1TChmcMCfjBNpgikBngT9',
-            baseUrl: BASE_URL
-          })
-        }
+          try {
+            window.chatwootSDK.run({
+              websiteToken: 'zbx1TChmcMCfjBNpgikBngT9',
+              baseUrl: BASE_URL
+            });
+          } catch (error) {
+            console.error('Chatwoot initialization error:', error);
+          }
+        };
+        g.onerror=function(){
+          console.error('Failed to load Chatwoot SDK');
+        };
       })(document,"script");
     </script>
   </body>

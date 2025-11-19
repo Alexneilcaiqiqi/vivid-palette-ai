@@ -201,5 +201,9 @@
         }
       })(document,"script");
     </script>
+    <script>
+      // 立即检查 BASE_URL 是否被正确设置
+      console.log("Checking BASE_URL:", window.chatwootSettings ? window.chatwootSettings.baseUrl : 'Not set in window.chatwootSettings');
+    </script>
   </body>
 </html>

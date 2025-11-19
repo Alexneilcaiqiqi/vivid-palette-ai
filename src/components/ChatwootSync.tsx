@@ -25,11 +25,21 @@ export const ChatwootSync = () => {
       return;
     }
 
+    let retryCount = 0;
+    const maxRetries = 10; // 最多重试 10 次
+    let timeoutId: NodeJS.Timeout;
+
     // 设置用户信息到 Chatwoot
     const syncUserToChatwoot = () => {
       if (!window.$chatwoot) {
-        // SDK 未加载，等待片刻后重试
-        setTimeout(syncUserToChatwoot, 500);
+        // SDK 未加载，等待后重试（使用指数退避）
+        if (retryCount < maxRetries) {
+          retryCount++;
+          const delay = Math.min(1000 * Math.pow(1.5, retryCount), 10000); // 最长等待 10 秒
+          timeoutId = setTimeout(syncUserToChatwoot, delay);
+        } else {
+          console.warn('Chatwoot SDK 加载超时，已停止重试');
+        }
         return;
       }
 
@@ -52,6 +62,13 @@ export const ChatwootSync = () => {
 
     // 启动同步
     syncUserToChatwoot();
+
+    // 清理函数
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, [user, session]);
 
   return null;

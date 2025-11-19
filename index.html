@@ -187,29 +187,17 @@
 
     <!-- Chatwoot 在线客服 -->
     <script>
-      window.chatwootSettings = {
-          baseUrl: "https://cw.guichaovpn.com", // <-- 确保这里有 https://
-          websiteToken: 'zbx1TChmcMCfjBNpgikBngT9',
-          // 建议在这里添加其他配置，例如：
-          locale: "zh_CN",
-          position: "right"
-      };
-    </script>
-
-    <script>
       (function(d,t) {
-        // 从全局配置对象中获取配置
-        var BASE_URL = window.chatwootSettings.baseUrl;
-
+        var BASE_URL="https://cw.guichaovpn.com";
         var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-
         g.src=BASE_URL+"/packs/js/sdk.js";
         g.async = true;
         s.parentNode.insertBefore(g,s);
-
         g.onload=function(){
-          // 将全局配置对象传递给 run 函数
-          window.chatwootSDK.run(window.chatwootSettings);
+          window.chatwootSDK.run({
+            websiteToken: 'zbx1TChmcMCfjBNpgikBngT9',
+            baseUrl: BASE_URL
+          })
         }
       })(document,"script");
     </script>

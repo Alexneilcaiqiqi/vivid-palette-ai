@@ -174,15 +174,34 @@
     <script>
       (function(d,t) {
         var BASE_URL="https://cw.guichaovpn.com";
+        console.log('[Chatwoot] 初始化开始');
+        console.log('[Chatwoot] BASE_URL:', BASE_URL);
+        console.log('[Chatwoot] websiteToken:', 'zbx1TChmcMCfjBNpgikBngT9');
+        
         var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
         g.src=BASE_URL+"/packs/js/sdk.js";
+        console.log('[Chatwoot] SDK 地址:', g.src);
         g.async = true;
         s.parentNode.insertBefore(g,s);
+        
+        g.onerror = function(error) {
+          console.error('[Chatwoot] SDK 加载失败:', error);
+        };
+        
         g.onload=function(){
-          window.chatwootSDK.run({
-            websiteToken: 'zbx1TChmcMCfjBNpgikBngT9',
-            baseUrl: BASE_URL
-          })
+          console.log('[Chatwoot] SDK 加载成功');
+          try {
+            console.log('[Chatwoot] 开始运行 SDK');
+            window.chatwootSDK.run({
+              websiteToken: 'zbx1TChmcMCfjBNpgikBngT9',
+              baseUrl: BASE_URL
+            });
+            console.log('[Chatwoot] SDK 运行成功');
+          } catch(error) {
+            console.error('[Chatwoot] SDK 运行错误:', error);
+            console.error('[Chatwoot] 错误详情:', error.message);
+            console.error('[Chatwoot] 错误堆栈:', error.stack);
+          }
         }
       })(document,"script");
     </script>

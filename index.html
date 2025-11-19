@@ -174,42 +174,21 @@
     <script>
       (function(d,t) {
         var BASE_URL="https://cw.guichaovpn.com";
-        console.log('[Chatwoot] 初始化开始');
-        console.log('[Chatwoot] BASE_URL:', BASE_URL);
-        console.log('[Chatwoot] websiteToken:', 'zbx1TChmcMCfjBNpgikBngT9');
-        
         var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
         g.src=BASE_URL+"/packs/js/sdk.js";
-        console.log('[Chatwoot] SDK 地址:', g.src);
-        g.async = true;
+        g.defer = true;
         s.parentNode.insertBefore(g,s);
-        
-        g.onerror = function(error) {
-          console.error('[Chatwoot] SDK 加载失败:', error);
-          console.error('[Chatwoot] 请检查服务器地址是否正确:', BASE_URL);
-        };
-        
         g.onload=function(){
-          console.log('[Chatwoot] SDK 加载成功');
-          try {
-            console.log('[Chatwoot] 开始运行 SDK');
-            // 尝试使用不带 protocol 检查的配置
-            if (window.chatwootSDK && typeof window.chatwootSDK.run === 'function') {
-              window.chatwootSDK.run({
-                websiteToken: 'zbx1TChmcMCfjBNpgikBngT9',
-                baseUrl: BASE_URL
-              });
-              console.log('[Chatwoot] SDK 运行成功');
-            } else {
-              console.error('[Chatwoot] SDK 对象不可用');
-            }
-          } catch(error) {
-            console.error('[Chatwoot] SDK 运行错误:', error);
-            console.error('[Chatwoot] 错误详情:', error.message);
-            console.error('[Chatwoot] 错误堆栈:', error.stack);
-            console.warn('[Chatwoot] 这可能是 Chatwoot 服务器版本问题（4.5.1/4.5.2 已知 bug）');
-            console.warn('[Chatwoot] 建议联系服务器管理员升级到最新版本');
-          }
+          window.chatwootSettings = {
+            hideMessageBubble: false,
+            position: 'right',
+            locale: 'zh_CN',
+            type: 'standard'
+          };
+          window.chatwootSDK.run({
+            websiteToken: 'zbx1TChmcMCfjBNpgikBngT9',
+            baseUrl: BASE_URL
+          })
         }
       })(document,"script");
     </script>

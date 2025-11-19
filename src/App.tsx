@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "@/components/ScrollToTop";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { ChatwootSync } from "@/components/ChatwootSync";
 import Index from "./pages/Index";
 import Download from "./pages/Download";
 import Auth from "./pages/Auth";
@@ -26,6 +27,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
+          <ChatwootSync />
           <BrowserRouter>
             <ScrollToTop />
             <Routes>

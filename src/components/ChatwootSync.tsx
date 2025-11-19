@@ -17,17 +17,13 @@ export const ChatwootSync = () => {
   const { user, session } = useAuth();
 
   useEffect(() => {
+    // 只在用户登录时才同步信息，未登录时让 Chatwoot 保持匿名模式
+    if (!user || !session) {
+      return;
+    }
+
     // 延迟执行，确保 Chatwoot SDK 已完全加载
     const timer = setTimeout(() => {
-      // 如果用户未登录，重置 Chatwoot
-      if (!user || !session) {
-        if (window.$chatwoot) {
-          window.$chatwoot.reset();
-        }
-        return;
-      }
-
-      // 设置用户信息到 Chatwoot（只尝试一次）
       if (window.$chatwoot) {
         try {
           // 使用 email 或 phone 作为显示名称
@@ -45,7 +41,7 @@ export const ChatwootSync = () => {
           console.error('同步 Chatwoot 用户信息失败:', error);
         }
       }
-    }, 2000); // 等待 2 秒后再同步
+    }, 3000); // 等待 3 秒后再同步
 
     return () => clearTimeout(timer);
   }, [user, session]);

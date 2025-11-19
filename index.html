@@ -191,19 +191,16 @@
         var BASE_URL="https://cw.guichaovpn.com";
         var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
         g.src=BASE_URL+"/packs/js/sdk.js";
-        g.async = true;
+        g.defer = true;
         s.parentNode.insertBefore(g,s);
         g.onload=function(){
           window.chatwootSDK.run({
             websiteToken: 'zbx1TChmcMCfjBNpgikBngT9',
             baseUrl: BASE_URL
-          })
+          });
+          console.log("Chatwoot SDK initialized with baseUrl:", BASE_URL);
         }
       })(document,"script");
-    </script>
-    <script>
-      // 立即检查 BASE_URL 是否被正确设置
-      console.log("Checking BASE_URL:", window.chatwootSettings ? window.chatwootSettings.baseUrl : 'Not set in window.chatwootSettings');
     </script>
   </body>
 </html>

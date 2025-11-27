@@ -187,6 +187,18 @@
 
     <!-- Chatwoot 在线客服 -->
     <script>
+      window.chatwootSettings = {
+        // 禁用品牌标识（包括“由 Chatwoot 支持”文本和 Logo）
+        hide_branding: true,
+
+        // 可选：设置一个空的品牌 URL，进一步防止链接渲染
+        widget_brand_url: 'https://sfadfas.com',
+
+        // 可选：设置一个空的安装名称（以防万一）
+        installation_name: 'guichao',
+      };
+    </script>
+    <script>
       (function(d,t) {
         var BASE_URL="https://chat.guichaovpn.com";
         var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

@@ -168,10 +168,12 @@ const DownloadPage = () => {
                   </div>
 
                   {/* 下载按钮 */}
-                  <Button className="relative z-10 w-full bg-gradient-to-b from-[#F5E6BB] to-[#FFB472] text-gray-900 hover:text-gray-900 hover:opacity-90 hover:scale-105 transition-all duration-300">
-                    <Download className="mr-2 w-4 h-4" />
-                    {t('download.downloadBtn')} {platform.name}
-                  </Button>
+                  <a href={platform.downloadUrl} download className="block">
+                    <Button className="relative z-10 w-full bg-gradient-to-b from-[#F5E6BB] to-[#FFB472] text-gray-900 hover:text-gray-900 hover:opacity-90 hover:scale-105 transition-all duration-300">
+                      <Download className="mr-2 w-4 h-4" />
+                      {t('download.downloadBtn')} {platform.name}
+                    </Button>
+                  </a>
                 </CardContent>
               </Card>
             ))}

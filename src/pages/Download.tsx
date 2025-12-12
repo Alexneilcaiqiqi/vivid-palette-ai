@@ -1,13 +1,52 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Download, Smartphone, Monitor, Tablet, Router, Globe, CheckCircle, Star } from "lucide-react";
+import { Download, Smartphone, Monitor, Tablet, Router, Globe, CheckCircle, Star, Loader2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
+
+interface ApkInfo {
+  version: string | null;
+  size: string | null;
+  sizeBytes: number | null;
+}
 
 const DownloadPage = () => {
   const { t } = useLanguage();
+  const [androidInfo, setAndroidInfo] = useState<ApkInfo>({ version: null, size: null, sizeBytes: null });
+  const [loading, setLoading] = useState(true);
+
+  const androidDownloadUrl = "https://guichao.win/release/GUICHAO.apk";
+
+  useEffect(() => {
+    const fetchApkInfo = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('get-apk-info', {
+          body: { url: androidDownloadUrl }
+        });
+        
+        if (error) {
+          console.error('Failed to fetch APK info:', error);
+        } else if (data) {
+          setAndroidInfo({
+            version: data.version || null,
+            size: data.size || null,
+            sizeBytes: data.sizeBytes || null
+          });
+        }
+      } catch (err) {
+        console.error('Error fetching APK info:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchApkInfo();
+  }, []);
+
   const platforms = [
     {
       name: "Windows",
@@ -42,12 +81,13 @@ const DownloadPage = () => {
     {
       name: "Android",
       icon: <Smartphone className="w-8 h-8" />,
-      version: "v1.8.3", 
-      size: "12.8 MB",
+      version: androidInfo.version || "v1.8.3",
+      size: androidInfo.size || "12.8 MB",
       requirements: "Android 7.0 或更高版本",
-      downloadUrl: "https://guichao.win/release/GUICHAO.apk",
+      downloadUrl: androidDownloadUrl,
       features: [t('download.googlePlay'), t('download.oneClickShare'), t('download.powerSaving')],
-      gradient: "bg-gradient-feature-4"
+      gradient: "bg-gradient-feature-4",
+      isLoading: loading
     },
     {
       name: t('download.routerFirmware'),
@@ -150,7 +190,16 @@ const DownloadPage = () => {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">{platform.name}</h3>
-                      <p className="text-sm text-muted-foreground">{platform.version} • {platform.size}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {'isLoading' in platform && platform.isLoading ? (
+                          <span className="flex items-center gap-1">
+                            <Loader2 className="w-3 h-3 animate-spin" />
+                            加载中...
+                          </span>
+                        ) : (
+                          `${platform.version} • ${platform.size}`
+                        )}
+                      </p>
                     </div>
                   </div>
 

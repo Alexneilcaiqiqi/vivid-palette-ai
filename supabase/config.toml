@@ -1,1 +1,4 @@
 project_id = "ryhyavuiztbewanezqao"
+
+[functions.get-apk-info]
+verify_jwt = false

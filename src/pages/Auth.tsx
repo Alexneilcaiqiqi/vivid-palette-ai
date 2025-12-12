@@ -41,6 +41,8 @@ type LoginMethod = 'email' | 'phone' | 'otp';
 type OtpType = 'phone' | 'email';
 type RegisterMethod = 'phone' | 'email';
 type AuthView = 'login' | 'register' | 'forgot-password';
+type ForgotMethod = 'phone' | 'email';
+type ForgotStep = 'input' | 'verify' | 'reset';
 
 const AuthPage = () => {
   const { t, language } = useLanguage();
@@ -76,8 +78,17 @@ const AuthPage = () => {
   });
   
   // 忘记密码相关状态
-  const [forgotEmail, setForgotEmail] = useState("");
-  const [forgotEmailSent, setForgotEmailSent] = useState(false);
+  const [forgotMethod, setForgotMethod] = useState<ForgotMethod>('phone');
+  const [forgotStep, setForgotStep] = useState<ForgotStep>('input');
+  const [forgotCountryCode, setForgotCountryCode] = useState("+86");
+  const [forgotData, setForgotData] = useState({
+    phone: "",
+    email: "",
+    otp: "",
+    newPassword: "",
+    confirmPassword: ""
+  });
+  const [forgotCountdown, setForgotCountdown] = useState(0);
   
   // 验证码倒计时
   const [loginCountdown, setLoginCountdown] = useState(0);
@@ -105,6 +116,25 @@ const AuthPage = () => {
       return () => clearTimeout(timer);
     }
   }, [registerCountdown]);
+
+  // 忘记密码倒计时
+  useEffect(() => {
+    if (forgotCountdown > 0) {
+      const timer = setTimeout(() => setForgotCountdown(forgotCountdown - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [forgotCountdown]);
+
+  const handleForgotInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForgotData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    if (errors[e.target.name]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[e.target.name];
+        return newErrors;
+      });
+    }
+  };
 
   const handleLoginInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -383,24 +413,30 @@ const AuthPage = () => {
     }
   };
 
-  // 发送重置密码邮件
-  const handleForgotPassword = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // 发送忘记密码验证码
+  const sendForgotOtp = async () => {
     setIsLoading(true);
     setErrors({});
-
+    
     try {
-      emailSchema.parse({ email: forgotEmail });
-      
-      const redirectUrl = `${window.location.origin}/reset-password`;
-      const { error } = await supabase.auth.resetPasswordForEmail(forgotEmail, {
-        redirectTo: redirectUrl,
-      });
-      
-      if (error) throw error;
-      
-      setForgotEmailSent(true);
-      toast({ title: "重置链接已发送", description: "请查看您的邮箱" });
+      if (forgotMethod === 'phone') {
+        phoneSchema.parse({ phone: forgotData.phone });
+        const fullPhone = forgotCountryCode + forgotData.phone;
+        const { error } = await supabase.auth.signInWithOtp({
+          phone: fullPhone,
+        });
+        if (error) throw error;
+        toast({ title: "验证码已发送", description: "请查看手机短信" });
+      } else {
+        emailSchema.parse({ email: forgotData.email });
+        const { error } = await supabase.auth.signInWithOtp({
+          email: forgotData.email,
+        });
+        if (error) throw error;
+        toast({ title: "验证码已发送", description: "请查看邮箱" });
+      }
+      setForgotCountdown(60);
+      setForgotStep('verify');
     } catch (error: any) {
       if (error instanceof z.ZodError) {
         const fieldErrors: Record<string, string> = {};
@@ -416,77 +452,298 @@ const AuthPage = () => {
     }
   };
 
+  // 验证忘记密码OTP
+  const verifyForgotOtp = async () => {
+    setIsLoading(true);
+    setErrors({});
+    
+    try {
+      otpSchema.parse({ otp: forgotData.otp });
+      
+      let result;
+      if (forgotMethod === 'phone') {
+        const fullPhone = forgotCountryCode + forgotData.phone;
+        result = await supabase.auth.verifyOtp({
+          phone: fullPhone,
+          token: forgotData.otp,
+          type: 'sms',
+        });
+      } else {
+        result = await supabase.auth.verifyOtp({
+          email: forgotData.email,
+          token: forgotData.otp,
+          type: 'email',
+        });
+      }
+      
+      if (result.error) throw result.error;
+      
+      // 验证成功，进入设置新密码步骤
+      setForgotStep('reset');
+      toast({ title: "验证成功", description: "请设置新密码" });
+    } catch (error: any) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) fieldErrors[err.path[0].toString()] = err.message;
+        });
+        setErrors(fieldErrors);
+      } else {
+        toast({ title: "验证失败", description: error.message, variant: "destructive" });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // 重置密码
+  const handleResetPassword = async () => {
+    setIsLoading(true);
+    setErrors({});
+    
+    try {
+      if (forgotData.newPassword.length < 6) {
+        setErrors({ newPassword: "密码至少6个字符" });
+        return;
+      }
+      if (forgotData.newPassword !== forgotData.confirmPassword) {
+        setErrors({ confirmPassword: "两次密码输入不一致" });
+        return;
+      }
+      
+      const { error } = await supabase.auth.updateUser({
+        password: forgotData.newPassword
+      });
+      
+      if (error) throw error;
+      
+      toast({ title: "密码重置成功", description: "请使用新密码登录" });
+      
+      // 退出登录并返回登录页
+      await supabase.auth.signOut();
+      setAuthView('login');
+      setForgotStep('input');
+      setForgotData({ phone: "", email: "", otp: "", newPassword: "", confirmPassword: "" });
+    } catch (error: any) {
+      toast({ title: "重置失败", description: error.message, variant: "destructive" });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // 渲染忘记密码表单
   const renderForgotPasswordForm = () => {
-    if (forgotEmailSent) {
+    const resetForgotState = () => {
+      setAuthView('login');
+      setForgotStep('input');
+      setForgotData({ phone: "", email: "", otp: "", newPassword: "", confirmPassword: "" });
+      setErrors({});
+    };
+
+    // 步骤1: 输入手机号/邮箱
+    if (forgotStep === 'input') {
       return (
-        <div className="text-center space-y-4">
-          <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto">
-            <Mail className="w-8 h-8 text-green-500" />
-          </div>
-          <h3 className="text-lg font-semibold text-foreground">邮件已发送</h3>
-          <p className="text-muted-foreground text-sm">
-            我们已向 <span className="text-primary">{forgotEmail}</span> 发送了密码重置链接，请查看您的邮箱。
+        <div className="space-y-5">
+          <p className="text-muted-foreground text-sm text-center mb-4">
+            请选择验证方式并输入您的账号信息
           </p>
-          <Button
-            variant="outline"
-            onClick={() => {
-              setAuthView('login');
-              setForgotEmailSent(false);
-              setForgotEmail("");
-            }}
-            className="mt-4"
+          
+          <div className="flex gap-2 mb-4">
+            <Button
+              type="button"
+              variant={forgotMethod === 'phone' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => { setForgotMethod('phone'); setErrors({}); }}
+              className={forgotMethod === 'phone' ? 'bg-gradient-primary' : ''}
+            >
+              <Phone className="w-4 h-4 mr-1" />
+              手机号
+            </Button>
+            <Button
+              type="button"
+              variant={forgotMethod === 'email' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => { setForgotMethod('email'); setErrors({}); }}
+              className={forgotMethod === 'email' ? 'bg-gradient-primary' : ''}
+            >
+              <Mail className="w-4 h-4 mr-1" />
+              邮箱
+            </Button>
+          </div>
+          
+          {forgotMethod === 'phone' ? (
+            <div className="flex gap-2">
+              <CountryCodeSelect 
+                value={forgotCountryCode} 
+                onChange={setForgotCountryCode} 
+                language={language} 
+              />
+              <Input
+                name="phone"
+                type="tel"
+                placeholder="请输入手机号"
+                value={forgotData.phone}
+                onChange={handleForgotInputChange}
+                className="flex-1 bg-background/50 border-border/50 focus:border-primary"
+              />
+            </div>
+          ) : (
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                name="email"
+                type="email"
+                placeholder="请输入邮箱地址"
+                value={forgotData.email}
+                onChange={handleForgotInputChange}
+                className="pl-10 bg-background/50 border-border/50 focus:border-primary"
+              />
+            </div>
+          )}
+          {forgotMethod === 'phone' && errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
+          {forgotMethod === 'email' && errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+          
+          <Button 
+            type="button"
+            onClick={sendForgotOtp}
+            className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
+            disabled={isLoading}
           >
-            返回登录
+            {isLoading ? "发送中..." : "获取验证码"}
+            <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
+          
+          <div className="text-center">
+            <button
+              type="button"
+              onClick={resetForgotState}
+              className="text-sm text-primary hover:underline"
+            >
+              返回登录
+            </button>
+          </div>
         </div>
       );
     }
 
+    // 步骤2: 输入验证码
+    if (forgotStep === 'verify') {
+      return (
+        <div className="space-y-5">
+          <p className="text-muted-foreground text-sm text-center mb-4">
+            验证码已发送至 <span className="text-primary">
+              {forgotMethod === 'phone' ? forgotCountryCode + forgotData.phone : forgotData.email}
+            </span>
+          </p>
+          
+          <div className="flex gap-2">
+            <Input
+              name="otp"
+              type="text"
+              placeholder="请输入6位验证码"
+              value={forgotData.otp}
+              onChange={handleForgotInputChange}
+              className="flex-1 bg-background/50 border-border/50 focus:border-primary"
+              maxLength={6}
+            />
+            <Button
+              type="button"
+              variant="outline"
+              onClick={sendForgotOtp}
+              disabled={isLoading || forgotCountdown > 0}
+              className="whitespace-nowrap"
+            >
+              {forgotCountdown > 0 ? `${forgotCountdown}s` : '重新发送'}
+            </Button>
+          </div>
+          {errors.otp && <p className="text-sm text-destructive">{errors.otp}</p>}
+          
+          <Button 
+            type="button"
+            onClick={verifyForgotOtp}
+            className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
+            disabled={isLoading || !forgotData.otp}
+          >
+            {isLoading ? "验证中..." : "验证"}
+            <ArrowRight className="ml-2 w-4 h-4" />
+          </Button>
+          
+          <div className="text-center">
+            <button
+              type="button"
+              onClick={() => setForgotStep('input')}
+              className="text-sm text-primary hover:underline"
+            >
+              返回上一步
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    // 步骤3: 设置新密码
     return (
-      <form onSubmit={handleForgotPassword} className="space-y-5">
+      <div className="space-y-5">
         <p className="text-muted-foreground text-sm text-center mb-4">
-          请输入您的注册邮箱，我们将向您发送密码重置链接。
+          请设置您的新密码
         </p>
         
         <div className="relative">
-          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
-            name="email"
-            type="email"
-            placeholder="请输入邮箱地址"
-            value={forgotEmail}
-            onChange={(e) => {
-              setForgotEmail(e.target.value);
-              if (errors.email) setErrors({});
-            }}
+            name="newPassword"
+            type={showPassword ? "text" : "password"}
+            placeholder="请输入新密码"
+            value={forgotData.newPassword}
+            onChange={handleForgotInputChange}
+            className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2"
+          >
+            {showPassword ? <EyeOff className="w-4 h-4 text-muted-foreground" /> : <Eye className="w-4 h-4 text-muted-foreground" />}
+          </button>
+        </div>
+        {errors.newPassword && <p className="text-sm text-destructive">{errors.newPassword}</p>}
+        
+        <div className="relative">
+          <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Input
+            name="confirmPassword"
+            type={showPassword ? "text" : "password"}
+            placeholder="请确认新密码"
+            value={forgotData.confirmPassword}
+            onChange={handleForgotInputChange}
             className="pl-10 bg-background/50 border-border/50 focus:border-primary"
-            required
           />
         </div>
-        {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+        {errors.confirmPassword && <p className="text-sm text-destructive">{errors.confirmPassword}</p>}
         
         <Button 
-          type="submit" 
+          type="button"
+          onClick={handleResetPassword}
           className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
-          disabled={isLoading}
+          disabled={isLoading || !forgotData.newPassword || !forgotData.confirmPassword}
         >
-          {isLoading ? "发送中..." : "发送重置链接"}
+          {isLoading ? "重置中..." : "确认重置"}
           <ArrowRight className="ml-2 w-4 h-4" />
         </Button>
         
         <div className="text-center">
           <button
             type="button"
-            onClick={() => setAuthView('login')}
+            onClick={resetForgotState}
             className="text-sm text-primary hover:underline"
           >
             返回登录
           </button>
         </div>
-      </form>
+      </div>
     );
   };
+
 
   // 渲染登录方式选择
   const renderLoginMethodTabs = () => (

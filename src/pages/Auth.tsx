@@ -74,7 +74,8 @@ const AuthPage = () => {
   const [registerData, setRegisterData] = useState({
     email: "",
     phone: "",
-    otp: ""
+    otp: "",
+    password: ""
   });
   
   // 忘记密码相关状态
@@ -367,7 +368,7 @@ const AuthPage = () => {
     }
   };
 
-  // 验证注册OTP
+  // 验证注册OTP并设置密码
   const verifyRegisterOtp = async () => {
     if (!registerAgreed) {
       toast({ title: "请先同意服务条款", variant: "destructive" });
@@ -378,6 +379,12 @@ const AuthPage = () => {
     
     try {
       otpSchema.parse({ otp: registerData.otp });
+      
+      if (registerData.password.length < 6) {
+        setErrors({ password: "密码至少6个字符" });
+        setIsLoading(false);
+        return;
+      }
       
       let result;
       if (registerMethod === 'phone') {
@@ -396,6 +403,14 @@ const AuthPage = () => {
       }
       
       if (result.error) throw result.error;
+      
+      // 验证成功后设置密码
+      const { error: updateError } = await supabase.auth.updateUser({
+        password: registerData.password
+      });
+      
+      if (updateError) throw updateError;
+      
       toast({ title: "注册成功" });
       navigate('/');
     } catch (error: any) {
@@ -451,13 +466,19 @@ const AuthPage = () => {
     }
   };
 
-  // 验证忘记密码OTP
-  const verifyForgotOtp = async () => {
+  // 验证忘记密码OTP并重置密码
+  const verifyForgotOtpAndReset = async () => {
     setIsLoading(true);
     setErrors({});
     
     try {
       otpSchema.parse({ otp: forgotData.otp });
+      
+      if (forgotData.newPassword.length < 6) {
+        setErrors({ newPassword: "密码至少6个字符" });
+        setIsLoading(false);
+        return;
+      }
       
       let result;
       if (forgotMethod === 'phone') {
@@ -477,44 +498,12 @@ const AuthPage = () => {
       
       if (result.error) throw result.error;
       
-      // 验证成功，进入设置新密码步骤
-      setForgotStep('reset');
-      toast({ title: "验证成功", description: "请设置新密码" });
-    } catch (error: any) {
-      if (error instanceof z.ZodError) {
-        const fieldErrors: Record<string, string> = {};
-        error.errors.forEach((err) => {
-          if (err.path[0]) fieldErrors[err.path[0].toString()] = err.message;
-        });
-        setErrors(fieldErrors);
-      } else {
-        toast({ title: "验证失败", description: error.message, variant: "destructive" });
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // 重置密码
-  const handleResetPassword = async () => {
-    setIsLoading(true);
-    setErrors({});
-    
-    try {
-      if (forgotData.newPassword.length < 6) {
-        setErrors({ newPassword: "密码至少6个字符" });
-        return;
-      }
-      if (forgotData.newPassword !== forgotData.confirmPassword) {
-        setErrors({ confirmPassword: "两次密码输入不一致" });
-        return;
-      }
-      
-      const { error } = await supabase.auth.updateUser({
+      // 验证成功后立即设置新密码
+      const { error: updateError } = await supabase.auth.updateUser({
         password: forgotData.newPassword
       });
       
-      if (error) throw error;
+      if (updateError) throw updateError;
       
       toast({ title: "密码重置成功", description: "请使用新密码登录" });
       
@@ -524,7 +513,15 @@ const AuthPage = () => {
       setForgotStep('input');
       setForgotData({ phone: "", email: "", otp: "", newPassword: "", confirmPassword: "" });
     } catch (error: any) {
-      toast({ title: "重置失败", description: error.message, variant: "destructive" });
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) fieldErrors[err.path[0].toString()] = err.message;
+        });
+        setErrors(fieldErrors);
+      } else {
+        toast({ title: "重置失败", description: error.message, variant: "destructive" });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -539,124 +536,93 @@ const AuthPage = () => {
       setErrors({});
     };
 
-    // 步骤1: 输入手机号/邮箱和验证码
-    if (forgotStep === 'input' || forgotStep === 'verify') {
-      return (
-        <div className="space-y-5">
-          <div className="flex gap-2 mb-4">
-            <Button
-              type="button"
-              variant={forgotMethod === 'phone' ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => { setForgotMethod('phone'); setErrors({}); }}
-              className={forgotMethod === 'phone' ? 'bg-gradient-primary' : ''}
-            >
-              <Phone className="w-4 h-4 mr-1" />
-              手机号
-            </Button>
-            <Button
-              type="button"
-              variant={forgotMethod === 'email' ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => { setForgotMethod('email'); setErrors({}); }}
-              className={forgotMethod === 'email' ? 'bg-gradient-primary' : ''}
-            >
-              <Mail className="w-4 h-4 mr-1" />
-              邮箱
-            </Button>
-          </div>
-          
-          {forgotMethod === 'phone' ? (
-            <div className="flex gap-2">
-              <CountryCodeSelect 
-                value={forgotCountryCode} 
-                onChange={setForgotCountryCode} 
-                language={language} 
-              />
-              <Input
-                name="phone"
-                type="tel"
-                placeholder="请输入手机号"
-                value={forgotData.phone}
-                onChange={handleForgotInputChange}
-                className="flex-1 bg-background/50 border-border/50 focus:border-primary"
-              />
-            </div>
-          ) : (
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                name="email"
-                type="email"
-                placeholder="请输入邮箱地址"
-                value={forgotData.email}
-                onChange={handleForgotInputChange}
-                className="pl-10 bg-background/50 border-border/50 focus:border-primary"
-              />
-            </div>
-          )}
-          {forgotMethod === 'phone' && errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
-          {forgotMethod === 'email' && errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
-
-          {/* 验证码输入 */}
-          <div className="flex gap-2">
-            <Input
-              name="otp"
-              type="text"
-              placeholder="请输入6位验证码"
-              value={forgotData.otp}
-              onChange={handleForgotInputChange}
-              className="flex-1 bg-background/50 border-border/50 focus:border-primary"
-              maxLength={6}
-            />
-            <Button
-              type="button"
-              variant="outline"
-              onClick={sendForgotOtp}
-              disabled={isLoading || forgotCountdown > 0}
-              className="whitespace-nowrap"
-            >
-              {forgotCountdown > 0 ? `${forgotCountdown}s` : '获取验证码'}
-            </Button>
-          </div>
-          {errors.otp && <p className="text-sm text-destructive">{errors.otp}</p>}
-          
-          <Button 
-            type="button"
-            onClick={verifyForgotOtp}
-            className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
-            disabled={isLoading || !forgotData.otp}
-          >
-            {isLoading ? "验证中..." : "下一步"}
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
-          
-          <div className="text-center">
-            <button
-              type="button"
-              onClick={resetForgotState}
-              className="text-sm text-primary hover:underline"
-            >
-              返回登录
-            </button>
-          </div>
-        </div>
-      );
-    }
-
-    // 步骤3: 设置新密码
     return (
       <div className="space-y-5">
-        <p className="text-muted-foreground text-sm text-center mb-4">
-          请设置您的新密码
-        </p>
+        <div className="flex gap-2 mb-4">
+          <Button
+            type="button"
+            variant={forgotMethod === 'phone' ? 'default' : 'outline'}
+            size="sm"
+            onClick={() => { setForgotMethod('phone'); setErrors({}); }}
+            className={forgotMethod === 'phone' ? 'bg-gradient-primary' : ''}
+          >
+            <Phone className="w-4 h-4 mr-1" />
+            手机号
+          </Button>
+          <Button
+            type="button"
+            variant={forgotMethod === 'email' ? 'default' : 'outline'}
+            size="sm"
+            onClick={() => { setForgotMethod('email'); setErrors({}); }}
+            className={forgotMethod === 'email' ? 'bg-gradient-primary' : ''}
+          >
+            <Mail className="w-4 h-4 mr-1" />
+            邮箱
+          </Button>
+        </div>
         
+        {forgotMethod === 'phone' ? (
+          <div className="flex gap-2">
+            <CountryCodeSelect 
+              value={forgotCountryCode} 
+              onChange={setForgotCountryCode} 
+              language={language} 
+            />
+            <Input
+              name="phone"
+              type="tel"
+              placeholder="请输入手机号"
+              value={forgotData.phone}
+              onChange={handleForgotInputChange}
+              className="flex-1 bg-background/50 border-border/50 focus:border-primary"
+            />
+          </div>
+        ) : (
+          <div className="relative">
+            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              name="email"
+              type="email"
+              placeholder="请输入邮箱地址"
+              value={forgotData.email}
+              onChange={handleForgotInputChange}
+              className="pl-10 bg-background/50 border-border/50 focus:border-primary"
+            />
+          </div>
+        )}
+        {forgotMethod === 'phone' && errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
+        {forgotMethod === 'email' && errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+
+        {/* 验证码输入 */}
+        <div className="flex gap-2">
+          <Input
+            name="otp"
+            type="text"
+            placeholder="请输入6位验证码"
+            value={forgotData.otp}
+            onChange={handleForgotInputChange}
+            className="flex-1 bg-background/50 border-border/50 focus:border-primary"
+            maxLength={6}
+          />
+          <Button
+            type="button"
+            variant="outline"
+            onClick={sendForgotOtp}
+            disabled={isLoading || forgotCountdown > 0}
+            className="whitespace-nowrap"
+          >
+            {forgotCountdown > 0 ? `${forgotCountdown}s` : '获取验证码'}
+          </Button>
+        </div>
+        {errors.otp && <p className="text-sm text-destructive">{errors.otp}</p>}
+
+        {/* 新密码输入 */}
         <div className="relative">
           <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             name="newPassword"
             type={showPassword ? "text" : "password"}
-            placeholder="请输入新密码"
+            placeholder="请设置新密码（至少6位）"
             value={forgotData.newPassword}
             onChange={handleForgotInputChange}
             className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
@@ -671,26 +637,13 @@ const AuthPage = () => {
         </div>
         {errors.newPassword && <p className="text-sm text-destructive">{errors.newPassword}</p>}
         
-        <div className="relative">
-          <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-          <Input
-            name="confirmPassword"
-            type={showPassword ? "text" : "password"}
-            placeholder="请确认新密码"
-            value={forgotData.confirmPassword}
-            onChange={handleForgotInputChange}
-            className="pl-10 bg-background/50 border-border/50 focus:border-primary"
-          />
-        </div>
-        {errors.confirmPassword && <p className="text-sm text-destructive">{errors.confirmPassword}</p>}
-        
         <Button 
           type="button"
-          onClick={handleResetPassword}
+          onClick={verifyForgotOtpAndReset}
           className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
-          disabled={isLoading || !forgotData.newPassword || !forgotData.confirmPassword}
+          disabled={isLoading || !forgotData.otp || !forgotData.newPassword}
         >
-          {isLoading ? "重置中..." : "确认重置"}
+          {isLoading ? "重置中..." : "重置密码"}
           <ArrowRight className="ml-2 w-4 h-4" />
         </Button>
         
@@ -1091,6 +1044,27 @@ const AuthPage = () => {
         </div>
         {errors.otp && <p className="text-sm text-destructive">{errors.otp}</p>}
 
+        {/* 密码输入 */}
+        <div className="relative">
+          <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Input
+            name="password"
+            type={showPassword ? "text" : "password"}
+            placeholder="请设置密码（至少6位）"
+            value={registerData.password}
+            onChange={handleRegisterInputChange}
+            className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2"
+          >
+            {showPassword ? <EyeOff className="w-4 h-4 text-muted-foreground" /> : <Eye className="w-4 h-4 text-muted-foreground" />}
+          </button>
+        </div>
+        {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
+
         <div className="flex items-start space-x-2">
           <Checkbox 
             id="register-agree" 
@@ -1109,7 +1083,7 @@ const AuthPage = () => {
           type="button"
           onClick={verifyRegisterOtp}
           className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
-          disabled={isLoading || !registerAgreed || !registerData.otp}
+          disabled={isLoading || !registerAgreed || !registerData.otp || !registerData.password}
         >
           {isLoading ? "注册中..." : "注册"}
           <ArrowRight className="ml-2 w-4 h-4" />

@@ -717,51 +717,52 @@ const AuthPage = () => {
           </div>
           {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
           
-          <div className="relative">
-            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input
-              id="login-password"
-              name="password"
-              type={showPassword ? "text" : "password"}
-              placeholder="请输入密码"
-              value={loginData.password}
-              onChange={handleLoginInputChange}
-              className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
-              required
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2"
-            >
-              {showPassword ? <EyeOff className="w-4 h-4 text-muted-foreground" /> : <Eye className="w-4 h-4 text-muted-foreground" />}
-            </button>
-          </div>
-          {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
-          
-          <div className="flex items-center justify-between">
-            <div className="flex items-start space-x-2">
-              <Checkbox 
-                id="login-agree" 
-                checked={loginAgreed} 
-                onCheckedChange={(checked) => setLoginAgreed(checked === true)}
+          <div>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                id="login-password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="请输入密码"
+                value={loginData.password}
+                onChange={handleLoginInputChange}
+                className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
+                required
               />
-              <label htmlFor="login-agree" className="text-sm text-muted-foreground leading-tight cursor-pointer">
-                我已阅读并同意
-                <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
-                和
-                <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
-              </label>
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2"
+              >
+                {showPassword ? <EyeOff className="w-4 h-4 text-muted-foreground" /> : <Eye className="w-4 h-4 text-muted-foreground" />}
+              </button>
+            </div>
+            <div className="flex justify-between items-center mt-1">
+              {errors.password ? <p className="text-sm text-destructive">{errors.password}</p> : <span />}
+              <button
+                type="button"
+                onClick={() => setAuthView('forgot-password')}
+                className="text-sm text-primary hover:underline"
+              >
+                忘记密码？
+              </button>
             </div>
           </div>
           
-          <button
-            type="button"
-            onClick={() => setAuthView('forgot-password')}
-            className="text-sm text-primary hover:underline block w-full text-right"
-          >
-            忘记密码？
-          </button>
+          <div className="flex items-start space-x-2">
+            <Checkbox 
+              id="login-agree" 
+              checked={loginAgreed} 
+              onCheckedChange={(checked) => setLoginAgreed(checked === true)}
+            />
+            <label htmlFor="login-agree" className="text-sm text-muted-foreground leading-tight cursor-pointer">
+              我已阅读并同意
+              <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
+              和
+              <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
+            </label>
+          </div>
           
           <Button 
             type="submit" 
@@ -796,51 +797,52 @@ const AuthPage = () => {
           </div>
           {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
           
-          <div className="relative">
-            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input
-              id="login-phone-password"
-              name="password"
-              type={showPassword ? "text" : "password"}
-              placeholder="请输入密码"
-              value={loginData.password}
-              onChange={handleLoginInputChange}
-              className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
-              required
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2"
-            >
-              {showPassword ? <EyeOff className="w-4 h-4 text-muted-foreground" /> : <Eye className="w-4 h-4 text-muted-foreground" />}
-            </button>
-          </div>
-          {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
-          
-          <div className="flex items-center justify-between">
-            <div className="flex items-start space-x-2">
-              <Checkbox 
-                id="login-phone-agree" 
-                checked={loginAgreed} 
-                onCheckedChange={(checked) => setLoginAgreed(checked === true)}
+          <div>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                id="login-phone-password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="请输入密码"
+                value={loginData.password}
+                onChange={handleLoginInputChange}
+                className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
+                required
               />
-              <label htmlFor="login-phone-agree" className="text-sm text-muted-foreground leading-tight cursor-pointer">
-                我已阅读并同意
-                <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
-                和
-                <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
-              </label>
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2"
+              >
+                {showPassword ? <EyeOff className="w-4 h-4 text-muted-foreground" /> : <Eye className="w-4 h-4 text-muted-foreground" />}
+              </button>
+            </div>
+            <div className="flex justify-between items-center mt-1">
+              {errors.password ? <p className="text-sm text-destructive">{errors.password}</p> : <span />}
+              <button
+                type="button"
+                onClick={() => setAuthView('forgot-password')}
+                className="text-sm text-primary hover:underline"
+              >
+                忘记密码？
+              </button>
             </div>
           </div>
           
-          <button
-            type="button"
-            onClick={() => setAuthView('forgot-password')}
-            className="text-sm text-primary hover:underline block w-full text-right"
-          >
-            忘记密码？
-          </button>
+          <div className="flex items-start space-x-2">
+            <Checkbox 
+              id="login-phone-agree" 
+              checked={loginAgreed} 
+              onCheckedChange={(checked) => setLoginAgreed(checked === true)}
+            />
+            <label htmlFor="login-phone-agree" className="text-sm text-muted-foreground leading-tight cursor-pointer">
+              我已阅读并同意
+              <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
+              和
+              <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
+            </label>
+          </div>
           
           <Button 
             type="submit" 

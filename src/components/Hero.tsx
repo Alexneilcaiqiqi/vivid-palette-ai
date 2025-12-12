@@ -159,7 +159,11 @@ const Hero = () => {
                     </div>
                     <h3 className="font-semibold text-foreground mb-1 text-xs sm:text-sm md:text-base">{platform.name}</h3>
                     <p className="text-[10px] sm:text-xs text-muted-foreground">{platform.desc}</p>
-                    {downloadUrl && <p className="text-[10px] sm:text-xs text-primary mt-1">{t('hero.clickDownload')}</p>}
+                    {downloadUrl ? (
+                      <p className="text-[10px] sm:text-xs text-primary mt-1">{t('hero.clickDownload')}</p>
+                    ) : (
+                      <p className="text-[10px] sm:text-xs text-muted-foreground/60 mt-1">开发中</p>
+                    )}
                   </div>
                 );
               })}

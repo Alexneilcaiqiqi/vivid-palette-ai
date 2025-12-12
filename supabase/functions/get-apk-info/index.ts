@@ -5,6 +5,17 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+interface PlatformInfo {
+  version?: string;
+  size?: string;
+  downloadUrl?: string;
+  changelog?: string;
+}
+
+interface VersionJson {
+  [platform: string]: PlatformInfo;
+}
+
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -12,23 +23,20 @@ serve(async (req) => {
   }
 
   try {
-    const { url } = await req.json();
+    const { versionJsonUrl } = await req.json();
     
-    if (!url) {
-      console.error('No URL provided');
+    if (!versionJsonUrl) {
+      console.error('No versionJsonUrl provided');
       return new Response(
-        JSON.stringify({ error: 'URL is required' }),
+        JSON.stringify({ error: 'versionJsonUrl is required' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    console.log('Fetching APK info for:', url);
+    console.log('Fetching version info from:', versionJsonUrl);
 
-    // 尝试获取version.json
-    const versionJsonUrl = url.replace(/\/[^\/]+\.apk$/i, '/version.json');
-    console.log('Trying to fetch version.json from:', versionJsonUrl);
-    
-    let versionInfo = null;
+    // 获取version.json
+    let versionInfo: VersionJson = {};
     try {
       const versionResponse = await fetch(versionJsonUrl);
       if (versionResponse.ok) {
@@ -36,46 +44,49 @@ serve(async (req) => {
         console.log('Version info found:', versionInfo);
       } else {
         console.log('version.json not found, status:', versionResponse.status);
+        return new Response(
+          JSON.stringify({ error: 'version.json not found', status: versionResponse.status }),
+          { status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
       }
     } catch (e) {
-      console.log('Failed to fetch version.json:', e.message);
+      console.error('Failed to fetch version.json:', e.message);
+      return new Response(
+        JSON.stringify({ error: 'Failed to fetch version.json', message: e.message }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
     }
 
-    // 获取文件大小
-    let fileSize = null;
-    try {
-      const headResponse = await fetch(url, { method: 'HEAD' });
-      if (headResponse.ok) {
-        const contentLength = headResponse.headers.get('content-length');
-        if (contentLength) {
-          fileSize = parseInt(contentLength, 10);
-          console.log('File size:', fileSize);
+    // 获取每个有downloadUrl的平台的文件大小
+    const result: VersionJson = {};
+    
+    for (const [platform, info] of Object.entries(versionInfo)) {
+      result[platform] = { ...info };
+      
+      // 如果有下载链接且没有size，尝试获取文件大小
+      if (info.downloadUrl && !info.size) {
+        try {
+          console.log(`Fetching file size for ${platform}:`, info.downloadUrl);
+          const headResponse = await fetch(info.downloadUrl, { method: 'HEAD' });
+          if (headResponse.ok) {
+            const contentLength = headResponse.headers.get('content-length');
+            if (contentLength) {
+              const fileSize = parseInt(contentLength, 10);
+              if (fileSize >= 1024 * 1024) {
+                result[platform].size = (fileSize / (1024 * 1024)).toFixed(1) + ' MB';
+              } else if (fileSize >= 1024) {
+                result[platform].size = (fileSize / 1024).toFixed(1) + ' KB';
+              } else {
+                result[platform].size = fileSize + ' B';
+              }
+              console.log(`File size for ${platform}:`, result[platform].size);
+            }
+          }
+        } catch (e) {
+          console.log(`Failed to get file size for ${platform}:`, e.message);
         }
-      } else {
-        console.log('HEAD request failed, status:', headResponse.status);
-      }
-    } catch (e) {
-      console.log('Failed to get file size:', e.message);
-    }
-
-    // 格式化文件大小
-    let formattedSize = null;
-    if (fileSize) {
-      if (fileSize >= 1024 * 1024) {
-        formattedSize = (fileSize / (1024 * 1024)).toFixed(1) + ' MB';
-      } else if (fileSize >= 1024) {
-        formattedSize = (fileSize / 1024).toFixed(1) + ' KB';
-      } else {
-        formattedSize = fileSize + ' B';
       }
     }
-
-    const result = {
-      version: versionInfo?.version || null,
-      size: formattedSize,
-      sizeBytes: fileSize,
-      ...versionInfo
-    };
 
     console.log('Returning result:', result);
 

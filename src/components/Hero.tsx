@@ -1,9 +1,83 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Globe, Shield, Zap, Smartphone, Monitor, Laptop } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
+
+interface PlatformInfo {
+  version?: string;
+  size?: string;
+  downloadUrl?: string;
+}
+
+interface VersionData {
+  [platform: string]: PlatformInfo;
+}
+
+const VERSION_JSON_URL = "https://guichao.win/release/version.json";
 
 const Hero = () => {
   const { t } = useLanguage();
+  const [versionData, setVersionData] = useState<VersionData>({});
+
+  useEffect(() => {
+    const fetchVersionInfo = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('get-apk-info', {
+          body: { versionJsonUrl: VERSION_JSON_URL }
+        });
+        
+        if (error) {
+          console.error('Failed to fetch version info:', error);
+        } else if (data && !data.error) {
+          setVersionData(data);
+        }
+      } catch (err) {
+        console.error('Error fetching version info:', err);
+      }
+    };
+
+    fetchVersionInfo();
+  }, []);
+
+  // 获取平台下载链接
+  const getDownloadUrl = (platformKey: string): string | null => {
+    const info = versionData[platformKey];
+    return info?.downloadUrl || null;
+  };
+
+  const platforms = [
+    {
+      key: "windows",
+      name: t('hero.windows'),
+      icon: <Monitor className="w-8 h-8 text-white" strokeWidth={1.5} aria-hidden="true" />,
+      desc: t('hero.windowsDesc')
+    },
+    {
+      key: "macos",
+      name: t('hero.macos'),
+      icon: <Laptop className="w-8 h-8 text-white" strokeWidth={1.5} aria-hidden="true" />,
+      desc: t('hero.macosDesc')
+    },
+    {
+      key: "ios",
+      name: t('hero.ios'),
+      icon: <Smartphone className="w-8 h-8 text-white" strokeWidth={1.5} />,
+      desc: t('hero.iosDesc')
+    },
+    {
+      key: "android",
+      name: t('hero.android'),
+      icon: <Smartphone className="w-8 h-8 text-white" strokeWidth={1.5} />,
+      desc: t('hero.androidDesc')
+    },
+    {
+      key: "browser",
+      name: t('hero.browser'),
+      icon: <Globe className="w-8 h-8 text-white" strokeWidth={1.5} />,
+      desc: t('hero.browserDesc')
+    }
+  ];
   
   return (
     <section 
@@ -71,53 +145,24 @@ const Hero = () => {
         <div className="relative max-w-5xl mx-auto px-4">
           <div className="relative rounded-2xl p-4 sm:p-6 md:p-12 bg-black/60 border border-primary/30 mt-12 md:mt-[100px] scale-100 md:scale-110 hover:shadow-cyan transition-all duration-500 z-30">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
-              {/* 支持的平台 */}
-              {[
-                {
-                  name: t('hero.windows'),
-                  icon: <Monitor className="w-8 h-8 text-white" strokeWidth={1.5} aria-hidden="true" />,
-                  desc: t('hero.windowsDesc'),
-                  downloadUrl: null
-                },
-                {
-                  name: t('hero.macos'),
-                  icon: <Laptop className="w-8 h-8 text-white" strokeWidth={1.5} aria-hidden="true" />,
-                  desc: t('hero.macosDesc'),
-                  downloadUrl: null
-                },
-                {
-                  name: t('hero.ios'),
-                  icon: <Smartphone className="w-8 h-8 text-white" strokeWidth={1.5} />,
-                  desc: t('hero.iosDesc'),
-                  downloadUrl: null
-                },
-                {
-                  name: t('hero.android'),
-                  icon: <Smartphone className="w-8 h-8 text-white" strokeWidth={1.5} />,
-                  desc: t('hero.androidDesc'),
-                  downloadUrl: "/android-app.apk"
-                },
-                {
-                  name: t('hero.browser'),
-                  icon: <Globe className="w-8 h-8 text-white" strokeWidth={1.5} />,
-                  desc: t('hero.browserDesc'),
-                  downloadUrl: null
-                }
-              ].map((platform, index) => (
-                <div 
-                  key={platform.name} 
-                  className={`p-2 sm:p-3 md:p-4 bg-card/40 rounded-xl border border-primary/30 hover-float hover:border-primary/70 hover:shadow-purple transition-all duration-300 z-50 ${platform.downloadUrl ? 'cursor-pointer' : ''}`}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={platform.downloadUrl ? () => window.open(platform.downloadUrl, '_blank') : undefined}
-                >
-                  <div className="text-lg sm:text-2xl md:text-3xl mb-1 sm:mb-2 flex justify-center">
-                    {typeof platform.icon === 'string' ? platform.icon : platform.icon}
+              {platforms.map((platform, index) => {
+                const downloadUrl = getDownloadUrl(platform.key);
+                return (
+                  <div 
+                    key={platform.name} 
+                    className={`p-2 sm:p-3 md:p-4 bg-card/40 rounded-xl border border-primary/30 hover-float hover:border-primary/70 hover:shadow-purple transition-all duration-300 z-50 ${downloadUrl ? 'cursor-pointer' : ''}`}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                    onClick={downloadUrl ? () => window.open(downloadUrl, '_blank') : undefined}
+                  >
+                    <div className="text-lg sm:text-2xl md:text-3xl mb-1 sm:mb-2 flex justify-center">
+                      {platform.icon}
+                    </div>
+                    <h3 className="font-semibold text-foreground mb-1 text-xs sm:text-sm md:text-base">{platform.name}</h3>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground">{platform.desc}</p>
+                    {downloadUrl && <p className="text-[10px] sm:text-xs text-primary mt-1">{t('hero.clickDownload')}</p>}
                   </div>
-                  <h3 className="font-semibold text-foreground mb-1 text-xs sm:text-sm md:text-base">{platform.name}</h3>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground">{platform.desc}</p>
-                  {platform.downloadUrl && <p className="text-[10px] sm:text-xs text-primary mt-1">{t('hero.clickDownload')}</p>}
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 

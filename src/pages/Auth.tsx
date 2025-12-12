@@ -436,7 +436,6 @@ const AuthPage = () => {
         toast({ title: "验证码已发送", description: "请查看邮箱" });
       }
       setForgotCountdown(60);
-      setForgotStep('verify');
     } catch (error: any) {
       if (error instanceof z.ZodError) {
         const fieldErrors: Record<string, string> = {};
@@ -540,14 +539,10 @@ const AuthPage = () => {
       setErrors({});
     };
 
-    // 步骤1: 输入手机号/邮箱
-    if (forgotStep === 'input') {
+    // 步骤1: 输入手机号/邮箱和验证码
+    if (forgotStep === 'input' || forgotStep === 'verify') {
       return (
         <div className="space-y-5">
-          <p className="text-muted-foreground text-sm text-center mb-4">
-            请选择验证方式并输入您的账号信息
-          </p>
-          
           <div className="flex gap-2 mb-4">
             <Button
               type="button"
@@ -602,40 +597,8 @@ const AuthPage = () => {
           )}
           {forgotMethod === 'phone' && errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
           {forgotMethod === 'email' && errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
-          
-          <Button 
-            type="button"
-            onClick={sendForgotOtp}
-            className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
-            disabled={isLoading}
-          >
-            {isLoading ? "发送中..." : "获取验证码"}
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
-          
-          <div className="text-center">
-            <button
-              type="button"
-              onClick={resetForgotState}
-              className="text-sm text-primary hover:underline"
-            >
-              返回登录
-            </button>
-          </div>
-        </div>
-      );
-    }
 
-    // 步骤2: 输入验证码
-    if (forgotStep === 'verify') {
-      return (
-        <div className="space-y-5">
-          <p className="text-muted-foreground text-sm text-center mb-4">
-            验证码已发送至 <span className="text-primary">
-              {forgotMethod === 'phone' ? forgotCountryCode + forgotData.phone : forgotData.email}
-            </span>
-          </p>
-          
+          {/* 验证码输入 */}
           <div className="flex gap-2">
             <Input
               name="otp"
@@ -653,7 +616,7 @@ const AuthPage = () => {
               disabled={isLoading || forgotCountdown > 0}
               className="whitespace-nowrap"
             >
-              {forgotCountdown > 0 ? `${forgotCountdown}s` : '重新发送'}
+              {forgotCountdown > 0 ? `${forgotCountdown}s` : '获取验证码'}
             </Button>
           </div>
           {errors.otp && <p className="text-sm text-destructive">{errors.otp}</p>}
@@ -664,17 +627,17 @@ const AuthPage = () => {
             className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
             disabled={isLoading || !forgotData.otp}
           >
-            {isLoading ? "验证中..." : "验证"}
+            {isLoading ? "验证中..." : "下一步"}
             <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
           
           <div className="text-center">
             <button
               type="button"
-              onClick={() => setForgotStep('input')}
+              onClick={resetForgotState}
               className="text-sm text-primary hover:underline"
             >
-              返回上一步
+              返回登录
             </button>
           </div>
         </div>

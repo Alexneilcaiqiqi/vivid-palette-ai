@@ -15,22 +15,22 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 
-// 国际区号列表
+// 国际区号列表 (countryCode 用于获取国旗图片)
 const countryCodes = [
-  { code: "+86", flag: "🇨🇳", country: { zh: "中国", "zh-TW": "中國", en: "China" } },
-  { code: "+1", flag: "🇺🇸", country: { zh: "美国/加拿大", "zh-TW": "美國/加拿大", en: "USA/Canada" } },
-  { code: "+852", flag: "🇭🇰", country: { zh: "香港", "zh-TW": "香港", en: "Hong Kong" } },
-  { code: "+853", flag: "🇲🇴", country: { zh: "澳门", "zh-TW": "澳門", en: "Macau" } },
-  { code: "+886", flag: "🇹🇼", country: { zh: "台湾", "zh-TW": "台灣", en: "Taiwan" } },
-  { code: "+81", flag: "🇯🇵", country: { zh: "日本", "zh-TW": "日本", en: "Japan" } },
-  { code: "+82", flag: "🇰🇷", country: { zh: "韩国", "zh-TW": "韓國", en: "South Korea" } },
-  { code: "+65", flag: "🇸🇬", country: { zh: "新加坡", "zh-TW": "新加坡", en: "Singapore" } },
-  { code: "+60", flag: "🇲🇾", country: { zh: "马来西亚", "zh-TW": "馬來西亞", en: "Malaysia" } },
-  { code: "+44", flag: "🇬🇧", country: { zh: "英国", "zh-TW": "英國", en: "United Kingdom" } },
-  { code: "+49", flag: "🇩🇪", country: { zh: "德国", "zh-TW": "德國", en: "Germany" } },
-  { code: "+33", flag: "🇫🇷", country: { zh: "法国", "zh-TW": "法國", en: "France" } },
-  { code: "+61", flag: "🇦🇺", country: { zh: "澳大利亚", "zh-TW": "澳大利亞", en: "Australia" } },
-  { code: "+64", flag: "🇳🇿", country: { zh: "新西兰", "zh-TW": "紐西蘭", en: "New Zealand" } },
+  { code: "+86", countryCode: "CN", country: { zh: "中国", "zh-TW": "中國", en: "China" } },
+  { code: "+1", countryCode: "US", country: { zh: "美国/加拿大", "zh-TW": "美國/加拿大", en: "USA/Canada" } },
+  { code: "+852", countryCode: "HK", country: { zh: "香港", "zh-TW": "香港", en: "Hong Kong" } },
+  { code: "+853", countryCode: "MO", country: { zh: "澳门", "zh-TW": "澳門", en: "Macau" } },
+  { code: "+886", countryCode: "TW", country: { zh: "台湾", "zh-TW": "台灣", en: "Taiwan" } },
+  { code: "+81", countryCode: "JP", country: { zh: "日本", "zh-TW": "日本", en: "Japan" } },
+  { code: "+82", countryCode: "KR", country: { zh: "韩国", "zh-TW": "韓國", en: "South Korea" } },
+  { code: "+65", countryCode: "SG", country: { zh: "新加坡", "zh-TW": "新加坡", en: "Singapore" } },
+  { code: "+60", countryCode: "MY", country: { zh: "马来西亚", "zh-TW": "馬來西亞", en: "Malaysia" } },
+  { code: "+44", countryCode: "GB", country: { zh: "英国", "zh-TW": "英國", en: "United Kingdom" } },
+  { code: "+49", countryCode: "DE", country: { zh: "德国", "zh-TW": "德國", en: "Germany" } },
+  { code: "+33", countryCode: "FR", country: { zh: "法国", "zh-TW": "法國", en: "France" } },
+  { code: "+61", countryCode: "AU", country: { zh: "澳大利亚", "zh-TW": "澳大利亞", en: "Australia" } },
+  { code: "+64", countryCode: "NZ", country: { zh: "新西兰", "zh-TW": "紐西蘭", en: "New Zealand" } },
 ];
 
 // 验证schema
@@ -513,11 +513,21 @@ const AuthPage = () => {
             <Label>手机号</Label>
             <div className="flex gap-2">
               <Select value={loginCountryCode} onValueChange={setLoginCountryCode}>
-                <SelectTrigger className="w-36 bg-background/50 border-border/50">
+                <SelectTrigger className="w-auto min-w-[100px] bg-background/50 border-border/50">
                   <SelectValue>
                     {(() => {
                       const selected = countryCodes.find(c => c.code === loginCountryCode);
-                      return selected ? `${selected.flag} ${selected.code}` : loginCountryCode;
+                      if (!selected) return loginCountryCode;
+                      return (
+                        <span className="flex items-center gap-1.5">
+                          <img 
+                            src={`https://flagcdn.com/w20/${selected.countryCode.toLowerCase()}.png`}
+                            alt={selected.country[language]}
+                            className="w-5 h-4 object-cover rounded-sm"
+                          />
+                          <span>{selected.code}</span>
+                        </span>
+                      );
                     })()}
                   </SelectValue>
                 </SelectTrigger>
@@ -525,9 +535,13 @@ const AuthPage = () => {
                   {countryCodes.map((c) => (
                     <SelectItem key={c.code} value={c.code}>
                       <span className="flex items-center gap-2">
-                        <span>{c.flag}</span>
+                        <img 
+                          src={`https://flagcdn.com/w20/${c.countryCode.toLowerCase()}.png`}
+                          alt={c.country[language]}
+                          className="w-5 h-4 object-cover rounded-sm"
+                        />
                         <span>{c.code}</span>
-                        <span className="text-muted-foreground">{c.country[language]}</span>
+                        <span className="text-muted-foreground text-sm">{c.country[language]}</span>
                       </span>
                     </SelectItem>
                   ))}
@@ -627,11 +641,21 @@ const AuthPage = () => {
             <Label>手机号</Label>
             <div className="flex gap-2">
               <Select value={loginCountryCode} onValueChange={setLoginCountryCode}>
-                <SelectTrigger className="w-36 bg-background/50 border-border/50">
+                <SelectTrigger className="w-auto min-w-[100px] bg-background/50 border-border/50">
                   <SelectValue>
                     {(() => {
                       const selected = countryCodes.find(c => c.code === loginCountryCode);
-                      return selected ? `${selected.flag} ${selected.code}` : loginCountryCode;
+                      if (!selected) return loginCountryCode;
+                      return (
+                        <span className="flex items-center gap-1.5">
+                          <img 
+                            src={`https://flagcdn.com/w20/${selected.countryCode.toLowerCase()}.png`}
+                            alt={selected.country[language]}
+                            className="w-5 h-4 object-cover rounded-sm"
+                          />
+                          <span>{selected.code}</span>
+                        </span>
+                      );
                     })()}
                   </SelectValue>
                 </SelectTrigger>
@@ -639,9 +663,13 @@ const AuthPage = () => {
                   {countryCodes.map((c) => (
                     <SelectItem key={c.code} value={c.code}>
                       <span className="flex items-center gap-2">
-                        <span>{c.flag}</span>
+                        <img 
+                          src={`https://flagcdn.com/w20/${c.countryCode.toLowerCase()}.png`}
+                          alt={c.country[language]}
+                          className="w-5 h-4 object-cover rounded-sm"
+                        />
                         <span>{c.code}</span>
-                        <span className="text-muted-foreground">{c.country[language]}</span>
+                        <span className="text-muted-foreground text-sm">{c.country[language]}</span>
                       </span>
                     </SelectItem>
                   ))}
@@ -764,11 +792,21 @@ const AuthPage = () => {
             <Label>手机号</Label>
             <div className="flex gap-2">
               <Select value={registerCountryCode} onValueChange={setRegisterCountryCode}>
-                <SelectTrigger className="w-36 bg-background/50 border-border/50">
+                <SelectTrigger className="w-auto min-w-[100px] bg-background/50 border-border/50">
                   <SelectValue>
                     {(() => {
                       const selected = countryCodes.find(c => c.code === registerCountryCode);
-                      return selected ? `${selected.flag} ${selected.code}` : registerCountryCode;
+                      if (!selected) return registerCountryCode;
+                      return (
+                        <span className="flex items-center gap-1.5">
+                          <img 
+                            src={`https://flagcdn.com/w20/${selected.countryCode.toLowerCase()}.png`}
+                            alt={selected.country[language]}
+                            className="w-5 h-4 object-cover rounded-sm"
+                          />
+                          <span>{selected.code}</span>
+                        </span>
+                      );
                     })()}
                   </SelectValue>
                 </SelectTrigger>
@@ -776,9 +814,13 @@ const AuthPage = () => {
                   {countryCodes.map((c) => (
                     <SelectItem key={c.code} value={c.code}>
                       <span className="flex items-center gap-2">
-                        <span>{c.flag}</span>
+                        <img 
+                          src={`https://flagcdn.com/w20/${c.countryCode.toLowerCase()}.png`}
+                          alt={c.country[language]}
+                          className="w-5 h-4 object-cover rounded-sm"
+                        />
                         <span>{c.code}</span>
-                        <span className="text-muted-foreground">{c.country[language]}</span>
+                        <span className="text-muted-foreground text-sm">{c.country[language]}</span>
                       </span>
                     </SelectItem>
                   ))}

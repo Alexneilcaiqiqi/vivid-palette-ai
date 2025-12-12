@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Globe, Shield, Zap, Smartphone, Monitor, Laptop } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { supabase } from "@/integrations/supabase/client";
 
 interface PlatformInfo {
   version?: string;
@@ -14,8 +13,6 @@ interface VersionData {
   [platform: string]: PlatformInfo;
 }
 
-const VERSION_JSON_URL = "https://guichao.win/release/version.json";
-
 const Hero = () => {
   const { t } = useLanguage();
   const [versionData, setVersionData] = useState<VersionData>({});
@@ -23,13 +20,9 @@ const Hero = () => {
   useEffect(() => {
     const fetchVersionInfo = async () => {
       try {
-        const { data, error } = await supabase.functions.invoke('get-apk-info', {
-          body: { versionJsonUrl: VERSION_JSON_URL }
-        });
-        
-        if (error) {
-          console.error('Failed to fetch version info:', error);
-        } else if (data && !data.error) {
+        const response = await fetch('/release/version.json');
+        if (response.ok) {
+          const data = await response.json();
           setVersionData(data);
         }
       } catch (err) {

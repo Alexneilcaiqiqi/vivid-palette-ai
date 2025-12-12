@@ -902,19 +902,29 @@ const AuthPage = () => {
           </div>
           {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
           
-          <div className="flex items-start space-x-2">
-            <Checkbox 
-              id="login-phone-agree" 
-              checked={loginAgreed} 
-              onCheckedChange={(checked) => setLoginAgreed(checked === true)}
-            />
-            <label htmlFor="login-phone-agree" className="text-sm text-muted-foreground leading-tight cursor-pointer">
-              我已阅读并同意
-              <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
-              和
-              <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
-            </label>
+          <div className="flex items-center justify-between">
+            <div className="flex items-start space-x-2">
+              <Checkbox 
+                id="login-phone-agree" 
+                checked={loginAgreed} 
+                onCheckedChange={(checked) => setLoginAgreed(checked === true)}
+              />
+              <label htmlFor="login-phone-agree" className="text-sm text-muted-foreground leading-tight cursor-pointer">
+                我已阅读并同意
+                <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
+                和
+                <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
+              </label>
+            </div>
           </div>
+          
+          <button
+            type="button"
+            onClick={() => setAuthView('forgot-password')}
+            className="text-sm text-primary hover:underline block w-full text-right"
+          >
+            忘记密码？
+          </button>
           
           <Button 
             type="submit" 

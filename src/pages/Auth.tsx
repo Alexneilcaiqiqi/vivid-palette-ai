@@ -398,7 +398,7 @@ const AuthPage = () => {
         className={loginMethod === 'phone' ? 'bg-gradient-primary' : ''}
       >
         <Phone className="w-4 h-4 mr-1" />
-        手机登录
+        手机号登录
       </Button>
       <Button
         type="button"
@@ -576,7 +576,7 @@ const AuthPage = () => {
               onClick={() => setLoginOtpType('phone')}
               className="h-8 px-4"
             >
-              手机
+              手机号
             </Button>
             <Button
               type="button"
@@ -686,7 +686,7 @@ const AuthPage = () => {
         className={registerMethod === 'phone' ? 'bg-gradient-primary' : ''}
       >
         <Phone className="w-4 h-4 mr-1" />
-        手机注册
+        手机号注册
       </Button>
       <Button
         type="button"
@@ -705,9 +705,29 @@ const AuthPage = () => {
   const renderRegisterForm = () => {
     return (
       <div className="space-y-4">
-        {registerMethod === 'phone' ? (
-          <div className="space-y-2">
-            <Label>手机号</Label>
+        <div className="space-y-2">
+          <div className="flex gap-2">
+            <Button
+              type="button"
+              variant={registerMethod === 'phone' ? 'secondary' : 'ghost'}
+              size="sm"
+              onClick={() => { setRegisterMethod('phone'); setErrors({}); }}
+              className="h-8 px-4"
+            >
+              手机号
+            </Button>
+            <Button
+              type="button"
+              variant={registerMethod === 'email' ? 'secondary' : 'ghost'}
+              size="sm"
+              onClick={() => { setRegisterMethod('email'); setErrors({}); }}
+              className="h-8 px-4"
+            >
+              邮箱
+            </Button>
+          </div>
+          
+          {registerMethod === 'phone' ? (
             <div className="flex gap-2">
               <CountryCodeSelect 
                 value={registerCountryCode} 
@@ -723,11 +743,7 @@ const AuthPage = () => {
                 className="flex-1 bg-background/50 border-border/50 focus:border-primary"
               />
             </div>
-            {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
-          </div>
-        ) : (
-          <div className="space-y-2">
-            <Label>邮箱</Label>
+          ) : (
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
@@ -739,9 +755,10 @@ const AuthPage = () => {
                 className="pl-10 bg-background/50 border-border/50 focus:border-primary"
               />
             </div>
-            {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
-          </div>
-        )}
+          )}
+          {registerMethod === 'phone' && errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
+          {registerMethod === 'email' && errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+        </div>
 
         {/* 验证码输入 */}
         <div className="space-y-2">

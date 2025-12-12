@@ -237,7 +237,7 @@ const DownloadPage = () => {
                     ) : (
                       <Button disabled className="relative z-10 w-full bg-muted text-muted-foreground cursor-not-allowed">
                         <Download className="mr-2 w-4 h-4" />
-                        {t('download.downloadBtn')} {platform.name}
+                        开发中
                       </Button>
                     )}
                   </CardContent>

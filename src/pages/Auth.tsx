@@ -567,31 +567,29 @@ const AuthPage = () => {
     // 验证码登录
     return (
       <div className="space-y-4">
-        {loginOtpType === 'phone' ? (
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <Label>手机号</Label>
-              <div className="flex gap-1">
-                <Button
-                  type="button"
-                  variant={loginOtpType === 'phone' ? 'secondary' : 'ghost'}
-                  size="sm"
-                  onClick={() => setLoginOtpType('phone')}
-                  className="h-6 px-2 text-xs"
-                >
-                  手机
-                </Button>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setLoginOtpType('email')}
-                  className="h-6 px-2 text-xs"
-                >
-                  邮箱
-                </Button>
-              </div>
-            </div>
+        <div className="space-y-2">
+          <div className="flex gap-2">
+            <Button
+              type="button"
+              variant={loginOtpType === 'phone' ? 'secondary' : 'ghost'}
+              size="sm"
+              onClick={() => setLoginOtpType('phone')}
+              className="h-8 px-4"
+            >
+              手机
+            </Button>
+            <Button
+              type="button"
+              variant={loginOtpType === 'email' ? 'secondary' : 'ghost'}
+              size="sm"
+              onClick={() => setLoginOtpType('email')}
+              className="h-8 px-4"
+            >
+              邮箱
+            </Button>
+          </div>
+          
+          {loginOtpType === 'phone' ? (
             <div className="flex gap-2">
               <CountryCodeSelect 
                 value={loginCountryCode} 
@@ -607,33 +605,7 @@ const AuthPage = () => {
                 className="flex-1 bg-background/50 border-border/50 focus:border-primary"
               />
             </div>
-            {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
-          </div>
-        ) : (
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <Label>邮箱</Label>
-              <div className="flex gap-1">
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setLoginOtpType('phone')}
-                  className="h-6 px-2 text-xs"
-                >
-                  手机
-                </Button>
-                <Button
-                  type="button"
-                  variant={loginOtpType === 'email' ? 'secondary' : 'ghost'}
-                  size="sm"
-                  onClick={() => setLoginOtpType('email')}
-                  className="h-6 px-2 text-xs"
-                >
-                  邮箱
-                </Button>
-              </div>
-            </div>
+          ) : (
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
@@ -645,9 +617,10 @@ const AuthPage = () => {
                 className="pl-10 bg-background/50 border-border/50 focus:border-primary"
               />
             </div>
-            {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
-          </div>
-        )}
+          )}
+          {loginOtpType === 'phone' && errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
+          {loginOtpType === 'email' && errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+        </div>
 
         {/* 验证码输入 */}
         <div className="space-y-2">

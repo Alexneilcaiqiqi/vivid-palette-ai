@@ -37,6 +37,28 @@ const otpSchema = z.object({
   otp: z.string().length(6, "验证码为6位数字"),
 });
 
+// 检查用户是否存在
+const checkUserExists = async (type: 'phone' | 'email', value: string): Promise<boolean> => {
+  try {
+    const response = await fetch(
+      `https://ryhyavuiztbewanezqao.supabase.co/functions/v1/check-user-exists`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5aHlhdnVpenRiZXdhbmV6cWFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTczNDcyMjMsImV4cCI6MjA3MjkyMzIyM30.oAUU_fONX2nz6RijRy7St_J6eTfD4-mTpLy022y-M9k`,
+        },
+        body: JSON.stringify({ type, value }),
+      }
+    );
+    const data = await response.json();
+    return data.exists ?? false;
+  } catch (error) {
+    console.error('Error checking user exists:', error);
+    return true; // 如果检查失败，默认允许继续
+  }
+};
+
 type LoginMethod = 'email' | 'phone' | 'otp';
 type OtpType = 'phone' | 'email';
 type RegisterMethod = 'phone' | 'email';
@@ -251,6 +273,15 @@ const AuthPage = () => {
       if (loginOtpType === 'phone') {
         phoneSchema.parse({ phone: loginData.phone });
         const fullPhone = loginCountryCode + loginData.phone;
+        
+        // 检查用户是否已注册
+        const exists = await checkUserExists('phone', fullPhone);
+        if (!exists) {
+          toast({ title: "该手机号未注册", description: "请先注册账号", variant: "destructive" });
+          setIsLoading(false);
+          return;
+        }
+        
         const { error } = await supabase.auth.signInWithOtp({
           phone: fullPhone,
         });
@@ -258,6 +289,15 @@ const AuthPage = () => {
         toast({ title: "验证码已发送", description: "请查看手机短信" });
       } else {
         emailSchema.parse({ email: loginData.email });
+        
+        // 检查用户是否已注册
+        const exists = await checkUserExists('email', loginData.email);
+        if (!exists) {
+          toast({ title: "该邮箱未注册", description: "请先注册账号", variant: "destructive" });
+          setIsLoading(false);
+          return;
+        }
+        
         const { error } = await supabase.auth.signInWithOtp({
           email: loginData.email,
         });
@@ -437,6 +477,15 @@ const AuthPage = () => {
       if (forgotMethod === 'phone') {
         phoneSchema.parse({ phone: forgotData.phone });
         const fullPhone = forgotCountryCode + forgotData.phone;
+        
+        // 检查用户是否已注册
+        const exists = await checkUserExists('phone', fullPhone);
+        if (!exists) {
+          toast({ title: "该手机号未注册", description: "无法重置密码，请先注册账号", variant: "destructive" });
+          setIsLoading(false);
+          return;
+        }
+        
         const { error } = await supabase.auth.signInWithOtp({
           phone: fullPhone,
         });
@@ -444,6 +493,15 @@ const AuthPage = () => {
         toast({ title: "验证码已发送", description: "请查看手机短信" });
       } else {
         emailSchema.parse({ email: forgotData.email });
+        
+        // 检查用户是否已注册
+        const exists = await checkUserExists('email', forgotData.email);
+        if (!exists) {
+          toast({ title: "该邮箱未注册", description: "无法重置密码，请先注册账号", variant: "destructive" });
+          setIsLoading(false);
+          return;
+        }
+        
         const { error } = await supabase.auth.signInWithOtp({
           email: forgotData.email,
         });

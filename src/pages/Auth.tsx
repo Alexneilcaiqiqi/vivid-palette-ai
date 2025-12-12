@@ -5,7 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
-import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Shield, Zap, Globe, Phone, MessageSquare } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Eye, EyeOff, Mail, Lock, ArrowRight, Shield, Zap, Globe, Phone, MessageSquare } from "lucide-react";
 import Header from "@/components/Header";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAuth } from "@/contexts/AuthContext";
@@ -13,17 +15,40 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 
+// 国际区号列表
+const countryCodes = [
+  { code: "+86", country: "中国" },
+  { code: "+1", country: "美国/加拿大" },
+  { code: "+852", country: "香港" },
+  { code: "+853", country: "澳门" },
+  { code: "+886", country: "台湾" },
+  { code: "+81", country: "日本" },
+  { code: "+82", country: "韩国" },
+  { code: "+65", country: "新加坡" },
+  { code: "+60", country: "马来西亚" },
+  { code: "+44", country: "英国" },
+  { code: "+49", country: "德国" },
+  { code: "+33", country: "法国" },
+  { code: "+61", country: "澳大利亚" },
+  { code: "+64", country: "新西兰" },
+];
+
 // 验证schema
 const emailPasswordSchema = z.object({
   email: z.string().email("请输入有效的邮箱地址").max(255),
   password: z.string().min(6, "密码至少6个字符"),
 });
 
-const phoneSchema = z.object({
-  phone: z.string().regex(/^\+?[1-9]\d{6,14}$/, "请输入有效的手机号码"),
+const phonePasswordSchema = z.object({
+  phone: z.string().regex(/^\d{5,15}$/, "请输入有效的手机号码"),
+  password: z.string().min(6, "密码至少6个字符"),
 });
 
-const emailOtpSchema = z.object({
+const phoneSchema = z.object({
+  phone: z.string().regex(/^\d{5,15}$/, "请输入有效的手机号码"),
+});
+
+const emailSchema = z.object({
   email: z.string().email("请输入有效的邮箱地址").max(255),
 });
 
@@ -31,11 +56,8 @@ const otpSchema = z.object({
   otp: z.string().length(6, "验证码为6位数字"),
 });
 
-const registerSchema = z.object({
-  username: z.string().trim().min(2, "用户名至少2个字符").max(50),
-});
-
-type LoginMethod = 'email-password' | 'phone-otp' | 'email-otp';
+type LoginMethod = 'email' | 'phone' | 'otp';
+type OtpType = 'phone' | 'email';
 type RegisterMethod = 'phone' | 'email';
 
 const AuthPage = () => {
@@ -49,8 +71,10 @@ const AuthPage = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   
   // 登录相关状态
-  const [loginMethod, setLoginMethod] = useState<LoginMethod>('email-password');
-  const [loginStep, setLoginStep] = useState<'input' | 'otp'>('input');
+  const [loginMethod, setLoginMethod] = useState<LoginMethod>('email');
+  const [loginOtpType, setLoginOtpType] = useState<OtpType>('phone');
+  const [loginAgreed, setLoginAgreed] = useState(false);
+  const [loginCountryCode, setLoginCountryCode] = useState("+86");
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -60,16 +84,17 @@ const AuthPage = () => {
   
   // 注册相关状态
   const [registerMethod, setRegisterMethod] = useState<RegisterMethod>('phone');
-  const [registerStep, setRegisterStep] = useState<'input' | 'otp'>('input');
+  const [registerAgreed, setRegisterAgreed] = useState(false);
+  const [registerCountryCode, setRegisterCountryCode] = useState("+86");
   const [registerData, setRegisterData] = useState({
-    username: "",
     email: "",
     phone: "",
     otp: ""
   });
   
   // 验证码倒计时
-  const [countdown, setCountdown] = useState(0);
+  const [loginCountdown, setLoginCountdown] = useState(0);
+  const [registerCountdown, setRegisterCountdown] = useState(0);
 
   // 如果用户已登录，重定向到首页
   useEffect(() => {
@@ -78,13 +103,21 @@ const AuthPage = () => {
     }
   }, [user, navigate]);
 
-  // 倒计时
+  // 登录倒计时
   useEffect(() => {
-    if (countdown > 0) {
-      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+    if (loginCountdown > 0) {
+      const timer = setTimeout(() => setLoginCountdown(loginCountdown - 1), 1000);
       return () => clearTimeout(timer);
     }
-  }, [countdown]);
+  }, [loginCountdown]);
+
+  // 注册倒计时
+  useEffect(() => {
+    if (registerCountdown > 0) {
+      const timer = setTimeout(() => setRegisterCountdown(registerCountdown - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [registerCountdown]);
 
   const handleLoginInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -108,88 +141,13 @@ const AuthPage = () => {
     }
   };
 
-  // 发送登录验证码
-  const sendLoginOtp = async () => {
-    setIsLoading(true);
-    setErrors({});
-    
-    try {
-      if (loginMethod === 'phone-otp') {
-        phoneSchema.parse({ phone: loginData.phone });
-        const { error } = await supabase.auth.signInWithOtp({
-          phone: loginData.phone,
-        });
-        if (error) throw error;
-        toast({ title: "验证码已发送", description: "请查看手机短信" });
-      } else if (loginMethod === 'email-otp') {
-        emailOtpSchema.parse({ email: loginData.email });
-        const { error } = await supabase.auth.signInWithOtp({
-          email: loginData.email,
-        });
-        if (error) throw error;
-        toast({ title: "验证码已发送", description: "请查看邮箱" });
-      }
-      setLoginStep('otp');
-      setCountdown(60);
-    } catch (error: any) {
-      if (error instanceof z.ZodError) {
-        const fieldErrors: Record<string, string> = {};
-        error.errors.forEach((err) => {
-          if (err.path[0]) fieldErrors[err.path[0].toString()] = err.message;
-        });
-        setErrors(fieldErrors);
-      } else {
-        toast({ title: "发送失败", description: error.message, variant: "destructive" });
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // 验证登录OTP
-  const verifyLoginOtp = async () => {
-    setIsLoading(true);
-    setErrors({});
-    
-    try {
-      otpSchema.parse({ otp: loginData.otp });
-      
-      let result;
-      if (loginMethod === 'phone-otp') {
-        result = await supabase.auth.verifyOtp({
-          phone: loginData.phone,
-          token: loginData.otp,
-          type: 'sms',
-        });
-      } else {
-        result = await supabase.auth.verifyOtp({
-          email: loginData.email,
-          token: loginData.otp,
-          type: 'email',
-        });
-      }
-      
-      if (result.error) throw result.error;
-      toast({ title: "登录成功" });
-      navigate('/');
-    } catch (error: any) {
-      if (error instanceof z.ZodError) {
-        const fieldErrors: Record<string, string> = {};
-        error.errors.forEach((err) => {
-          if (err.path[0]) fieldErrors[err.path[0].toString()] = err.message;
-        });
-        setErrors(fieldErrors);
-      } else {
-        toast({ title: "验证失败", description: error.message, variant: "destructive" });
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   // 邮箱密码登录
-  const handleEmailPasswordLogin = async (e: React.FormEvent) => {
+  const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!loginAgreed) {
+      toast({ title: "请先同意服务条款", variant: "destructive" });
+      return;
+    }
     setIsLoading(true);
     setErrors({});
 
@@ -222,37 +180,161 @@ const AuthPage = () => {
     }
   };
 
-  // 发送注册验证码
-  const sendRegisterOtp = async () => {
+  // 手机密码登录
+  const handlePhoneLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!loginAgreed) {
+      toast({ title: "请先同意服务条款", variant: "destructive" });
+      return;
+    }
+    setIsLoading(true);
+    setErrors({});
+
+    try {
+      const validated = phonePasswordSchema.parse({
+        phone: loginData.phone,
+        password: loginData.password,
+      });
+
+      const fullPhone = loginCountryCode + validated.phone;
+      const { error } = await supabase.auth.signInWithPassword({
+        phone: fullPhone,
+        password: validated.password,
+      });
+      
+      if (error) throw error;
+      toast({ title: "登录成功" });
+      navigate('/');
+    } catch (error: any) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) fieldErrors[err.path[0].toString()] = err.message;
+        });
+        setErrors(fieldErrors);
+      } else {
+        toast({ title: "登录失败", description: error.message, variant: "destructive" });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // 发送登录验证码
+  const sendLoginOtp = async () => {
+    if (!loginAgreed) {
+      toast({ title: "请先同意服务条款", variant: "destructive" });
+      return;
+    }
     setIsLoading(true);
     setErrors({});
     
     try {
-      registerSchema.parse({ username: registerData.username });
-      
-      if (registerMethod === 'phone') {
-        phoneSchema.parse({ phone: registerData.phone });
+      if (loginOtpType === 'phone') {
+        phoneSchema.parse({ phone: loginData.phone });
+        const fullPhone = loginCountryCode + loginData.phone;
         const { error } = await supabase.auth.signInWithOtp({
-          phone: registerData.phone,
-          options: {
-            data: { username: registerData.username },
-          },
+          phone: fullPhone,
         });
         if (error) throw error;
         toast({ title: "验证码已发送", description: "请查看手机短信" });
       } else {
-        emailOtpSchema.parse({ email: registerData.email });
+        emailSchema.parse({ email: loginData.email });
         const { error } = await supabase.auth.signInWithOtp({
-          email: registerData.email,
-          options: {
-            data: { username: registerData.username },
-          },
+          email: loginData.email,
         });
         if (error) throw error;
         toast({ title: "验证码已发送", description: "请查看邮箱" });
       }
-      setRegisterStep('otp');
-      setCountdown(60);
+      setLoginCountdown(60);
+    } catch (error: any) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) fieldErrors[err.path[0].toString()] = err.message;
+        });
+        setErrors(fieldErrors);
+      } else {
+        toast({ title: "发送失败", description: error.message, variant: "destructive" });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // 验证登录OTP
+  const verifyLoginOtp = async () => {
+    if (!loginAgreed) {
+      toast({ title: "请先同意服务条款", variant: "destructive" });
+      return;
+    }
+    setIsLoading(true);
+    setErrors({});
+    
+    try {
+      otpSchema.parse({ otp: loginData.otp });
+      
+      let result;
+      if (loginOtpType === 'phone') {
+        const fullPhone = loginCountryCode + loginData.phone;
+        result = await supabase.auth.verifyOtp({
+          phone: fullPhone,
+          token: loginData.otp,
+          type: 'sms',
+        });
+      } else {
+        result = await supabase.auth.verifyOtp({
+          email: loginData.email,
+          token: loginData.otp,
+          type: 'email',
+        });
+      }
+      
+      if (result.error) throw result.error;
+      toast({ title: "登录成功" });
+      navigate('/');
+    } catch (error: any) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) fieldErrors[err.path[0].toString()] = err.message;
+        });
+        setErrors(fieldErrors);
+      } else {
+        toast({ title: "验证失败", description: error.message, variant: "destructive" });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // 发送注册验证码
+  const sendRegisterOtp = async () => {
+    if (!registerAgreed) {
+      toast({ title: "请先同意服务条款", variant: "destructive" });
+      return;
+    }
+    setIsLoading(true);
+    setErrors({});
+    
+    try {
+      if (registerMethod === 'phone') {
+        phoneSchema.parse({ phone: registerData.phone });
+        const fullPhone = registerCountryCode + registerData.phone;
+        const { error } = await supabase.auth.signInWithOtp({
+          phone: fullPhone,
+        });
+        if (error) throw error;
+        toast({ title: "验证码已发送", description: "请查看手机短信" });
+      } else {
+        emailSchema.parse({ email: registerData.email });
+        const { error } = await supabase.auth.signInWithOtp({
+          email: registerData.email,
+        });
+        if (error) throw error;
+        toast({ title: "验证码已发送", description: "请查看邮箱" });
+      }
+      setRegisterCountdown(60);
     } catch (error: any) {
       if (error instanceof z.ZodError) {
         const fieldErrors: Record<string, string> = {};
@@ -270,6 +352,10 @@ const AuthPage = () => {
 
   // 验证注册OTP
   const verifyRegisterOtp = async () => {
+    if (!registerAgreed) {
+      toast({ title: "请先同意服务条款", variant: "destructive" });
+      return;
+    }
     setIsLoading(true);
     setErrors({});
     
@@ -278,8 +364,9 @@ const AuthPage = () => {
       
       let result;
       if (registerMethod === 'phone') {
+        const fullPhone = registerCountryCode + registerData.phone;
         result = await supabase.auth.verifyOtp({
-          phone: registerData.phone,
+          phone: fullPhone,
           token: registerData.otp,
           type: 'sms',
         });
@@ -309,49 +396,35 @@ const AuthPage = () => {
     }
   };
 
-  // 重置登录流程
-  const resetLoginFlow = () => {
-    setLoginStep('input');
-    setLoginData({ email: "", password: "", phone: "", otp: "" });
-    setErrors({});
-  };
-
-  // 重置注册流程
-  const resetRegisterFlow = () => {
-    setRegisterStep('input');
-    setRegisterData({ username: "", email: "", phone: "", otp: "" });
-    setErrors({});
-  };
-
   // 渲染登录方式选择
   const renderLoginMethodTabs = () => (
     <div className="flex gap-2 mb-4">
       <Button
         type="button"
-        variant={loginMethod === 'email-password' ? 'default' : 'outline'}
+        variant={loginMethod === 'email' ? 'default' : 'outline'}
         size="sm"
-        onClick={() => { setLoginMethod('email-password'); resetLoginFlow(); }}
-        className={loginMethod === 'email-password' ? 'bg-gradient-primary' : ''}
+        onClick={() => { setLoginMethod('email'); setErrors({}); }}
+        className={loginMethod === 'email' ? 'bg-gradient-primary' : ''}
       >
-        <Lock className="w-4 h-4 mr-1" />
-        密码登录
+        <Mail className="w-4 h-4 mr-1" />
+        邮箱登录
       </Button>
       <Button
         type="button"
-        variant={loginMethod === 'phone-otp' ? 'default' : 'outline'}
+        variant={loginMethod === 'phone' ? 'default' : 'outline'}
         size="sm"
-        onClick={() => { setLoginMethod('phone-otp'); resetLoginFlow(); }}
-        className={loginMethod === 'phone-otp' ? 'bg-gradient-primary' : ''}
+        onClick={() => { setLoginMethod('phone'); setErrors({}); }}
+        className={loginMethod === 'phone' ? 'bg-gradient-primary' : ''}
       >
         <Phone className="w-4 h-4 mr-1" />
         手机登录
       </Button>
       <Button
         type="button"
-        variant={loginMethod === 'email-otp' ? 'default' : 'outline'}
+        variant={loginMethod === 'otp' ? 'default' : 'outline'}
         size="sm"
-        onClick={() => { setLoginMethod('email-otp'); resetLoginFlow(); }}
-        className={loginMethod === 'email-otp' ? 'bg-gradient-primary' : ''}
+        onClick={() => { setLoginMethod('otp'); setErrors({}); }}
+        className={loginMethod === 'otp' ? 'bg-gradient-primary' : ''}
       >
         <MessageSquare className="w-4 h-4 mr-1" />
         验证码登录
@@ -361,9 +434,9 @@ const AuthPage = () => {
 
   // 渲染登录表单
   const renderLoginForm = () => {
-    if (loginMethod === 'email-password') {
+    if (loginMethod === 'email') {
       return (
-        <form onSubmit={handleEmailPasswordLogin} className="space-y-4">
+        <form onSubmit={handleEmailLogin} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="login-email">邮箱</Label>
             <div className="relative">
@@ -407,18 +480,24 @@ const AuthPage = () => {
             {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
           </div>
           
-          <div className="flex items-center justify-between text-sm">
-            <label className="flex items-center space-x-2 cursor-pointer">
-              <input type="checkbox" className="rounded border-border" />
-              <span className="text-muted-foreground">记住我</span>
+          <div className="flex items-start space-x-2">
+            <Checkbox 
+              id="login-agree" 
+              checked={loginAgreed} 
+              onCheckedChange={(checked) => setLoginAgreed(checked === true)}
+            />
+            <label htmlFor="login-agree" className="text-sm text-muted-foreground leading-tight cursor-pointer">
+              我已阅读并同意
+              <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
+              和
+              <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
             </label>
-            <a href="#" className="text-primary hover:underline">忘记密码？</a>
           </div>
           
           <Button 
             type="submit" 
             className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
-            disabled={isLoading}
+            disabled={isLoading || !loginAgreed}
           >
             {isLoading ? "登录中..." : "登录"}
             <ArrowRight className="ml-2 w-4 h-4" />
@@ -427,97 +506,205 @@ const AuthPage = () => {
       );
     }
 
-    // 手机或邮箱验证码登录
-    if (loginStep === 'input') {
+    if (loginMethod === 'phone') {
       return (
-        <div className="space-y-4">
+        <form onSubmit={handlePhoneLogin} className="space-y-4">
           <div className="space-y-2">
-            <Label>{loginMethod === 'phone-otp' ? '手机号' : '邮箱'}</Label>
-            <div className="relative">
-              {loginMethod === 'phone-otp' ? (
-                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              ) : (
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              )}
-              <Input
-                name={loginMethod === 'phone-otp' ? 'phone' : 'email'}
-                type={loginMethod === 'phone-otp' ? 'tel' : 'email'}
-                placeholder={loginMethod === 'phone-otp' ? '请输入手机号（含国际区号，如+86）' : '请输入邮箱地址'}
-                value={loginMethod === 'phone-otp' ? loginData.phone : loginData.email}
-                onChange={handleLoginInputChange}
-                className="pl-10 bg-background/50 border-border/50 focus:border-primary"
-                required
-              />
+            <Label>手机号</Label>
+            <div className="flex gap-2">
+              <Select value={loginCountryCode} onValueChange={setLoginCountryCode}>
+                <SelectTrigger className="w-32 bg-background/50 border-border/50">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {countryCodes.map((c) => (
+                    <SelectItem key={c.code} value={c.code}>
+                      {c.code} {c.country}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <div className="relative flex-1">
+                <Input
+                  name="phone"
+                  type="tel"
+                  placeholder="请输入手机号"
+                  value={loginData.phone}
+                  onChange={handleLoginInputChange}
+                  className="bg-background/50 border-border/50 focus:border-primary"
+                  required
+                />
+              </div>
             </div>
             {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
-            {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+          </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="login-phone-password">密码</Label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                id="login-phone-password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="请输入密码"
+                value={loginData.password}
+                onChange={handleLoginInputChange}
+                className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2"
+              >
+                {showPassword ? <EyeOff className="w-4 h-4 text-muted-foreground" /> : <Eye className="w-4 h-4 text-muted-foreground" />}
+              </button>
+            </div>
+            {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
+          </div>
+          
+          <div className="flex items-start space-x-2">
+            <Checkbox 
+              id="login-phone-agree" 
+              checked={loginAgreed} 
+              onCheckedChange={(checked) => setLoginAgreed(checked === true)}
+            />
+            <label htmlFor="login-phone-agree" className="text-sm text-muted-foreground leading-tight cursor-pointer">
+              我已阅读并同意
+              <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
+              和
+              <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
+            </label>
           </div>
           
           <Button 
-            type="button"
-            onClick={sendLoginOtp}
+            type="submit" 
             className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
-            disabled={isLoading}
+            disabled={isLoading || !loginAgreed}
           >
-            {isLoading ? "发送中..." : "获取验证码"}
+            {isLoading ? "登录中..." : "登录"}
             <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
-        </div>
+        </form>
       );
     }
 
-    // OTP验证步骤
+    // 验证码登录
     return (
       <div className="space-y-4">
-        <div className="text-sm text-muted-foreground text-center mb-4">
-          验证码已发送至 {loginMethod === 'phone-otp' ? loginData.phone : loginData.email}
+        {/* OTP类型选择 */}
+        <div className="flex gap-2">
+          <Button
+            type="button"
+            variant={loginOtpType === 'phone' ? 'secondary' : 'ghost'}
+            size="sm"
+            onClick={() => setLoginOtpType('phone')}
+          >
+            手机验证码
+          </Button>
+          <Button
+            type="button"
+            variant={loginOtpType === 'email' ? 'secondary' : 'ghost'}
+            size="sm"
+            onClick={() => setLoginOtpType('email')}
+          >
+            邮箱验证码
+          </Button>
         </div>
-        
+
+        {loginOtpType === 'phone' ? (
+          <div className="space-y-2">
+            <Label>手机号</Label>
+            <div className="flex gap-2">
+              <Select value={loginCountryCode} onValueChange={setLoginCountryCode}>
+                <SelectTrigger className="w-32 bg-background/50 border-border/50">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {countryCodes.map((c) => (
+                    <SelectItem key={c.code} value={c.code}>
+                      {c.code} {c.country}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Input
+                name="phone"
+                type="tel"
+                placeholder="请输入手机号"
+                value={loginData.phone}
+                onChange={handleLoginInputChange}
+                className="flex-1 bg-background/50 border-border/50 focus:border-primary"
+              />
+            </div>
+            {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
+          </div>
+        ) : (
+          <div className="space-y-2">
+            <Label>邮箱</Label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                name="email"
+                type="email"
+                placeholder="请输入邮箱地址"
+                value={loginData.email}
+                onChange={handleLoginInputChange}
+                className="pl-10 bg-background/50 border-border/50 focus:border-primary"
+              />
+            </div>
+            {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+          </div>
+        )}
+
+        {/* 验证码输入 */}
         <div className="space-y-2">
           <Label>验证码</Label>
-          <div className="relative">
-            <MessageSquare className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <div className="flex gap-2">
             <Input
               name="otp"
               type="text"
               placeholder="请输入6位验证码"
               value={loginData.otp}
               onChange={handleLoginInputChange}
-              className="pl-10 bg-background/50 border-border/50 focus:border-primary"
+              className="flex-1 bg-background/50 border-border/50 focus:border-primary"
               maxLength={6}
-              required
             />
+            <Button
+              type="button"
+              variant="outline"
+              onClick={sendLoginOtp}
+              disabled={isLoading || loginCountdown > 0 || !loginAgreed}
+              className="whitespace-nowrap"
+            >
+              {loginCountdown > 0 ? `${loginCountdown}s` : '获取验证码'}
+            </Button>
           </div>
           {errors.otp && <p className="text-sm text-destructive">{errors.otp}</p>}
         </div>
-        
-        <div className="flex gap-2">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => setLoginStep('input')}
-            className="flex-1"
-          >
-            返回
-          </Button>
-          <Button
-            type="button"
-            onClick={countdown > 0 ? undefined : sendLoginOtp}
-            variant="outline"
-            className="flex-1"
-            disabled={countdown > 0}
-          >
-            {countdown > 0 ? `${countdown}s后重发` : '重新发送'}
-          </Button>
+
+        <div className="flex items-start space-x-2">
+          <Checkbox 
+            id="login-otp-agree" 
+            checked={loginAgreed} 
+            onCheckedChange={(checked) => setLoginAgreed(checked === true)}
+          />
+          <label htmlFor="login-otp-agree" className="text-sm text-muted-foreground leading-tight cursor-pointer">
+            我已阅读并同意
+            <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
+            和
+            <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
+          </label>
         </div>
         
         <Button 
           type="button"
           onClick={verifyLoginOtp}
           className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
-          disabled={isLoading}
+          disabled={isLoading || !loginAgreed || !loginData.otp}
         >
-          {isLoading ? "验证中..." : "登录"}
+          {isLoading ? "登录中..." : "登录"}
           <ArrowRight className="ml-2 w-4 h-4" />
         </Button>
       </div>
@@ -531,7 +718,7 @@ const AuthPage = () => {
         type="button"
         variant={registerMethod === 'phone' ? 'default' : 'outline'}
         size="sm"
-        onClick={() => { setRegisterMethod('phone'); resetRegisterFlow(); }}
+        onClick={() => { setRegisterMethod('phone'); setErrors({}); }}
         className={registerMethod === 'phone' ? 'bg-gradient-primary' : ''}
       >
         <Phone className="w-4 h-4 mr-1" />
@@ -541,7 +728,7 @@ const AuthPage = () => {
         type="button"
         variant={registerMethod === 'email' ? 'default' : 'outline'}
         size="sm"
-        onClick={() => { setRegisterMethod('email'); resetRegisterFlow(); }}
+        onClick={() => { setRegisterMethod('email'); setErrors({}); }}
         className={registerMethod === 'email' ? 'bg-gradient-primary' : ''}
       >
         <Mail className="w-4 h-4 mr-1" />
@@ -552,124 +739,100 @@ const AuthPage = () => {
 
   // 渲染注册表单
   const renderRegisterForm = () => {
-    if (registerStep === 'input') {
-      return (
-        <div className="space-y-4">
+    return (
+      <div className="space-y-4">
+        {registerMethod === 'phone' ? (
           <div className="space-y-2">
-            <Label htmlFor="register-username">用户名</Label>
-            <div className="relative">
-              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Label>手机号</Label>
+            <div className="flex gap-2">
+              <Select value={registerCountryCode} onValueChange={setRegisterCountryCode}>
+                <SelectTrigger className="w-32 bg-background/50 border-border/50">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {countryCodes.map((c) => (
+                    <SelectItem key={c.code} value={c.code}>
+                      {c.code} {c.country}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <Input
-                id="register-username"
-                name="username"
-                type="text"
-                placeholder="请输入用户名"
-                value={registerData.username}
+                name="phone"
+                type="tel"
+                placeholder="请输入手机号"
+                value={registerData.phone}
                 onChange={handleRegisterInputChange}
-                className="pl-10 bg-background/50 border-border/50 focus:border-primary"
-                required
-              />
-            </div>
-            {errors.username && <p className="text-sm text-destructive">{errors.username}</p>}
-          </div>
-          
-          <div className="space-y-2">
-            <Label>{registerMethod === 'phone' ? '手机号' : '邮箱'}</Label>
-            <div className="relative">
-              {registerMethod === 'phone' ? (
-                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              ) : (
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              )}
-              <Input
-                name={registerMethod === 'phone' ? 'phone' : 'email'}
-                type={registerMethod === 'phone' ? 'tel' : 'email'}
-                placeholder={registerMethod === 'phone' ? '请输入手机号（含国际区号，如+86）' : '请输入邮箱地址'}
-                value={registerMethod === 'phone' ? registerData.phone : registerData.email}
-                onChange={handleRegisterInputChange}
-                className="pl-10 bg-background/50 border-border/50 focus:border-primary"
-                required
+                className="flex-1 bg-background/50 border-border/50 focus:border-primary"
               />
             </div>
             {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
+          </div>
+        ) : (
+          <div className="space-y-2">
+            <Label>邮箱</Label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                name="email"
+                type="email"
+                placeholder="请输入邮箱地址"
+                value={registerData.email}
+                onChange={handleRegisterInputChange}
+                className="pl-10 bg-background/50 border-border/50 focus:border-primary"
+              />
+            </div>
             {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
           </div>
-          
-          <div className="flex items-start space-x-2">
-            <input type="checkbox" className="rounded border-border mt-1" required />
-            <span className="text-sm text-muted-foreground">
-              我已阅读并同意
-              <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
-              和
-              <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
-            </span>
-          </div>
-          
-          <Button 
-            type="button"
-            onClick={sendRegisterOtp}
-            className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
-            disabled={isLoading}
-          >
-            {isLoading ? "发送中..." : "获取验证码"}
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
-        </div>
-      );
-    }
+        )}
 
-    // OTP验证步骤
-    return (
-      <div className="space-y-4">
-        <div className="text-sm text-muted-foreground text-center mb-4">
-          验证码已发送至 {registerMethod === 'phone' ? registerData.phone : registerData.email}
-        </div>
-        
+        {/* 验证码输入 */}
         <div className="space-y-2">
           <Label>验证码</Label>
-          <div className="relative">
-            <MessageSquare className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <div className="flex gap-2">
             <Input
               name="otp"
               type="text"
               placeholder="请输入6位验证码"
               value={registerData.otp}
               onChange={handleRegisterInputChange}
-              className="pl-10 bg-background/50 border-border/50 focus:border-primary"
+              className="flex-1 bg-background/50 border-border/50 focus:border-primary"
               maxLength={6}
-              required
             />
+            <Button
+              type="button"
+              variant="outline"
+              onClick={sendRegisterOtp}
+              disabled={isLoading || registerCountdown > 0 || !registerAgreed}
+              className="whitespace-nowrap"
+            >
+              {registerCountdown > 0 ? `${registerCountdown}s` : '获取验证码'}
+            </Button>
           </div>
           {errors.otp && <p className="text-sm text-destructive">{errors.otp}</p>}
         </div>
-        
-        <div className="flex gap-2">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => setRegisterStep('input')}
-            className="flex-1"
-          >
-            返回
-          </Button>
-          <Button
-            type="button"
-            onClick={countdown > 0 ? undefined : sendRegisterOtp}
-            variant="outline"
-            className="flex-1"
-            disabled={countdown > 0}
-          >
-            {countdown > 0 ? `${countdown}s后重发` : '重新发送'}
-          </Button>
+
+        <div className="flex items-start space-x-2">
+          <Checkbox 
+            id="register-agree" 
+            checked={registerAgreed} 
+            onCheckedChange={(checked) => setRegisterAgreed(checked === true)}
+          />
+          <label htmlFor="register-agree" className="text-sm text-muted-foreground leading-tight cursor-pointer">
+            我已阅读并同意
+            <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
+            和
+            <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
+          </label>
         </div>
         
         <Button 
           type="button"
           onClick={verifyRegisterOtp}
           className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
-          disabled={isLoading}
+          disabled={isLoading || !registerAgreed || !registerData.otp}
         >
-          {isLoading ? "验证中..." : "注册"}
+          {isLoading ? "注册中..." : "注册"}
           <ArrowRight className="ml-2 w-4 h-4" />
         </Button>
       </div>
@@ -780,13 +943,6 @@ const AuthPage = () => {
                     <TabsContent value="login">
                       {renderLoginMethodTabs()}
                       {renderLoginForm()}
-                      
-                      <p className="text-xs text-center text-muted-foreground mt-4">
-                        登录即表示您同意我们的
-                        <Link to="/terms" className="text-primary hover:underline ml-1">服务条款</Link>
-                        和
-                        <Link to="/privacy" className="text-primary hover:underline ml-1">隐私协议</Link>
-                      </p>
                     </TabsContent>
                     
                     {/* 注册表单 */}

@@ -6,7 +6,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Eye, EyeOff, Mail, Lock, ArrowRight, Shield, Zap, Globe, Phone, MessageSquare } from "lucide-react";
 import Header from "@/components/Header";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -14,25 +13,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
-
-// 国际区号列表
-const countryCodes = [
-  { code: "+86", flag: "🇨🇳", country: { zh: "中国", "zh-TW": "中國", en: "China" } },
-  { code: "+1", flag: "🇺🇸", country: { zh: "美国/加拿大", "zh-TW": "美國/加拿大", en: "USA/Canada" } },
-  { code: "+852", flag: "🇭🇰", country: { zh: "香港", "zh-TW": "香港", en: "Hong Kong" } },
-  { code: "+853", flag: "🇲🇴", country: { zh: "澳门", "zh-TW": "澳門", en: "Macau" } },
-  { code: "+886", flag: "🇹🇼", country: { zh: "台湾", "zh-TW": "台灣", en: "Taiwan" } },
-  { code: "+81", flag: "🇯🇵", country: { zh: "日本", "zh-TW": "日本", en: "Japan" } },
-  { code: "+82", flag: "🇰🇷", country: { zh: "韩国", "zh-TW": "韓國", en: "South Korea" } },
-  { code: "+65", flag: "🇸🇬", country: { zh: "新加坡", "zh-TW": "新加坡", en: "Singapore" } },
-  { code: "+60", flag: "🇲🇾", country: { zh: "马来西亚", "zh-TW": "馬來西亞", en: "Malaysia" } },
-  { code: "+44", flag: "🇬🇧", country: { zh: "英国", "zh-TW": "英國", en: "United Kingdom" } },
-  { code: "+49", flag: "🇩🇪", country: { zh: "德国", "zh-TW": "德國", en: "Germany" } },
-  { code: "+33", flag: "🇫🇷", country: { zh: "法国", "zh-TW": "法國", en: "France" } },
-  { code: "+61", flag: "🇦🇺", country: { zh: "澳大利亚", "zh-TW": "澳大利亞", en: "Australia" } },
-  { code: "+64", flag: "🇳🇿", country: { zh: "新西兰", "zh-TW": "紐西蘭", en: "New Zealand" } },
-];
-
+import { CountryCodeSelect } from "@/components/CountryCodeSelect";
 // 验证schema
 const emailPasswordSchema = z.object({
   email: z.string().email("请输入有效的邮箱地址").max(255),
@@ -512,27 +493,11 @@ const AuthPage = () => {
           <div className="space-y-2">
             <Label>手机号</Label>
             <div className="flex gap-2">
-              <Select value={loginCountryCode} onValueChange={setLoginCountryCode}>
-                <SelectTrigger className="w-auto min-w-[90px] bg-background/50 border-border/50">
-                  <SelectValue>
-                    {(() => {
-                      const selected = countryCodes.find(c => c.code === loginCountryCode);
-                      return selected ? `${selected.flag} ${selected.code}` : loginCountryCode;
-                    })()}
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent className="bg-background border-border">
-                  {countryCodes.map((c) => (
-                    <SelectItem key={c.code} value={c.code}>
-                      <span className="flex items-center gap-2">
-                        <span>{c.flag}</span>
-                        <span>{c.code}</span>
-                        <span className="text-muted-foreground text-sm">{c.country[language]}</span>
-                      </span>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <CountryCodeSelect 
+                value={loginCountryCode} 
+                onChange={setLoginCountryCode} 
+                language={language} 
+              />
               <div className="relative flex-1">
                 <Input
                   name="phone"
@@ -626,27 +591,11 @@ const AuthPage = () => {
           <div className="space-y-2">
             <Label>手机号</Label>
             <div className="flex gap-2">
-              <Select value={loginCountryCode} onValueChange={setLoginCountryCode}>
-                <SelectTrigger className="w-auto min-w-[90px] bg-background/50 border-border/50">
-                  <SelectValue>
-                    {(() => {
-                      const selected = countryCodes.find(c => c.code === loginCountryCode);
-                      return selected ? `${selected.flag} ${selected.code}` : loginCountryCode;
-                    })()}
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent className="bg-background border-border">
-                  {countryCodes.map((c) => (
-                    <SelectItem key={c.code} value={c.code}>
-                      <span className="flex items-center gap-2">
-                        <span>{c.flag}</span>
-                        <span>{c.code}</span>
-                        <span className="text-muted-foreground text-sm">{c.country[language]}</span>
-                      </span>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <CountryCodeSelect 
+                value={loginCountryCode} 
+                onChange={setLoginCountryCode} 
+                language={language} 
+              />
               <Input
                 name="phone"
                 type="tel"
@@ -763,27 +712,11 @@ const AuthPage = () => {
           <div className="space-y-2">
             <Label>手机号</Label>
             <div className="flex gap-2">
-              <Select value={registerCountryCode} onValueChange={setRegisterCountryCode}>
-                <SelectTrigger className="w-auto min-w-[90px] bg-background/50 border-border/50">
-                  <SelectValue>
-                    {(() => {
-                      const selected = countryCodes.find(c => c.code === registerCountryCode);
-                      return selected ? `${selected.flag} ${selected.code}` : registerCountryCode;
-                    })()}
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent className="bg-background border-border">
-                  {countryCodes.map((c) => (
-                    <SelectItem key={c.code} value={c.code}>
-                      <span className="flex items-center gap-2">
-                        <span>{c.flag}</span>
-                        <span>{c.code}</span>
-                        <span className="text-muted-foreground text-sm">{c.country[language]}</span>
-                      </span>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <CountryCodeSelect 
+                value={registerCountryCode} 
+                onChange={setRegisterCountryCode} 
+                language={language} 
+              />
               <Input
                 name="phone"
                 type="tel"

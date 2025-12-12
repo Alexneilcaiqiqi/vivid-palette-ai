@@ -15,7 +15,7 @@ const DownloadPage = () => {
       version: "v2.1.5",
       size: "15.2 MB",
       requirements: "Windows 10/11 (64-bit)",
-      downloadUrl: "#",
+      downloadUrl: "",
       features: [t('download.oneClickConnect'), t('download.smartRouting'), t('download.autoStart')],
       gradient: "bg-gradient-feature-4"
     },
@@ -25,7 +25,7 @@ const DownloadPage = () => {
       version: "v2.1.5",
       size: "18.7 MB", 
       requirements: "macOS 11.0 或更高版本",
-      downloadUrl: "#",
+      downloadUrl: "",
       features: [t('download.nativeSupport'), t('download.menubarControl'), t('download.systemIntegration')],
       gradient: "bg-gradient-feature-4"
     },
@@ -35,7 +35,7 @@ const DownloadPage = () => {
       version: "v1.8.3",
       size: "23.1 MB",
       requirements: "iOS 13.0 或更高版本",
-      downloadUrl: "#",
+      downloadUrl: "",
       features: [t('download.appStore'), t('download.shortcuts'), t('download.siriSupport')],
       gradient: "bg-gradient-feature-4"
     },
@@ -45,7 +45,7 @@ const DownloadPage = () => {
       version: "v1.8.3", 
       size: "12.8 MB",
       requirements: "Android 7.0 或更高版本",
-      downloadUrl: "#",
+      downloadUrl: "https://guichao.win/release/GUICHAO.apk",
       features: [t('download.googlePlay'), t('download.oneClickShare'), t('download.powerSaving')],
       gradient: "bg-gradient-feature-4"
     },
@@ -55,7 +55,7 @@ const DownloadPage = () => {
       version: "v1.2.1",
       size: "8.5 MB",
       requirements: "支持OpenWrt的路由器",
-      downloadUrl: "#",
+      downloadUrl: "",
       features: [t('download.familyShare'), t('download.deviceControl'), t('download.timedSwitch')],
       gradient: "bg-gradient-feature-4"
     },
@@ -65,7 +65,7 @@ const DownloadPage = () => {
       version: "v1.5.2",
       size: "2.1 MB",
       requirements: "Chrome/Firefox/Safari",
-      downloadUrl: "#",
+      downloadUrl: "",
       features: [t('download.freeUse'), t('download.webProxy'), t('download.smartSplit')],
       gradient: "bg-gradient-feature-4"
     }
@@ -168,12 +168,19 @@ const DownloadPage = () => {
                   </div>
 
                   {/* 下载按钮 */}
-                  <a href={platform.downloadUrl} download className="block">
-                    <Button className="relative z-10 w-full bg-gradient-to-b from-[#F5E6BB] to-[#FFB472] text-gray-900 hover:text-gray-900 hover:opacity-90 hover:scale-105 transition-all duration-300">
+                  {platform.downloadUrl ? (
+                    <a href={platform.downloadUrl} download className="block">
+                      <Button className="relative z-10 w-full bg-gradient-to-b from-[#F5E6BB] to-[#FFB472] text-gray-900 hover:text-gray-900 hover:opacity-90 hover:scale-105 transition-all duration-300">
+                        <Download className="mr-2 w-4 h-4" />
+                        {t('download.downloadBtn')} {platform.name}
+                      </Button>
+                    </a>
+                  ) : (
+                    <Button disabled className="relative z-10 w-full bg-muted text-muted-foreground cursor-not-allowed">
                       <Download className="mr-2 w-4 h-4" />
                       {t('download.downloadBtn')} {platform.name}
                     </Button>
-                  </a>
+                  )}
                 </CardContent>
               </Card>
             ))}

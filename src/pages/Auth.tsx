@@ -605,7 +605,7 @@ const AuthPage = () => {
             className={forgotMethod === 'phone' ? 'bg-gradient-primary' : ''}
           >
             <Phone className="w-4 h-4 mr-1" />
-            手机号
+            {t('auth.phone')}
           </Button>
           <Button
             type="button"
@@ -615,7 +615,7 @@ const AuthPage = () => {
             className={forgotMethod === 'email' ? 'bg-gradient-primary' : ''}
           >
             <Mail className="w-4 h-4 mr-1" />
-            邮箱
+            {t('auth.email')}
           </Button>
         </div>
         
@@ -629,7 +629,7 @@ const AuthPage = () => {
             <Input
               name="phone"
               type="tel"
-              placeholder="请输入手机号"
+              placeholder={t('auth.phonePlaceholder')}
               value={forgotData.phone}
               onChange={handleForgotInputChange}
               className="flex-1 bg-background/50 border-border/50 focus:border-primary"
@@ -641,7 +641,7 @@ const AuthPage = () => {
             <Input
               name="email"
               type="email"
-              placeholder="请输入邮箱地址"
+              placeholder={t('auth.emailPlaceholder')}
               value={forgotData.email}
               onChange={handleForgotInputChange}
               className="pl-10 bg-background/50 border-border/50 focus:border-primary"
@@ -651,12 +651,11 @@ const AuthPage = () => {
         {forgotMethod === 'phone' && errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
         {forgotMethod === 'email' && errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
 
-        {/* 验证码输入 */}
         <div className="flex gap-2">
           <Input
             name="otp"
             type="text"
-            placeholder="请输入6位验证码"
+            placeholder={t('auth.otpPlaceholder')}
             value={forgotData.otp}
             onChange={handleForgotInputChange}
             className="flex-1 bg-background/50 border-border/50 focus:border-primary"
@@ -669,18 +668,17 @@ const AuthPage = () => {
             disabled={isLoading || forgotCountdown > 0}
             className="whitespace-nowrap"
           >
-            {forgotCountdown > 0 ? `${forgotCountdown}s` : '获取验证码'}
+            {forgotCountdown > 0 ? `${forgotCountdown}s` : t('auth.getOtp')}
           </Button>
         </div>
         {errors.otp && <p className="text-sm text-destructive">{errors.otp}</p>}
 
-        {/* 新密码输入 */}
         <div className="relative">
           <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             name="newPassword"
             type={showPassword ? "text" : "password"}
-            placeholder="请设置新密码（至少6位）"
+            placeholder={t('auth.newPasswordPlaceholder')}
             value={forgotData.newPassword}
             onChange={handleForgotInputChange}
             className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
@@ -701,7 +699,7 @@ const AuthPage = () => {
           className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
           disabled={isLoading || !forgotData.otp || !forgotData.newPassword}
         >
-          {isLoading ? "重置中..." : "重置密码"}
+          {isLoading ? t('auth.resetting') : t('auth.resetPassword')}
           <ArrowRight className="ml-2 w-4 h-4" />
         </Button>
         
@@ -711,7 +709,7 @@ const AuthPage = () => {
             onClick={resetForgotState}
             className="text-sm text-primary hover:underline"
           >
-            返回登录
+            {t('auth.backToLogin')}
           </button>
         </div>
       </div>
@@ -730,7 +728,7 @@ const AuthPage = () => {
         className={loginMethod === 'email' ? 'bg-gradient-primary' : ''}
       >
         <Mail className="w-4 h-4 mr-1" />
-        邮箱登录
+        {t('auth.emailLogin')}
       </Button>
       <Button
         type="button"
@@ -740,7 +738,7 @@ const AuthPage = () => {
         className={loginMethod === 'phone' ? 'bg-gradient-primary' : ''}
       >
         <Phone className="w-4 h-4 mr-1" />
-        手机号登录
+        {t('auth.phoneLogin')}
       </Button>
       <Button
         type="button"
@@ -750,7 +748,7 @@ const AuthPage = () => {
         className={loginMethod === 'otp' ? 'bg-gradient-primary' : ''}
       >
         <MessageSquare className="w-4 h-4 mr-1" />
-        验证码登录
+        {t('auth.otpLogin')}
       </Button>
     </div>
   );
@@ -766,7 +764,7 @@ const AuthPage = () => {
               id="login-email"
               name="email"
               type="email"
-              placeholder="请输入邮箱地址"
+              placeholder={t('auth.emailPlaceholder')}
               value={loginData.email}
               onChange={handleLoginInputChange}
               className="pl-10 bg-background/50 border-border/50 focus:border-primary"
@@ -782,7 +780,7 @@ const AuthPage = () => {
                 id="login-password"
                 name="password"
                 type={showPassword ? "text" : "password"}
-                placeholder="请输入密码"
+                placeholder={t('auth.passwordPlaceholder')}
                 value={loginData.password}
                 onChange={handleLoginInputChange}
                 className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
@@ -803,7 +801,7 @@ const AuthPage = () => {
                 onClick={() => setAuthView('forgot-password')}
                 className="text-sm text-primary hover:underline"
               >
-                忘记密码？
+                {t('auth.forgotPassword')}
               </button>
             </div>
           </div>
@@ -815,10 +813,10 @@ const AuthPage = () => {
               onCheckedChange={(checked) => setLoginAgreed(checked === true)}
             />
             <label htmlFor="login-agree" className="text-sm text-muted-foreground leading-tight cursor-pointer">
-              我已阅读并同意
-              <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
-              和
-              <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
+              {t('auth.readAgree')}
+              <Link to="/terms" className="text-primary hover:underline ml-1">{t('auth.termsLink')}</Link>
+              {t('auth.agreeTerms3')}
+              <Link to="/privacy" className="text-primary hover:underline ml-1">{t('auth.privacyLink')}</Link>
             </label>
           </div>
           
@@ -827,7 +825,7 @@ const AuthPage = () => {
             className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
             disabled={isLoading || !loginAgreed}
           >
-            {isLoading ? "登录中..." : "登录"}
+            {isLoading ? t('auth.loggingIn') : t('auth.login')}
             <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
         </form>
@@ -846,7 +844,7 @@ const AuthPage = () => {
             <Input
               name="phone"
               type="tel"
-              placeholder="请输入手机号"
+              placeholder={t('auth.phonePlaceholder')}
               value={loginData.phone}
               onChange={handleLoginInputChange}
               className="flex-1 bg-background/50 border-border/50 focus:border-primary"
@@ -862,7 +860,7 @@ const AuthPage = () => {
                 id="login-phone-password"
                 name="password"
                 type={showPassword ? "text" : "password"}
-                placeholder="请输入密码"
+                placeholder={t('auth.passwordPlaceholder')}
                 value={loginData.password}
                 onChange={handleLoginInputChange}
                 className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
@@ -883,7 +881,7 @@ const AuthPage = () => {
                 onClick={() => setAuthView('forgot-password')}
                 className="text-sm text-primary hover:underline"
               >
-                忘记密码？
+                {t('auth.forgotPassword')}
               </button>
             </div>
           </div>
@@ -895,10 +893,10 @@ const AuthPage = () => {
               onCheckedChange={(checked) => setLoginAgreed(checked === true)}
             />
             <label htmlFor="login-phone-agree" className="text-sm text-muted-foreground leading-tight cursor-pointer">
-              我已阅读并同意
-              <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
-              和
-              <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
+              {t('auth.readAgree')}
+              <Link to="/terms" className="text-primary hover:underline ml-1">{t('auth.termsLink')}</Link>
+              {t('auth.agreeTerms3')}
+              <Link to="/privacy" className="text-primary hover:underline ml-1">{t('auth.privacyLink')}</Link>
             </label>
           </div>
           
@@ -907,7 +905,7 @@ const AuthPage = () => {
             className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
             disabled={isLoading || !loginAgreed}
           >
-            {isLoading ? "登录中..." : "登录"}
+            {isLoading ? t('auth.loggingIn') : t('auth.login')}
             <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
         </form>

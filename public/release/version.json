@@ -1,7 +1,7 @@
 {
   "windows": {
-    "version": "v2.1.5",
-    "size": "15.2 MB",
+    "version": "",
+    "size": "",
     "downloadUrl": ""
   },
   "macos": {
@@ -15,8 +15,8 @@
     "downloadUrl": ""
   },
   "android": {
-    "version": "v1.8.3",
-    "size": "12.8 MB",
+    "version": "v2.8.6",
+    "size": "286 MB",
     "downloadUrl": "https://guichao.win/release/GUICHAO.apk"
   },
   "router": {

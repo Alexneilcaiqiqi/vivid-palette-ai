@@ -5,7 +5,6 @@ import { Download, Smartphone, Monitor, Router, Globe, CheckCircle, Star, Loader
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { supabase } from "@/integrations/supabase/client";
 
 interface PlatformInfo {
   version?: string;
@@ -18,8 +17,6 @@ interface VersionData {
   [platform: string]: PlatformInfo;
 }
 
-const VERSION_JSON_URL = "https://guichao.win/release/version.json";
-
 const DownloadPage = () => {
   const { t } = useLanguage();
   const [versionData, setVersionData] = useState<VersionData>({});
@@ -28,13 +25,9 @@ const DownloadPage = () => {
   useEffect(() => {
     const fetchVersionInfo = async () => {
       try {
-        const { data, error } = await supabase.functions.invoke('get-apk-info', {
-          body: { versionJsonUrl: VERSION_JSON_URL }
-        });
-        
-        if (error) {
-          console.error('Failed to fetch version info:', error);
-        } else if (data && !data.error) {
+        const response = await fetch('/release/version.json');
+        if (response.ok) {
+          const data = await response.json();
           setVersionData(data);
         }
       } catch (err) {

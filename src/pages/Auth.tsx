@@ -418,48 +418,42 @@ const AuthPage = () => {
     if (loginMethod === 'email') {
       return (
         <form onSubmit={handleEmailLogin} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="login-email">邮箱</Label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                id="login-email"
-                name="email"
-                type="email"
-                placeholder="请输入邮箱地址"
-                value={loginData.email}
-                onChange={handleLoginInputChange}
-                className="pl-10 bg-background/50 border-border/50 focus:border-primary"
-                required
-              />
-            </div>
-            {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+          <div className="relative">
+            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              id="login-email"
+              name="email"
+              type="email"
+              placeholder="请输入邮箱地址"
+              value={loginData.email}
+              onChange={handleLoginInputChange}
+              className="pl-10 bg-background/50 border-border/50 focus:border-primary"
+              required
+            />
           </div>
+          {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
           
-          <div className="space-y-2">
-            <Label htmlFor="login-password">密码</Label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                id="login-password"
-                name="password"
-                type={showPassword ? "text" : "password"}
-                placeholder="请输入密码"
-                value={loginData.password}
-                onChange={handleLoginInputChange}
-                className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2"
-              >
-                {showPassword ? <EyeOff className="w-4 h-4 text-muted-foreground" /> : <Eye className="w-4 h-4 text-muted-foreground" />}
-              </button>
-            </div>
-            {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
+          <div className="relative">
+            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              id="login-password"
+              name="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="请输入密码"
+              value={loginData.password}
+              onChange={handleLoginInputChange}
+              className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2"
+            >
+              {showPassword ? <EyeOff className="w-4 h-4 text-muted-foreground" /> : <Eye className="w-4 h-4 text-muted-foreground" />}
+            </button>
           </div>
+          {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
           
           <div className="flex items-start space-x-2">
             <Checkbox 
@@ -490,53 +484,45 @@ const AuthPage = () => {
     if (loginMethod === 'phone') {
       return (
         <form onSubmit={handlePhoneLogin} className="space-y-4">
-          <div className="space-y-2">
-            <Label>手机号</Label>
-            <div className="flex gap-2">
-              <CountryCodeSelect 
-                value={loginCountryCode} 
-                onChange={setLoginCountryCode} 
-                language={language} 
-              />
-              <div className="relative flex-1">
-                <Input
-                  name="phone"
-                  type="tel"
-                  placeholder="请输入手机号"
-                  value={loginData.phone}
-                  onChange={handleLoginInputChange}
-                  className="bg-background/50 border-border/50 focus:border-primary"
-                  required
-                />
-              </div>
-            </div>
-            {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
+          <div className="flex gap-2">
+            <CountryCodeSelect 
+              value={loginCountryCode} 
+              onChange={setLoginCountryCode} 
+              language={language} 
+            />
+            <Input
+              name="phone"
+              type="tel"
+              placeholder="请输入手机号"
+              value={loginData.phone}
+              onChange={handleLoginInputChange}
+              className="flex-1 bg-background/50 border-border/50 focus:border-primary"
+              required
+            />
           </div>
+          {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
           
-          <div className="space-y-2">
-            <Label htmlFor="login-phone-password">密码</Label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                id="login-phone-password"
-                name="password"
-                type={showPassword ? "text" : "password"}
-                placeholder="请输入密码"
-                value={loginData.password}
-                onChange={handleLoginInputChange}
-                className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2"
-              >
-                {showPassword ? <EyeOff className="w-4 h-4 text-muted-foreground" /> : <Eye className="w-4 h-4 text-muted-foreground" />}
-              </button>
-            </div>
-            {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
+          <div className="relative">
+            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              id="login-phone-password"
+              name="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="请输入密码"
+              value={loginData.password}
+              onChange={handleLoginInputChange}
+              className="pl-10 pr-10 bg-background/50 border-border/50 focus:border-primary"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2"
+            >
+              {showPassword ? <EyeOff className="w-4 h-4 text-muted-foreground" /> : <Eye className="w-4 h-4 text-muted-foreground" />}
+            </button>
           </div>
+          {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
           
           <div className="flex items-start space-x-2">
             <Checkbox 
@@ -686,7 +672,7 @@ const AuthPage = () => {
         className={registerMethod === 'phone' ? 'bg-gradient-primary' : ''}
       >
         <Phone className="w-4 h-4 mr-1" />
-        手机号注册
+        手机号
       </Button>
       <Button
         type="button"
@@ -696,7 +682,7 @@ const AuthPage = () => {
         className={registerMethod === 'email' ? 'bg-gradient-primary' : ''}
       >
         <Mail className="w-4 h-4 mr-1" />
-        邮箱注册
+        邮箱
       </Button>
     </div>
   );
@@ -705,86 +691,60 @@ const AuthPage = () => {
   const renderRegisterForm = () => {
     return (
       <div className="space-y-4">
-        <div className="space-y-2">
+        {registerMethod === 'phone' ? (
           <div className="flex gap-2">
-            <Button
-              type="button"
-              variant={registerMethod === 'phone' ? 'secondary' : 'ghost'}
-              size="sm"
-              onClick={() => { setRegisterMethod('phone'); setErrors({}); }}
-              className="h-8 px-4"
-            >
-              手机号
-            </Button>
-            <Button
-              type="button"
-              variant={registerMethod === 'email' ? 'secondary' : 'ghost'}
-              size="sm"
-              onClick={() => { setRegisterMethod('email'); setErrors({}); }}
-              className="h-8 px-4"
-            >
-              邮箱
-            </Button>
-          </div>
-          
-          {registerMethod === 'phone' ? (
-            <div className="flex gap-2">
-              <CountryCodeSelect 
-                value={registerCountryCode} 
-                onChange={setRegisterCountryCode} 
-                language={language} 
-              />
-              <Input
-                name="phone"
-                type="tel"
-                placeholder="请输入手机号"
-                value={registerData.phone}
-                onChange={handleRegisterInputChange}
-                className="flex-1 bg-background/50 border-border/50 focus:border-primary"
-              />
-            </div>
-          ) : (
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                name="email"
-                type="email"
-                placeholder="请输入邮箱地址"
-                value={registerData.email}
-                onChange={handleRegisterInputChange}
-                className="pl-10 bg-background/50 border-border/50 focus:border-primary"
-              />
-            </div>
-          )}
-          {registerMethod === 'phone' && errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
-          {registerMethod === 'email' && errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
-        </div>
-
-        {/* 验证码输入 */}
-        <div className="space-y-2">
-          <Label>验证码</Label>
-          <div className="flex gap-2">
+            <CountryCodeSelect 
+              value={registerCountryCode} 
+              onChange={setRegisterCountryCode} 
+              language={language} 
+            />
             <Input
-              name="otp"
-              type="text"
-              placeholder="请输入6位验证码"
-              value={registerData.otp}
+              name="phone"
+              type="tel"
+              placeholder="请输入手机号"
+              value={registerData.phone}
               onChange={handleRegisterInputChange}
               className="flex-1 bg-background/50 border-border/50 focus:border-primary"
-              maxLength={6}
             />
-            <Button
-              type="button"
-              variant="outline"
-              onClick={sendRegisterOtp}
-              disabled={isLoading || registerCountdown > 0 || !registerAgreed}
-              className="whitespace-nowrap"
-            >
-              {registerCountdown > 0 ? `${registerCountdown}s` : '获取验证码'}
-            </Button>
           </div>
-          {errors.otp && <p className="text-sm text-destructive">{errors.otp}</p>}
+        ) : (
+          <div className="relative">
+            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              name="email"
+              type="email"
+              placeholder="请输入邮箱地址"
+              value={registerData.email}
+              onChange={handleRegisterInputChange}
+              className="pl-10 bg-background/50 border-border/50 focus:border-primary"
+            />
+          </div>
+        )}
+        {registerMethod === 'phone' && errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
+        {registerMethod === 'email' && errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+
+        {/* 验证码输入 */}
+        <div className="flex gap-2">
+          <Input
+            name="otp"
+            type="text"
+            placeholder="请输入6位验证码"
+            value={registerData.otp}
+            onChange={handleRegisterInputChange}
+            className="flex-1 bg-background/50 border-border/50 focus:border-primary"
+            maxLength={6}
+          />
+          <Button
+            type="button"
+            variant="outline"
+            onClick={sendRegisterOtp}
+            disabled={isLoading || registerCountdown > 0 || !registerAgreed}
+            className="whitespace-nowrap"
+          >
+            {registerCountdown > 0 ? `${registerCountdown}s` : '获取验证码'}
+          </Button>
         </div>
+        {errors.otp && <p className="text-sm text-destructive">{errors.otp}</p>}
 
         <div className="flex items-start space-x-2">
           <Checkbox 

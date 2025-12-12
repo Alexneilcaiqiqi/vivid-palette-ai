@@ -17,20 +17,20 @@ import { z } from "zod";
 
 // 国际区号列表
 const countryCodes = [
-  { code: "+86", country: "中国" },
-  { code: "+1", country: "美国/加拿大" },
-  { code: "+852", country: "香港" },
-  { code: "+853", country: "澳门" },
-  { code: "+886", country: "台湾" },
-  { code: "+81", country: "日本" },
-  { code: "+82", country: "韩国" },
-  { code: "+65", country: "新加坡" },
-  { code: "+60", country: "马来西亚" },
-  { code: "+44", country: "英国" },
-  { code: "+49", country: "德国" },
-  { code: "+33", country: "法国" },
-  { code: "+61", country: "澳大利亚" },
-  { code: "+64", country: "新西兰" },
+  { code: "+86", flag: "🇨🇳", country: { zh: "中国", "zh-TW": "中國", en: "China" } },
+  { code: "+1", flag: "🇺🇸", country: { zh: "美国/加拿大", "zh-TW": "美國/加拿大", en: "USA/Canada" } },
+  { code: "+852", flag: "🇭🇰", country: { zh: "香港", "zh-TW": "香港", en: "Hong Kong" } },
+  { code: "+853", flag: "🇲🇴", country: { zh: "澳门", "zh-TW": "澳門", en: "Macau" } },
+  { code: "+886", flag: "🇹🇼", country: { zh: "台湾", "zh-TW": "台灣", en: "Taiwan" } },
+  { code: "+81", flag: "🇯🇵", country: { zh: "日本", "zh-TW": "日本", en: "Japan" } },
+  { code: "+82", flag: "🇰🇷", country: { zh: "韩国", "zh-TW": "韓國", en: "South Korea" } },
+  { code: "+65", flag: "🇸🇬", country: { zh: "新加坡", "zh-TW": "新加坡", en: "Singapore" } },
+  { code: "+60", flag: "🇲🇾", country: { zh: "马来西亚", "zh-TW": "馬來西亞", en: "Malaysia" } },
+  { code: "+44", flag: "🇬🇧", country: { zh: "英国", "zh-TW": "英國", en: "United Kingdom" } },
+  { code: "+49", flag: "🇩🇪", country: { zh: "德国", "zh-TW": "德國", en: "Germany" } },
+  { code: "+33", flag: "🇫🇷", country: { zh: "法国", "zh-TW": "法國", en: "France" } },
+  { code: "+61", flag: "🇦🇺", country: { zh: "澳大利亚", "zh-TW": "澳大利亞", en: "Australia" } },
+  { code: "+64", flag: "🇳🇿", country: { zh: "新西兰", "zh-TW": "紐西蘭", en: "New Zealand" } },
 ];
 
 // 验证schema
@@ -61,7 +61,7 @@ type OtpType = 'phone' | 'email';
 type RegisterMethod = 'phone' | 'email';
 
 const AuthPage = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { user } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -513,13 +513,22 @@ const AuthPage = () => {
             <Label>手机号</Label>
             <div className="flex gap-2">
               <Select value={loginCountryCode} onValueChange={setLoginCountryCode}>
-                <SelectTrigger className="w-32 bg-background/50 border-border/50">
-                  <SelectValue />
+                <SelectTrigger className="w-36 bg-background/50 border-border/50">
+                  <SelectValue>
+                    {(() => {
+                      const selected = countryCodes.find(c => c.code === loginCountryCode);
+                      return selected ? `${selected.flag} ${selected.code}` : loginCountryCode;
+                    })()}
+                  </SelectValue>
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-background border-border">
                   {countryCodes.map((c) => (
                     <SelectItem key={c.code} value={c.code}>
-                      {c.code} {c.country}
+                      <span className="flex items-center gap-2">
+                        <span>{c.flag}</span>
+                        <span>{c.code}</span>
+                        <span className="text-muted-foreground">{c.country[language]}</span>
+                      </span>
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -618,13 +627,22 @@ const AuthPage = () => {
             <Label>手机号</Label>
             <div className="flex gap-2">
               <Select value={loginCountryCode} onValueChange={setLoginCountryCode}>
-                <SelectTrigger className="w-32 bg-background/50 border-border/50">
-                  <SelectValue />
+                <SelectTrigger className="w-36 bg-background/50 border-border/50">
+                  <SelectValue>
+                    {(() => {
+                      const selected = countryCodes.find(c => c.code === loginCountryCode);
+                      return selected ? `${selected.flag} ${selected.code}` : loginCountryCode;
+                    })()}
+                  </SelectValue>
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-background border-border">
                   {countryCodes.map((c) => (
                     <SelectItem key={c.code} value={c.code}>
-                      {c.code} {c.country}
+                      <span className="flex items-center gap-2">
+                        <span>{c.flag}</span>
+                        <span>{c.code}</span>
+                        <span className="text-muted-foreground">{c.country[language]}</span>
+                      </span>
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -746,13 +764,22 @@ const AuthPage = () => {
             <Label>手机号</Label>
             <div className="flex gap-2">
               <Select value={registerCountryCode} onValueChange={setRegisterCountryCode}>
-                <SelectTrigger className="w-32 bg-background/50 border-border/50">
-                  <SelectValue />
+                <SelectTrigger className="w-36 bg-background/50 border-border/50">
+                  <SelectValue>
+                    {(() => {
+                      const selected = countryCodes.find(c => c.code === registerCountryCode);
+                      return selected ? `${selected.flag} ${selected.code}` : registerCountryCode;
+                    })()}
+                  </SelectValue>
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-background border-border">
                   {countryCodes.map((c) => (
                     <SelectItem key={c.code} value={c.code}>
-                      {c.code} {c.country}
+                      <span className="flex items-center gap-2">
+                        <span>{c.flag}</span>
+                        <span>{c.code}</span>
+                        <span className="text-muted-foreground">{c.country[language]}</span>
+                      </span>
                     </SelectItem>
                   ))}
                 </SelectContent>

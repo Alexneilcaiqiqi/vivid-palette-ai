@@ -568,13 +568,13 @@ const AuthPage = () => {
     return (
       <div className="space-y-4">
         {/* OTP类型选择 */}
-        <div className="flex gap-1.5 justify-end">
+        <div className="flex gap-2 justify-end">
           <Button
             type="button"
             variant={loginOtpType === 'phone' ? 'secondary' : 'ghost'}
             size="sm"
             onClick={() => setLoginOtpType('phone')}
-            className="h-7 px-2.5 text-xs"
+            className="h-8 px-3"
           >
             手机
           </Button>
@@ -583,7 +583,7 @@ const AuthPage = () => {
             variant={loginOtpType === 'email' ? 'secondary' : 'ghost'}
             size="sm"
             onClick={() => setLoginOtpType('email')}
-            className="h-7 px-2.5 text-xs"
+            className="h-8 px-3"
           >
             邮箱
           </Button>

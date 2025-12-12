@@ -40,6 +40,7 @@ const otpSchema = z.object({
 type LoginMethod = 'email' | 'phone' | 'otp';
 type OtpType = 'phone' | 'email';
 type RegisterMethod = 'phone' | 'email';
+type AuthView = 'login' | 'register' | 'forgot-password';
 
 const AuthPage = () => {
   const { t, language } = useLanguage();
@@ -50,6 +51,7 @@ const AuthPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [authView, setAuthView] = useState<AuthView>('login');
   
   // 登录相关状态
   const [loginMethod, setLoginMethod] = useState<LoginMethod>('email');
@@ -72,6 +74,10 @@ const AuthPage = () => {
     phone: "",
     otp: ""
   });
+  
+  // 忘记密码相关状态
+  const [forgotEmail, setForgotEmail] = useState("");
+  const [forgotEmailSent, setForgotEmailSent] = useState(false);
   
   // 验证码倒计时
   const [loginCountdown, setLoginCountdown] = useState(0);
@@ -377,6 +383,111 @@ const AuthPage = () => {
     }
   };
 
+  // 发送重置密码邮件
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setErrors({});
+
+    try {
+      emailSchema.parse({ email: forgotEmail });
+      
+      const redirectUrl = `${window.location.origin}/reset-password`;
+      const { error } = await supabase.auth.resetPasswordForEmail(forgotEmail, {
+        redirectTo: redirectUrl,
+      });
+      
+      if (error) throw error;
+      
+      setForgotEmailSent(true);
+      toast({ title: "重置链接已发送", description: "请查看您的邮箱" });
+    } catch (error: any) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) fieldErrors[err.path[0].toString()] = err.message;
+        });
+        setErrors(fieldErrors);
+      } else {
+        toast({ title: "发送失败", description: error.message, variant: "destructive" });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // 渲染忘记密码表单
+  const renderForgotPasswordForm = () => {
+    if (forgotEmailSent) {
+      return (
+        <div className="text-center space-y-4">
+          <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto">
+            <Mail className="w-8 h-8 text-green-500" />
+          </div>
+          <h3 className="text-lg font-semibold text-foreground">邮件已发送</h3>
+          <p className="text-muted-foreground text-sm">
+            我们已向 <span className="text-primary">{forgotEmail}</span> 发送了密码重置链接，请查看您的邮箱。
+          </p>
+          <Button
+            variant="outline"
+            onClick={() => {
+              setAuthView('login');
+              setForgotEmailSent(false);
+              setForgotEmail("");
+            }}
+            className="mt-4"
+          >
+            返回登录
+          </Button>
+        </div>
+      );
+    }
+
+    return (
+      <form onSubmit={handleForgotPassword} className="space-y-5">
+        <p className="text-muted-foreground text-sm text-center mb-4">
+          请输入您的注册邮箱，我们将向您发送密码重置链接。
+        </p>
+        
+        <div className="relative">
+          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Input
+            name="email"
+            type="email"
+            placeholder="请输入邮箱地址"
+            value={forgotEmail}
+            onChange={(e) => {
+              setForgotEmail(e.target.value);
+              if (errors.email) setErrors({});
+            }}
+            className="pl-10 bg-background/50 border-border/50 focus:border-primary"
+            required
+          />
+        </div>
+        {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+        
+        <Button 
+          type="submit" 
+          className="w-full bg-gradient-primary hover:shadow-strong hover:scale-105 transition-all duration-300"
+          disabled={isLoading}
+        >
+          {isLoading ? "发送中..." : "发送重置链接"}
+          <ArrowRight className="ml-2 w-4 h-4" />
+        </Button>
+        
+        <div className="text-center">
+          <button
+            type="button"
+            onClick={() => setAuthView('login')}
+            className="text-sm text-primary hover:underline"
+          >
+            返回登录
+          </button>
+        </div>
+      </form>
+    );
+  };
+
   // 渲染登录方式选择
   const renderLoginMethodTabs = () => (
     <div className="flex gap-2 mb-4">
@@ -455,19 +566,29 @@ const AuthPage = () => {
           </div>
           {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
           
-          <div className="flex items-start space-x-2">
-            <Checkbox 
-              id="login-agree" 
-              checked={loginAgreed} 
-              onCheckedChange={(checked) => setLoginAgreed(checked === true)}
-            />
-            <label htmlFor="login-agree" className="text-sm text-muted-foreground leading-tight cursor-pointer">
-              我已阅读并同意
-              <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
-              和
-              <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
-            </label>
+          <div className="flex items-center justify-between">
+            <div className="flex items-start space-x-2">
+              <Checkbox 
+                id="login-agree" 
+                checked={loginAgreed} 
+                onCheckedChange={(checked) => setLoginAgreed(checked === true)}
+              />
+              <label htmlFor="login-agree" className="text-sm text-muted-foreground leading-tight cursor-pointer">
+                我已阅读并同意
+                <Link to="/terms" className="text-primary hover:underline ml-1">《服务条款》</Link>
+                和
+                <Link to="/privacy" className="text-primary hover:underline ml-1">《隐私协议》</Link>
+              </label>
+            </div>
           </div>
+          
+          <button
+            type="button"
+            onClick={() => setAuthView('forgot-password')}
+            className="text-sm text-primary hover:underline block w-full text-right"
+          >
+            忘记密码？
+          </button>
           
           <Button 
             type="submit" 
@@ -861,24 +982,28 @@ const AuthPage = () => {
                 </CardHeader>
                 
                 <CardContent>
-                  <Tabs defaultValue="login" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2 mb-6">
-                      <TabsTrigger value="login">{t('auth.login')}</TabsTrigger>
-                      <TabsTrigger value="register">{t('auth.register')}</TabsTrigger>
-                    </TabsList>
-                    
-                    {/* 登录表单 */}
-                    <TabsContent value="login">
-                      {renderLoginMethodTabs()}
-                      {renderLoginForm()}
-                    </TabsContent>
-                    
-                    {/* 注册表单 */}
-                    <TabsContent value="register">
-                      {renderRegisterMethodTabs()}
-                      {renderRegisterForm()}
-                    </TabsContent>
-                  </Tabs>
+                  {authView === 'forgot-password' ? (
+                    renderForgotPasswordForm()
+                  ) : (
+                    <Tabs defaultValue="login" className="w-full">
+                      <TabsList className="grid w-full grid-cols-2 mb-6">
+                        <TabsTrigger value="login">{t('auth.login')}</TabsTrigger>
+                        <TabsTrigger value="register">{t('auth.register')}</TabsTrigger>
+                      </TabsList>
+                      
+                      {/* 登录表单 */}
+                      <TabsContent value="login">
+                        {renderLoginMethodTabs()}
+                        {renderLoginForm()}
+                      </TabsContent>
+                      
+                      {/* 注册表单 */}
+                      <TabsContent value="register">
+                        {renderRegisterMethodTabs()}
+                        {renderRegisterForm()}
+                      </TabsContent>
+                    </Tabs>
+                  )}
                 </CardContent>
               </Card>
             </div>

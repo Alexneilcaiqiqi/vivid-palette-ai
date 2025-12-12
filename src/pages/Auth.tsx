@@ -417,7 +417,7 @@ const AuthPage = () => {
   const renderLoginForm = () => {
     if (loginMethod === 'email') {
       return (
-        <form onSubmit={handleEmailLogin} className="space-y-4">
+        <form onSubmit={handleEmailLogin} className="space-y-5">
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
@@ -483,7 +483,7 @@ const AuthPage = () => {
 
     if (loginMethod === 'phone') {
       return (
-        <form onSubmit={handlePhoneLogin} className="space-y-4">
+        <form onSubmit={handlePhoneLogin} className="space-y-5">
           <div className="flex gap-2">
             <CountryCodeSelect 
               value={loginCountryCode} 
@@ -552,87 +552,81 @@ const AuthPage = () => {
 
     // 验证码登录
     return (
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <div className="flex gap-2">
-            <Button
-              type="button"
-              variant={loginOtpType === 'phone' ? 'secondary' : 'ghost'}
-              size="sm"
-              onClick={() => setLoginOtpType('phone')}
-              className="h-8 px-4"
-            >
-              手机号
-            </Button>
-            <Button
-              type="button"
-              variant={loginOtpType === 'email' ? 'secondary' : 'ghost'}
-              size="sm"
-              onClick={() => setLoginOtpType('email')}
-              className="h-8 px-4"
-            >
-              邮箱
-            </Button>
-          </div>
-          
-          {loginOtpType === 'phone' ? (
-            <div className="flex gap-2">
-              <CountryCodeSelect 
-                value={loginCountryCode} 
-                onChange={setLoginCountryCode} 
-                language={language} 
-              />
-              <Input
-                name="phone"
-                type="tel"
-                placeholder="请输入手机号"
-                value={loginData.phone}
-                onChange={handleLoginInputChange}
-                className="flex-1 bg-background/50 border-border/50 focus:border-primary"
-              />
-            </div>
-          ) : (
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                name="email"
-                type="email"
-                placeholder="请输入邮箱地址"
-                value={loginData.email}
-                onChange={handleLoginInputChange}
-                className="pl-10 bg-background/50 border-border/50 focus:border-primary"
-              />
-            </div>
-          )}
-          {loginOtpType === 'phone' && errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
-          {loginOtpType === 'email' && errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+      <div className="space-y-5">
+        <div className="flex gap-2">
+          <Button
+            type="button"
+            variant={loginOtpType === 'phone' ? 'secondary' : 'ghost'}
+            size="sm"
+            onClick={() => setLoginOtpType('phone')}
+            className="h-8 px-4"
+          >
+            手机号
+          </Button>
+          <Button
+            type="button"
+            variant={loginOtpType === 'email' ? 'secondary' : 'ghost'}
+            size="sm"
+            onClick={() => setLoginOtpType('email')}
+            className="h-8 px-4"
+          >
+            邮箱
+          </Button>
         </div>
-
-        {/* 验证码输入 */}
-        <div className="space-y-2">
-          <Label>验证码</Label>
+        
+        {loginOtpType === 'phone' ? (
           <div className="flex gap-2">
+            <CountryCodeSelect 
+              value={loginCountryCode} 
+              onChange={setLoginCountryCode} 
+              language={language} 
+            />
             <Input
-              name="otp"
-              type="text"
-              placeholder="请输入6位验证码"
-              value={loginData.otp}
+              name="phone"
+              type="tel"
+              placeholder="请输入手机号"
+              value={loginData.phone}
               onChange={handleLoginInputChange}
               className="flex-1 bg-background/50 border-border/50 focus:border-primary"
-              maxLength={6}
             />
-            <Button
-              type="button"
-              variant="outline"
-              onClick={sendLoginOtp}
-              disabled={isLoading || loginCountdown > 0 || !loginAgreed}
-              className="whitespace-nowrap"
-            >
-              {loginCountdown > 0 ? `${loginCountdown}s` : '获取验证码'}
-            </Button>
           </div>
-          {errors.otp && <p className="text-sm text-destructive">{errors.otp}</p>}
+        ) : (
+          <div className="relative">
+            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              name="email"
+              type="email"
+              placeholder="请输入邮箱地址"
+              value={loginData.email}
+              onChange={handleLoginInputChange}
+              className="pl-10 bg-background/50 border-border/50 focus:border-primary"
+            />
+          </div>
+        )}
+        {loginOtpType === 'phone' && errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
+        {loginOtpType === 'email' && errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+
+        <div className="flex gap-2">
+          <Input
+            name="otp"
+            type="text"
+            placeholder="请输入6位验证码"
+            value={loginData.otp}
+            onChange={handleLoginInputChange}
+            className="flex-1 bg-background/50 border-border/50 focus:border-primary"
+            maxLength={6}
+          />
+          <Button
+            type="button"
+            variant="outline"
+            onClick={sendLoginOtp}
+            disabled={isLoading || loginCountdown > 0 || !loginAgreed}
+            className="whitespace-nowrap"
+          >
+            {loginCountdown > 0 ? `${loginCountdown}s` : '获取验证码'}
+          </Button>
         </div>
+        {errors.otp && <p className="text-sm text-destructive">{errors.otp}</p>}
 
         <div className="flex items-start space-x-2">
           <Checkbox 
@@ -690,7 +684,7 @@ const AuthPage = () => {
   // 渲染注册表单
   const renderRegisterForm = () => {
     return (
-      <div className="space-y-4">
+      <div className="space-y-5">
         {registerMethod === 'phone' ? (
           <div className="flex gap-2">
             <CountryCodeSelect 
